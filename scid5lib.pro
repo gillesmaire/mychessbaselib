@@ -1,4 +1,4 @@
-QT = core
+QT = core gui widgets
 
 CONFIG += c++20 cmdline
 
@@ -18,7 +18,8 @@ SOURCES += \
         sortcache.cpp \
         stored.cpp \
         textbuf.cpp \
-        dbasepool.cpp 
+        dbasepool.cpp \
+        progressbar.cpp
 
 HEADERS += scidbase.h \
 		bytebuf.h \
@@ -60,7 +61,8 @@ HEADERS += scidbase.h \
 		nagtext.h \
 		naglatex.h \
 		textbuf.h \
-		dbasepool.h
+		dbasepool.h \
+		progressbar.h
 		
 		
 		
