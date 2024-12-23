@@ -176,6 +176,32 @@ public:
     errorT gamelocation(scidBaseT *dbase, QString filt, QString sort, QString text, uint start, bool forwardir, uint &result);
     
     errorT gameslist(scidBaseT *dbase, uint start, uint count, QString filt, QString sort, QList<QVariant> &res);
+
+    static errorT getGameHelper(Game &game, QList<QVariant> &res);
+    
+    ///
+    /// \brief getGame : return all positio of a game 
+    /// \param dbase : pointer on scidBaseT
+    /// \param gamenum: the number of requested game
+    /// \param live :optional parameter which specify the behavior when the requested game have unsaved changes.
+    ///              If present the latest unsaved version is returned, otherwise the saved copy in the database is used.
+    /// \param res :  list containing all the positions of a game, including variations.
+    /// The positions are sorted according to pgn standard:
+    ///     The alternate move sequence given by an RAV is one that may be legally
+    ///     played by first unplaying the move that appears immediately prior to the
+    ///     RAV". For each position the following informations are provided: RAVdepth:
+    ///     current variation depth. RAVnum: current variation num. FEN: "Forsyth-Edwards
+    ///     Notation" describing the current position. NAGS: "Numeric Annotation Glyph" 
+    ///     is a non-negative integer from 0 to 255 used to indicate a simple annotation
+    ///     in a language independent manner. comment: text annotation of the
+    ///     current position. lastMoveSAN: the last move that was played to reach the 
+    ///     current position. The move is indicated using English "Standard Algebraic 
+    ///  \return 0 for not error else a value given by error.h
+    ///
+    
+    errorT getGame(scidBaseT *dbase, uint gamenum, bool live, QList<QVariant> &res);
 };
+
+
 
 #endif // CHESSBASE_H

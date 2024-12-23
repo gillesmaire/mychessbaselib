@@ -333,3 +333,48 @@ errorT ChessBase::gameslist(scidBaseT* dbase, uint start, uint  count, QString f
 	return  OK;
 }
 
+
+errorT  ChessBase::getGameHelper( Game& game , QList<QVariant>  &res) {
+auto positions = gamepos::collectPositions(game);
+	QList<QVariant> posInfo;
+	for (const auto& pos : positions) {
+		posInfo.clear();
+		posInfo.push_back(pos.RAVdepth);
+		posInfo.push_back(pos.RAVnum);
+		posInfo.push_back(QString::fromUtf8(pos.FEN));
+		std::string nags;
+		for (const auto& nag : pos.NAGs) {
+			char temp[16];
+			game_printNag(nag, temp, true, PGN_FORMAT_Plain);
+			if (!nags.empty())
+				nags += ' ';
+			nags += temp;
+		}
+		posInfo.push_back(QString::fromUtf8(nags));
+		posInfo.push_back(QString::fromUtf8(pos.comment));
+		posInfo.push_back(QString::fromUtf8(pos.lastMoveSAN));
+		res.push_back(posInfo);
+	}
+	return  OK;
+}
+
+
+errorT ChessBase::getGame( scidBaseT *dbase, uint gamenum, bool live , QList<QVariant> &res)
+{
+	gamenumT gNum = gamenum;
+	if (live && dbase->gameNumber == (static_cast<long long>(gNum) - 1)) {
+		auto location = dbase->game->currentLocation();
+		int ret=getGameHelper( *(dbase->game), res);
+		if (ret != OK) return ret;
+		dbase->game->restoreLocation(location);
+		
+	}
+	auto ie = (gNum > 0) ? dbase->getIndexEntry_bounds(gNum - 1) : nullptr;
+	if (!ie)
+		return  ERROR_BadArg;
+
+	Game game;
+	errorT err = dbase->getGame(*ie, game);
+	if (err != OK) return err; 
+	return getGameHelper(game, res);
+}
