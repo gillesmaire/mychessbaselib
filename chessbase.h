@@ -174,9 +174,7 @@ public:
     errorT gamelocation(scidBaseT *dbase, QString filt, QString sortCrit, uint gnumber, uint &result);
     
     errorT gamelocation(scidBaseT *dbase, QString filt, QString sort, QString text, uint start, bool forwardir, uint &result);
-    
     errorT gameslist(scidBaseT *dbase, uint start, uint count, QString filt, QString sort, QList<QVariant> &res);
-
     static errorT getGameHelper(Game &game, QList<QVariant> &res);
     
     ///
@@ -200,6 +198,42 @@ public:
     ///
     
     errorT getGame(scidBaseT *dbase, uint gamenum, bool live, QList<QVariant> &res);
+    errorT importGames(scidBaseT *dbase, QString fileName, int &numgame);
+    uint open(scidBaseT *dbase, ICodecDatabase::Codec codec, QString filename);
+    
+    ///
+    /// \brief numberGames return the number of games in a dataBase
+    /// \param dbase the pointer on the database
+    /// \return number of games in uint
+    ///
+    uint numberGames(scidBaseT *dbase);
+    uint ListOpenedBases(scidBaseT *dbase);
+    uint numberGames(scidBaseT *dbase, int baseId);
+    
+    ///
+    /// \brief Slot get the handle of opened database
+    /// \param filename : the filename of wanted database 
+    ///                   Database in native Scid format doesn't use extension 
+    ///                   Other databases require file extention, (.pgn)
+    /// \return the handke of the database corresponding to fileName
+    ///
+    int Slot( QString fileName);
+    
+    ///
+    /// \brief sortChacheCreate create a sortCache
+    /// \param dbase : pointer on Base
+    /// \param sortCrit : Sort critera
+    /// \return  : 0 for not error else a value given by error.h
+    ///
+    errorT sortChacheCreate( scidBaseT *dbase,  QString sortCrit );
+    
+    ///
+    /// \brief sortChacheRelease 
+    /// \param dbase : pointer on Base
+    /// \param sortCrit :  sort critera
+    /// 
+    ///
+    void sortChacheRelease( scidBaseT *dbase, QString sortCrit );
 };
 
 

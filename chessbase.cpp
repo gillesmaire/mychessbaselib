@@ -6,6 +6,7 @@
 
 #include <QList>
 #include <QPair>
+#include <filesystem>
 
 errorT ChessBase::open(QString filename,ICodecDatabase::Codec codec, fileModeT fmode,  int &numberbase)
 {
@@ -377,4 +378,55 @@ errorT ChessBase::getGame( scidBaseT *dbase, uint gamenum, bool live , QList<QVa
 	errorT err = dbase->getGame(*ie, game);
 	if (err != OK) return err; 
 	return getGameHelper(game, res);
+}
+
+
+errorT ChessBase::importGames(scidBaseT* dbase, QString fileName, int &numgame)
+{
+
+	auto nImported = dbase->numGames();
+	std::string errorMsg; 
+	ProgressBar pb;
+	if (auto err = dbase->importGames(ICodecDatabase::PGN,fileName.toStdString().c_str(),pb,errorMsg) )
+		return  err;
+	numgame=dbase->numGames() - nImported;
+	return OK;
+}
+
+
+
+uint ChessBase::ListOpenedBases( scidBaseT *dbase)
+{
+    return dbase->numGames();
+}
+
+int ChessBase::Slot(QString fileName)
+{
+   return( DBasePool::find(fileName.toStdString().c_str())) ;
+}
+
+errorT ChessBase::sortChacheCreate(scidBaseT *dbase, QString sortCrit)
+{
+  if  ( ! dbase->createSortCache( sortCrit.toStdString().c_str()) )
+     return ERROR;
+  return OK;
+}
+
+void ChessBase::sortChacheRelease(scidBaseT *dbase, QString sortCrit)
+{
+   dbase->releaseSortCache( sortCrit.toStdString().c_str()) ;
+}
+
+
+
+uint ChessBase::open(scidBaseT *dbase,ICodecDatabase::Codec codec, QString filename  )  
+{
+    return DBasePool::find(filename.toStdString().c_str());
+    
+
+}
+
+uint ChessBase::numberGames(scidBaseT *dbase)
+{
+    return dbase->numGames();
 }
