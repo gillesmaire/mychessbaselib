@@ -62,7 +62,8 @@ HEADERS += scidbase.h \
 		naglatex.h \
 		textbuf.h \
 		dbasepool.h \
-		progressbar.h
+		progressbar.h \
+		searchtournaments.h
 		
 		
 		

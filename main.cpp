@@ -1,4 +1,7 @@
 #include <QCoreApplication>
+#include "game.h"
+
+static Game * scratchGame = NULL;   
 
 int main(int argc, char *argv[])
 {

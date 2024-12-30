@@ -234,8 +234,223 @@ public:
     /// 
     ///
     void sortChacheRelease( scidBaseT *dbase, QString sortCrit );
+    
+    ///
+    /// \brief statsDates return statistic about minimum dates, maximum dates and mean year 
+    /// \param dbase : pointer on Base
+    /// \return  QList of 3 uint32-t
+    ///
+    QList<quint32> statsDates (scidBaseT *dbase ) ;
+    
+    ///
+    /// \brief statsECO return statistic about 
+    ///          - number of games with the ECO
+    ///          - number of white wins
+    ///          - number of draws
+    ///          - number of black wins
+    ///          - number of no result games
+    ///          - score in %
+    /// \param dbase : pointer on Base
+    /// \param ECO  : must be a valid ECO code or an abbreviation.
+    ///  For example:
+    ///       A returns the sum of all the A00,A00a...A99z4
+    ///       A1 returns the sum of all the A10,A10a,A10a1...A19z4
+    ///       A10 returns the sum of all the A10,A10a,A10a1...A10z4
+    ///       An empty string returns the sum of all valid ECO codes
+    /// \return  a QList of 5 results
+    ///
+    QList<quint32> statsECO (scidBaseT *dbase , QString ECO ) ;
+    
+    ///
+    /// \brief statsFLAG : number of  games with the flag set
+    ///             The flag must be a valid flag char like in
+    ///             IndexEntry::CharToFlag() ie 
+    ///         D   DELETE 
+    ///         W   WHITE OP
+    ///         B   Black OP
+    ///         M   Middlegame 
+    ///         E   EndGame
+    ///         N   Novelty
+    ///         P   Pawn
+    ///         T   TACTICS
+    ///         K   KSIDE
+    ///         Q   QSIDE 
+    ///         !   BRILLANCY
+    ///         ?   BLUNDER
+    ///         U   User
+    ///         1..6 CUSTOM
+    /// \param dbase : pointer on Base
+    /// \param flag : the flag
+    /// \return 
+    ///
+    quint32 statsFLAG (scidBaseT *dbase, QChar flag) ;
+    
+    ///
+    /// \brief statsFLAGS number of  games with the flags D W and B set
+    /// \param dbase : pointer on Base
+    /// \return 
+    ///
+    QList<quint32> statsFLAGS(scidBaseT *dbase);
+
+    ////
+    /// \brief statsRATINGS
+    /// \param dbase : pointer on Base
+    /// \return {minimum elo} {maximum elo} {mean elo}
+    ///
+    QList<quint32> statsRATINGS(scidBaseT *dbase);
+    
+    ///
+    /// \brief statsRESULTS
+    /// \param dbase : pointer on Base
+    /// \return  {number of games won by white} {number of draws} {number of
+    ///         games won by black} {number of games with no result}
+    ///
+    QList<quint32> statsRESULTS(scidBaseT *dbase);
+    
+    
+    ///
+    /// Marked DEPRECATED
+    /// chage the current database and the current base 
+    /// \param  dbase : pointer onto scidBaseT
+    /// \return : the current Database ID after the switch
+  
+    int  BaseSwitch( scidBaseT *dbase);
+    
+    ///
+    /// \brief strip remove all occurences of the spedified tags from the database
+    /// \param dbase : pointer onto scidBaseT
+    /// \param tagNames : list on tag names 
+    /// \return 
+    ///
+    QList<unsigned short> strip(scidBaseT *dbase, QStringList tagNames);
+    
+    
+    ///
+    /// \brief tagList produce a list of PGN tags used in the DataBase 
+    /// \param dbase : pointer onto scidBaseT
+    /// \param QList<QPair<QString,int>> &res output paramter if errorT is OK
+    /// \return OK for not error else a value given by error.h
+    ///
+    errorT tagList(scidBaseT *dbase,QList<QPair<QString,int>> &res);
+    
+    ///
+    /// \brief tournaments return a list of tournaments
+    ///         Games with the same Event Site and EventDate tags are considered as 
+    ///         a tournament
+    ///         The list returned can be restricted based on :
+    ///                - the average elo og participants
+    ///                - the number of games 
+    ///                - the number of players 
+    ///                - the nae of a participant
+    ///         Ranges can be specified with one or two numvers separated by spaces (min max)
+    ///         The returned  list cat ne sorted according to the followinf critera : 
+    ///                - Date  :  date on the first games in the tournament
+    ///                - Players : number of participants to tournament
+    ///                - Games : number of games
+    ///                - Elo  : average elo of the participants
+    ///                - Site : site name 
+    ///                - Event : event name
+    /// \param dbase    
+    /// \param maxresult
+    /// \return on Succes return a list of tournaments 
+    ///         ofr eah tournament the followinf informations are provided :
+    ///      date of the first game, site name, event name, number of players , number of games, average elo, lowest game number,
+    ///     winner name, winner elo, winner score, 2nd place name , 2 nd elo 2nd score
+    /// 
+    ///
+    errorT tournaments( const scidBaseT * dbase, Filter, QString filter, long maxresult, QList<QList<QVariant>> &res, int elo =0, 
+                        int games=0, int players=0, QString player=QString(),  QString sort= QString());
+    
+    ///
+    /// \brief playerElo return a list of elo values of a player
+    /// \param dbase : pointer on Scid Base
+    /// \param filterName : 
+    /// \param playerName
+    /// \param res
+    /// \return OK for not error else a value given by error.h
+    ///
+    
+    errorT playerElo(const scidBaseT *dbase, QString filterName, QString playerName, QList<QPair<unsigned int, ushort> > &res);
+    
+    ///
+    /// \brief baseInUse 
+    /// \param dbase
+    /// \param number
+    /// \return 
+
+    bool baseInUse(int number );
+    
+    
+    ///
+    /// \brief exportBase
+    /// \param dbase
+    /// \param filter
+    /// \param appendMode
+    /// \param outputFormat
+    /// \param outputFile
+    /// \param append
+    /// \param starttext
+    /// \param endtext
+    /// \param comments
+    /// \param variation
+    /// \param space
+    /// \param symbols
+    /// \param indentComments
+    /// \param indentVariation
+    /// \param column
+    /// \param noMakeCodes
+    /// \param convertNullMoves
+    /// \return 
+    ///
+    int exportBase(const scidBaseT *dbase, QString filter, bool appendToFile, gameFormatT outputFormat, QString exportFileName, QString startText=QString(), QString endText=QString(), bool comments=false, bool variation=false, bool spaces=false, bool symbols=false, bool indentComments=false, bool indentVariation=false, bool column=false, bool noMarkCodes=false, bool convertNullMoves=false);
+    
+    void exportGame(Game *g, FILE *exportFile, gameFormatT format, uint pgnStyle );
+    
+    ///
+    /// \brief piecetrack  : Examines games in the filter of the current database and return a list of 64 integers indicating
+    ///        how frequently the specified piece moves for each square
+    /// \param dbase : pointer on the base 
+    /// \param timeOnSquareMode : by default the timeOnSquareMode is false and gameOnSquareMode is set.
+    ///        on timeOnSquareMode the mode is given in time , on gameonSquareMode the mode is give in number of game
+    /// \param minMoves : anolyses from minMoves for example 0 for start of games 10 : after 10 moves 
+    /// \param maxMoves : analyses  to maxMoves  for example 30 to analyse  until 30 moves
+    /// \param moves : list of case to analyse for example "e4 d4"
+    /// \param arr : the result is array ok 64 uint declared as reference
+    /// \return OK for not error else a value given by error.h
+    ///
+    /// 
+    errorT piecetrack(scidBaseT *dbase, bool timeOnSquareMode,  uint minMoves, uint maxMoves, QString moves, std::array<unsigned int, 64>& result);
+    
+    struct dupCriteriaT {
+    bool exactNames;
+    bool sameColors;
+    bool sameEvent;
+    bool sameSite;
+    bool sameRound;
+    bool sameResult;
+    bool sameYear;
+    bool sameMonth;
+    bool sameDay;
+    bool sameEcoCode;
+    bool sameMoves;
 };
-
-
+    
+    ///
+    /// \brief checkDuplicate used by dupplicate check if two record games are dupplicated
+    ///         The event, Site, Round, Year, Month, Day, Result, EcoCode and moves are tested
+    ///         if Flag delete the record the result is false. 
+    /// 
+    /// \param dbase : pointer on scidBaseT
+    /// \param ie1 : first element checked
+    /// \param ie2 : second element checked
+    /// \param cr :  citeria given by dupCriteriaT
+    /// \return  true if the the game are equal false if different or game marked to be delete
+    ///
+    bool checkDuplicate  (scidBaseT* dbase, const IndexEntry *ie1, const IndexEntry *ie2, dupCriteriaT *cr);
+    
+     
+     
+ 
+};
 
 #endif // CHESSBASE_H
