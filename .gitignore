@@ -1,3 +1,5 @@
 sci5lib
 build*/
 *.o
+*.swp 
+*.pro.user

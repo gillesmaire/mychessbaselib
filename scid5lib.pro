@@ -66,7 +66,7 @@ HEADERS += scidbase.h \
 		searchtournaments.h
 		
 		
-		
+OTHER_FILES		 += Documentation/Use.md
 	
 
 # Default rules for deployment.

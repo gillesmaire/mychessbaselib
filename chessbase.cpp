@@ -589,6 +589,11 @@ errorT ChessBase::playerElo(const scidBaseT *dbase, QString filterName, QString 
 }
 
 
+ChessBase::ChessBase(QObject *ob):QObject()
+{
+    
+}
+
 bool ChessBase::baseInUse(  int number)
 {
     auto baseptr=DBasePool::getBase(number);
