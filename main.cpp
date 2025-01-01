@@ -17,10 +17,12 @@ int main(int argc, char *argv[])
     mainWindow.show();
     DBasePool::init()  ;
     ChessBase cb(&mainWindow);
-    int numberbase;
-    int code=cb.open("/home/gilles/test3.pgn",ICodecDatabase::PGN,FMODE_Create,numberbase);
-    qDebug()<<cb.ErrorCode(code)<<numberbase;
-    qDebug()<<cb.filename();
+    int number;
+    int code=cb.open("/home/gilles/test3.pgn",ICodecDatabase::PGN,FMODE_Create,number);
+    
+    int bp=DBasePool::find("/home/gilles/test3.pgn");
+    qDebug()<<bp;
+    
     
 
     return a.exec();

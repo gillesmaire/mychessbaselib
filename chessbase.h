@@ -113,14 +113,14 @@ public:
     ///
     errorT duplicates(scidBaseT *dbase, bool players = false, bool colors = true, bool event = true, bool site = true, bool round = true, bool year = true, bool month = true, bool day = false, bool result = false, bool eco = false, bool moves = true, bool skipShortGames = false, bool keepAllCommentedGames = true, bool keepAllGamesWithVars = true, bool setFilterToDups = false, bool onlyFilterGames = false, deleteStrategyT Delete = DELETE_SHORTER);
     
-    /// 
+    
     /// \brief close the database given by the pointer
     /// \param pointer on Base
     /// \return  0 of not error else a value given by error.h 
     /// 
     errorT close(scidBaseT *dbase);
   
-    ///
+    
     /// \brief CodecEnum2Str convert Enum PGN SCID5 SCID4 MEM to QString equivalent
     /// \param codec
     /// \return the string in QString format
@@ -132,7 +132,7 @@ public:
     /// \param codec the enum codec
     /// \param numberBase : the number of base
     /// \return the string in std::string format
-    ///
+    
     static std::string CodecEnum2Str( ICodecDatabase::Codec codec ) ;
     
     
@@ -299,8 +299,9 @@ public:
     
     QList <QPair <QString,QString>>  getExtraTags(scidBaseT *dbase);
     
-        ///
-    /// \brief getGame : return all positio of a game 
+        
+    ///
+    /// \brief getGame : return all positions of a game 
     /// \param dbase : pointer on scidBaseT
     /// \param gamenum: the number of requested game
     /// \param live :optional parameter which specify the behavior when the requested game have unsaved changes.
