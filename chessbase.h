@@ -162,9 +162,10 @@ public:
     ///     - if codec is SCID4 create the files name.si4 name.sg4 name.sn4 
     ///     - if codec is SCID5 create the files name.si5 name.sg5 name.sn5 
     ///     - if codec is PGN create the file  name.pgn. If pgn extention is ometted the
-    ///       faile PGN is created but without extention .pgn
+    ///       file PGN is created but without extention .pgn
     ///     - if name = /dir/name create the file in the directory /dir/
     /// \param codec MEMORY PGN SCID4 SCID5 
+    /// \param numberBase : is the number of base used (you can use 9 bases at the same time)
     /// \return 0 of not error else a value given by error.h
 
     errorT create(QString name,ICodecDatabase::Codec codec, int &numberBase  );
@@ -216,12 +217,13 @@ public:
     /// \param arr : the result is array ok 64 uint declared as reference
     /// \return OK for not error else a value given by error.h
     ///
-    /// 
+    
+    
     ///
     /// \brief filename return the filename of database. 
-    ///     - for PGN retule the full path filename 
-    ///     - for scid base returne the name of base without the extention si4 or si5
-    ///     - for clipbase return <clipbase>
+    ///     - for PGN returns the full path filename 
+    ///     - for scid base returns the name of base without the extention si4 or si5
+    ///     - for clipbase returns <clipbase>
     /// \param dbase pointer on the base 
     /// \return 
     ///
@@ -229,7 +231,7 @@ public:
    
     QString filename( scidBaseT *dbase);
 
-        ///
+    ///
     /// \brief gameCommandFlag : allows same operation like setGameFlag, getGameFlag, unsetGameFlag
     ///                          and invertGameFlag but allow to apply on gamenum but also on filtername
     ///                          or all 
@@ -338,7 +340,6 @@ public:
     /// \return 0 of not error else a value given by error.h
     ///
      
-    ///
     /// \brief open a base with value of codec  "MEMORY", "PGN", "SCID4","SCID5"
     /// \param filename : name of filename 
     /// \param codec : can be "MEMORY", "PGN", "SCID4","SCID5"
@@ -346,8 +347,15 @@ public:
     /// \param numberbase : a return parameter indicate the number of base selected
     /// \return :  0 if no error else a value given in error.h
     errorT open(QString filename, ICodecDatabase::Codec codec, fileModeT fmode , int  &numberbase);
-
-
+    
+    ///
+    /// \brief open
+    /// \param dbase
+    /// \param codec
+    /// \param filename
+    /// \return 
+    ///
+    uint open(scidBaseT *dbase, ICodecDatabase::Codec codec, QString filename);
     ///
     /// \brief setGameFlag set a Flag for the game
     /// \param dbase * : pointer on base
@@ -401,7 +409,7 @@ public:
     
 
     errorT importGames(scidBaseT *dbase, QString fileName, int &numgame);
-    uint open(scidBaseT *dbase, ICodecDatabase::Codec codec, QString filename);
+
     
     ///
     /// \brief numberGames return the number of games in a dataBase

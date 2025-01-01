@@ -51,8 +51,6 @@ You can contact me for job à gilles@gillesmaire.com
 ## scid5lib developper guide 
 
 
-#### DataBase creation 
-
 #### Create a new base
 
 - You have to call the init method from  DBasePool. 
@@ -109,10 +107,28 @@ you have to add pgn extention
 
 
 
+### DBaseSpool concept 
+
+**DBaseSpool* allow to manipulate several Data>ases and switch from on one another one.
+The description is made in the dbasespool.h file.
+
+The set of Databases is named a pool. This pool need to be initialized at the 
+begining of the program by the **Init** method.
+
+Severall Databases can be close with **spool.closeAll()**
+
+It is possible to get an Handle corresponding to a filename by the **find** function
+returning an integer. With this integer we cant get the scidBaseT *ptr bu the function
+**getBase()**. the scidBase is used in all the chessbase class methods. 
+
+DBaseSpool allows to call **getClipBase()**  a special memory database that is always open and valid.
+
+**scidBaseT* getFreeSlot()** allocate a free database spool (or nullptr) 
+all slot are busy.
 
 
 
-
+To retrieve all the opened databases  getHandles return a std::vector<int>
 
 
 

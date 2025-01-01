@@ -18,8 +18,9 @@ int main(int argc, char *argv[])
     DBasePool::init()  ;
     ChessBase cb(&mainWindow);
     int numberbase;
-    int code=cb.open("/home/gilles/test2.pgn",ICodecDatabase::PGN,FMODE_Create,numberbase);
-    qDebug()<<cb.ErrorCode(code);
+    int code=cb.open("/home/gilles/test3.pgn",ICodecDatabase::PGN,FMODE_Create,numberbase);
+    qDebug()<<cb.ErrorCode(code)<<numberbase;
+    qDebug()<<cb.filename();
     
 
     return a.exec();
