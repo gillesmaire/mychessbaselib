@@ -86,6 +86,63 @@ errorT ChessBase::create(QString name ,ICodecDatabase::Codec codec, int &numberb
     return open(name,codec,FMODE_Create,numberbase);
 }
 
+QString ChessBase::ErrorCode(errorT code)
+{
+    QString text="Unknown";
+    if ( code == OK ) text="OK";
+    else if (code == ERROR) text="ERROR";
+    else if (code == ERROR_UserCancel) text="ERROR_UserCancel";
+    else if (code == ERROR_BadArg) text="ERROR_BadArg";
+    else if (code == ERROR_FileOpen) text="ERROR_FileOpen";
+    else if (code == ERROR_FileWrite) text="ERROR_FileWrite";
+    else if (code == ERROR_FileRead) text="ERROR_FileRead";
+    else if (code == ERROR_FileSeek) text="ERROR_FileSeek";
+    else if (code == ERROR_BadMagic) text="ERROR_BadMagic";
+    else if (code == ERROR_FileNotOpen) text="ERROR_FileNotOpen";
+    else if (code == ERROR_FileInUse) text="ERROR_FileInUse";
+    else if (code == ERROR_FileMode) text="ERROR_FileMode";
+    else if (code == ERROR_FileVersion) text="ERROR_FileVersion";
+    else if (code == ERROR_OldScidVersion) text="ERROR_OldScidVersion";
+    else if (code == ERROR_FileReadOnly) text="ERROR_FileReadOnly";
+    else if (code == ERROR_CompactRemove) text="ERROR_CompactRemove";
+    
+    else if (code == ERROR_MallocFailed) text="ERROR_MallocFailed";
+    else if (code == ERROR_CorruptData) text="ERROR_CorruptData";
+    
+    else if (code == ERROR_Full) text="ERROR_Full";
+    else if (code == ERROR_NameNotFound) text="ERROR_NameNotFound";
+    else if (code == ERROR_NameExists) text="ERROR_NameExists";
+    else if (code == ERROR_NameBaseEmpty) text="ERROR_NameBaseEmpty";
+    else if (code == ERROR_NoMatchFound) text="ERROR_NoMatchFound";
+    else if (code == ERROR_NameDataLoss) text="ERROR_NameDataLoss";
+    else if (code == ERROR_NameTooLong) text="ERROR_NameTooLong";
+    else if (code == ERROR_NameLimit) text="ERROR_NameLimit";
+    else if (code == ERROR_OffsetLimit) text="ERROR_OffsetLimit";
+    else if (code == ERROR_GameLengthLimit) text="ERROR_GameLengthLimit";
+    else if (code == ERROR_NumGamesLimit) text="ERROR_NumGamesLimit";
+    else if (code == ERROR_InvalidFEN) text="ERROR_InvalidFEN";
+    else if (code == ERROR_InvalidMove) text="ERROR_InvalidMove";
+    else if (code == ERROR_PieceCount) text="ERROR_PieceCount";
+
+    else if (code == ERROR_Game) text="ERROR_Game";
+    else if (code == ERROR_EndOfMoveList) text="ERROR_EndOfMoveList";
+    else if (code == ERROR_StartOfMoveList) text="ERROR_StartOfMoveList";
+    else if (code == ERROR_NoVariation) text="ERROR_NoVariation";
+    else if (code == ERROR_EmptyVariation) text="ERROR_EmptyVariation";
+    else if (code == ERROR_VariationLimit) text="ERROR_VariationLimit";
+    else if (code == ERROR_Decode) text="ERROR_Decode";
+    else if (code == ERROR_GameFull) text="ERROR_GameFull";
+
+    else if (code == ERROR_BufferFull) text="ERROR_BufferFull";
+    else if (code == ERROR_BufferRead) text="ERROR_BufferRead";
+    
+    else if (code == ERROR_CodecUnsupFeat) text="ERROR_CodecUnsupFeat";
+    else if (code == ERROR_CodecChess960) text="ERROR_CodecChess960";
+    else text="ERROR_UNKNOWN";
+    QString result=QString ("%1 %2\n").arg(code).arg(text);
+    return result;
+}
+
 QList<QPair<QString, QString> > ChessBase::getExtraTags(scidBaseT *dbase)
 {   
     auto list = dbase->getExtraInfo();
@@ -112,7 +169,7 @@ QString ChessBase::filename(scidBaseT *dbase)
 std::string ChessBase::CodecEnum2Str(ICodecDatabase::Codec codec)
 {
     if ( codec==ICodecDatabase::MEMORY ) return ("Memory");
-    else if (codec==ICodecDatabase::PGN ) return ("PNG");
+    else if (codec==ICodecDatabase::PGN ) return ("PGN");
     else if (codec==ICodecDatabase::SCID4 ) return ("SCID4");
     else  return ("SCID5");
 }
@@ -589,7 +646,12 @@ errorT ChessBase::playerElo(const scidBaseT *dbase, QString filterName, QString 
 }
 
 
-ChessBase::ChessBase(QObject *ob):QObject()
+ChessBase::ChessBase(QWidget *widget)
+{
+    
+}
+
+ChessBase::~ChessBase()
 {
     
 }

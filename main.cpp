@@ -3,6 +3,8 @@
 #include "chessbase.h"
 #include <QMainWindow>
 #include <dbasepool.h>
+#include <QDebug>
+
 
 static Game * scratchGame = NULL;   
 
@@ -16,8 +18,8 @@ int main(int argc, char *argv[])
     DBasePool::init()  ;
     ChessBase cb(&mainWindow);
     int numberbase;
-    cb.create("/tmp/mabase",ICodecDatabase::SCID5,numberbase);
-    
+    int code=cb.open("/home/gilles/test2.pgn",ICodecDatabase::PGN,FMODE_Create,numberbase);
+    qDebug()<<cb.ErrorCode(code);
     
 
     return a.exec();

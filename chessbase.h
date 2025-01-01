@@ -11,9 +11,9 @@
 /// This Class is the Qt database management for Scid5 base with Qt and not with Tcl/Tk.
 /// the sc_base.cpp has be converted with 
 
-class ChessBase : public QObject
+class ChessBase : public QWidget
 {
-
+  Q_OBJECT
 private:
 
  struct dupCriteriaT {
@@ -45,7 +45,8 @@ public:
     
     
     
-    ChessBase( QObject *ob);
+    ChessBase( QWidget *widget);
+    ~ChessBase();
   
     ///
     /// \brief baseInUse 
@@ -155,16 +156,29 @@ public:
     ///
     errorT copyGames (scidBaseT *sourcebase, QString NumGameOrFilterName, uint  targedBaseId );
   
-    ///
-    /// \brief sc_base_create 
-    /// \param name for the base
+    /// \brief create a new database (is the convenience method for open with flag create)
+    ///        the Database created is empty.
+    /// \param name for the base.
+    ///     - if codec is SCID4 create the files name.si4 name.sg4 name.sn4 
+    ///     - if codec is SCID5 create the files name.si5 name.sg5 name.sn5 
+    ///     - if codec is PGN create the file  name.pgn. If pgn extention is ometted the
+    ///       faile PGN is created but without extention .pgn
+    ///     - if name = /dir/name create the file in the directory /dir/
     /// \param codec MEMORY PGN SCID4 SCID5 
     /// \return 0 of not error else a value given by error.h
-    ///
+
     errorT create(QString name,ICodecDatabase::Codec codec, int &numberBase  );
- 
- 
-  ///
+    
+    ///
+    /// \brief ErrorCode get a QString from errorT code 
+    /// \param code : the code returned by a function 
+    /// \return the QString containing 
+    ///                 - the ERROR CODE in integer value (0)
+    ///                 - the ERROR CODE in QString value (OK)
+    ///
+    QString ErrorCode( errorT code ) ;
+    
+    ///
     /// \brief exportBase
     /// \param dbase
     /// \param filter
