@@ -3,6 +3,7 @@
 #include "scidbase.h"
 #include "progressbar.h"
 #include "misc.h"
+#include "dstring.h"
 #include "searchtournaments.h"
 #include <QList>
 #include <QPair>
@@ -10,7 +11,8 @@
 #include <date.h>
 #include <QMap>
 #include <filebuf.h>
-#include <cstdio> 
+#include <cstdio>
+
 
 
 static Game *scratchGame = NULL;
@@ -770,15 +772,221 @@ bool ChessBase::checkDuplicate(scidBaseT *dbase, const IndexEntry *ie1, const In
     return true;
 }
 
-errorT ChessBase::checkDuplicates(scidBaseT *dbase, const IndexEntry *ie1, const IndexEntry *ie2, dupCriteriaT *cr)
+
+errorT ChessBase::duplicates(scidBaseT *dbase, bool players, bool colors, bool event, bool site,
+                             bool round, bool year, bool month, bool day, bool result, bool eco,
+                             bool moves, bool skipShortGames, bool keepAllCommentedGames, bool keepAllGamesWithVars, bool setFilterToDups,
+                             bool onlyFilterGames, enum deleteStrategyT deleteStrategy)
 {
+    dupCriteriaT criteria;
+    const gamenumT numGames = dbase->numGames();
+    criteria.exactNames  = players;
+    criteria.sameColors  = colors;
+    criteria.sameEvent   = event;
+    criteria.sameSite    = site;
+    criteria.sameRound   = round;
+    criteria.sameYear    = year;
+    criteria.sameMonth   = month;
+    criteria.sameDay     = day;
+    criteria.sameResult  = result;
+    criteria.sameEcoCode = eco;
+    criteria.sameMoves = moves;
+   
+
+    // Setup duplicates array:
+    auto duplicates = std::make_unique<gamenumT[]>(numGames);
+
+    // We use a hashtable to limit duplicate game comparisons; each game
+    // is only compared to others that hash to the same value.
+    std::vector<gNumListT> hash(numGames);
+    size_t n_hash = 0;
+    const std::vector<uint32_t>& hashMap = (criteria.exactNames)
+            ? std::vector<uint32_t>()
+            : dbase->getNameBase()->generateHashMap(NAME_PLAYER);
+    for (gamenumT i=0; i < numGames; i++) {
+        const IndexEntry* ie = dbase->getIndexEntry(i);
+        if (! ie->GetDeleteFlag()  /* &&  !ie->GetStartFlag() */
+            &&  (!skipShortGames  ||  ie->GetNumHalfMoves() >= 10)
+            &&  (!onlyFilterGames  ||  dbase->dbFilter->Get(i) > 0)) {
+
+            uint32_t wh = ie->GetWhite();
+            uint32_t bl = ie->GetBlack();
+            if (!criteria.exactNames) {
+                wh = hashMap[wh];
+                bl = hashMap[bl];
+            }
+            if (!criteria.sameColors && bl > wh) {
+                std::swap(wh, bl);
+            }
+            gNumListT* node = &(hash[n_hash++]);
+            node->hash = (uint64_t(wh) << 32) + bl;
+            node->gNumber = i;
+        }
+    }
+    hash.resize(n_hash);
+    std::sort(hash.begin(), hash.end());
+
+    Filter tmp_filter(numGames);
+    HFilter filter = setFilterToDups ? dbase->getFilter("dbfilter")
+                                     : HFilter(&tmp_filter);
+    filter.clear();
+    Progress progress ;
+    // Now check same-hash games for duplicates:
+    for (size_t i=0; i < n_hash; i++) {
+        if ((i % 1024) == 0) {
+            if (!progress.report(i, numGames)) break;
+        }
+        const gNumListT& head = hash[i];
+        const IndexEntry* ieHead = dbase->getIndexEntry(head.gNumber);
+
+        for (size_t comp=i+1; comp < n_hash; comp++) {
+            const gNumListT& compare = hash[comp];
+            if (compare.hash != head.hash) break;
+
+            const IndexEntry* ieComp = dbase->getIndexEntry(compare.gNumber);
+
+            if (checkDuplicate(dbase, ieHead, ieComp, &criteria)) {
+                duplicates[head.gNumber] = compare.gNumber + 1;
+                duplicates[compare.gNumber] = head.gNumber + 1;
+
+                auto isImmune = [&](const IndexEntry* ie) {
+                    if (keepAllCommentedGames && ie->GetCommentsFlag())
+                        return true;
+                    return keepAllGamesWithVars && ie->GetVariationsFlag();
+                };
+
+                // Decide which game should get deleted:
+                bool deleteHead = false;
+                if (deleteStrategy == DELETE_OLDER) {
+                    deleteHead = (head.gNumber < compare.gNumber);
+                } else if (deleteStrategy == DELETE_NEWER) {
+                    deleteHead = (head.gNumber > compare.gNumber);
+                } else {
+                    ASSERT(deleteStrategy == DELETE_SHORTER);
+                    uint a = ieHead->GetNumHalfMoves();
+                    uint b = ieComp->GetNumHalfMoves();
+                    deleteHead = (a <= b);
+                    if (a == b && isImmune(ieHead))
+                        deleteHead = false;
+                }
+
+                gamenumT gnumDelete = compare.gNumber;
+                const IndexEntry* ieDelete = ieComp;
+                if (deleteHead) {
+                    gnumDelete = head.gNumber;
+                    ieDelete = ieHead;
+                }
+                // Delete whichever game is to be deleted:
+                if (!isImmune(ieDelete)) {
+                    filter->set(gnumDelete, 1);
+                }
+            }
+        }
+    }
+    auto[err, nDel] = dbase->transformIndex(filter, {}, [](IndexEntry& ie) {
+        ie.SetDeleteFlag(true);
+        return true;
+    });
+    dbase->setDuplicates(std::move(duplicates));
+    progress.report(1, 1);
+    return (err == OK) ?  OK :  err;     
     
 }
 
-errorT ChessBase::duplicates(scidBaseT *dbase)
+
+errorT ChessBase::gamesummary(const scidBaseT& base,uint gameNum, QList<QVariant> &res)
 {
-    
+    Game* g = scratchGame;
+	gamenumT gnum = gameNum;
+	if (gnum > 0) {
+		auto ie = base.getIndexEntry_bounds(gnum - 1);
+		if (!ie || base.getGame(*ie, *scratchGame) != OK) {
+			return ERROR_BadArg; 
+		}
+	} else {
+		g = base.game;
+	}
+
+
+    // Return header summary if requested:
+        DString dstr;
+        dstr.Append (g->GetWhiteStr());
+        eloT elo = g->GetWhiteElo();
+        if (elo > 0) { dstr.Append (" (", elo, ")"); }
+        dstr.Append ("  --  ", g->GetBlackStr());
+        elo = g->GetBlackElo();
+        if (elo > 0) { dstr.Append (" (", elo, ")"); }
+        dstr.Append ("\n", g->GetEventStr());
+        const char * round = g->GetRoundStr();
+        if (! strIsUnknownName(round)) {
+            dstr.Append (" (", round, ")");
+        }
+        dstr.Append ("  ", g->GetSiteStr(), "\n");
+        char dateStr [20];
+        date_DecodeToString (g->GetDate(), dateStr);
+        // Remove ".??" or ".??.??" from end of date:
+        if (dateStr[4] == '.'  &&  dateStr[5] == '?') { dateStr[4] = 0; }
+        if (dateStr[7] == '.'  &&  dateStr[8] == '?') { dateStr[7] = 0; }
+        dstr.Append (dateStr, "  ");
+        dstr.Append (RESULT_LONGSTR[g->GetResult()]);
+        ecoT eco = g->GetEco();
+        if (eco != 0) {
+            ecoStringT ecoStr;
+            eco_ToExtendedString (eco, ecoStr);
+            dstr.Append ("  ", ecoStr);
+        }
+        res.push_back(dstr.Data());
+
+    // Here, a list of the boards or moves is requested:
+    const auto n_moves = g->GetNumHalfMoves() + 1;
+    QStringList boards;
+    QStringList moves;
+    auto location = g->currentLocation();
+    g->MoveToStart();
+    do {
+            char boardStr[100];
+            g->GetCurrentPos()->MakeLongStr (boardStr);
+            boards.push_back(boardStr);
+
+            colorT toMove = g->GetCurrentPos()->GetToMove();
+            uint moveCount = g->GetCurrentPos()->GetFullMoveCount();
+            char san [20];
+            g->GetSAN (san);
+            if (san[0] != 0) {
+                char temp[40];
+                if (toMove == WHITE) {
+                    sprintf (temp, "%u.%s", moveCount, san);
+                } else {
+                    strCopy (temp, san);
+                }
+                byte * nags = g->GetNextNags();
+                if (*nags != 0) {
+                    for (uint nagCount = 0 ; nags[nagCount] != 0; nagCount++) {
+                        char nagstr[20];
+                        game_printNag (nags[nagCount], nagstr, true,
+                                       PGN_FORMAT_Plain);
+                        if (nagCount > 0  ||
+                              (nagstr[0] != '!' && nagstr[0] != '?')) {
+                            strAppend (temp, " ");
+                        }
+                        strAppend (temp, nagstr);
+                    }
+                }
+                moves.push_back(temp);
+            } else {
+                moves.push_back(RESULT_LONGSTR[g->GetResult()]);
+            }
+
+    } while (g->MoveForward() == OK);
+    g->restoreLocation(location);
+
+    res.push_back(boards);
+    res.push_back(moves);
+    return OK;
 }
+
+
+
 errorT ChessBase::tournaments(const scidBaseT *dbase, Filter, QString filter, long maxresult, QList<QList<QVariant>> &res, int elo, int games, int players, QString player, QString sort)
 {
 
@@ -864,7 +1072,7 @@ uint ChessBase::numberGames(scidBaseT *dbase)
 
 errorT ChessBase::piecetrack ( scidBaseT *dbase , bool timeOnSquareMode ,uint minMoves, uint maxMoves, QString moves ,  std::array<unsigned int, 64>& arr)
 {
-       uint minPly = minMoves*2;
+    uint minPly = minMoves*2;
     uint maxPly = maxMoves*2;
 
     // Convert moves to plycounts, e.g. "5-10" -> "9-20"
