@@ -1,5 +1,5 @@
 
-# Scid5lib Developper guide
+# Scid5lib Developper guide
 
 
 ## Scid5Lib Presentation
