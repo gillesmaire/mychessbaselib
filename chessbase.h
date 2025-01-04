@@ -408,7 +408,14 @@ public:
     
     static errorT getGameHelper(Game &game, QList<QVariant> &res);
     
-
+    /// \brief importGames import  a PGN game in base
+    /// \param dbase : * pointeur on base 
+    /// \param fileName : the path and pgn file name to import for example :
+    ///                     QString("/home/test/PGN/00003265gamses.pgn") or
+    ///                     "/home/test/PGN/00003265gamses.pgn"
+    /// \param numgame : number of game imported returned  ImportGames
+    /// \return  0 of not error else a value given by error.h
+    ///
     errorT importGames(scidBaseT *dbase, QString fileName, int &numgame);
 
     

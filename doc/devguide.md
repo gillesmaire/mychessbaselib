@@ -53,7 +53,7 @@ You can contact me for job à gilles@gillesmaire.com
 
 #### Create a new base
 
-- You have to call the init method from  DBasePool. 
+- You have to call the init method from  DBaseSpool. 
 - You have to call ChessBase cb constructor from  mainWindow of from a widget
 - You cal create method 
  
@@ -131,9 +131,64 @@ all slot are busy.
 To retrieve all the opened databases **getHandles return a std::vector<int>**
 
 
+### Filter and HFilter concept 
+
+#### Filter 
+
+It is possible to search according different criteria.
+But for all of theses creteria, the list of matching games is stored in Filter Object.
+
+- 0 value indicates the game is excluded
+- 1-255 indicates the game is included and the position 
+to show when the game is loaded. 
+	- 1 is the start position
+	- 2 is the next one ie the position after the 
+	firt white move. 
+	- 3 is tne position aftet the black first move
+	
+	
+
+### Import  PNG file 
+
+To import a PGN File, you must create for example a scid5 base 
+and the import the PGN file. 
+
+You can read a PGN File directly but the next time you will open the PGN 
+file you will loose time to decode it. 
+
+You know how to create a scid5 base with open.
+
+This is an example to import PGN games in scid5 database 
 
 
+~~~cpp
+#include <QApplication>
+#include "game.h"
+#include "chessbase.h"
+#include <QMainWindow>
+#include <dbasepool.h>
+#include <QDebug>
 
+
+static Game * scratchGame = NULL;   
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    QMainWindow mainWindow; 
+    mainWindow.setWindowTitle("Application Qt Minimal");
+    mainWindow.resize(800, 600); 
+    mainWindow.show();
+    DBasePool::init()  ;
+    ChessBase cb(&mainWindow);
+    int number;
+    int code=cb.open("/home/gilles/Test/test",ICodecDatabase::SCID5,FMODE_Create,number);
+    qDebug()<<code<<number;
+    scidBaseT *dbase =DBasePool::getBase(number);
+    code=cb.importGames(dbase,"/home/gilles/Developpements/PGN/00003265parties.pgn",number);
+    return a.exec();
+}
+~~~
 
 
 

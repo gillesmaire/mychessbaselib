@@ -18,11 +18,11 @@ int main(int argc, char *argv[])
     DBasePool::init()  ;
     ChessBase cb(&mainWindow);
     int number;
-    int code=cb.open("/home/gilles/test3.pgn",ICodecDatabase::PGN,FMODE_Create,number);
-    
-    int bp=DBasePool::find("/home/gilles/test3.pgn");
-    qDebug()<<bp;
-    
+    int code=cb.open("/home/gilles/Test/test",ICodecDatabase::SCID5,FMODE_Create,number);
+    qDebug()<<code<<number;
+    scidBaseT *dbase =DBasePool::getBase(number);
+    code=cb.importGames(dbase,"/home/gilles/Developpements/PGN/00003265parties.pgn",number);
+    qDebug()<<code<<number;
     
 
     return a.exec();
