@@ -1,7 +1,6 @@
 #include "chessbase.h"
 #include "dbasepool.h"
 #include "scidbase.h"
-#include "progressbar.h"
 #include "misc.h"
 #include "dstring.h"
 #include "searchtournaments.h"
@@ -22,7 +21,7 @@ errorT ChessBase::open(QString filename,ICodecDatabase::Codec codec, fileModeT f
     if (DBasePool::find(filename.toStdString().c_str()) ) return (ERROR_FileInUse) ;
     auto dbase=DBasePool::getFreeSlot();
     if (!dbase ) return (ERROR_Full);
-    ProgressBar pb;
+    const Progress pb(mProgressBar,tr("Open base"));
     errorT err=dbase->open(CodecEnum2Str(codec),fmode,filename.toStdString().c_str(),pb);
     if ((err == ERROR_FileOpen || err == ERROR_FileMode) &&
 	    fmode == FMODE_Both)
@@ -41,7 +40,8 @@ errorT  ChessBase::close( scidBaseT *dbase)
 
 errorT ChessBase::compact(scidBaseT *dbase)
 {
-    ProgressBar pb;
+    Progress pb(mProgressBar,tr("Compact"));
+    
     int err=dbase->compact(pb);
     return  err;
 }
@@ -66,7 +66,7 @@ errorT ChessBase::copyGames(scidBaseT *sourcebase, QString NumGameOrFilterName, 
     
     const HFilter filter = sourcebase->getFilter(NumGameOrFilterName.toStdString());
     if ( filter != 0 ){
-         ProgressBar pb;
+         Progress pb(mProgressBar,QString(tr("Copy")));
          err=targetBase->importGames(sourcebase, filter,pb);
         }
     else {
@@ -90,56 +90,56 @@ QString ChessBase::ErrorCode(errorT code)
 {
     QString text="Unknown";
     if ( code == OK ) text="OK";
-    else if (code == ERROR) text="ERROR";
-    else if (code == ERROR_UserCancel) text="ERROR_UserCancel";
-    else if (code == ERROR_BadArg) text="ERROR_BadArg";
-    else if (code == ERROR_FileOpen) text="ERROR_FileOpen";
-    else if (code == ERROR_FileWrite) text="ERROR_FileWrite";
-    else if (code == ERROR_FileRead) text="ERROR_FileRead";
-    else if (code == ERROR_FileSeek) text="ERROR_FileSeek";
-    else if (code == ERROR_BadMagic) text="ERROR_BadMagic";
-    else if (code == ERROR_FileNotOpen) text="ERROR_FileNotOpen";
-    else if (code == ERROR_FileInUse) text="ERROR_FileInUse";
-    else if (code == ERROR_FileMode) text="ERROR_FileMode";
-    else if (code == ERROR_FileVersion) text="ERROR_FileVersion";
-    else if (code == ERROR_OldScidVersion) text="ERROR_OldScidVersion";
-    else if (code == ERROR_FileReadOnly) text="ERROR_FileReadOnly";
-    else if (code == ERROR_CompactRemove) text="ERROR_CompactRemove";
+    else if (code == ERROR) text=tr("error");
+    else if (code == ERROR_UserCancel) text=tr("User canceled");
+    else if (code == ERROR_BadArg) text=tr("Bad arguments");
+    else if (code == ERROR_FileOpen) text=tr("Error while file open");
+    else if (code == ERROR_FileWrite) text=tr("Error while file write");
+    else if (code == ERROR_FileRead) text=tr("Error while file read");
+    else if (code == ERROR_FileSeek) text=tr("Error while file seek");
+    else if (code == ERROR_BadMagic) text=tr("Bad magic number");
+    else if (code == ERROR_FileNotOpen) text=tr("File not Open");
+    else if (code == ERROR_FileInUse) text=tr("File in use");
+    else if (code == ERROR_FileMode) text=tr("File mode problem");
+    else if (code == ERROR_FileVersion) text=tr("Bad version of file");
+    else if (code == ERROR_OldScidVersion) text=tr("Old SCID version");
+    else if (code == ERROR_FileReadOnly) text=tr("File is read onty");
+    else if (code == ERROR_CompactRemove) text=tr("Error in compact remove");
     
-    else if (code == ERROR_MallocFailed) text="ERROR_MallocFailed";
-    else if (code == ERROR_CorruptData) text="ERROR_CorruptData";
+    else if (code == ERROR_MallocFailed) text=tr("Memory allocation failed");
+    else if (code == ERROR_CorruptData) text=tr("Data corrupted");
     
-    else if (code == ERROR_Full) text="ERROR_Full";
-    else if (code == ERROR_NameNotFound) text="ERROR_NameNotFound";
-    else if (code == ERROR_NameExists) text="ERROR_NameExists";
-    else if (code == ERROR_NameBaseEmpty) text="ERROR_NameBaseEmpty";
-    else if (code == ERROR_NoMatchFound) text="ERROR_NoMatchFound";
-    else if (code == ERROR_NameDataLoss) text="ERROR_NameDataLoss";
-    else if (code == ERROR_NameTooLong) text="ERROR_NameTooLong";
-    else if (code == ERROR_NameLimit) text="ERROR_NameLimit";
-    else if (code == ERROR_OffsetLimit) text="ERROR_OffsetLimit";
-    else if (code == ERROR_GameLengthLimit) text="ERROR_GameLengthLimit";
-    else if (code == ERROR_NumGamesLimit) text="ERROR_NumGamesLimit";
-    else if (code == ERROR_InvalidFEN) text="ERROR_InvalidFEN";
-    else if (code == ERROR_InvalidMove) text="ERROR_InvalidMove";
-    else if (code == ERROR_PieceCount) text="ERROR_PieceCount";
+    else if (code == ERROR_Full) text=tr("Ressource full");
+    else if (code == ERROR_NameNotFound) text=tr("Name not found");
+    else if (code == ERROR_NameExists) text=tr("Name exists");
+    else if (code == ERROR_NameBaseEmpty) text=tr("Base name is empty");
+    else if (code == ERROR_NoMatchFound) text=tr("No Match found");
+    else if (code == ERROR_NameDataLoss) text=tr("Name data loss");
+    else if (code == ERROR_NameTooLong) text=tr("Name too long");
+    else if (code == ERROR_NameLimit) text=tr("Name limit");
+    else if (code == ERROR_OffsetLimit) text=tr("Offset limit");
+    else if (code == ERROR_GameLengthLimit) text=tr("Game lenght limit");
+    else if (code == ERROR_NumGamesLimit) text=tr("Limit in number game");
+    else if (code == ERROR_InvalidFEN) text=tr("Invalid FEN");
+    else if (code == ERROR_InvalidMove) text=tr("Invalid move");
+    else if (code == ERROR_PieceCount) text=tr("Piece count error");
 
-    else if (code == ERROR_Game) text="ERROR_Game";
-    else if (code == ERROR_EndOfMoveList) text="ERROR_EndOfMoveList";
-    else if (code == ERROR_StartOfMoveList) text="ERROR_StartOfMoveList";
-    else if (code == ERROR_NoVariation) text="ERROR_NoVariation";
-    else if (code == ERROR_EmptyVariation) text="ERROR_EmptyVariation";
-    else if (code == ERROR_VariationLimit) text="ERROR_VariationLimit";
-    else if (code == ERROR_Decode) text="ERROR_Decode";
-    else if (code == ERROR_GameFull) text="ERROR_GameFull";
+    else if (code == ERROR_Game) text=tr("Game error");
+    else if (code == ERROR_EndOfMoveList) text=tr("End of move list");
+    else if (code == ERROR_StartOfMoveList) text=tr("Start of move list");
+    else if (code == ERROR_NoVariation) text=tr("No variation");
+    else if (code == ERROR_EmptyVariation) text=tr("Empty variation");
+    else if (code == ERROR_VariationLimit) text=tr("Variation limit");
+    else if (code == ERROR_Decode) text=tr("Decode error");
+    else if (code == ERROR_GameFull) text=tr("Game full");
 
-    else if (code == ERROR_BufferFull) text="ERROR_BufferFull";
-    else if (code == ERROR_BufferRead) text="ERROR_BufferRead";
+    else if (code == ERROR_BufferFull) text=tr("Buffer full");
+    else if (code == ERROR_BufferRead) text=tr("Buffer read error");
     
-    else if (code == ERROR_CodecUnsupFeat) text="ERROR_CodecUnsupFeat";
-    else if (code == ERROR_CodecChess960) text="ERROR_CodecChess960";
-    else text="ERROR_UNKNOWN";
-    QString result=QString ("%1 %2\n").arg(code).arg(text);
+    else if (code == ERROR_CodecUnsupFeat) text=tr("Codec unsupported feature");
+    else if (code == ERROR_CodecChess960) text=tr("CodecChess960");
+    else text=tr("Unknown error");
+    QString result=QString ("%1 %2").arg(code).arg(text);
     return result;
 }
 
@@ -451,7 +451,7 @@ errorT ChessBase::importGames(scidBaseT* dbase, QString fileName, int &numgame)
 
 	auto nImported = dbase->numGames();
 	std::string errorMsg; 
-	ProgressBar pb;
+	Progress pb(mProgressBar,QString(tr("Import")));
 	if (auto err = dbase->importGames(ICodecDatabase::PGN,fileName.toStdString().c_str(),pb,errorMsg) )
 		return  err;
 	numgame=dbase->numGames() - nImported;
@@ -559,7 +559,7 @@ int ChessBase::BaseSwitch(scidBaseT *dbase)
 QList<unsigned short> ChessBase::strip(scidBaseT *dbase, QStringList tagNames)
 {
     Filter filter_all(dbase->numGames());
-    ProgressBar progressBar ; 
+    Progress progressBar(mProgressBar,tr("Strip")) ; 
     std::vector<std::string_view> tags;
     for (const QString& tag : tagNames) tags.push_back(std::string_view(tag.toUtf8().data()));
     
@@ -574,7 +574,7 @@ QList<unsigned short> ChessBase::strip(scidBaseT *dbase, QStringList tagNames)
 errorT ChessBase::tagList(scidBaseT *dbase, QList<QPair<QString,int>> &res)
 {
     std::map<std::string, gamenumT, std::less<>> tag_freq;  
-    ProgressBar progress;
+    Progress progress(mProgressBar,tr("Tag list"));
     for (gamenumT gnum = 0, n = dbase->numGames(); gnum < n; ++gnum) {
         if ((gnum % 1024 == 0) && !progress.report(gnum, n))
             return  ERROR_UserCancel;
@@ -646,14 +646,19 @@ errorT ChessBase::playerElo(const scidBaseT *dbase, QString filterName, QString 
 }
 
 
-ChessBase::ChessBase(QWidget *widget)
+ChessBase::ChessBase(QWidget *widget, QProgressBar *pg)
 {
-    
+    mProgressBar=pg;
 }
 
 ChessBase::~ChessBase()
 {
     
+}
+
+void ChessBase::setProgressBar(QProgressBar *pg)
+{
+    mProgressBar=pg;
 }
 
 bool ChessBase::baseInUse(  int number)

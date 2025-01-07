@@ -8,7 +8,6 @@ CONFIG += c++20 cmdline
 DEFINES += CHECKUIDEP
 SOURCES += \
         chessbase.cpp \
-        main.cpp \
         scidbase.cpp \
         matsig.cpp \
         misc.cpp \
@@ -19,13 +18,14 @@ SOURCES += \
         stored.cpp \
         textbuf.cpp \
         dbasepool.cpp \
-        progressbar.cpp
+        mainwindow.cpp \
+        main.cpp 
 
 HEADERS += scidbase.h \
 		bytebuf.h \
 		board_def.h \
 		chessbase.h \
-		codec.h \ 
+		codec.h \  \
 		error.h \
 		common.h \
 		namebase.h \
@@ -62,13 +62,16 @@ HEADERS += scidbase.h \
 		naglatex.h \
 		textbuf.h \
 		dbasepool.h \
-		progressbar.h \
-		searchtournaments.h
+		searchtournaments.h \
+		mainwindow.h
 		
-
 	
+OTHER_FILES += doc/devguide.md	
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+FORMS += \
+    mainwindow.ui

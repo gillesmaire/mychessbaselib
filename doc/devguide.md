@@ -1,4 +1,5 @@
 
+
 # Scid5lib Developper guide
 
 
@@ -128,25 +129,10 @@ DBaseSpool allows to call **getClipBase()**  a special memory database that is a
 all slot are busy.
 
 
-To retrieve all the opened databases **getHandles return a std::vector<int>**
+To retrieve all the opened databases getHandles return a **std::vector<int>**
 
 
-### Filter and HFilter concept 
 
-#### Filter 
-
-It is possible to search according different criteria.
-But for all of theses creteria, the list of matching games is stored in Filter Object.
-
-- 0 value indicates the game is excluded
-- 1-255 indicates the game is included and the position 
-to show when the game is loaded. 
-	- 1 is the start position
-	- 2 is the next one ie the position after the 
-	firt white move. 
-	- 3 is tne position aftet the black first move
-	
-	
 
 ### Import  PNG file 
 
@@ -184,11 +170,28 @@ int main(int argc, char *argv[])
     int number;
     int code=cb.open("/home/gilles/Test/test",ICodecDatabase::SCID5,FMODE_Create,number);
     qDebug()<<code<<number;
+    if ( code != OK ) return a.exec();
     scidBaseT *dbase =DBasePool::getBase(number);
     code=cb.importGames(dbase,"/home/gilles/Developpements/PGN/00003265parties.pgn",number);
     return a.exec();
 }
 ~~~
 
+## WIP
 
+### Filter and HFilter concept 
 
+#### Filter 
+
+It is possible to search according different criteria.
+But for all of theses creteria, the list of matching games is stored in Filter Object.
+
+- 0 value indicates the game is excluded
+- 1-255 indicates the game is included and the position 
+to show when the game is loaded. 
+	- 1 is the start position
+	- 2 is the next one ie the position after the 
+	firt white move. 
+	- 3 is tne position aftet the black first move
+	
+	

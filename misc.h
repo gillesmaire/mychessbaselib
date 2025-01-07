@@ -26,6 +26,7 @@
 #include <ctype.h>   // For isspace(), etc
 #include <cstdlib>
 #include <vector>
+#include <QProgressBar>
 
 /**
  * class StrRange - parse a string interpreting its content as 1 or 2 integers
@@ -58,30 +59,56 @@ public:
 		return true;
 	}
 };
+// class Progress {
+// public:
+//     struct Impl {
+//         virtual ~Impl() {}
+//         virtual bool report(size_t done, size_t total, const char* msg) = 0;
+//     };
+//     Progress(Impl* f = nullptr) : f_(f) {}
+//     Progress(const Progress&) = delete;
+//     ~Progress() { delete f_; }
+
+//     bool report(size_t done, size_t total) const {
+//         return operator()(done, total);
+//     }
+
+//     // bool operator()(size_t done, size_t total, const char* msg = nullptr) const {
+//     //     if (f_) return f_->report(done, total, msg);
+//     //     return true;
+//     // }
+
+// private:
+//     Impl* f_;
+// };
 
 
 class Progress {
 public:
-	struct Impl {
-		virtual ~Impl() {}
-		virtual bool report(size_t done, size_t total, const char* msg) = 0;
-	};
+    explicit Progress(QProgressBar* progressBar,QString label=QString())
+        : progressBar_(progressBar) {}
+    Progress() : progressBar_(nullptr) {}
+    bool report(size_t done, size_t total, const QString& msg = QString()) const {
+        if (!progressBar_) return false;
 
-	Progress(Impl* f = NULL) : f_(f) {}
-	Progress(const Progress&) = delete;
-	~Progress() { delete f_; }
+        // Mettre à jour la valeur de la barre de progression
+        progressBar_->setValue(static_cast<int>(done));
 
-	bool report(size_t done, size_t total) const {
-		return operator()(done, total);
-	}
-	bool operator()(size_t done, size_t total, const char* msg = NULL) const {
-		if (f_) return f_->report(done, total, msg);
-		return true;
-	}
+        // Afficher le texte personnalisé sous la forme "done/total"
+        QString displayText = QString("%1/%2").arg(done).arg(total);
+        progressBar_->setFormat(displayText); // Mettre à jour l'affichage
+
+        return true; // Continuer
+    }
+   void operator()(size_t done, size_t total, const QString& msg = QString()) const {
+        report(done, total, msg);
+    }
 
 private:
-	Impl* f_;
+    QProgressBar* progressBar_;
+    QString label;
 };
+
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~

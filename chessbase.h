@@ -4,14 +4,13 @@
 #include "common.h"
 #include "error.h"
 #include "scidbase.h"
-#include "progressbar.h"
 #include <QList>
 #include <QPair>
 
 /// This Class is the Qt database management for Scid5 base with Qt and not with Tcl/Tk.
 /// the sc_base.cpp has be converted with 
 
-class ChessBase : public QWidget
+class ChessBase  : public QWidget
 {
   Q_OBJECT
 private:
@@ -28,26 +27,26 @@ private:
     bool sameDay;
     bool sameEcoCode;
     bool sameMoves;
-        };
+    };
     
 
 struct gNumListT {
     uint64_t hash;
     uint gNumber;
     bool operator<(const gNumListT& a) const { return hash < a.hash; }
-};
+    };
+    
+QProgressBar *mProgressBar=nullptr;
 
 public:
     enum CommandFlag { nothing, get, set, unset, invert };
     enum deleteStrategyT { DELETE_SHORTER, DELETE_OLDER, DELETE_NEWER };
     
-    
-    
-    
-    
-    ChessBase( QWidget *widget);
+    ChessBase( QWidget *widget, QProgressBar *pg = nullptr );
     ~ChessBase();
   
+  
+    void setProgressBar( QProgressBar *ptr) ;
     ///
     /// \brief baseInUse 
     /// \param dbase
