@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "game.h"
-#include "chessbase.h"
+#include <game.h>
+#include <chessbase.h>
 #include <dbasepool.h>
 static Game * scratchGame = NULL;   
 
