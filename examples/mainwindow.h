@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+class Progress;
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +22,7 @@ private:
 private slots: 
      void Test();
     void RemoveTestBase();
+    void refredProgressBar(int value, int total, int type);
 };
 
 #endif // MAINWINDOW_H

@@ -545,7 +545,18 @@ public:
     errorT unsetGameFlag(scidBaseT *dbase, uint gamenum, char flagtype);
     
 signals:
-    void refreshProgressBar();
+
+    /// \brief  refreshProgressBar this signal is sent by Progress when
+    ///         a new element is done. A connect with QProgressBar in
+    ///         graphics interface  can be made to follow the progression.
+    /// \param value : is the current value
+    /// \param total : is the number of value
+    /// \param type : Type can be  :
+    ///                Sum : for example 123
+    ///                SumTotal : for example 123/32450
+    ///                Percent : for example 2%
+    ///
+    void refreshProgressBar(int value, int total , Progress::CountType type) ;
 };
 
 #endif // CHESSBASE_H

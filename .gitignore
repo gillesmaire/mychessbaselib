@@ -6,3 +6,5 @@ build*/
 libQtScid.*
 moc_*.*
 *.autosave
+*.pro.user.*
+

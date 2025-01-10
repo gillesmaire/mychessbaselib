@@ -140,35 +140,37 @@ class QProgressImpl :public QObject, public Impl {
     private:
         QProgressBar* progressBar_;
     signals:
-    void progressUpdated(int done , int total);  
+    void progressUpdated(int done , int total);
 };
 
 
 class Progress : public QObject,public OldProgress {
     Q_OBJECT
 public:
-    enum CountType{Sum,Percentage,};
+    enum CountType{Sum,SumTotal,Percent};
     Progress():OldProgress(nullptr) {}
 
     Progress(QProgressBar* progressBar, QString label, ChessBase *ptr, CountType type = Sum)
         : OldProgress(new QProgressImpl(progressBar)) 
         {  mLabel=label;
-           ChessBasePtr=ptr; 
+           ChessBasePtr=ptr;
+            mType=type;
          auto* impl = dynamic_cast<QProgressImpl*>(OldProgress::impl());
         if (impl) {
             connect(impl, &QProgressImpl::progressUpdated, this, &Progress::onProgressUpdated);
          }
-       }   
+       }
  private slots:
-    void onProgressUpdated(int percentage) {
-        qDebug() << "Progress updated to:" << percentage << "%";
-        // Effectuer des actions spécifiques ici si nécessaire
-    }        
+    void onProgressUpdated(int done, int total) {
+        emit refreshProgressBar(done, total ,mType) ;
+    }
+
 private:  
     QString mLabel;
     ChessBase *ChessBasePtr;
-   
-    
+    CountType mType;
+signals :
+    void refreshProgressBar( int, int , CountType );
 };
 
 
