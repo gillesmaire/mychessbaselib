@@ -543,6 +543,9 @@ public:
     
     
     errorT unsetGameFlag(scidBaseT *dbase, uint gamenum, char flagtype);
+    
+signals:
+    void refreshProgressBar();
 };
 
 #endif // CHESSBASE_H

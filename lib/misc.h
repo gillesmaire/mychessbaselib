@@ -31,6 +31,9 @@
 #include <QString>
 #include <iostream>
 
+class ChessBase;
+
+
 /**
  * class StrRange - parse a string interpreting its content as 1 or 2 integers
  *                  separated by whitespace.
@@ -85,13 +88,14 @@ public:
 //     Impl* f_;
 // };
 
-
-class OldProgress {
-public:
-    struct Impl {
+struct Impl {
         virtual ~Impl() {}
         virtual bool report(size_t done, size_t total, const char* msg) = 0;
     };
+
+class OldProgress {
+public:
+    
     OldProgress(Impl* f = nullptr) : f_(f) {}
    // OldProgress(const OldProgress&) = delete;
     ~OldProgress() { delete f_; }
@@ -101,18 +105,19 @@ public:
     }
 
     bool operator()(size_t done, size_t total, const char* msg = nullptr) const {
-        if (f_) return f_->report(done, total, msg);
+        if (f_)  { return f_->report(done, total, msg);}
         return true;
     }
-
+protected:
+    Impl* impl() const { return f_; } 
 private:
     Impl* f_;
+    
 };
 
 
-class Progress : public OldProgress {
-public:
-    class QProgressImpl : public Impl {
+class QProgressImpl :public QObject, public Impl {
+    Q_OBJECT
     public: 
         QProgressImpl(QProgressBar* progressBar) : progressBar_(progressBar) {
             if (progressBar_) progressBar_->setValue(0);
@@ -122,28 +127,48 @@ public:
             if (!progressBar_) return false;
             if (total == 0) return false;
 
-            int percentage = static_cast<int>(100.0 * done / total);
-            qDebug()<<percentage;
-            progressBar_->setValue(percentage);
-            progressBar_->repaint();
-
+            //int percentage = static_cast<int>(100.0 * done / total);
+            progressBar_->setValue(done);
             // if (msg) {
             //     progressBar_->setFormat(QString("%1 (%2%)").arg(msg).arg(percentage));
                 
             // }
+            emit progressUpdated(done,total);
             return true;
         }
-
+        QProgressBar *getProgressBar();
     private:
         QProgressBar* progressBar_;
-    };
+    signals:
+    void progressUpdated(int done , int total);  
+};
 
-    // Constructeur pour `Progress` avec une QProgressBar
+
+class Progress : public QObject,public OldProgress {
+    Q_OBJECT
+public:
+    enum CountType{Sum,Percentage,};
     Progress():OldProgress(nullptr) {}
 
-    Progress(QProgressBar* progressBar, QString label )
-        : OldProgress(new QProgressImpl(progressBar)) { mLabel=label;}
+    Progress(QProgressBar* progressBar, QString label, ChessBase *ptr, CountType type = Sum)
+        : OldProgress(new QProgressImpl(progressBar)) 
+        {  mLabel=label;
+           ChessBasePtr=ptr; 
+         auto* impl = dynamic_cast<QProgressImpl*>(OldProgress::impl());
+        if (impl) {
+            connect(impl, &QProgressImpl::progressUpdated, this, &Progress::onProgressUpdated);
+         }
+       }   
+ private slots:
+    void onProgressUpdated(int percentage) {
+        qDebug() << "Progress updated to:" << percentage << "%";
+        // Effectuer des actions spécifiques ici si nécessaire
+    }        
+private:  
     QString mLabel;
+    ChessBase *ChessBasePtr;
+   
+    
 };
 
 

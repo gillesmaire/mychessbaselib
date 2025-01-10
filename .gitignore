@@ -2,7 +2,7 @@ sci5lib
 build*/
 *.o
 *.swp 
-*.pro.user
+*.user
 libQtScid.*
 moc_*.*
 *.autosave

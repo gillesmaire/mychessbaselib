@@ -22,7 +22,7 @@ errorT ChessBase::open(QString filename,ICodecDatabase::Codec codec, fileModeT f
     if (DBasePool::find(filename.toStdString().c_str()) ) return (ERROR_FileInUse) ;
     auto dbase=DBasePool::getFreeSlot();
     if (!dbase ) return (ERROR_Full);
-    const Progress pb(mProgressBar,tr("Open base"));
+    const Progress pb(mProgressBar,tr("Open base"),this);
     errorT err=dbase->open(CodecEnum2Str(codec),fmode,filename.toStdString().c_str(),pb);
     if ((err == ERROR_FileOpen || err == ERROR_FileMode) &&
 	    fmode == FMODE_Both)
@@ -41,7 +41,7 @@ errorT  ChessBase::close( scidBaseT *dbase)
 
 errorT ChessBase::compact(scidBaseT *dbase)
 {
-    Progress pb(mProgressBar,tr("Compact"));
+    Progress pb(mProgressBar,tr("Compact"),this);
     
     int err=dbase->compact(pb);
     return  err;
@@ -67,7 +67,7 @@ errorT ChessBase::copyGames(scidBaseT *sourcebase, QString NumGameOrFilterName, 
     
     const HFilter filter = sourcebase->getFilter(NumGameOrFilterName.toStdString());
     if ( filter != 0 ){
-         Progress pb(mProgressBar,QString(tr("Copy")));
+         Progress pb(mProgressBar,QString(tr("Copy")),this);
          err=targetBase->importGames(sourcebase, filter,pb);
         }
     else {
@@ -454,10 +454,11 @@ errorT ChessBase::importGames(scidBaseT* dbase, QString fileName, int &numgame)
 	auto nImported = dbase->numGames();
 	std::string errorMsg; 
 	auto codec = ICodecDatabase::PGN;
-	Progress pb(mProgressBar,QString(tr("Import")));
+	Progress pb(mProgressBar,QString(tr("Import")),this);
 	if (auto err = dbase->importGames(codec,fileName.toStdString().c_str(),pb,errorMsg) )
 		return  err;
 	numgame=dbase->numGames() - nImported;
+	qDebug()<<numgame;
 	return OK;
 }
 
@@ -562,7 +563,7 @@ int ChessBase::BaseSwitch(scidBaseT *dbase)
 QList<unsigned short> ChessBase::strip(scidBaseT *dbase, QStringList tagNames)
 {
     Filter filter_all(dbase->numGames());
-    Progress progressBar(mProgressBar,tr("Strip")) ; 
+    Progress progressBar(mProgressBar,tr("Strip"),this) ; 
     std::vector<std::string_view> tags;
     for (const QString& tag : tagNames) tags.push_back(std::string_view(tag.toUtf8().data()));
     
@@ -577,7 +578,7 @@ QList<unsigned short> ChessBase::strip(scidBaseT *dbase, QStringList tagNames)
 errorT ChessBase::tagList(scidBaseT *dbase, QList<QPair<QString,int>> &res)
 {
     std::map<std::string, gamenumT, std::less<>> tag_freq;  
-    Progress progress(mProgressBar,tr("Tag list"));
+    Progress progress(mProgressBar,tr("Tag list"),this);
     for (gamenumT gnum = 0, n = dbase->numGames(); gnum < n; ++gnum) {
         if ((gnum % 1024 == 0) && !progress.report(gnum, n))
             return  ERROR_UserCancel;
