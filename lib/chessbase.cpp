@@ -18,6 +18,7 @@ static Game *scratchGame = NULL;
 
 errorT ChessBase::open(QString filename,ICodecDatabase::Codec codec, fileModeT fmode,  int &numberbase)
 {
+    qDebug()<<"open";
     if (DBasePool::find(filename.toStdString().c_str()) ) return (ERROR_FileInUse) ;
     auto dbase=DBasePool::getFreeSlot();
     if (!dbase ) return (ERROR_Full);
@@ -88,6 +89,7 @@ errorT ChessBase::create(QString name ,ICodecDatabase::Codec codec, int &numberb
 
 QString ChessBase::ErrorCode(errorT code)
 {
+    qDebug()<<"ok";
     QString text="Unknown";
     if ( code == OK ) text="OK";
     else if (code == ERROR) text=tr("error");
@@ -451,8 +453,9 @@ errorT ChessBase::importGames(scidBaseT* dbase, QString fileName, int &numgame)
 
 	auto nImported = dbase->numGames();
 	std::string errorMsg; 
+	auto codec = ICodecDatabase::PGN;
 	Progress pb(mProgressBar,QString(tr("Import")));
-	if (auto err = dbase->importGames(ICodecDatabase::PGN,fileName.toStdString().c_str(),pb,errorMsg) )
+	if (auto err = dbase->importGames(codec,fileName.toStdString().c_str(),pb,errorMsg) )
 		return  err;
 	numgame=dbase->numGames() - nImported;
 	return OK;
@@ -1176,7 +1179,7 @@ errorT ChessBase::piecetrack ( scidBaseT *dbase , bool timeOnSquareMode ,uint mi
     }
 
     // Examine every filter game and track the selected pieces:
-
+    
     Progress progress ;
     const auto filter = dbase->getFilter("dbfilter");
     const size_t filterCount = filter->size();

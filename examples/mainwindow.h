@@ -20,6 +20,7 @@ private:
     Ui::MainWindow *ui;
 private slots: 
      void Test();
+    void RemoveTestBase();
 };
 
 #endif // MAINWINDOW_H

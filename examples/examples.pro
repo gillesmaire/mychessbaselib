@@ -4,8 +4,7 @@ CONFIG += c++20 cmdline
 
 OTHER_FILES += doc/devguide.md	
 
-LIBS += -L$$PWD/../lib -lQtScid
-
+LIBS += -L../lib -lQtScid
 
 INCLUDEPATH += $$PWD/../lib/
 DEPENDPATH += $$PWD/../lib/

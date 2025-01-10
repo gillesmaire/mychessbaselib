@@ -27,6 +27,9 @@
 #include <cstdlib>
 #include <vector>
 #include <QProgressBar>
+#include <QDebug>
+#include <QString>
+#include <iostream>
 
 /**
  * class StrRange - parse a string interpreting its content as 1 or 2 integers
@@ -83,31 +86,121 @@ public:
 // };
 
 
-class Progress {
+class OldProgress {
 public:
-    explicit Progress(QProgressBar* progressBar,QString label=QString())
-        : progressBar_(progressBar) {}
-    Progress() : progressBar_(nullptr) {}
-    bool report(size_t done, size_t total, const QString& msg = QString()) const {
-        if (!progressBar_) return false;
+    struct Impl {
+        virtual ~Impl() {}
+        virtual bool report(size_t done, size_t total, const char* msg) = 0;
+    };
+    OldProgress(Impl* f = nullptr) : f_(f) {}
+   // OldProgress(const OldProgress&) = delete;
+    ~OldProgress() { delete f_; }
 
-        // Mettre à jour la valeur de la barre de progression
-        progressBar_->setValue(static_cast<int>(done));
-
-        // Afficher le texte personnalisé sous la forme "done/total"
-        QString displayText = QString("%1/%2").arg(done).arg(total);
-        progressBar_->setFormat(displayText); // Mettre à jour l'affichage
-
-        return true; // Continuer
+    bool report(size_t done, size_t total) const {
+        return operator()(done, total);
     }
-   void operator()(size_t done, size_t total, const QString& msg = QString()) const {
-        report(done, total, msg);
+
+    bool operator()(size_t done, size_t total, const char* msg = nullptr) const {
+        if (f_) return f_->report(done, total, msg);
+        return true;
     }
 
 private:
-    QProgressBar* progressBar_;
-    QString label;
+    Impl* f_;
 };
+
+
+class Progress : public OldProgress {
+public:
+    class QProgressImpl : public Impl {
+    public: 
+        QProgressImpl(QProgressBar* progressBar) : progressBar_(progressBar) {
+            if (progressBar_) progressBar_->setValue(0);
+        }
+
+        bool report(size_t done, size_t total, const char* msg) override {
+            if (!progressBar_) return false;
+            if (total == 0) return false;
+
+            int percentage = static_cast<int>(100.0 * done / total);
+            qDebug()<<percentage;
+            progressBar_->setValue(percentage);
+            progressBar_->repaint();
+
+            // if (msg) {
+            //     progressBar_->setFormat(QString("%1 (%2%)").arg(msg).arg(percentage));
+                
+            // }
+            return true;
+        }
+
+    private:
+        QProgressBar* progressBar_;
+    };
+
+    // Constructeur pour `Progress` avec une QProgressBar
+    Progress():OldProgress(nullptr) {}
+
+    Progress(QProgressBar* progressBar, QString label )
+        : OldProgress(new QProgressImpl(progressBar)) { mLabel=label;}
+    QString mLabel;
+};
+
+
+
+
+// class Progress : public OldProgress::Impl {
+// public:
+//     Progress(QProgressBar* progressBar) : progressBar_(progressBar) {
+//         if (progressBar_) progressBar_->setValue(0); // Initialisation
+//     }
+
+//     bool report(size_t done, size_t total, const char* msg) override {
+//         if (!progressBar_) return false; // Si pas de barre, ne rien faire
+//         if (total == 0) return false;   // Éviter la division par zéro
+
+//         int percentage = static_cast<int>(100.0 * done / total);
+//         progressBar_->setValue(percentage);
+//         if (msg) {
+//             progressBar_->setFormat(QString("%1 (%2%)").arg(msg).arg(percentage));
+//         }
+//         return true; // Continuer
+//     }
+
+// private:
+//     QProgressBar* progressBar_;
+// };
+
+
+// class Progress {
+// public:
+//     explicit Progress(QProgressBar* progressBar,QString label=QString())
+//         : mProgressBar(progressBar)
+//         {
+//         std::cout<<"progress (1)"<<std::endl;
+//         }
+//     Progress() : mProgressBar(nullptr) {
+//        std::cout<<"null progress bar (2)"<<std::endl;
+//     }
+// //    bool report(size_t done, size_t total, const QString& msg = QString()) const {
+//     bool report(size_t done, size_t total, const QString& msg = QString()) const {
+//     qDebug()<<"PROGRESS"<<done<<total;
+//         if (mProgressBar == nullptr) return false;
+//         mProgressBar->setValue(static_cast<int>(done));
+//         // Afficher le texte personnalisé sous la forme "done/total"
+//         QString displayText = QString("%v/%m").arg(done).arg(total);
+//         std::cout<<"report progress bar (3)"<<std::endl;
+//         mProgressBar->setFormat(displayText);
+//         return true; // Continuer
+//     }
+//    void operator()(size_t done, size_t total, const QString& msg = QString()) const {
+//         report(done, total, msg);
+//         std::cout<<"op progress bar (4)"<<std::endl;
+//     }
+
+// private:
+//     QProgressBar* mProgressBar;
+// };
 
 
 
