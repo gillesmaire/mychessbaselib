@@ -116,29 +116,22 @@ private:
 };
 
 
-class QProgressImpl :public QObject, public Impl {
+class ProgressImpl :public QObject, public Impl {
     Q_OBJECT
-    public: 
-        QProgressImpl(QProgressBar* progressBar) : progressBar_(progressBar) {
-            if (progressBar_) progressBar_->setValue(0);
+    public:
+        ProgressImpl(QProgressBar* progressBar) : mProgressBar(progressBar) {
+            if (mProgressBar) mProgressBar->setValue(0);
         }
 
         bool report(size_t done, size_t total, const char* msg) override {
-            if (!progressBar_) return false;
+            if (!mProgressBar) return false;
             if (total == 0) return false;
-
-            //int percentage = static_cast<int>(100.0 * done / total);
-            progressBar_->setValue(done);
-            // if (msg) {
-            //     progressBar_->setFormat(QString("%1 (%2%)").arg(msg).arg(percentage));
-                
-            // }
+            mProgressBar->setValue(done);
             emit progressUpdated(done,total);
             return true;
         }
-        QProgressBar *getProgressBar();
-    private:
-        QProgressBar* progressBar_;
+        QProgressBar *getProgressBar() { return mProgressBar;}
+        QProgressBar* mProgressBar;
     signals:
     void progressUpdated(int done , int total);
 };
@@ -151,26 +144,44 @@ public:
     Progress():OldProgress(nullptr) {}
 
     Progress(QProgressBar* progressBar, QString label, ChessBase *ptr, CountType type = Sum)
-        : OldProgress(new QProgressImpl(progressBar)) 
+        : OldProgress(new ProgressImpl(progressBar))
         {  mLabel=label;
            ChessBasePtr=ptr;
-            mType=type;
-         auto* impl = dynamic_cast<QProgressImpl*>(OldProgress::impl());
-        if (impl) {
-            connect(impl, &QProgressImpl::progressUpdated, this, &Progress::onProgressUpdated);
-         }
+           mType=type;
+           mProgressBar=progressBar;
+         auto* impl = dynamic_cast<ProgressImpl*>(OldProgress::impl());
+        if (impl)
+            connect(impl, &ProgressImpl::progressUpdated, this, &Progress::ProgressUpdated);
+
        }
  private slots:
-    void onProgressUpdated(int done, int total) {
-        emit refreshProgressBar(done, total ,mType) ;
+    void ProgressUpdated(int done, int total) {
+        refreshProgressBar(done, total ,mType) ;
     }
 
 private:  
     QString mLabel;
     ChessBase *ChessBasePtr;
     CountType mType;
-signals :
-    void refreshProgressBar( int, int , CountType );
+    QProgressBar *mProgressBar;
+     void refreshProgressBar(int value, int total, int type)
+    {
+        mProgressBar->setMinimum(0);
+        mProgressBar->setMaximum(total);
+        if ( type  == Progress::Sum ){
+            mProgressBar->setFormat("%v");
+            mProgressBar->setValue(value);
+        }
+        else if ( type  == Progress::SumTotal) {
+            mProgressBar->setFormat("%v/%m");
+            mProgressBar->setValue(value);
+        }
+        else {
+            mProgressBar->setFormat("%p%");
+            mProgressBar->setValue(value);
+        }
+    }
+
 };
 
 

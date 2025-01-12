@@ -1308,4 +1308,3 @@ errorT ChessBase::piecetrack ( scidBaseT *dbase , bool timeOnSquareMode ,uint mi
     return OK;
 }
 
-
