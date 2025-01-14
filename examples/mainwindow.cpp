@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QFileDialog>
 #include <scidbasemodel.h>
+#include <QStandardItemModel>
 
 static Game * scratchGame = NULL;   
 
@@ -22,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect (ui->actionRemove_the_Test_DataBase,SIGNAL(triggered(bool)),this,SLOT(RemoveTestBase()));
     ScidBaseModel *scidbasemodel = new ScidBaseModel(this);
     scidbasemodel->setInfo(exampleDir(),220);
-
     ui->tableView->setModel(scidbasemodel);
 }
 
@@ -40,7 +40,17 @@ void MainWindow::createDir()
 
 QString MainWindow::exampleDir()
 {
- return QDir::homePath()+"/scid5listTest/";
+    return QDir::homePath()+"/scid5listTest/";
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    qDebug()<<ui->tableView->width();
+    ui->tableView->setColumnWidth(0,4*ui->tableView->width()/6);
+    ui->tableView->setColumnWidth(1,ui->tableView->width()/6);
+    ui->tableView->setColumnWidth(2,ui->tableView->width()/6);
+
+
 }
 
 void MainWindow::RemoveTestBase()
@@ -68,4 +78,3 @@ void MainWindow::CreateDataBaseFromPGNFile()
     else ui->labelError->setText("OK");
     }
 }
-

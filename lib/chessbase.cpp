@@ -18,7 +18,6 @@ static Game *scratchGame = NULL;
 
 errorT ChessBase::open(QString filename,ICodecDatabase::Codec codec, fileModeT fmode,  int &numberbase)
 {
-    qDebug()<<"open";
     if (DBasePool::find(filename.toStdString().c_str()) ) return (ERROR_FileInUse) ;
     auto dbase=DBasePool::getFreeSlot();
     if (!dbase ) return (ERROR_Full);

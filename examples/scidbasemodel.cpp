@@ -53,7 +53,11 @@ QVariant ScidBaseModel::data(const QModelIndex &index, int role) const
         ChessBase cb(mWid);
         int nb;
         QString basename=index.sibling(index.row(),0).data().toString();
-        cb.open(MainWindow::exampleDir()+basename,ICodecDatabase::SCID5,FMODE_ReadOnly,nb);
+        QString file=MainWindow::exampleDir()+basename;
+        errorT e=cb.open(file,ICodecDatabase::SCID5,FMODE_ReadOnly,nb);
+        qDebug()<<e<<basename<<nb<<file;
+        if (e!=OK) return 0;
+
         return nb;
     }
     else if (index.column()==2)
@@ -64,4 +68,20 @@ QVariant ScidBaseModel::data(const QModelIndex &index, int role) const
         return 0;
     }
 
+}
+
+QVariant ScidBaseModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+
+    if (role == Qt::DisplayRole) {
+           if (orientation == Qt::Horizontal) {
+               switch (section) {
+                   case 0: return tr("Name");
+                   case 1: return tr("Nb games");
+                   case 2: return tr("Used");
+                   default: return QVariant();
+               }
+            }
+    }
+    return QVariant();
 }

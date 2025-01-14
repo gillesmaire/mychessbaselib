@@ -20,6 +20,8 @@ public:
     static QString exampleDir();
 private:
     Ui::MainWindow *ui;
+protected:
+    void showEvent(QShowEvent *) override;
 private slots: 
     void RemoveTestBase();
     void CreateDataBaseFromPGNFile();
