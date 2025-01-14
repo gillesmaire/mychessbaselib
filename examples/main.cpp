@@ -1,10 +1,5 @@
 #include <QApplication>
-
 #include "mainwindow.h"
-#include <QDebug>
-
-
-
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +8,6 @@ int main(int argc, char *argv[])
     mainWindow.setWindowTitle("Application Qt Minimal");
     mainWindow.resize(800, 600); 
     mainWindow.show();
-  
+    MainWindow::createDir();
     return a.exec();
 }

@@ -11,10 +11,12 @@ DEPENDPATH += $$PWD/../lib/
 
 SOURCES += \
 		main.cpp \
-		mainwindow.cpp
+		mainwindow.cpp \
+		scidbasemodel.cpp
 		
 HEADERS +=  \
-		mainwindow.h
+		mainwindow.h \
+		scidbasemodel.h
 
 FORMS += \
      mainwindow.ui

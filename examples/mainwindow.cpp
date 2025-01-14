@@ -5,6 +5,9 @@
 #include <dbasepool.h>
 #include <QFile>
 #include <QLibraryInfo>
+#include <QDir>
+#include <QFileDialog>
+#include <scidbasemodel.h>
 
 static Game * scratchGame = NULL;   
 
@@ -13,10 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect ( ui->pushButtonTest,SIGNAL(clicked(bool)),this,SLOT(Test()));
+    RemoveTestBase();
+    connect ( ui->pusButtonCreateDataBaseFromPGNFIle,SIGNAL(clicked(bool)),this,SLOT(CreateDataBaseFromPGNFile()));
     connect ( ui->pushButtonQuit,SIGNAL(clicked(bool)),this,SLOT(close()));
     connect (ui->actionRemove_the_Test_DataBase,SIGNAL(triggered(bool)),this,SLOT(RemoveTestBase()));
+    ScidBaseModel *scidbasemodel = new ScidBaseModel(this);
+    scidbasemodel->setInfo(exampleDir(),220);
 
+    ui->tableView->setModel(scidbasemodel);
 }
 
 MainWindow::~MainWindow()
@@ -24,27 +31,41 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::RemoveTestBase()
+void MainWindow::createDir()
 {
-    QFile::remove("/home/gilles/Developpements/PGN/test.si5");
-    QFile::remove("/home/gilles/Developpements/PGN/test.sg5");
-    QFile::remove("/home/gilles/Developpements/PGN/test.sn5");
+    QDir dir(exampleDir());
+    if ( ! dir.exists())
+        dir.mkdir(exampleDir());
 }
 
-void MainWindow::Test()
+QString MainWindow::exampleDir()
 {
+ return QDir::homePath()+"/scid5listTest/";
+}
+
+void MainWindow::RemoveTestBase()
+{
+    QFile::remove(exampleDir()+"/test.si5");
+    QFile::remove(exampleDir()+"/test.sg5");
+    QFile::remove(exampleDir()+"/test.sn5");
+}
+
+void MainWindow::CreateDataBaseFromPGNFile()
+{
+    RemoveTestBase();
+    QString filename=QFileDialog::getOpenFileName(this,tr("Open PGN file"),exampleDir(),tr("PGN files (*.pgn)"));
+    QFileInfo fi(filename);
     DBasePool::init()  ;
     ChessBase cb(this,ui->progressBar);
     int numberbase;
-    int code=cb.open(QString("/home/gilles/Developpements/PGN/test"),ICodecDatabase::SCID5,FMODE_Create,numberbase);
+    int code=cb.open(exampleDir()+"/"+fi.baseName(),ICodecDatabase::SCID5,FMODE_Create,numberbase);
     ui->labelError->setText(QString("Open %1 - %2").arg(cb.ErrorCode(code)).arg(numberbase));
     if ( code == OK) {
     scidBaseT *dbase =DBasePool::getBase(numberbase);
     int numberfound;
-    code=cb.importGames(dbase,"/home/gilles/Developpements/PGN/00036980Parties.pgn",numberfound);
+    code=cb.importGames(dbase,filename,numberfound);
     if ( code != OK)   ui->labelError->setText(QString("Import %1 - %2").arg(cb.ErrorCode(code)).arg(numberfound));
     else ui->labelError->setText("OK");
-
     }
 }
 

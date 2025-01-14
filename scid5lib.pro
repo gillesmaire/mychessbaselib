@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS +=	lib \
-			examples
+                examples
 			
 CONFIG += c++20
 

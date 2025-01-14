@@ -16,12 +16,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    static void createDir();
+    static QString exampleDir();
 private:
     Ui::MainWindow *ui;
 private slots: 
-     void Test();
     void RemoveTestBase();
+    void CreateDataBaseFromPGNFile();
+
 };
 
 #endif // MAINWINDOW_H

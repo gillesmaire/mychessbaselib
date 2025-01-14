@@ -143,7 +143,7 @@ public:
     enum CountType{Sum,SumTotal,Percent};
     Progress():OldProgress(nullptr) {}
 
-    Progress(QProgressBar* progressBar, QString label, ChessBase *ptr, CountType type = Sum)
+    Progress(QProgressBar* progressBar, QString label, ChessBase *ptr, CountType type = Percent)
         : OldProgress(new ProgressImpl(progressBar))
         {  mLabel=label;
            ChessBasePtr=ptr;

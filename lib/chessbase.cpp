@@ -454,7 +454,7 @@ errorT ChessBase::importGames(scidBaseT* dbase, QString fileName, int &numgame)
 	auto nImported = dbase->numGames();
 	std::string errorMsg; 
 	auto codec = ICodecDatabase::PGN;
-	Progress pb(mProgressBar,QString(tr("Import")),this);
+    Progress pb(mProgressBar,QString(tr("Import")),this);
 	if (auto err = dbase->importGames(codec,fileName.toStdString().c_str(),pb,errorMsg) )
 		return  err;
 	numgame=dbase->numGames() - nImported;

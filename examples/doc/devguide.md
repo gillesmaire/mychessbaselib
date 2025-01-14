@@ -1,5 +1,4 @@
 
-
 # Scid5lib Developper guide
 
 
@@ -13,9 +12,11 @@ https://scid.sourceforge.net/ onto Qt6/C++ environment
 The goal is to use Scid5 database for Qt6 programs. 
 
 Scid5Lib is only database management and this guide explains how 
-to use the library. 
+to use the library, it doesn't concern the chessboard but only the
+storage of Games on disk.
 
-You can find all the library fonctions  in chessbase.h 
+You can find all the library fonctions in the  chessbase.h file plus 
+some other functionality described in some other files.
 
 You can call doxygen on this file to get a documentation in HTML format
 
@@ -36,7 +37,7 @@ https://github.com/gillesmaire/mychessbaselib
 
 myChessBase is an other project to write a Chess base management 
 
-my ChessBase use scid5lib to manage base
+myChessBase use scid5lib to manage base
 
 I you use this document it is to develop an other one program like myChessBase 
 
@@ -51,35 +52,24 @@ You can contact me for job à gilles@gillesmaire.com
 
 ## scid5lib developper guide 
 
+### Exemple environment
 
-#### Create a new base
+The file to learn and test the scid5lib is included in the
+following files : 
+
+- Examples.pro 
+- main.cpp 
+- mainwindow.ui
+- mainwindow.cpp
+- mainwindow.h
+
+### Create a new base
 
 - You have to call the init method from  DBaseSpool. 
 - You have to call ChessBase cb constructor from  mainWindow of from a widget
-- You cal create method 
+- You call create method 
  
-~~~cpp
-#include <QApplication>
-#include "game.h"
-#include "chessbase.h"
-#include <QMainWindow>
-#include <dbasepool.h>
 
-static Game * scratchGame = NULL;   
-
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    QMainWindow mainWindow; 
-    mainWindow.setWindowTitle("Application Qt Minimal");
-    mainWindow.resize(800, 600); 
-    mainWindow.show();
-    DBasePool::init()  ;
-    ChessBase cb(&mainWindow);
-    int numberbase;
-    cb.create("mydatabase",ICodecDatabase::SCID5,numberbase);
-    return a.exec();
-}
 
 ~~~~
 

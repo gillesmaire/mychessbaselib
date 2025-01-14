@@ -110,13 +110,12 @@ public:
     /// \return  0 of not error else a value given by error.h 
     errorT close(scidBaseT *dbase);
   
-    ///
+
     /// \brief CodecEnum2Str convert Enum PGN SCID5 SCID4 MEM to QString equivalent
     /// \param codec
     /// \return the string in QString format
     QString CodecEnum2QString( ICodecDatabase::Codec codec ) ;
     
-    ///
     /// \brief CodecEnum2Str convert Enum PGN SCID5 SCID4 MEM to string equivalent
     /// \param codec the enum codec
     /// \param numberBase : the number of base
@@ -256,7 +255,7 @@ public:
     
     
     ///
-    /// \brief getExtraTags get le list of Pair of extratags 
+    /// \brief getExtraTags get the list of Pair of extratags
     /// \param dbase pointer on the scidBaseT 
     /// \return  a QList of QPair<QString,QString>
     QList <QPair <QString,QString>>  getExtraTags(scidBaseT *dbase);
@@ -327,7 +326,8 @@ public:
     uint ListOpenedBases(scidBaseT *dbase);
     
     ///
-    /// \brief numberGames return the number of games in a dataBase
+    /// \brief numberGames return the number of games in the
+    /// current dataBase
     /// \param dbase the pointer on the database
     /// \return number of games in uint
     uint numberGames(scidBaseT *dbase);
