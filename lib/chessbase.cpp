@@ -729,14 +729,14 @@ int ChessBase::exportBase(const scidBaseT *dbase, QString filter, bool appendToF
     if (!exportFilter) {
         exportGame (dbase->game, exportFile, outputFormat, pgnStyle);
     } else { //TODO: remove this (duplicate of sc_filter export)
-        Progress progress ;
+         const Progress pb(mProgressBar,tr("Export Base"),this);
         uint numSeen = 0;
         uint numToExport = dbase->dbFilter->Count();
         Game * g = scratchGame;
         for (gamenumT i=0, n=dbase->numGames(); i < n; i++) {
             if (dbase->dbFilter->Get(i)) { // Export this game:
                 if (++numSeen % 1024 == 0) {  // Update the percentage done bar:
-                    if (!progress.report(numSeen, numToExport)) break;
+                    if (!pb.report(numSeen, numToExport)) break;
                 }
 
                 // Print the game, skipping any corrupt games:
@@ -748,7 +748,7 @@ int ChessBase::exportBase(const scidBaseT *dbase, QString filter, bool appendToF
                 exportGame (g, exportFile, outputFormat, pgnStyle);
             }
         }
-        progress.report(1, 1);
+        pb.report(1, 1);
     }
     QByteArray byteArray = endText.toUtf8();
      const char* cString = byteArray.constData();
@@ -905,11 +905,11 @@ errorT ChessBase::duplicates(scidBaseT *dbase, bool players, bool colors, bool e
     HFilter filter = setFilterToDups ? dbase->getFilter("dbfilter")
                                      : HFilter(&tmp_filter);
     filter.clear();
-    Progress progress ;
+     const Progress pb(mProgressBar,tr("Duplicate"),this);
     // Now check same-hash games for duplicates:
     for (size_t i=0; i < n_hash; i++) {
         if ((i % 1024) == 0) {
-            if (!progress.report(i, numGames)) break;
+            if (!pb.report(i, numGames)) break;
         }
         const gNumListT& head = hash[i];
         const IndexEntry* ieHead = dbase->getIndexEntry(head.gNumber);
@@ -963,7 +963,7 @@ errorT ChessBase::duplicates(scidBaseT *dbase, bool players, bool colors, bool e
         return true;
     });
     dbase->setDuplicates(std::move(duplicates));
-    progress.report(1, 1);
+    pb.report(1, 1);
     return (err == OK) ?  OK :  err;     
     
 }
@@ -1133,10 +1133,10 @@ errorT ChessBase::tournaments(const scidBaseT *dbase, Filter, QString filter, lo
 
 
 
-uint ChessBase::open(scidBaseT *dbase,ICodecDatabase::Codec codec, QString filename  )  
-{
-    return DBasePool::find(filename.toStdString().c_str());
-}
+// uint ChessBase::open(scidBaseT *dbase,ICodecDatabase::Codec codec, QString filename  )
+// {
+//     return DBasePool::find(filename.toStdString().c_str());
+// }
 
 uint ChessBase::numberGames(scidBaseT *dbase)
 {
@@ -1180,13 +1180,13 @@ errorT ChessBase::piecetrack ( scidBaseT *dbase , bool timeOnSquareMode ,uint mi
 
     // Examine every filter game and track the selected pieces:
     
-    Progress progress ;
+     const Progress pb(mProgressBar,tr("Piece track"),this);
     const auto filter = dbase->getFilter("dbfilter");
     const size_t filterCount = filter->size();
     size_t filterSeen = 0;
     for (const auto gnum : filter) {
         if (++filterSeen % 1024 == 0) {
-            if (!progress.report(filterSeen, filterCount)) {
+            if (!pb.report(filterSeen, filterCount)) {
                 return  ERROR_UserCancel;
             }
         }
@@ -1295,7 +1295,7 @@ errorT ChessBase::piecetrack ( scidBaseT *dbase , bool timeOnSquareMode ,uint mi
         }); // while (plyCount < maxPly)
     } // foreach game
 
-    progress.report(1, 1);
+    pb.report(1, 1);
 
     // Now return the 64-integer list: if in time-on-square mode,
     // the value for each square is the number of plies when a

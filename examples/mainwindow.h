@@ -20,11 +20,14 @@ public:
     static QString exampleDir();
 private:
     Ui::MainWindow *ui;
+    QMap<QString,bool> mBaseInUse;
 protected:
     void showEvent(QShowEvent *) override;
 private slots: 
     void RemoveTestBase();
     void CreateDataBaseFromPGNFile();
+    QMap<QString,int> ListScid5DataBase();
+
 
 };
 

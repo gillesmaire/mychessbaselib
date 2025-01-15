@@ -68,28 +68,35 @@ following files :
 - You have to call the init method from  DBaseSpool. 
 - You have to call ChessBase cb constructor from  mainWindow of from a widget
 - You call create method 
- 
 
+#### The class ChessBase
 
-~~~~
+The ChessBase is the class containing all the method to manipulate database
+You can find the list of methods in ChessBase.h and get the dictionary
+running the doxygen file on this file.
 
 #### Localization of DataBase 
 
 The following line create a database in the directory where program is called
 
 ~~~cpp
-    cb.create("mydatabase",ICodecDatabase::SCID5,numberbase);
+    int code=cb.create("mydatabase",ICodecDatabase::SCID5,numberbase);
 ~~~
 
+If code is equal to OK all is good, else you get a error code defined in error.g file
+
 You can give a path like /home/gilles/Database whith the line 
+You have to choose the format of database between :  ICodecDatabase::SCID5,
+ICodecDatabase::SCID4 (old format), ICodecDatabase::PGN (if you want a slow to open but
+human readable database)
+ 
+The scid3 format is not supported, and SCID5 format is the more efficient
 
 ~~~cpp
     cb.create("/home/gilles/Database/mydatabase",ICodecDatabase::SCID5,numberbase);
 ~~~
 
-You can choose ICodecDatabase::SCID4 but it is less efficient
-
-You  can also can open a PGN file with ICodecDatabase::PGN. In this case
+If you  can also can open a PGN file with ICodecDatabase::PGN. In this case
 you have to add pgn extention 
 
 ~~~cpp
@@ -120,8 +127,6 @@ all slot are busy.
 
 
 To retrieve all the opened databases getHandles return a **std::vector<int>**
-
-
 
 
 ### Import  PNG file 

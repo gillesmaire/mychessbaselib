@@ -10,7 +10,7 @@ class ScidBaseModel : public QAbstractTableModel
 {
 public:
     explicit ScidBaseModel(QWidget *parent = nullptr);
-    void setInfo(QString dir, uint number);
+    void setInfo(QString dir, QMap <QString, bool> baseinuse,QMap<QString, int> listnumber);
 protected:
     int columnCount(const QModelIndex &parent ) const override;
     int rowCount( const QModelIndex &parent)const override;
@@ -19,8 +19,9 @@ protected:
 
 private:
     QString mDir;
-    int mNumber;
     QWidget *mWid;
+    QMap<QString, int> mListNumberGames;
+    QMap<QString, bool> mBasesInUse;
 
 };
 

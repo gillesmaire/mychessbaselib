@@ -45,11 +45,12 @@ public:
     ChessBase( QWidget *widget, QProgressBar *pg = nullptr );
     ~ChessBase();
   
-    ///
+
     /// \brief baseInUse 
-    /// \param dbase
-    /// \param number
-    /// \return true if used false else
+    /// \param dbase *: pointer ont scidBaseT
+    /// \param number : the number of base
+    /// \return true if base has been opened succesfully and is in use.
+    ///         false if the base is not opened.
     bool baseInUse(int number );
       
     ///
@@ -59,17 +60,19 @@ public:
     /// \return : the current Database ID after the switch
     int  BaseSwitch( scidBaseT *dbase);
     
-    ///
+
     /// \brief checkDuplicate used by dupplicate check if two record games are dupplicated
     ///         The event, Site, Round, Year, Month, Day, Result, EcoCode and moves are tested
     ///         if Flag delete the record the result is false. 
+    ///         This method is used by duplicates method and isnot generally usefull
     /// 
     /// \param dbase : pointer on scidBaseT
     /// \param ie1 : first element checked
     /// \param ie2 : second element checked
-    /// \param cr :  citeria given by dupCriteriaT
-    /// \return  true if the the game are equal fa
-    bool checkDuplicate  (scidBaseT* dbase, const IndexEntry *ie1, const IndexEntry *ie2, dupCriteriaT *cr);
+    /// \param cr :  criteria given by dupCriteriaT
+    /// \return  true if the the game are equal
+    bool checkDuplicate  (scidBaseT* dbase, const IndexEntry *ie1, const IndexEntry *ie2,
+                        dupCriteriaT *cr);
     
     ///
     /// \brief duplicates  : Finds duplicate games and marks them deleted.
@@ -102,9 +105,14 @@ public:
     /// \param onlyFilterGames
     /// \param Delete
     /// \return 
-    errorT duplicates(scidBaseT *dbase, bool players = false, bool colors = true, bool event = true, bool site = true, bool round = true, bool year = true, bool month = true, bool day = false, bool result = false, bool eco = false, bool moves = true, bool skipShortGames = false, bool keepAllCommentedGames = true, bool keepAllGamesWithVars = true, bool setFilterToDups = false, bool onlyFilterGames = false, deleteStrategyT Delete = DELETE_SHORTER);
-    
-    ///    
+    errorT duplicates(scidBaseT *dbase, bool players = false, bool colors = true,
+                      bool event = true, bool site = true, bool round = true,
+                      bool year = true, bool month = true, bool day = false,
+                      bool result = false, bool eco = false, bool moves = true,
+                      bool skipShortGames = false, bool keepAllCommentedGames = true,
+                      bool keepAllGamesWithVars = true, bool setFilterToDups = false,
+                      bool onlyFilterGames = false, deleteStrategyT Delete = DELETE_SHORTER);
+      
     /// \brief close the database given by the pointer
     /// \param pointer on Base
     /// \return  0 of not error else a value given by error.h 
@@ -190,7 +198,7 @@ public:
   
     
     
-    ///
+
     /// \brief filename return the filename of database. 
     ///     - for PGN returns the full path filename 
     ///     - for scid base returns the name of base without the extention si4 or si5
@@ -309,7 +317,8 @@ public:
     /// \return  0 of not error else a value given by error.h
     ///
     errorT importGames(scidBaseT *dbase, QString fileName, int &numgame);
-  
+
+    ///
     /// \brief InvertGameFlag invert  a Flag for the game
     /// \param dbase * pointeur on base
     /// \param gamenum  :  num of game to invert he flag
@@ -325,10 +334,12 @@ public:
     /// \return 
     uint ListOpenedBases(scidBaseT *dbase);
     
-    ///
+
     /// \brief numberGames return the number of games in the
     /// current dataBase
     /// \param dbase the pointer on the database
+    /// For example : cb.numberGames(DBasePool::getBase(numberbase))
+    ///  return the number of games included in base number numberbase
     /// \return number of games in uint
     uint numberGames(scidBaseT *dbase);
     
@@ -344,18 +355,12 @@ public:
     /// \param filename : name of filename 
     /// \param codec : can be "MEMORY", "PGN", "SCID4","SCID5"
     /// \param fmode : can be member of enum FMODE_None = 0,FMODE_ReadOnly,FMODE_WriteOnly,FMODE_Both,FMODE_Create
-    /// \param numberbase : a return parameter indicate the number of base selected
+    /// \param numberbase : a return parameter indicate the number of base selected ( this is not
+    /// the number of games in the base but the number of DBaseSpool
     /// \return :  0 if no error else a value given in error.h
     errorT open(QString filename, ICodecDatabase::Codec codec, fileModeT fmode , int  &numberbase);
     
-    ///
-    /// \brief open
-    /// \param dbase
-    /// \param codec
-    /// \param filename
-    /// \return 
-    ///
-    uint open(scidBaseT *dbase, ICodecDatabase::Codec codec, QString filename);
+
    
     ///
     /// \brief piecetrack  : Examines games in the filter of the current database and return a list of 64 integers indicating
