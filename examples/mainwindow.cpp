@@ -9,6 +9,8 @@
 #include <QFileDialog>
 #include <scidbasemodel.h>
 #include <QStandardItemModel>
+#include <QModelIndex>
+#include <QString>
 
 static Game * scratchGame = NULL;   
 
@@ -21,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect ( ui->pusButtonCreateDataBaseFromPGNFIle,SIGNAL(clicked(bool)),this,SLOT(CreateDataBaseFromPGNFile()));
     connect ( ui->pushButtonQuit,SIGNAL(clicked(bool)),this,SLOT(close()));
     connect (ui->actionRemove_the_Test_DataBase,SIGNAL(triggered(bool)),this,SLOT(RemoveTestBase()));
+    connect (ui->pushButtonTestDuplicate,SIGNAL(clicked(bool)),this,SLOT(TestDuplicate()));
     ScidBaseModel *scidbasemodel = new ScidBaseModel(this);
     // We pass to model  :
     //                       - the dir where are stored the file
@@ -69,7 +72,7 @@ void MainWindow::CreateDataBaseFromPGNFile()
     RemoveTestBase();
     QString filename=QFileDialog::getOpenFileName(this,tr("Open PGN file"),exampleDir(),tr("PGN files (*.pgn)"));
     QFileInfo fi(filename);
-    DBasePool::init()  ;
+
     ChessBase cb(this,ui->progressBar);
     int numberbase;
     int code=cb.open(exampleDir()+"/"+fi.baseName(),ICodecDatabase::SCID5,FMODE_Create,numberbase);
@@ -85,7 +88,6 @@ void MainWindow::CreateDataBaseFromPGNFile()
 
 QMap<QString, int> MainWindow::ListScid5DataBase()
 {
-    DBasePool::init()  ;
     int numberbase;
 
     ChessBase cb(this,ui->progressBar);
@@ -104,4 +106,25 @@ QMap<QString, int> MainWindow::ListScid5DataBase()
         }
     }
     return numbergames;
+}
+
+
+void MainWindow::TestDuplicate()
+{
+
+    if ( ! ui->tableView->selectionModel()->selectedIndexes().isEmpty()){
+        QString basename=ui->tableView->currentIndex().sibling(ui->tableView->currentIndex().row(),0).data().toString();
+        ChessBase cb(this,ui->progressBar);
+      //  DBasePool::init();
+
+      //  auto vec = DBasePool::getHandles() ;
+
+     int basehandle=DBasePool::find("/home/gilles/scid5listTest/SlavMain");
+        qDebug()<<basehandle;
+        // scidBaseT *dbase= DBasePool::getBase(basehandle);
+       // scidBaseT *dbase=DBasePool::getBase(ui->tableView->currentIndex());
+        //qDebug()<<cb.duplicates(dbase) ;
+
+
+        }
 }

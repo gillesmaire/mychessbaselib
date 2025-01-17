@@ -29,6 +29,7 @@ private slots:
     QMap<QString,int> ListScid5DataBase();
 
 
+    void TestDuplicate();
 };
 
 #endif // MAINWINDOW_H

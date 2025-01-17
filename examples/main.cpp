@@ -1,5 +1,8 @@
 #include <QApplication>
 #include "mainwindow.h"
+#include "dbasepool.h"
+
+DBasePool::init()  ;
 
 int main(int argc, char *argv[])
 {
