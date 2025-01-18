@@ -106,7 +106,7 @@ std::vector<int> getHandles();
 
 
 /**
- * switchCurrent() - DEPRECATED.
+ * switchCurrent() 
  * @param dbase: a pointer to the new "current" database.
  *               If 0 the function just return the "current" database handle.
  *

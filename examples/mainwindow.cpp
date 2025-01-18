@@ -11,6 +11,7 @@
 #include <QStandardItemModel>
 #include <QModelIndex>
 #include <QString>
+#include <QMessageBox>
 
 static Game * scratchGame = NULL;   
 
@@ -97,7 +98,7 @@ QMap<QString, int> MainWindow::ListScid5DataBase()
 
     for ( auto file : dir.entryList(filters,QDir::Files) ){
         QString file2=file.remove(".si5");
-        int code=cb.open(exampleDir()+"/"+file,ICodecDatabase::SCID5,FMODE_Both,numberbase);
+        int code=cb.open(exampleDir()+file,ICodecDatabase::SCID5,FMODE_Both,numberbase);
         mBaseInUse[file2]=true;
         if ( code == OK ) numbergames[file2]=cb.numberGames(DBasePool::getBase(numberbase));
         else  {
@@ -113,18 +114,20 @@ void MainWindow::TestDuplicate()
 {
 
     if ( ! ui->tableView->selectionModel()->selectedIndexes().isEmpty()){
-        QString basename=ui->tableView->currentIndex().sibling(ui->tableView->currentIndex().row(),0).data().toString();
-        ChessBase cb(this,ui->progressBar);
-      //  DBasePool::init();
-
-      //  auto vec = DBasePool::getHandles() ;
-
-     int basehandle=DBasePool::find("/home/gilles/scid5listTest/SlavMain");
-        qDebug()<<basehandle;
-        // scidBaseT *dbase= DBasePool::getBase(basehandle);
-       // scidBaseT *dbase=DBasePool::getBase(ui->tableView->currentIndex());
-        //qDebug()<<cb.duplicates(dbase) ;
-
-
-        }
+        QString selected=ui->tableView->selectionModel()->selectedIndexes().first().data().toString(); 
+        QString searched=exampleDir()+selected+QString(".si5");
+       int basehandle=DBasePool::find(searched.toStdString().c_str());
+       scidBaseT *dbase= DBasePool::getBase(basehandle);
+       ChessBase cb(this,ui->progressBar);
+       if (cb.duplicates(dbase)== OK)  {
+            QMessageBox::information(this,tr("Information"),QString("%1 database doesn't have duplicates games with default parameters").arg(selected));
+          }
+       else {
+           QMessageBox::StandardButton rep=QMessageBox::question(this,tr("Question"),QString("%1 database has dupplicates games and duplicate parameters have been marked"
+                                  " whith to be delete flag. Do you want to compact now ? (yes/no)"));
+           if (rep ==QMessageBox::Yes)  cb.compact(dbase);
+       }
+    }
+      
+      
 }

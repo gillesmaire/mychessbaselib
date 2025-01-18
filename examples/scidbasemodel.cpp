@@ -5,7 +5,7 @@
 #include  "mainwindow.h"
 ScidBaseModel::ScidBaseModel(QWidget *parent)
     : QAbstractTableModel{parent}
-{   DBasePool::init();
+{   
     mWid=parent;
 }
 

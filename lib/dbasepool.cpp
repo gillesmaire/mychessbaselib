@@ -19,8 +19,6 @@
 #include "dbasepool.h"
 #include "scidbase.h"
 
-
-
 //Current database
 scidBaseT* db = NULL;
 
@@ -66,6 +64,7 @@ scidBaseT* DBasePool::getBase(int baseHandle) {
 int DBasePool::getClipBase() {
 	return CLIPBASE_NUM + 1;
 }
+
 
 scidBaseT* DBasePool::getFreeSlot() {
 	for (int i = 0, n = MAX_BASES; i < n; i++) {

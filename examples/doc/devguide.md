@@ -113,20 +113,79 @@ The description is made in the dbasespool.h file.
 
 The set of Databases is named a pool. This pool need to be initialized at the 
 begining of the program by the **Init** method.
+This initialization must be before MainWindow initialization, for example 
+between Application initialization  and  mainWindow Initialization
 
-Severall Databases can be close with **spool.closeAll()**
-
-It is possible to get an Handle corresponding to a filename by the **find** function
-returning an integer. With this integer we can't get the scidBaseT *ptr but the function
-**getBase()** can do it.  The scidBase is used in all the chessbase class methods. 
-
-DBaseSpool allows to call **getClipBase()**  a special memory database that is always open and valid.
-
-**scidBaseT* getFreeSlot()** allocate a free database spool (or nullptr) 
-all slot are busy.
+~~~cpp
+QApplication a(argc, argv);
+DBasePool::init()  ;
+MainWindow mainWindow; 
+~~~
 
 
-To retrieve all the opened databases getHandles return a **std::vector<int>**
+The **getHandles()** function allows to initalize a vector with all opened databases plus the clipbase
+
+
+~~~cpp
+auto vec = DBasePool::getHandles() ;
+qDebug()<<"nb bases"<<vec.size() 
+~~~
+
+
+Each databases are done by the vec variable.
+If no database is opened, the number of bases will be 1 for the clipbase.
+
+You can ask user to choose the database in a menu. 
+
+The maximum number of databases is 9.
+
+The clip base can me reinitilized by : clearClipBase
+
+The funtion closeAll will close the database and save them and
+they are flushed on the disk.
+
+The find function will give the handler from
+the name of filename.  The complete path
+must be done with the extension si5 ou si4.
+
+For example if your database is SlavMain
+you have to  call find("/home/gilles/scid5listTest/SlavMain.si5")
+
+Be care to don't call with "/home/gilles/scid5listTest/SlavMain.sn5"
+or "/home/gilles/scid5listTest/SlavMain.sn5"
+or "/home/gilles/scid5listTest/SlavMain"
+or "/home/gilles/scid5listTest//SlavMain.si5"
+
+It is more safe to keep the Handles and to call scidBaseT* getBase(int baseHandle) than 
+try to retriev if from find function. 
+
+
+
+
+~~~cpp
+int DBasePool::find (cont char *filename)
+~~~
+
+When number of basespool is know the scidbase *
+pointer can be set by the function
+
+~~~cpp
+scidbaseT *getBase(int basehandle)
+~~~
+
+
+To retrieve all the opened databases getHandles 
+
+
+~~~cpp
+std::vector<int> getHandles();
+~~~
+
+vector is something like : 1, 2, 9  where 1  is handle for clipbase,
+
+2 is the handle of first base, 9 the handle for second base etc    
+
+With the handle you can get scidbaseT * with getBase(handle);
 
 
 ### Import  PNG file 

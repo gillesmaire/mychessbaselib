@@ -74,7 +74,6 @@ public:
     bool checkDuplicate  (scidBaseT* dbase, const IndexEntry *ie1, const IndexEntry *ie2,
                         dupCriteriaT *cr);
     
-    ///
     /// \brief duplicates  : Finds duplicate games and marks them deleted.
     ///                      A pair of games are considered duplicates if the Event, Site,
     ///                      White, Black, and Round values all match identically, and the
@@ -131,7 +130,6 @@ public:
     static std::string CodecEnum2Str( ICodecDatabase::Codec codec ) ;
     
     
-    /// 
     /// \brief compact the database ie 
     ///     - remove all games marked deleted
     ///     - remove unused games 
