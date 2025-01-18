@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['d1_0',['D1',['../board__def_8h.html#a33533c162e16bd58175763f1a3a3214e',1,'board_def.h']]],
+  ['d2_1',['D2',['../board__def_8h.html#a91f4dc48b456d2bc41d7b84925d3d440',1,'board_def.h']]],
+  ['d3_2',['D3',['../board__def_8h.html#a9372c9bf0d3187a674a40a08c0439782',1,'board_def.h']]],
+  ['d4_3',['D4',['../board__def_8h.html#a026e4fbf5834c17cfd50a8c6bdd78dc6',1,'board_def.h']]],
+  ['d5_4',['D5',['../board__def_8h.html#a967f9a68b811a2ecb0cb2181634952c7',1,'board_def.h']]],
+  ['d6_5',['D6',['../board__def_8h.html#ad8ccfb52fb5c0a76f4d8fb2af468d1fb',1,'board_def.h']]],
+  ['d7_6',['D7',['../board__def_8h.html#aa8800f149179a76d7dc39c8dfd3c54dc',1,'board_def.h']]],
+  ['d8_7',['D8',['../board__def_8h.html#a7a1859b60d3dd03eac6a5a9699e34fd2',1,'board_def.h']]],
+  ['d_5ffyle_8',['D_FYLE',['../board__def_8h.html#a9e7d830686ccbda16a4e10fce3cd987d',1,'board_def.h']]],
+  ['date_5f_9',['date_',['../struct_tourney_game.html#a001b723b523b3dd1df9875d8795e3909',1,'TourneyGame']]],
+  ['day_5fshift_10',['DAY_SHIFT',['../date_8h.html#a1c26548c3bfe9c649c201c4cd69f39c4',1,'date.h']]],
+  ['db_11',['db',['../dbasepool_8cpp.html#a4779903472e8341c8c3c59fc6de471d7',1,'dbasepool.cpp']]],
+  ['dbfilter_12',['dbFilter',['../structscid_base_t.html#aa097c1795f5cb5a4b2425410e82e1112',1,'scidBaseT']]],
+  ['deprecated_5fpush_5fpop_13',['deprecated_push_pop',['../structscid_base_t.html#a179f5ee97de9e04847237dc63572dcb3',1,'scidBaseT']]],
+  ['description_14',['description',['../class_codec_s_c_i_d4.html#a382c99337d6d959edd6bc6c2dced86a6',1,'CodecSCID4']]],
+  ['dir_15',['dir',['../structhtml_style_t.html#a4f146aaa1131c0d23a3584169387da2e',1,'htmlStyleT']]],
+  ['dirdelta_16',['dirDelta',['../common_8h.html#a9421716f189f7564303c8f31b99990e8',1,'common.h']]],
+  ['dirisdiagonal_17',['dirIsDiagonal',['../common_8h.html#a59aae82a88707e372558a9d28802d7b1',1,'common.h']]],
+  ['diropposite_18',['dirOpposite',['../common_8h.html#a60153ad2f70f5ee6609030faabf4f5ca',1,'common.h']]],
+  ['dirty_19',['dirty',['../class_codec_s_c_i_d4.html#a05a536f417f16cb5b45f185aeb9903ff',1,'CodecSCID4']]],
+  ['down_20',['DOWN',['../common_8h.html#a5f6df0ca34313e6d20b3b498db9f7d22',1,'common.h']]],
+  ['down_5fleft_21',['DOWN_LEFT',['../common_8h.html#a3fd562632abbcd86a955faf9723accf9',1,'common.h']]],
+  ['down_5fright_22',['DOWN_RIGHT',['../common_8h.html#a42f36aa22cbe236b9868825d037ac058',1,'common.h']]]
+];
