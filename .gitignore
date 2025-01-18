@@ -7,4 +7,4 @@ libQtScid.*
 moc_*.*
 *.autosave
 *.pro.user.*
-
+Doxygen
