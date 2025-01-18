@@ -27,9 +27,8 @@ private slots:
     void RemoveTestBase();
     void CreateDataBaseFromPGNFile();
     QMap<QString,int> ListScid5DataBase();
-
-
     void TestDuplicate();
+    void CopyGame1Base1toBase2();
 };
 
 #endif // MAINWINDOW_H

@@ -142,11 +142,20 @@ public:
     ///
     /// \brief copyGames copy Game from dataBase to another one.
     /// \param sourcebase  is a pointer of source dataBase
-    /// \param NumGameOrFilterName : can be a number of game or a FilterName 
+    /// \param FilterName :  FilterName 
     /// \param targedBaseId : Id of the target base 
     /// \return  0 of not error else a value given by error.h 
-    errorT copyGames (scidBaseT *sourcebase, QString NumGameOrFilterName, uint  targedBaseId );
+    errorT copyGames(scidBaseT *sourcebase, QString FilterName, uint  targedBaseId );
   
+  
+    
+    /// \brief copyGames copy Game from dataBase to another one.
+    /// \param sourcebase  is a pointer of source dataBase
+    /// \param numGame :  the number of game 
+    /// \param targedBaseId : Id of the target base 
+    /// \return  0 of not error else a value given by error.h 
+    errorT copyGames(scidBaseT *sourcebase, int numGame, int targedBaseId);
+     
     /// \brief create a new database (is the convenience method for open with flag create)
     ///        the Database created is empty.
     /// \param name for the base.
@@ -560,6 +569,7 @@ public:
     // ///                Percent : for example 2%
     // ///
     // void refreshProgressBar(int value, int total , Progress::CountType type) ;
+ 
 };
 
 #endif // CHESSBASE_H

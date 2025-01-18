@@ -58,26 +58,32 @@ errorT ChessBase::statsInfoToBeCompacted( scidBaseT *dbase,QList<quint64> &list)
 	return  res;
 }
 
-errorT ChessBase::copyGames(scidBaseT *sourcebase, QString NumGameOrFilterName, uint targedBaseId)
+errorT ChessBase::copyGames(scidBaseT *sourcebase, QString FilterName, uint targedBaseId)
 {
     auto targetBase = DBasePool::getBase(targedBaseId);
     if ( targetBase == 0 ) return ERROR_BadArg; 
     errorT err=OK;
     
-    const HFilter filter = sourcebase->getFilter(NumGameOrFilterName.toStdString());
+    const HFilter filter = sourcebase->getFilter(FilterName.toStdString());
     if ( filter != 0 ){
          Progress pb(mProgressBar,QString(tr("Copy")),this);
          err=targetBase->importGames(sourcebase, filter,pb);
         }
-    else {
-         bool ok;
-         uint gNum = NumGameOrFilterName.toUInt(&ok) ;
-         const IndexEntry* ie = (gNum > 0)? sourcebase->getIndexEntry_bounds(gNum - 1): nullptr;
-         if ( ie == nullptr ) return (ERROR_BadArg);
-         Game game;
-         err=sourcebase->getGame(*ie,game);
-         if (err==OK )  err=targetBase->saveGame(&game);
-    }
+    else return ERROR_BadArg;
+    return err;
+}
+
+errorT ChessBase::copyGames(scidBaseT *sourcebase, int numGame, int targedBaseId)
+{
+    auto targetBase = DBasePool::getBase(targedBaseId);
+    if ( targetBase == 0 ) return ERROR_BadArg; 
+    errorT err=OK;
+ 
+    const IndexEntry* ie = (numGame > 0)? sourcebase->getIndexEntry_bounds(numGame - 1): nullptr;
+    if ( ie == nullptr ) return (ERROR_BadArg);
+    Game game;
+    err=sourcebase->getGame(*ie,game);
+    if (err==OK )  err=targetBase->saveGame(&game);
     return err;
 }
 
