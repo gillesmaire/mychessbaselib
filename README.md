@@ -26,6 +26,8 @@ cd lib
 doxywizard
 ~~~
 
+The Doxygen documentation is also on Github
+
 
 
 
