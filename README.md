@@ -6,7 +6,7 @@
 
 This project is a port of SCID database library for Qt6/C++
 
-This project doesn't concern only the storage of games in database in 
+This project concerns only the storage of games in database in 
 SCID format
 
 The Qt6 Interface myChessBase is an other project. 
@@ -15,11 +15,11 @@ The Qt6 Interface myChessBase is an other project.
 
 ### Developpement guide
 
-A technical documentation  is available in Wiki
+A technical documentation  is available in Wiki o github 
 
 ## Doxygen documentation 
 
-A Doxygen file is present in the doxyfile 
+A Doxygen file is present lib directory to generate a documentation
 
 
 
