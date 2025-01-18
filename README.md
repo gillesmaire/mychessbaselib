@@ -21,6 +21,11 @@ A technical documentation  is available in Wiki o github
 
 A Doxygen file is present lib directory to generate a documentation
 
+~~~
+cd lib
+doxywizard
+~~~
+
 
 
 

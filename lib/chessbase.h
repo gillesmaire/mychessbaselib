@@ -7,8 +7,21 @@
 #include <QList>
 #include <QPair>
 
-/// This Class is the Qt database management for Scid5 base with Qt and not with Tcl/Tk.
-/// the sc_base.cpp has be converted with 
+
+
+/// \mainpage Presentation
+/// This Class is the Library for database management for Scid5 base with Qt in replacment of Tcl/Tk.
+/// The goal of this library is not to provide the scid with Qt but just to provide for the Qt/C++
+/// programmers a Library to manages the Databases of games.
+/// 
+/// The Main class to read is the ChessBase who explains the high level functionality
+/// 
+/// You can also read some other high level files : 
+/// - DBasePool to understand how to manage a maximum of 9 Database simulteously opened
+/// 
+/// Dont forget to read the [Wiki documentation|https://github.com/gillesmaire/mychessbaselib/wiki]
+/// on Github, a dev guide for developpers
+///     
 
 class ChessBase  : public QWidget
 {

@@ -268,17 +268,7 @@ errorT ChessBase::gamelocation(scidBaseT *dbase, QString filt, QString sortCrit,
 }
 
 
-///
-/// \brief gamelocation find the first game that contains text in white name or black name of  event name or site name 
-/// \param dbase : pointer on base
-/// \param filt :  a string egal gameNum or filtername or all
-/// \param sort : the order for the list of games to search
-/// \param text : text of white name nlack name or whit or black event or site
-/// \param start  :  offset to begining to search 
-/// \param forwardir : if true search from startpos tp num game else search from 0 to num game
-/// \param result the position ( 0 for first ) if return is OK  
-/// \return 0 for not error else a value given by error.h
-///
+
 errorT ChessBase::gamelocation (scidBaseT *dbase, QString filt, QString sort, QString text, uint start, bool forwardir , uint &result)
 {
    const HFilter filter = dbase->getFilter(filt.toStdString().c_str());
