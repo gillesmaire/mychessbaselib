@@ -1,0 +1,153 @@
+\hypertarget{class_codec_proxy}{}\doxysection{Codec\+Proxy\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_codec_proxy}\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+
+
+{\ttfamily \#include $<$codec\+\_\+proxy.\+h$>$}
+
+
+
+Inheritance diagram for Codec\+Proxy\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{class_codec_proxy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Codec\+Proxy\texorpdfstring{$<$}{<} Derived \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{class_codec_proxy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a5d92c758ce2711cbe7d0731b92d09a2e}{open}} (const char $\ast$filename, \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{file\+ModeT}} f\+Mode)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_ab2032c2b6d3d1e8b838cbe47fdb83864}{parse\+Next}} (\mbox{\hyperlink{class_game}{Game}} \&)
+\item 
+std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \mbox{\hyperlink{class_codec_proxy_a070ed4d573c4802dfcc7cabf70499954}{parse\+Progress}} ()
+\item 
+const char $\ast$ \mbox{\hyperlink{class_codec_proxy_a48efadee1245403553ff80c9d0d3009b}{parse\+Errors}} ()
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a986ff371ef66c8348a0b9cc9f9a0bf5f}{game\+Add}} (\mbox{\hyperlink{class_game}{Game}} $\ast$)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a1d82f4107b726db40746494cc4ec1eee}{game\+Save}} (\mbox{\hyperlink{class_game}{Game}} $\ast$game, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename TProgress , typename TSource , typename TDest\+Fn $>$ }\\static \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a46ebed2e39efa04fe559cfdfeb6423fe}{parse\+Games}} (const TProgress \&progress, TSource \&src, TDest\+Fn dest\+Fn)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Codec\+Proxy$<$ Derived $>$}
+Base class for non-\/native databases. Every class derived from \mbox{\hyperlink{class_i_codec_database}{ICodec\+Database}} must keep an {\itshape \mbox{\hyperlink{class_index}{Index}}} object and the corresponding {\itshape \mbox{\hyperlink{class_name_base}{Name\+Base}}} object fully updated in memory. This implies that the virtual function dyn\+\_\+open() must load in memory the header\textquotesingle{}s data of all the games; however a dependency between the codecs and the {\itshape \mbox{\hyperlink{class_index}{Index}}} class is not desirable. This class provides an interface that encapsulates the codecs, requiring only the ability to exchange {\itshape \mbox{\hyperlink{class_game}{Game}}} objects. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_codec_proxy_a986ff371ef66c8348a0b9cc9f9a0bf5f}\label{class_codec_proxy_a986ff371ef66c8348a0b9cc9f9a0bf5f}} 
+\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}!gameAdd@{gameAdd}}
+\index{gameAdd@{gameAdd}!CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{gameAdd()}{gameAdd()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy}{Codec\+Proxy}}$<$ Derived $>$\+::game\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game}{Game}} $\ast$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds a game into the database. 
+\begin{DoxyParams}{Parameters}
+{\em Game$\ast$} & valid pointer to a \mbox{\hyperlink{class_game}{Game}} object with the new data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK in case of success, an {\ttfamily errorT} code otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_codec_proxy_a1d82f4107b726db40746494cc4ec1eee}\label{class_codec_proxy_a1d82f4107b726db40746494cc4ec1eee}} 
+\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}!gameSave@{gameSave}}
+\index{gameSave@{gameSave}!CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{gameSave()}{gameSave()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy}{Codec\+Proxy}}$<$ Derived $>$\+::game\+Save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game}{Game}} $\ast$}]{game,  }\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{replaced }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Replaces a game in the database. 
+\begin{DoxyParams}{Parameters}
+{\em Game$\ast$} & valid pointer to a \mbox{\hyperlink{class_game}{Game}} object with the new data. \\
+\hline
+{\em gamenumT} & valid gamenumT of the game to be replaced. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK in case of success, an {\ttfamily errorT} code otherwise. If not overridden, adds a special tag and invoke \mbox{\hyperlink{class_codec_proxy_a986ff371ef66c8348a0b9cc9f9a0bf5f}{game\+Add()}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_codec_proxy_a5d92c758ce2711cbe7d0731b92d09a2e}\label{class_codec_proxy_a5d92c758ce2711cbe7d0731b92d09a2e}} 
+\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}!open@{open}}
+\index{open@{open}!CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy}{Codec\+Proxy}}$<$ Derived $>$\+::open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename,  }\item[{\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{file\+ModeT}}}]{f\+Mode }\end{DoxyParamCaption})}
+
+Opens/creates a database encoded in a non-\/native format. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & full path of the database to be opened. \\
+\hline
+{\em f\+Mode} & valid file access mode. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK in case of success, an {\ttfamily errorT} code otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_codec_proxy_a48efadee1245403553ff80c9d0d3009b}\label{class_codec_proxy_a48efadee1245403553ff80c9d0d3009b}} 
+\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}!parseErrors@{parseErrors}}
+\index{parseErrors@{parseErrors}!CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{parseErrors()}{parseErrors()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+const char $\ast$ \mbox{\hyperlink{class_codec_proxy}{Codec\+Proxy}}$<$ Derived $>$\+::parse\+Errors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the list of errors produced by \mbox{\hyperlink{class_codec_proxy_ab2032c2b6d3d1e8b838cbe47fdb83864}{parse\+Next()}} calls. \mbox{\Hypertarget{class_codec_proxy_a46ebed2e39efa04fe559cfdfeb6423fe}\label{class_codec_proxy_a46ebed2e39efa04fe559cfdfeb6423fe}} 
+\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}!parseGames@{parseGames}}
+\index{parseGames@{parseGames}!CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{parseGames()}{parseGames()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+template$<$typename TProgress , typename TSource , typename TDest\+Fn $>$ \\
+static \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy}{Codec\+Proxy}}$<$ Derived $>$\+::parse\+Games (\begin{DoxyParamCaption}\item[{const TProgress \&}]{progress,  }\item[{TSource \&}]{src,  }\item[{TDest\+Fn}]{dest\+Fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_codec_proxy_ab2032c2b6d3d1e8b838cbe47fdb83864}\label{class_codec_proxy_ab2032c2b6d3d1e8b838cbe47fdb83864}} 
+\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}!parseNext@{parseNext}}
+\index{parseNext@{parseNext}!CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{parseNext()}{parseNext()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy}{Codec\+Proxy}}$<$ Derived $>$\+::parse\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game}{Game}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reads the next game. A derived class implements this function to sequentially read the games contained into the database. 
+\begin{DoxyParams}{Parameters}
+{\em Game\&} & the \mbox{\hyperlink{class_game}{Game}} object where the data will be stored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item ERROR\+\_\+\+Not\+Found if there are no more games to be read.
+\item OK otherwise. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_codec_proxy_a070ed4d573c4802dfcc7cabf70499954}\label{class_codec_proxy_a070ed4d573c4802dfcc7cabf70499954}} 
+\index{CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}!parseProgress@{parseProgress}}
+\index{parseProgress@{parseProgress}!CodecProxy$<$ Derived $>$@{CodecProxy$<$ Derived $>$}}
+\doxysubsubsection{\texorpdfstring{parseProgress()}{parseProgress()}}
+{\footnotesize\ttfamily template$<$typename Derived $>$ \\
+std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \mbox{\hyperlink{class_codec_proxy}{Codec\+Proxy}}$<$ Derived $>$\+::parse\+Progress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns info about the parsing progress. \begin{DoxyReturn}{Returns}
+a pair$<$size\+\_\+t, size\+\_\+t$>$ where first element is the quantity of data parsed and second one is the total amount of data of the database. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{codec__proxy_8h}{codec\+\_\+proxy.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,128 @@
+\hypertarget{namespacepgn__impl}{}\doxysection{pgn\+\_\+impl Namespace Reference}
+\label{namespacepgn__impl}\index{pgn\_impl@{pgn\_impl}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classpgn__impl_1_1_input_memory}{Input\+Memory}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr unsigned long long \mbox{\hyperlink{namespacepgn__impl_abbbc7b53ce12501f3641406e013af873}{init\+\_\+symbol\+\_\+map}} (unsigned elem)
+\item 
+bool \mbox{\hyperlink{namespacepgn__impl_a256a08976dac501ca9453124d8cedec1}{is\+\_\+\+PGNsymbol}} (unsigned char ch)
+\item 
+bool \mbox{\hyperlink{namespacepgn__impl_af173bdc1942df0cb0595fed31cce5f92}{is\+\_\+\+PGNdigit}} (unsigned char ch)
+\item 
+bool \mbox{\hyperlink{namespacepgn__impl_a5ecc45ec87d4aa8bc4a00e488591d9ab}{is\+\_\+\+PGNwhitespace}} (unsigned char ch)
+\item 
+{\footnotesize template$<$typename TView $>$ }\\char \mbox{\hyperlink{namespacepgn__impl_a45c4145fe058036514c11c8520641fb5}{is\+\_\+\+PGNtermination}} (TView tok)
+\item 
+{\footnotesize template$<$typename TInput , typename TVisitor $>$ }\\bool \mbox{\hyperlink{namespacepgn__impl_a7e328c869aeda69e2fad07d812136278}{parse\+\_\+token}} (char ch, TInput \&input, TVisitor \&parser, int \&section)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacepgn__impl_abbbc7b53ce12501f3641406e013af873}\label{namespacepgn__impl_abbbc7b53ce12501f3641406e013af873}} 
+\index{pgn\_impl@{pgn\_impl}!init\_symbol\_map@{init\_symbol\_map}}
+\index{init\_symbol\_map@{init\_symbol\_map}!pgn\_impl@{pgn\_impl}}
+\doxysubsubsection{\texorpdfstring{init\_symbol\_map()}{init\_symbol\_map()}}
+{\footnotesize\ttfamily constexpr unsigned long long pgn\+\_\+impl\+::init\+\_\+symbol\+\_\+map (\begin{DoxyParamCaption}\item[{unsigned}]{elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+Creates a 128 bits bitmap of PGN symbol characters.
+
+\char`\"{}\+A symbol token starts with a letter or digit character and is immediately followed by a sequence of zero or more symbol continuation characters. \+These continuation characters are letter characters (\char`\"{}A-\/\+Za-\/z\char`\"{}), digit characters (\char`\"{}0-\/9\char`\"{}), the underscore (\char`\"{}\+\_\+\char`\"{}), the plus sign (\char`\"{}+\char`\"{}), the octothorpe sign (\char`\"{}\#\char`\"{}), the equal sign (\char`\"{}=\char`\"{}), the colon (\char`\"{}\+:\char`\"{}),  and the hyphen (\char`\"{}-\/\char`\"{}).\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em elem} & 0 for the lower 64 bits, 1 for the higher 64 bits. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the requested half of the bitmap. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepgn__impl_af173bdc1942df0cb0595fed31cce5f92}\label{namespacepgn__impl_af173bdc1942df0cb0595fed31cce5f92}} 
+\index{pgn\_impl@{pgn\_impl}!is\_PGNdigit@{is\_PGNdigit}}
+\index{is\_PGNdigit@{is\_PGNdigit}!pgn\_impl@{pgn\_impl}}
+\doxysubsubsection{\texorpdfstring{is\_PGNdigit()}{is\_PGNdigit()}}
+{\footnotesize\ttfamily bool pgn\+\_\+impl\+::is\+\_\+\+PGNdigit (\begin{DoxyParamCaption}\item[{unsigned char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if the given character is one of the 10 decimal digits\+: 0123456789. 
+\begin{DoxyParams}{Parameters}
+{\em ch} & character to classify. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the character is a numeric character, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepgn__impl_a256a08976dac501ca9453124d8cedec1}\label{namespacepgn__impl_a256a08976dac501ca9453124d8cedec1}} 
+\index{pgn\_impl@{pgn\_impl}!is\_PGNsymbol@{is\_PGNsymbol}}
+\index{is\_PGNsymbol@{is\_PGNsymbol}!pgn\_impl@{pgn\_impl}}
+\doxysubsubsection{\texorpdfstring{is\_PGNsymbol()}{is\_PGNsymbol()}}
+{\footnotesize\ttfamily bool pgn\+\_\+impl\+::is\+\_\+\+PGNsymbol (\begin{DoxyParamCaption}\item[{unsigned char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if the given character is a PGN symbol. 
+\begin{DoxyParams}{Parameters}
+{\em ch} & character to classify. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if {\itshape ch} is a PGN symbol character, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepgn__impl_a45c4145fe058036514c11c8520641fb5}\label{namespacepgn__impl_a45c4145fe058036514c11c8520641fb5}} 
+\index{pgn\_impl@{pgn\_impl}!is\_PGNtermination@{is\_PGNtermination}}
+\index{is\_PGNtermination@{is\_PGNtermination}!pgn\_impl@{pgn\_impl}}
+\doxysubsubsection{\texorpdfstring{is\_PGNtermination()}{is\_PGNtermination()}}
+{\footnotesize\ttfamily template$<$typename TView $>$ \\
+char pgn\+\_\+impl\+::is\+\_\+\+PGNtermination (\begin{DoxyParamCaption}\item[{TView}]{tok }\end{DoxyParamCaption})}
+
+Checks if a token is the game termination marker.
+
+\char`\"{}\+The game termination marker is a symbol that is one of the following four values\+: \char`\"{}1-\/0\char`\"{} (\+White wins), \char`\"{}0-\/1\char`\"{} (\+Black wins), \char`\"{}1/2-\/1/2\char`\"{} (drawn game), and \char`\"{}$\ast$\char`\"{} (game in progress, result unknown, or game abandoned).\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em tok} & the token to classify. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item \textquotesingle{}1\textquotesingle{} for \char`\"{}\+White wins\char`\"{},
+\item \textquotesingle{}0\textquotesingle{} for \char`\"{}\+Black wins\char`\"{},
+\item \textquotesingle{}/\textquotesingle{} for \char`\"{}drawn game\char`\"{},
+\item \textquotesingle{}$\ast$\textquotesingle{} for \char`\"{}result unknown\char`\"{},
+\item 0 (false) if it\textquotesingle{}s not a termination marker. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepgn__impl_a5ecc45ec87d4aa8bc4a00e488591d9ab}\label{namespacepgn__impl_a5ecc45ec87d4aa8bc4a00e488591d9ab}} 
+\index{pgn\_impl@{pgn\_impl}!is\_PGNwhitespace@{is\_PGNwhitespace}}
+\index{is\_PGNwhitespace@{is\_PGNwhitespace}!pgn\_impl@{pgn\_impl}}
+\doxysubsubsection{\texorpdfstring{is\_PGNwhitespace()}{is\_PGNwhitespace()}}
+{\footnotesize\ttfamily bool pgn\+\_\+impl\+::is\+\_\+\+PGNwhitespace (\begin{DoxyParamCaption}\item[{unsigned char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if the given character is a white space (\char`\"{}white space characters include space, newline, and tab characters\char`\"{}). 
+\begin{DoxyParams}{Parameters}
+{\em ch} & character to classify. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the character is a white space, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacepgn__impl_a7e328c869aeda69e2fad07d812136278}\label{namespacepgn__impl_a7e328c869aeda69e2fad07d812136278}} 
+\index{pgn\_impl@{pgn\_impl}!parse\_token@{parse\_token}}
+\index{parse\_token@{parse\_token}!pgn\_impl@{pgn\_impl}}
+\doxysubsubsection{\texorpdfstring{parse\_token()}{parse\_token()}}
+{\footnotesize\ttfamily template$<$typename TInput , typename TVisitor $>$ \\
+bool pgn\+\_\+impl\+::parse\+\_\+token (\begin{DoxyParamCaption}\item[{char}]{ch,  }\item[{TInput \&}]{input,  }\item[{TVisitor \&}]{parser,  }\item[{int \&}]{section }\end{DoxyParamCaption})}
+
+Read a token and dispatch it to a PGN parser. The first char of the token is used to determine its termination. 
+\begin{DoxyParams}{Parameters}
+{\em ch} & the first char of the token. \\
+\hline
+{\em input} & the input to get data from. \\
+\hline
+{\em parser} & will receive the tokens via visit\+PGN\+\_\+$\ast$ functions. \\
+\hline
+{\em section} & -\/1 pregame, 0 for tag pair section, 1 for movetext section. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: false if it parsed the last token of the game, otherwise return the result of the parser\textquotesingle{}s invoked function. 
+\end{DoxyReturn}

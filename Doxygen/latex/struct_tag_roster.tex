@@ -1,0 +1,87 @@
+\hypertarget{struct_tag_roster}{}\doxysection{Tag\+Roster Struct Reference}
+\label{struct_tag_roster}\index{TagRoster@{TagRoster}}
+
+
+{\ttfamily \#include $<$namebase.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename TEntry , typename Fn $>$ }\\auto \mbox{\hyperlink{struct_tag_roster_a06f4707d65a7a76735e1f3f5d005d7b1}{map}} (TEntry \&dest, Fn get\+ID) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename TEntry $>$ }\\static \mbox{\hyperlink{struct_tag_roster}{Tag\+Roster}} \mbox{\hyperlink{struct_tag_roster_a99c92896b99a585f796c04525c541a1e}{make}} (TEntry const \&ie, \mbox{\hyperlink{class_name_base}{Name\+Base}} const \&nb)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{struct_tag_roster_aa56cdcad14c682822e7c7d7c9d3ce414}{event}}
+\item 
+const char $\ast$ \mbox{\hyperlink{struct_tag_roster_a1b4593f658d58df0b679d963b8f16029}{site}}
+\item 
+const char $\ast$ \mbox{\hyperlink{struct_tag_roster_a691acb38f526c0b5923e21e8409a8b9e}{round}}
+\item 
+const char $\ast$ \mbox{\hyperlink{struct_tag_roster_a79fcb9f408abf57716a86624842392f0}{white}}
+\item 
+const char $\ast$ \mbox{\hyperlink{struct_tag_roster_ae2ca607394fc91b1528ac795fa2af32a}{black}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Seven Tag Roster defined in the PGN standard is stored in the \mbox{\hyperlink{class_index_entry}{Index\+Entry}}, but 5 are indexes that refer to a \mbox{\hyperlink{class_name_base}{Name\+Base}} object. This helper struct stores the referred values. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_tag_roster_a99c92896b99a585f796c04525c541a1e}\label{struct_tag_roster_a99c92896b99a585f796c04525c541a1e}} 
+\index{TagRoster@{TagRoster}!make@{make}}
+\index{make@{make}!TagRoster@{TagRoster}}
+\doxysubsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily template$<$typename TEntry $>$ \\
+static \mbox{\hyperlink{struct_tag_roster}{Tag\+Roster}} Tag\+Roster\+::make (\begin{DoxyParamCaption}\item[{TEntry const \&}]{ie,  }\item[{\mbox{\hyperlink{class_name_base}{Name\+Base}} const \&}]{nb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{struct_tag_roster_a06f4707d65a7a76735e1f3f5d005d7b1}\label{struct_tag_roster_a06f4707d65a7a76735e1f3f5d005d7b1}} 
+\index{TagRoster@{TagRoster}!map@{map}}
+\index{map@{map}!TagRoster@{TagRoster}}
+\doxysubsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily template$<$typename TEntry , typename Fn $>$ \\
+auto Tag\+Roster\+::map (\begin{DoxyParamCaption}\item[{TEntry \&}]{dest,  }\item[{Fn}]{get\+ID }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_tag_roster_ae2ca607394fc91b1528ac795fa2af32a}\label{struct_tag_roster_ae2ca607394fc91b1528ac795fa2af32a}} 
+\index{TagRoster@{TagRoster}!black@{black}}
+\index{black@{black}!TagRoster@{TagRoster}}
+\doxysubsubsection{\texorpdfstring{black}{black}}
+{\footnotesize\ttfamily const char$\ast$ Tag\+Roster\+::black}
+
+\mbox{\Hypertarget{struct_tag_roster_aa56cdcad14c682822e7c7d7c9d3ce414}\label{struct_tag_roster_aa56cdcad14c682822e7c7d7c9d3ce414}} 
+\index{TagRoster@{TagRoster}!event@{event}}
+\index{event@{event}!TagRoster@{TagRoster}}
+\doxysubsubsection{\texorpdfstring{event}{event}}
+{\footnotesize\ttfamily const char$\ast$ Tag\+Roster\+::event}
+
+\mbox{\Hypertarget{struct_tag_roster_a691acb38f526c0b5923e21e8409a8b9e}\label{struct_tag_roster_a691acb38f526c0b5923e21e8409a8b9e}} 
+\index{TagRoster@{TagRoster}!round@{round}}
+\index{round@{round}!TagRoster@{TagRoster}}
+\doxysubsubsection{\texorpdfstring{round}{round}}
+{\footnotesize\ttfamily const char$\ast$ Tag\+Roster\+::round}
+
+\mbox{\Hypertarget{struct_tag_roster_a1b4593f658d58df0b679d963b8f16029}\label{struct_tag_roster_a1b4593f658d58df0b679d963b8f16029}} 
+\index{TagRoster@{TagRoster}!site@{site}}
+\index{site@{site}!TagRoster@{TagRoster}}
+\doxysubsubsection{\texorpdfstring{site}{site}}
+{\footnotesize\ttfamily const char$\ast$ Tag\+Roster\+::site}
+
+\mbox{\Hypertarget{struct_tag_roster_a79fcb9f408abf57716a86624842392f0}\label{struct_tag_roster_a79fcb9f408abf57716a86624842392f0}} 
+\index{TagRoster@{TagRoster}!white@{white}}
+\index{white@{white}!TagRoster@{TagRoster}}
+\doxysubsubsection{\texorpdfstring{white}{white}}
+{\footnotesize\ttfamily const char$\ast$ Tag\+Roster\+::white}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namebase_8h}{namebase.\+h}}\end{DoxyCompactItemize}

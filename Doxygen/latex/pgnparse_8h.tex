@@ -1,0 +1,61 @@
+\hypertarget{pgnparse_8h}{}\doxysection{pgnparse.\+h File Reference}
+\label{pgnparse_8h}\index{pgnparse.h@{pgnparse.h}}
+{\ttfamily \#include \char`\"{}game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pgn\+\_\+lexer.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$string\+\_\+view$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for pgnparse.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pgnparse_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{pgnparse_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_pgn_visitor}{Pgn\+Visitor}}
+\item 
+struct \mbox{\hyperlink{struct_pgn_parse_log}{Pgn\+Parse\+Log}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{pgnparse_8h_ae349d71e091033342a437d9458231a76}{pgn\+Parse\+Game}} (const char $\ast$input, size\+\_\+t input\+Len, \mbox{\hyperlink{class_game}{Game}} \&game, \mbox{\hyperlink{struct_pgn_parse_log}{Pgn\+Parse\+Log}} \&log)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements a parser that converts PGN text into SCID\textquotesingle{}s \mbox{\hyperlink{class_game}{Game}} objects. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pgnparse_8h_ae349d71e091033342a437d9458231a76}\label{pgnparse_8h_ae349d71e091033342a437d9458231a76}} 
+\index{pgnparse.h@{pgnparse.h}!pgnParseGame@{pgnParseGame}}
+\index{pgnParseGame@{pgnParseGame}!pgnparse.h@{pgnparse.h}}
+\doxysubsubsection{\texorpdfstring{pgnParseGame()}{pgnParseGame()}}
+{\footnotesize\ttfamily bool pgn\+Parse\+Game (\begin{DoxyParamCaption}\item[{const char $\ast$}]{input,  }\item[{size\+\_\+t}]{input\+Len,  }\item[{\mbox{\hyperlink{class_game}{Game}} \&}]{game,  }\item[{\mbox{\hyperlink{struct_pgn_parse_log}{Pgn\+Parse\+Log}} \&}]{log }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convert PGN text into a SCID\textquotesingle{}s \mbox{\hyperlink{class_game}{Game}} object. 
+\begin{DoxyParams}{Parameters}
+{\em input} & the memory containing the PGN text. \\
+\hline
+{\em input\+Len} & the number of chars in {\itshape input}. \\
+\hline
+{\em game} & the \mbox{\hyperlink{class_game}{Game}} object where the game will be stored. The object is not automatically cleared so that moves can be added to an already existing one. \\
+\hline
+{\em log} & stores eventual parsing error. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a game was parsed successfully (maybe with errors, but without ignoring any part), false otherwise. 
+\end{DoxyReturn}

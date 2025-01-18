@@ -1,0 +1,226 @@
+\hypertarget{codec__scid4_8h_source}{}\doxysection{codec\+\_\+scid4.\+h}
+\mbox{\hyperlink{codec__scid4_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2016-\/2018  Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{ * it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{ * the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{ * GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{ * along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{ *}}
+\DoxyCodeLine{18 \textcolor{comment}{ */}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef CODEC\_SCID4\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define CODEC\_SCID4\_H}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{codec_8h}{codec.h}}"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{filebuf_8h}{filebuf.h}}"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{index_8h}{index.h}}"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{namebase_8h}{namebase.h}}"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37 \textcolor{keyword}{class }\mbox{\hyperlink{class_codec_s_c_i_d4}{CodecSCID4}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_i_codec_database}{ICodecDatabase}} \{}
+\DoxyCodeLine{38     \mbox{\hyperlink{class_index}{Index}}* idx\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{39     \mbox{\hyperlink{class_name_base}{NameBase}}* nb\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{40     std::vector<std::string> filenames\_;}
+\DoxyCodeLine{41     \mbox{\hyperlink{class_filebuf}{Filebuf}} idxfile\_;}
+\DoxyCodeLine{42     \mbox{\hyperlink{class_filebuf_append}{FilebufAppend}} gfile\_;}
+\DoxyCodeLine{43     \textcolor{keywordtype}{char} gamecache\_[1ULL << 17];}
+\DoxyCodeLine{44     \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} seqWrite\_ = 0;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{47         std::string \mbox{\hyperlink{class_codec_s_c_i_d4_a382c99337d6d959edd6bc6c2dced86a6}{description}}; \textcolor{comment}{// a string describing the database.}}
+\DoxyCodeLine{48         std::string \mbox{\hyperlink{class_codec_s_c_i_d4_aaa4bc71173a1056826bfa37c6b093bd1}{flagDesc}}[6]; \textcolor{comment}{// short description (8 chars) for CUSTOM flags}}
+\DoxyCodeLine{49         \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} \mbox{\hyperlink{class_codec_s_c_i_d4_a47e3bdf9ef2f539838bd3d674b17014f}{autoLoad}} = 1;   \textcolor{comment}{// game number to autoload:}}
+\DoxyCodeLine{50                                  \textcolor{comment}{// 0=none, 1=1st, >numGames=last}}
+\DoxyCodeLine{51         uint32\_t \mbox{\hyperlink{class_codec_s_c_i_d4_a631041f498b4ac56fac6ecc5d1d9fc1b}{baseType}} = 0;   \textcolor{comment}{// Type, e.g. tournament, theory, etc.}}
+\DoxyCodeLine{52         \mbox{\hyperlink{common_8h_afa8ecd70a47637f2c9e862e97dac0f16}{versionT}} \mbox{\hyperlink{class_codec_s_c_i_d4_a2e47cae59f249f3fb768951c5b354bc3}{version}} = \mbox{\hyperlink{common_8h_ac0289567f1e5258f80b298f7e9da632a}{SCID\_VERSION}}; \textcolor{comment}{// version number. 2 bytes.}}
+\DoxyCodeLine{53         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_codec_s_c_i_d4_a05a536f417f16cb5b45f185aeb9903ff}{dirty}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{54     \} header\_;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     enum : uint64\_t \{}
+\DoxyCodeLine{57         LIMIT\_GAMEOFFSET = 1ULL << 32,}
+\DoxyCodeLine{58         LIMIT\_GAMELEN = 1ULL << 17,}
+\DoxyCodeLine{59         LIMIT\_NUMGAMES = 16777214ULL, \textcolor{comment}{// Three bytes -\/1 because GetAutoLoad uses}}
+\DoxyCodeLine{60                                       \textcolor{comment}{// 0 to mean "{}no autoload"{}}}
+\DoxyCodeLine{61         LIMIT\_NAMELEN = 255}
+\DoxyCodeLine{62     \};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{public}: \textcolor{comment}{// ICodecDatabase interface}}
+\DoxyCodeLine{65     \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{Codec}} \mbox{\hyperlink{class_codec_s_c_i_d4_ad73091fb918bbff1adaa2f8adfb12090}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8a4c9350dbb98db3dd7e920878ccb711d7}{ICodecDatabase::SCID4}}; \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{71     std::vector<std::string> \mbox{\hyperlink{class_codec_s_c_i_d4_abaa7ae6965185be282d6cb925f6fec3a}{getFilenames}}() const final \{ \textcolor{keywordflow}{return} filenames\_; \};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     std::vector<std::pair<const char*, std::string>>}
+\DoxyCodeLine{74     \mbox{\hyperlink{class_codec_s_c_i_d4_a381e47ff2284290689e8426ce53837ea}{getExtraInfo}}() const final \{}
+\DoxyCodeLine{75         std::vector<std::pair<const char*, std::string>> res;}
+\DoxyCodeLine{76         res.emplace\_back(\textcolor{stringliteral}{"{}type"{}}, std::to\_string(header\_.baseType));}
+\DoxyCodeLine{77         res.emplace\_back(\textcolor{stringliteral}{"{}description"{}}, header\_.description);}
+\DoxyCodeLine{78         \textcolor{keyword}{const} \textcolor{keyword}{auto} autoload = std::min(header\_.autoLoad, idx\_-\/>\mbox{\hyperlink{class_index_a0365ae79ab3c02790431799ba630cbf0}{GetNumGames}}());}
+\DoxyCodeLine{79         res.emplace\_back(\textcolor{stringliteral}{"{}autoload"{}}, std::to\_string(autoload));}
+\DoxyCodeLine{80         res.emplace\_back(\textcolor{stringliteral}{"{}flag1"{}}, header\_.flagDesc[0]);}
+\DoxyCodeLine{81         res.emplace\_back(\textcolor{stringliteral}{"{}flag2"{}}, header\_.flagDesc[1]);}
+\DoxyCodeLine{82         res.emplace\_back(\textcolor{stringliteral}{"{}flag3"{}}, header\_.flagDesc[2]);}
+\DoxyCodeLine{83         res.emplace\_back(\textcolor{stringliteral}{"{}flag4"{}}, header\_.flagDesc[3]);}
+\DoxyCodeLine{84         res.emplace\_back(\textcolor{stringliteral}{"{}flag5"{}}, header\_.flagDesc[4]);}
+\DoxyCodeLine{85         res.emplace\_back(\textcolor{stringliteral}{"{}flag6"{}}, header\_.flagDesc[5]);}
+\DoxyCodeLine{86         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{87     \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d4_ae54839ac862ff2bec1a08f11b1d3f43f}{setExtraInfo}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* tagname, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* new\_value) \textcolor{keyword}{override};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \mbox{\hyperlink{class_codec_s_c_i_d4_aed63245e0574498d2e8d9e32cfcb9f89}{getGameData}}(uint64\_t offset, uint32\_t length) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{92         \textcolor{keywordflow}{if} (offset >= gfile\_.\mbox{\hyperlink{class_filebuf_append_a624cd84c55089c76400d7dd1e996964c}{size}}())}
+\DoxyCodeLine{93             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{94         \textcolor{keywordflow}{if} (length >= LIMIT\_GAMELEN)}
+\DoxyCodeLine{95             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97         \textcolor{keywordflow}{if} (gfile\_.\mbox{\hyperlink{class_filebuf_append_ac58a66252c857f417be2eb86e9001963}{pubseekpos}}(offset) == -\/1)}
+\DoxyCodeLine{98             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{99         \textcolor{keywordflow}{if} (gfile\_.\mbox{\hyperlink{class_filebuf_append_a58b16d816e9fa4795fb2072a80ba9fdd}{sgetn}}(gamecache\_, length) != std::streamsize(length))}
+\DoxyCodeLine{100             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102         \textcolor{keywordflow}{return} \{\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{byte}*\textcolor{keyword}{>}(gamecache\_), length\};}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \mbox{\hyperlink{class_codec_s_c_i_d4_a4227e43719bb4f74b0a9226286e4a7d4}{getGameMoves}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{106         \textcolor{keyword}{auto} data = \mbox{\hyperlink{class_codec_s_c_i_d4_aed63245e0574498d2e8d9e32cfcb9f89}{getGameData}}(ie.GetOffset(), ie.GetLength());}
+\DoxyCodeLine{107         \textcolor{keywordflow}{if} (data \&\& \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} == data.decodeTags([](\textcolor{keyword}{auto}, \textcolor{keyword}{auto}) \{\}))}
+\DoxyCodeLine{108             \textcolor{keywordflow}{return} data;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110         \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{111     \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d4_a24c770dcef59db347da938ca91717bcd}{addGame}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie\_src, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{114                    \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \textcolor{keyword}{const}\& data) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{115         \mbox{\hyperlink{class_index_entry}{IndexEntry}} ie = ie\_src;}
+\DoxyCodeLine{116         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = addGameNamesAndData(ie, tags, data.data(), data.size()))}
+\DoxyCodeLine{117             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119         \textcolor{keywordflow}{return} dyn\_addIndexEntry(ie);}
+\DoxyCodeLine{120     \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d4_acff4bac505c327d8e5fe7559d39458bb}{saveGame}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie\_src, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{123                     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \textcolor{keyword}{const}\& data, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{124         \mbox{\hyperlink{class_index_entry}{IndexEntry}} ie = ie\_src;}
+\DoxyCodeLine{125         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = addGameNamesAndData(ie, tags, data.data(), data.size()))}
+\DoxyCodeLine{126             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128         \textcolor{keywordflow}{return} dyn\_saveIndexEntry(ie, replaced);}
+\DoxyCodeLine{129     \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d4_a6a4c906274912f151315c229108c2b0e}{saveIndexEntry}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{132         \textcolor{keywordflow}{return} dyn\_saveIndexEntry(ie, replaced);}
+\DoxyCodeLine{133     \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     std::pair<errorT, idNumberT> \mbox{\hyperlink{class_codec_s_c_i_d4_a5b8ab2855e4f8a103d2adc423bef1a72}{addName}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{136         \textcolor{keywordflow}{return} dyn\_addName(nt, name);}
+\DoxyCodeLine{137     \}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d4_a414242b2f05a74e6b17a858a59c811c9}{flush}}() final;}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d4_a4d66db92bc85957f1fe55d616bf87780}{dyn\_open}}(\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}}, const \textcolor{keywordtype}{char}*, const \mbox{\hyperlink{class_progress}{Progress}}\&, \mbox{\hyperlink{class_index}{Index}}*,}
+\DoxyCodeLine{142                     \mbox{\hyperlink{class_name_base}{NameBase}}*) final;}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 private:}
+\DoxyCodeLine{155     std::pair<\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}, uint64\_t> dyn\_addGameData(const \textcolor{keywordtype}{byte}* src,}
+\DoxyCodeLine{156                                                 \textcolor{keywordtype}{size\_t} length) \{}
+\DoxyCodeLine{157         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(src != 0);}
+\DoxyCodeLine{158         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* data = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(src);}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160         \textcolor{keywordflow}{if} (length >= LIMIT\_GAMELEN)}
+\DoxyCodeLine{161             \textcolor{keywordflow}{return} std::make\_pair(\mbox{\hyperlink{error_8h_a21fae4fb02bbd16517b513723be5e4be}{ERROR\_GameLengthLimit}}, 0);}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163         \textcolor{comment}{// The SCID4 format uses 32-\/bits to store games' offset.}}
+\DoxyCodeLine{164         uint64\_t offset = gfile\_.\mbox{\hyperlink{class_filebuf_append_a624cd84c55089c76400d7dd1e996964c}{size}}();}
+\DoxyCodeLine{165         \textcolor{keywordflow}{if} (offset >= LIMIT\_GAMEOFFSET -\/ length)}
+\DoxyCodeLine{166             \textcolor{keywordflow}{return} std::make\_pair(\mbox{\hyperlink{error_8h_a156975cfd967aa89108f95c1b9d8de16}{ERROR\_OffsetLimit}}, 0);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168         \textcolor{comment}{// The SCID4 format stores games into blocks of 128KB.}}
+\DoxyCodeLine{169         \textcolor{comment}{// If the current block does not have enough space, we fill it with}}
+\DoxyCodeLine{170         \textcolor{comment}{// random data and use the next one.}}
+\DoxyCodeLine{171         uint64\_t blockSpace = LIMIT\_GAMELEN -\/ (offset \% LIMIT\_GAMELEN);}
+\DoxyCodeLine{172         \textcolor{keywordflow}{if} (blockSpace < length) \{}
+\DoxyCodeLine{173             \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = gfile\_.\mbox{\hyperlink{class_filebuf_append_ab5bdd89607d420ba77d087794a5c1136}{append}}(data, blockSpace);}
+\DoxyCodeLine{174             \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}})}
+\DoxyCodeLine{175                 \textcolor{keywordflow}{return} std::make\_pair(err, 0);}
+\DoxyCodeLine{176             offset += blockSpace;}
+\DoxyCodeLine{177         \}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = gfile\_.\mbox{\hyperlink{class_filebuf_append_ab5bdd89607d420ba77d087794a5c1136}{append}}(data, length);}
+\DoxyCodeLine{180         \textcolor{keywordflow}{return} std::make\_pair(err, offset);}
+\DoxyCodeLine{181     \}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{192     std::pair<errorT, idNumberT> dyn\_addName(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name) \{}
+\DoxyCodeLine{193         \textcolor{keywordflow}{if} (std::string\_view(name).size() > LIMIT\_NAMELEN)}
+\DoxyCodeLine{194             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a3b74d90014f86bbd0afa20954deb29b5}{ERROR\_NameTooLong}}, 0\};}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196         \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} limit\_unique\_names = [] \{}
+\DoxyCodeLine{197             std::array<unsigned long long, NUM\_NAME\_TYPES> res;}
+\DoxyCodeLine{198             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}] = 1048575; \textcolor{comment}{// Maximum of 2\string^20 -\/1 = 1,048,575}}
+\DoxyCodeLine{199             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}}] = 524287;   \textcolor{comment}{// Maximum of 2\string^19 -\/1 =   524,287}}
+\DoxyCodeLine{200             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}}] = 524287;    \textcolor{comment}{// Maximum of 2\string^19 -\/1 =   524,287}}
+\DoxyCodeLine{201             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}}] = 262143;   \textcolor{comment}{// Maximum of 2\string^18 -\/1 =   262,143}}
+\DoxyCodeLine{202             \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{203         \}();}
+\DoxyCodeLine{204         \textcolor{keywordflow}{if} (nb\_-\/>\mbox{\hyperlink{class_name_base_aa7df9fc70f800c278ccf5b6dd01ab547}{namebase\_size}}(nt) < limit\_unique\_names[nt])}
+\DoxyCodeLine{205             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}, nb\_-\/>\mbox{\hyperlink{class_name_base_a03b16a5e05888c0350536a599eb9a353}{namebase\_find\_or\_add}}(nt, name)\};}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207         \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} id;}
+\DoxyCodeLine{208         \textcolor{keywordflow}{if} (nb\_-\/>\mbox{\hyperlink{class_name_base_a2fa187d2180d33ecb24ba92dad55e0ce}{FindExactName}}(nt, name, \&\textcolor{keywordtype}{id}) == \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}})}
+\DoxyCodeLine{209             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}, \textcolor{keywordtype}{id}\};}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211         \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a7acdf5083c6646776ef43a0d28481319}{ERROR\_NameLimit}}, 0\};}
+\DoxyCodeLine{212     \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{219     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} dyn\_addIndexEntry(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie) \{}
+\DoxyCodeLine{220         \textcolor{keyword}{const} \textcolor{keyword}{auto} nGames = idx\_-\/>\mbox{\hyperlink{class_index_a0365ae79ab3c02790431799ba630cbf0}{GetNumGames}}();}
+\DoxyCodeLine{221         \textcolor{keywordflow}{if} (nGames >= LIMIT\_NUMGAMES)}
+\DoxyCodeLine{222             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a87ae28bb35b3b971f3f849990374c527}{ERROR\_NumGamesLimit}};}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224         idx\_-\/>\mbox{\hyperlink{class_index_a7157a2c4d6541a6ce5da36636e891dd8}{addEntry}}(ie);}
+\DoxyCodeLine{225         header\_.dirty = \textcolor{keyword}{true};}
+\DoxyCodeLine{226         \textcolor{keywordflow}{return} writeEntry(ie, nGames);}
+\DoxyCodeLine{227     \}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{235     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} dyn\_saveIndexEntry(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \{}
+\DoxyCodeLine{236         idx\_-\/>\mbox{\hyperlink{class_index_ab67895479bb89583573387dbe8267cbe}{replaceEntry}}(ie, replaced);}
+\DoxyCodeLine{237         \textcolor{keywordflow}{return} writeEntry(ie, replaced);}
+\DoxyCodeLine{238     \}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{242     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} addGameNamesAndData(\mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{243                                \textcolor{keyword}{const} \textcolor{keywordtype}{byte}* srcData, \textcolor{keywordtype}{size\_t} dataLen) \{}
+\DoxyCodeLine{244         \textcolor{keywordflow}{if} (!ie.\mbox{\hyperlink{class_index_entry_ae3e75616529bc120625d241368ff95a2}{isChessStd}}())}
+\DoxyCodeLine{245             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_ac012cc8d2997d9eb25c88949b1a7bcbc}{ERROR\_CodecChess960}};}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247         \textcolor{keyword}{auto} errNames = tags.\mbox{\hyperlink{struct_tag_roster_a06f4707d65a7a76735e1f3f5d005d7b1}{map}}(}
+\DoxyCodeLine{248             ie, [\&](\textcolor{keyword}{auto} nt, \textcolor{keyword}{auto} name) \{ \textcolor{keywordflow}{return} dyn\_addName(nt, name); \});}
+\DoxyCodeLine{249         \textcolor{keywordflow}{if} (errNames)}
+\DoxyCodeLine{250             \textcolor{keywordflow}{return} errNames;}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252         \textcolor{keyword}{auto} [err, offset] = dyn\_addGameData(srcData, dataLen);}
+\DoxyCodeLine{253         \textcolor{keywordflow}{if} (!err) \{}
+\DoxyCodeLine{254             ie.\mbox{\hyperlink{class_index_entry_a964e3057d9b9ffae3f93bdda31972efc}{SetOffset}}(offset);}
+\DoxyCodeLine{255             ie.\mbox{\hyperlink{class_index_entry_abcdc23b94aa2f4acdcea2beda6926dd8}{SetLength}}(dataLen);}
+\DoxyCodeLine{256         \}}
+\DoxyCodeLine{257         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{258     \}}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} readIndex(\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} nGames, \mbox{\hyperlink{class_progress}{Progress}} \textcolor{keyword}{const}\& progress);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} writeEntry(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} gnum);}
+\DoxyCodeLine{263 \};}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

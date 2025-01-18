@@ -1,0 +1,120 @@
+\hypertarget{class_filter}{}\doxysection{Filter Class Reference}
+\label{class_filter}\index{Filter@{Filter}}
+
+
+{\ttfamily \#include $<$hfilter.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_filter_a4e009eff31c0153c2fdf17e4b44ffc4b}{Filter}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} size)
+\item 
+void \mbox{\hyperlink{class_filter_ae71943e18fae079526cb924bda124099}{Init}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} size)
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$ \mbox{\hyperlink{class_filter_a17ccaa4ebe291a40cadd56b11e8a4f45}{data}} ()
+\begin{DoxyCompactList}\small\item\em Return a pointer to the allocated data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} \mbox{\hyperlink{class_filter_afe056f6826de8ccd5ce416ac16b28996}{Count}} () const
+\begin{DoxyCompactList}\small\item\em Return the number of nonzero values in filter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} \mbox{\hyperlink{class_filter_a7c47619dec9cea2ae3eb3f77ef29a43b}{Size}} () const
+\begin{DoxyCompactList}\small\item\em Return the number of elements in filter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_filter_ae4b901b6299c3962bf039e9c397d5ed7}{Resize}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} size)
+\begin{DoxyCompactList}\small\item\em Changes the number of elements stored. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_filter_a1536cb14570d343fbafdb550ba5349a7}{Get}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} index) const
+\begin{DoxyCompactList}\small\item\em Gets the value at index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_filter_abe4f257eb29beacacd8d2c4f633bfa35}{Set}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} index, \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} value)
+\begin{DoxyCompactList}\small\item\em Sets the value at index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_filter_a0d6b86632686499eb3a2beeaac3d562e}{Fill}} (\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} value)
+\begin{DoxyCompactList}\small\item\em Sets all values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_filter_a4e009eff31c0153c2fdf17e4b44ffc4b}\label{class_filter_a4e009eff31c0153c2fdf17e4b44ffc4b}} 
+\index{Filter@{Filter}!Filter@{Filter}}
+\index{Filter@{Filter}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Filter()}{Filter()}}
+{\footnotesize\ttfamily Filter\+::\+Filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_filter_afe056f6826de8ccd5ce416ac16b28996}\label{class_filter_afe056f6826de8ccd5ce416ac16b28996}} 
+\index{Filter@{Filter}!Count@{Count}}
+\index{Count@{Count}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Count()}{Count()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} Filter\+::\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of nonzero values in filter. 
+
+\mbox{\Hypertarget{class_filter_a17ccaa4ebe291a40cadd56b11e8a4f45}\label{class_filter_a17ccaa4ebe291a40cadd56b11e8a4f45}} 
+\index{Filter@{Filter}!data@{data}}
+\index{data@{data}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$ Filter\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return a pointer to the allocated data. 
+
+\mbox{\Hypertarget{class_filter_a0d6b86632686499eb3a2beeaac3d562e}\label{class_filter_a0d6b86632686499eb3a2beeaac3d562e}} 
+\index{Filter@{Filter}!Fill@{Fill}}
+\index{Fill@{Fill}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Fill()}{Fill()}}
+{\footnotesize\ttfamily void Filter\+::\+Fill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets all values. 
+
+\mbox{\Hypertarget{class_filter_a1536cb14570d343fbafdb550ba5349a7}\label{class_filter_a1536cb14570d343fbafdb550ba5349a7}} 
+\index{Filter@{Filter}!Get@{Get}}
+\index{Get@{Get}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} Filter\+::\+Get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the value at index. 
+
+\mbox{\Hypertarget{class_filter_ae71943e18fae079526cb924bda124099}\label{class_filter_ae71943e18fae079526cb924bda124099}} 
+\index{Filter@{Filter}!Init@{Init}}
+\index{Init@{Init}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Filter\+::\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_filter_ae4b901b6299c3962bf039e9c397d5ed7}\label{class_filter_ae4b901b6299c3962bf039e9c397d5ed7}} 
+\index{Filter@{Filter}!Resize@{Resize}}
+\index{Resize@{Resize}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Resize()}{Resize()}}
+{\footnotesize\ttfamily void Filter\+::\+Resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Changes the number of elements stored. 
+
+\mbox{\Hypertarget{class_filter_abe4f257eb29beacacd8d2c4f633bfa35}\label{class_filter_abe4f257eb29beacacd8d2c4f633bfa35}} 
+\index{Filter@{Filter}!Set@{Set}}
+\index{Set@{Set}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Set()}{Set()}}
+{\footnotesize\ttfamily void Filter\+::\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{index,  }\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the value at index. 
+
+\mbox{\Hypertarget{class_filter_a7c47619dec9cea2ae3eb3f77ef29a43b}\label{class_filter_a7c47619dec9cea2ae3eb3f77ef29a43b}} 
+\index{Filter@{Filter}!Size@{Size}}
+\index{Size@{Size}!Filter@{Filter}}
+\doxysubsubsection{\texorpdfstring{Size()}{Size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} Filter\+::\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of elements in filter. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hfilter_8h}{hfilter.\+h}}\end{DoxyCompactItemize}

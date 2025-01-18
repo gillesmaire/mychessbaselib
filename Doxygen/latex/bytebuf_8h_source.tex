@@ -1,0 +1,318 @@
+\hypertarget{bytebuf_8h_source}{}\doxysection{bytebuf.\+h}
+\mbox{\hyperlink{bytebuf_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2019  Fulvio Benini.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a}}
+\DoxyCodeLine{5 \textcolor{comment}{ * copy of this software and associated documentation files (the "{}Software"{}),}}
+\DoxyCodeLine{6 \textcolor{comment}{ * to deal in the Software without restriction, including without limitation}}
+\DoxyCodeLine{7 \textcolor{comment}{ * the rights to use, copy, modify, merge, publish, distribute, sublicense,}}
+\DoxyCodeLine{8 \textcolor{comment}{ * and/or sell copies of the Software, and to permit persons to whom the}}
+\DoxyCodeLine{9 \textcolor{comment}{ * Software is furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included}}
+\DoxyCodeLine{12 \textcolor{comment}{ * in all copies or substantial portions of the Software.}}
+\DoxyCodeLine{13 \textcolor{comment}{ *}}
+\DoxyCodeLine{14 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND,}}
+\DoxyCodeLine{15 \textcolor{comment}{ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF}}
+\DoxyCodeLine{16 \textcolor{comment}{ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.}}
+\DoxyCodeLine{17 \textcolor{comment}{ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY}}
+\DoxyCodeLine{18 \textcolor{comment}{ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH}}
+\DoxyCodeLine{20 \textcolor{comment}{ * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{21 \textcolor{comment}{ */}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{board__def_8h}{board\_def.h}}"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{error_8h}{error.h}}"{}}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <cassert>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <cstring>}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{49 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{bytebuf_8h_a64255b3d0d1f0bb4a70f0e42bbf7ba4e}{MAX\_TAG\_LEN}} = 240;}
+\DoxyCodeLine{50 \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} std::string\_view \mbox{\hyperlink{bytebuf_8h_aa89df61b230b6cba0acad28751dca198}{commonTags}}[] = \{}
+\DoxyCodeLine{51     \textcolor{comment}{// 241, 242: Country}}
+\DoxyCodeLine{52     \textcolor{stringliteral}{"{}WhiteCountry"{}}, \textcolor{stringliteral}{"{}BlackCountry"{}},}
+\DoxyCodeLine{53     \textcolor{comment}{// 243: Annotator}}
+\DoxyCodeLine{54     \textcolor{stringliteral}{"{}Annotator"{}},}
+\DoxyCodeLine{55     \textcolor{comment}{// 244: PlyCount}}
+\DoxyCodeLine{56     \textcolor{stringliteral}{"{}PlyCount"{}},}
+\DoxyCodeLine{57     \textcolor{comment}{// 245: EventDate (plain text encoding)}}
+\DoxyCodeLine{58     \textcolor{stringliteral}{"{}EventDate"{}},}
+\DoxyCodeLine{59     \textcolor{comment}{// 246, 247: Opening, Variation}}
+\DoxyCodeLine{60     \textcolor{stringliteral}{"{}Opening"{}}, \textcolor{stringliteral}{"{}Variation"{}},}
+\DoxyCodeLine{61     \textcolor{comment}{// 248-\/250: Setup and Source}}
+\DoxyCodeLine{62     \textcolor{stringliteral}{"{}Setup"{}}, \textcolor{stringliteral}{"{}Source"{}}, \textcolor{stringliteral}{"{}SetUp"{}}}
+\DoxyCodeLine{63     \textcolor{comment}{// 252-\/254: spare for future use}}
+\DoxyCodeLine{64     \textcolor{comment}{// 255: Reserved for compact EventDate encoding}}
+\DoxyCodeLine{65 \};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{keyword}{template} <\textcolor{keyword}{typename} SourceT, \textcolor{keyword}{typename} DestT>}
+\DoxyCodeLine{68 \textcolor{keywordtype}{void} \mbox{\hyperlink{bytebuf_8h_a7dddd2da466ea770eae13b0287003d79}{encodeTags}}(\textcolor{keyword}{const} SourceT\& tagList, DestT\& dest) \{}
+\DoxyCodeLine{69     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& tag : tagList) \{}
+\DoxyCodeLine{70         \textcolor{keywordflow}{if} (tag.first.length() == 0)}
+\DoxyCodeLine{71             \textcolor{keywordflow}{continue}; \textcolor{comment}{// Cannot store empty tag names}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73         \textcolor{keyword}{const} \textcolor{keyword}{auto} it = \mbox{\hyperlink{namespace_d_base_pool_a9a065be391726006f9973ec733803167}{std::find}}(\mbox{\hyperlink{bytebuf_8h_aa89df61b230b6cba0acad28751dca198}{commonTags}}, std::end(\mbox{\hyperlink{bytebuf_8h_aa89df61b230b6cba0acad28751dca198}{commonTags}}), tag.first);}
+\DoxyCodeLine{74         \textcolor{keywordflow}{if} (it != std::end(\mbox{\hyperlink{bytebuf_8h_aa89df61b230b6cba0acad28751dca198}{commonTags}})) \{}
+\DoxyCodeLine{75             \textcolor{comment}{// Common tags are stored with just their 1-\/byte value [241:250]}}
+\DoxyCodeLine{76             \textcolor{keyword}{const} \textcolor{keyword}{auto} tagnum = std::distance(\mbox{\hyperlink{bytebuf_8h_aa89df61b230b6cba0acad28751dca198}{commonTags}}, it) + \mbox{\hyperlink{bytebuf_8h_a64255b3d0d1f0bb4a70f0e42bbf7ba4e}{MAX\_TAG\_LEN}} + 1;}
+\DoxyCodeLine{77             dest.emplace\_back(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(tagnum));}
+\DoxyCodeLine{78         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{79             \textcolor{comment}{// Other tags are stored as 1-\/byte length [1:240] + the tag name.}}
+\DoxyCodeLine{80             \textcolor{keyword}{const} \textcolor{keyword}{auto} tag\_name = tag.first.data();}
+\DoxyCodeLine{81             \textcolor{keyword}{const} \textcolor{keyword}{auto} length = std::min(tag.first.length(), \mbox{\hyperlink{bytebuf_8h_a64255b3d0d1f0bb4a70f0e42bbf7ba4e}{MAX\_TAG\_LEN}});}
+\DoxyCodeLine{82             dest.emplace\_back(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(length));}
+\DoxyCodeLine{83             dest.insert(dest.end(), tag\_name, tag\_name + length);}
+\DoxyCodeLine{84         \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86         \textcolor{comment}{// The value is stored as 1-\/byte length [0:255] + the data.}}
+\DoxyCodeLine{87         \textcolor{keyword}{const} \textcolor{keyword}{auto} value = tag.second.data();}
+\DoxyCodeLine{88         \textcolor{keyword}{const} \textcolor{keyword}{auto} valueLen = std::min<size\_t>(tag.second.length(), 255);}
+\DoxyCodeLine{89         dest.emplace\_back(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(valueLen));}
+\DoxyCodeLine{90         dest.insert(dest.end(), value, value + valueLen);}
+\DoxyCodeLine{91     \}}
+\DoxyCodeLine{92     dest.emplace\_back(0);}
+\DoxyCodeLine{93 \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{103 \textcolor{keyword}{template} <\textcolor{keyword}{typename} DestT>}
+\DoxyCodeLine{104 \textcolor{keywordtype}{void} \mbox{\hyperlink{bytebuf_8h_a52ee771e542bb1244c4bff3d74287ae7}{encodeStartBoard}}(\textcolor{keywordtype}{bool} promoFlag, \textcolor{keywordtype}{bool} underpromoFlag, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* FEN,}
+\DoxyCodeLine{105                       DestT\& dest) \{}
+\DoxyCodeLine{106     \textcolor{keywordtype}{char} flags = 0;}
+\DoxyCodeLine{107     \textcolor{keywordflow}{if} (FEN) \{}
+\DoxyCodeLine{108         flags += 1;}
+\DoxyCodeLine{109     \}}
+\DoxyCodeLine{110     \textcolor{keywordflow}{if} (promoFlag) \{}
+\DoxyCodeLine{111         flags += 2;}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113     \textcolor{keywordflow}{if} (underpromoFlag) \{}
+\DoxyCodeLine{114         flags += 4;}
+\DoxyCodeLine{115     \}}
+\DoxyCodeLine{116     dest.emplace\_back(flags);}
+\DoxyCodeLine{117     \textcolor{keywordflow}{if} (FEN) \{}
+\DoxyCodeLine{118         \textcolor{keyword}{const} \textcolor{keyword}{auto} len = std::strlen(FEN) + 1; \textcolor{comment}{// Include the null char}}
+\DoxyCodeLine{119         dest.insert(dest.end(), FEN, FEN + len);}
+\DoxyCodeLine{120     \}}
+\DoxyCodeLine{121 \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \textcolor{keyword}{class }\mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \{}
+\DoxyCodeLine{124     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* data\_;}
+\DoxyCodeLine{125     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* \textcolor{keyword}{const} end\_;}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{keyword}{public}:}
+\DoxyCodeLine{128     \mbox{\hyperlink{class_byte_buffer_a36e12f62ccd8cf12cc12ba690c4e6309}{ByteBuffer}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_byte_buffer_a54a6584d0562f3fd3c04b136e9908ee9}{data}}, \textcolor{keywordtype}{size\_t} length)}
+\DoxyCodeLine{129         : data\_(\mbox{\hyperlink{class_byte_buffer_a54a6584d0562f3fd3c04b136e9908ee9}{data}}), end\_(\mbox{\hyperlink{class_byte_buffer_a54a6584d0562f3fd3c04b136e9908ee9}{data}} + length) \{}
+\DoxyCodeLine{130         assert(data\_ || data\_ == end\_);}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} data\_ != end\_; \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_byte_buffer_a54a6584d0562f3fd3c04b136e9908ee9}{data}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} data\_; \}}
+\DoxyCodeLine{136     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_byte_buffer_ac06a598447807d32f6594a97a32bce94}{size}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::distance(data\_, end\_); \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{142     \textcolor{keyword}{template} <\textcolor{keyword}{typename} FuncT> \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_byte_buffer_a464a3760df6ad480b159c2091e78a9b8}{decodeTags}}(FuncT fn) \{}
+\DoxyCodeLine{143         \textcolor{keywordflow}{if} (data\_ == end\_)}
+\DoxyCodeLine{144             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_af6064e64b83f037ba2ec94e8ffcd43bd}{ERROR\_BufferRead}};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146         \textcolor{keyword}{auto} it = data\_;}
+\DoxyCodeLine{147         \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{148             \textcolor{keyword}{const} \textcolor{keyword}{auto} tagLen = *it++;}
+\DoxyCodeLine{149             \textcolor{keywordflow}{if} (tagLen == 0) \{}
+\DoxyCodeLine{150                 data\_ = it;}
+\DoxyCodeLine{151                 \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}; \textcolor{comment}{// Reached the end of the tags section}}
+\DoxyCodeLine{152             \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* tag = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{155             \textcolor{keywordtype}{size\_t} tagID = 0;}
+\DoxyCodeLine{156             \textcolor{keywordflow}{if} (tagLen > \mbox{\hyperlink{bytebuf_8h_a64255b3d0d1f0bb4a70f0e42bbf7ba4e}{MAX\_TAG\_LEN}}) \{}
+\DoxyCodeLine{157                 \textcolor{comment}{// A common tag name, not explicitly stored}}
+\DoxyCodeLine{158                 tagID = tagLen -\/ \mbox{\hyperlink{bytebuf_8h_a64255b3d0d1f0bb4a70f0e42bbf7ba4e}{MAX\_TAG\_LEN}} -\/ 1;}
+\DoxyCodeLine{159             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{160                 tag = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(it);}
+\DoxyCodeLine{161                 it += tagLen;}
+\DoxyCodeLine{162             \}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164             \textcolor{keywordflow}{if} (it >= end\_)}
+\DoxyCodeLine{165                 \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}};}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167             \textcolor{comment}{// 255 was a special 3-\/bytes encoding of EventDate used in SCID2}}
+\DoxyCodeLine{168             \textcolor{keyword}{const} \textcolor{keyword}{auto} valueLen = (tagLen != 255) ? *it++ : 3;}
+\DoxyCodeLine{169             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(it);}
+\DoxyCodeLine{170             it += valueLen;}
+\DoxyCodeLine{171             \textcolor{keywordflow}{if} (it >= end\_)}
+\DoxyCodeLine{172                 \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}};}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174             \textcolor{keywordflow}{if} (tag) \{}
+\DoxyCodeLine{175                 fn(std::string\_view(tag, tagLen),}
+\DoxyCodeLine{176                    std::string\_view(value, valueLen));}
+\DoxyCodeLine{177             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tagID < 10) \{}
+\DoxyCodeLine{178                 fn(\mbox{\hyperlink{bytebuf_8h_aa89df61b230b6cba0acad28751dca198}{commonTags}}[tagID], std::string\_view(value, valueLen));}
+\DoxyCodeLine{179             \}}
+\DoxyCodeLine{180         \}}
+\DoxyCodeLine{181     \}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{192     std::pair<errorT, const char*> \mbox{\hyperlink{class_byte_buffer_a3e7b858ed7a87af2bdc07eb7e9dabb5e}{decodeStartBoard}}() \{}
+\DoxyCodeLine{193         \textcolor{keywordflow}{if} (data\_ == end\_)}
+\DoxyCodeLine{194             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, \textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196         \textcolor{keyword}{const} \textcolor{keyword}{auto} flags = *data\_++;}
+\DoxyCodeLine{197         \textcolor{keywordflow}{if} ((flags \& 1) == 0)}
+\DoxyCodeLine{198             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}, \textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200         \textcolor{keywordflow}{if} (\textcolor{keyword}{const} \textcolor{keyword}{auto} FEN = \mbox{\hyperlink{class_byte_buffer_a2f966087d9559254a73f5cb26934c5fd}{GetTerminatedString}}())}
+\DoxyCodeLine{201             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}, FEN\};}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203         \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, \textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{204     \}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{207     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_byte_buffer_a2f966087d9559254a73f5cb26934c5fd}{GetTerminatedString}}() \{}
+\DoxyCodeLine{208         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* res = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(data\_);}
+\DoxyCodeLine{209         data\_ = \mbox{\hyperlink{namespace_d_base_pool_a9a065be391726006f9973ec733803167}{std::find}}(data\_, end\_, 0);}
+\DoxyCodeLine{210         \textcolor{keywordflow}{if} (data\_ == end\_)}
+\DoxyCodeLine{211             \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213         ++data\_; \textcolor{comment}{// skip the null char}}
+\DoxyCodeLine{214         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{215     \}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{221     \textcolor{keyword}{template} <\textcolor{keyword}{typename} MoveFn, \textcolor{keyword}{typename} CommentFn, \textcolor{keyword}{typename} VariationFn,}
+\DoxyCodeLine{222               \textcolor{keyword}{typename} NagFn>}
+\DoxyCodeLine{223     std::pair<errorT, unsigned char>}
+\DoxyCodeLine{224     \mbox{\hyperlink{class_byte_buffer_af0d783ecef4100b5ef79305eab612009}{nextMove}}(\textcolor{keywordtype}{int} varDepth, MoveFn acceptMove, CommentFn commentMarker,}
+\DoxyCodeLine{225              VariationFn changeVar, NagFn addNag) \{}
+\DoxyCodeLine{226         \textcolor{comment}{// The king has always index 0 and only 11 possible moves (8 destination}}
+\DoxyCodeLine{227         \textcolor{comment}{// squares, 2 castle moves and the null move). The unused codes 11-\/15}}
+\DoxyCodeLine{228         \textcolor{comment}{// represent special markers for nags, comments and variations.}}
+\DoxyCodeLine{229         \textcolor{comment}{// Note: 2-\/bytes queen moves use the second byte as (64 + destination}}
+\DoxyCodeLine{230         \textcolor{comment}{// square) to avoid interferences with these markers. However the byte}}
+\DoxyCodeLine{231         \textcolor{comment}{// immediatly after the ENCODE\_NAG can have any possible value.}}
+\DoxyCodeLine{232         \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{233             \mbox{\hyperlink{game_8cpp_a87269045f25973d514bc2f4840b5d7e9}{ENCODE\_NAG}} = 11,}
+\DoxyCodeLine{234             \mbox{\hyperlink{game_8cpp_a2762cef60753ad854df9609c8170cf37}{ENCODE\_COMMENT}},}
+\DoxyCodeLine{235             \mbox{\hyperlink{game_8cpp_a213e68c54309f181e82ccfc54d8b0af0}{ENCODE\_START\_MARKER}},}
+\DoxyCodeLine{236             \mbox{\hyperlink{game_8cpp_a96e8f3b941747364138a1ce49f1e22fd}{ENCODE\_END\_MARKER}},}
+\DoxyCodeLine{237             \mbox{\hyperlink{game_8cpp_a0da92185e73c6aa1787e41923cf1b5ea}{ENCODE\_END\_GAME}}}
+\DoxyCodeLine{238         \};}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240         \textcolor{keyword}{auto} it = data\_;}
+\DoxyCodeLine{241         \textcolor{keywordflow}{for} (; it != end\_; ++it) \{}
+\DoxyCodeLine{242             \textcolor{keywordflow}{switch} (*it) \{}
+\DoxyCodeLine{243             \textcolor{keywordflow}{case} \mbox{\hyperlink{game_8cpp_a87269045f25973d514bc2f4840b5d7e9}{ENCODE\_NAG}}:}
+\DoxyCodeLine{244                 \textcolor{keywordflow}{if} (++it == end\_) \{}
+\DoxyCodeLine{245                     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, 0\}; \textcolor{comment}{// ERROR: missing nag}}
+\DoxyCodeLine{246                 \}}
+\DoxyCodeLine{247                 \textcolor{keywordflow}{if} (!addNag(*it)) \{}
+\DoxyCodeLine{248                     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, 0\}; \textcolor{comment}{// ERROR: marker decoding}}
+\DoxyCodeLine{249                 \}}
+\DoxyCodeLine{250                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252             \textcolor{keywordflow}{case} \mbox{\hyperlink{game_8cpp_a2762cef60753ad854df9609c8170cf37}{ENCODE\_COMMENT}}:}
+\DoxyCodeLine{253                 commentMarker();}
+\DoxyCodeLine{254                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{256             \textcolor{keywordflow}{case} \mbox{\hyperlink{game_8cpp_a213e68c54309f181e82ccfc54d8b0af0}{ENCODE\_START\_MARKER}}:}
+\DoxyCodeLine{257                 ++varDepth;}
+\DoxyCodeLine{258                 \textcolor{keywordflow}{if} (!changeVar(\textcolor{keyword}{true})) \{}
+\DoxyCodeLine{259                     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, 0\}; \textcolor{comment}{// ERROR: variation}}
+\DoxyCodeLine{260                 \}}
+\DoxyCodeLine{261                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263             \textcolor{keywordflow}{case} \mbox{\hyperlink{game_8cpp_a96e8f3b941747364138a1ce49f1e22fd}{ENCODE\_END\_MARKER}}:}
+\DoxyCodeLine{264                 \textcolor{keywordflow}{if} (varDepth == 0) \{}
+\DoxyCodeLine{265                     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, 0\}; \textcolor{comment}{// ERROR: end marker in main line}}
+\DoxyCodeLine{266                 \}}
+\DoxyCodeLine{267                 -\/-\/varDepth;}
+\DoxyCodeLine{268                 \textcolor{keywordflow}{if} (!changeVar(\textcolor{keyword}{false})) \{}
+\DoxyCodeLine{269                     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, 0\}; \textcolor{comment}{// ERROR: variation}}
+\DoxyCodeLine{270                 \}}
+\DoxyCodeLine{271                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273             \textcolor{keywordflow}{case} \mbox{\hyperlink{game_8cpp_a0da92185e73c6aa1787e41923cf1b5ea}{ENCODE\_END\_GAME}}:}
+\DoxyCodeLine{274                 \textcolor{keywordflow}{if} (varDepth != 0) \{}
+\DoxyCodeLine{275                     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, 0\}; \textcolor{comment}{// ERROR: unexpected end of game}}
+\DoxyCodeLine{276                 \}}
+\DoxyCodeLine{277                 data\_ = ++it;}
+\DoxyCodeLine{278                 \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a74ed0b65639ba5bf77a7afa4afe10df7}{ERROR\_EndOfMoveList}}, 0\}; \textcolor{comment}{// SUCCESS: end of game}}
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{281                 \textcolor{keywordflow}{if} (acceptMove(varDepth)) \{}
+\DoxyCodeLine{282                     data\_ = it;}
+\DoxyCodeLine{283                     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}, *data\_++\}; \textcolor{comment}{// SUCCESS}}
+\DoxyCodeLine{284                 \}}
+\DoxyCodeLine{285             \}}
+\DoxyCodeLine{286         \}}
+\DoxyCodeLine{287         \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a4ca781f440cb8de03b4304bfb7a772eb}{ERROR\_Decode}}, 0\}; \textcolor{comment}{// ERROR: missing ENCODE\_END\_GAME}}
+\DoxyCodeLine{288     \}}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{292     std::pair<errorT, unsigned char> \mbox{\hyperlink{class_byte_buffer_a3477a7848c188a11eeac81ebf30b2977}{nextLineMove}}() \{}
+\DoxyCodeLine{293         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_byte_buffer_af0d783ecef4100b5ef79305eab612009}{nextMove}}(}
+\DoxyCodeLine{294             0, [](\textcolor{keyword}{auto} varDepth) \{ \textcolor{keywordflow}{return} varDepth == 0; \},}
+\DoxyCodeLine{295             [] \{\},                     \textcolor{comment}{// Ignore comments}}
+\DoxyCodeLine{296             [](\textcolor{keyword}{auto}) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}, \textcolor{comment}{// Ignore variations}}
+\DoxyCodeLine{297             [](\textcolor{keyword}{auto}) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}  \textcolor{comment}{// Ignore nags}}
+\DoxyCodeLine{298         );}
+\DoxyCodeLine{299     \}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{315     std::pair<int, pieceT> \mbox{\hyperlink{class_byte_buffer_a1780a25facc93a069b26ecbf6f42e054}{decodeMove}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} toMove, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} movingPiece,}
+\DoxyCodeLine{316                                       \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} moveCode) \{}
+\DoxyCodeLine{317         moveCode \&= 0x0F;}
+\DoxyCodeLine{318         \textcolor{keywordflow}{switch} (movingPiece) \{}
+\DoxyCodeLine{319         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}}: \{}
+\DoxyCodeLine{320             \textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} promoPiece[] = \{}
+\DoxyCodeLine{321                 \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}, \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}, \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}, \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}},}
+\DoxyCodeLine{322                 \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}},         \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}},         \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}},          \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}},}
+\DoxyCodeLine{323                 \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}},          \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}},        \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}},        \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}},}
+\DoxyCodeLine{324                 \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}},        \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}},        \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}},        \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}\};}
+\DoxyCodeLine{325             \textcolor{keyword}{static} \textcolor{keyword}{const} int8\_t sqdiff[] = \{7, 8, 9, 7, 8, 9, 7, 8,}
+\DoxyCodeLine{326                                             9, 7, 8, 9, 7, 8, 9, 16\};}
+\DoxyCodeLine{327             \textcolor{keywordtype}{int} to = (toMove == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}) ? from + sqdiff[moveCode]}
+\DoxyCodeLine{328                                        : from -\/ sqdiff[moveCode];}
+\DoxyCodeLine{329             \textcolor{keywordflow}{return} \{to, promoPiece[moveCode]\};}
+\DoxyCodeLine{330         \}}
+\DoxyCodeLine{331         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}}: \{}
+\DoxyCodeLine{332             \textcolor{keywordtype}{int} fylediff = \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(moveCode) -\/ \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(from);}
+\DoxyCodeLine{333             \textcolor{keywordtype}{int} to = (moveCode >= 8) ? from -\/ 7 * fylediff}
+\DoxyCodeLine{334                                      : from + 9 * fylediff;}
+\DoxyCodeLine{335             \textcolor{keywordflow}{return} \{to, \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}\};}
+\DoxyCodeLine{336         \}}
+\DoxyCodeLine{337         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}}: \{}
+\DoxyCodeLine{338             \textcolor{keyword}{static} \textcolor{keyword}{const} int8\_t sqdiff[] = \{0,  -\/17, -\/15, -\/10, -\/6, 6, 10, 15,}
+\DoxyCodeLine{339                                             17, 0,   0,   0,   0,  0, 0,  0\};}
+\DoxyCodeLine{340             \textcolor{keywordflow}{return} \{from + sqdiff[moveCode], \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}\};}
+\DoxyCodeLine{341         \}}
+\DoxyCodeLine{342         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}}:}
+\DoxyCodeLine{343             \textcolor{keywordflow}{if} (moveCode == \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(from)) \{ \textcolor{comment}{// 2 BYTES MOVE}}
+\DoxyCodeLine{344                 \textcolor{keywordtype}{int} to = (data\_ != end\_) ? *data\_++ : 0;}
+\DoxyCodeLine{345                 \textcolor{keywordflow}{return} \{to -\/ 64, \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}\};}
+\DoxyCodeLine{346             \}}
+\DoxyCodeLine{347             [[fallthrough]];}
+\DoxyCodeLine{348         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}}: \{}
+\DoxyCodeLine{349             \textcolor{keywordtype}{int} to = (moveCode >= 8) \textcolor{comment}{// a vertical move}}
+\DoxyCodeLine{350                          ? \mbox{\hyperlink{board__def_8h_abff1d5d06a0592c559e363423d19cf3e}{square\_Make}}(\mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(from), (moveCode -\/ 8))}
+\DoxyCodeLine{351                          : \mbox{\hyperlink{board__def_8h_abff1d5d06a0592c559e363423d19cf3e}{square\_Make}}(moveCode, \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(from));}
+\DoxyCodeLine{352             \textcolor{keywordflow}{return} \{to, \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}\};}
+\DoxyCodeLine{353         \}}
+\DoxyCodeLine{354         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}}:}
+\DoxyCodeLine{355             \textcolor{keywordflow}{if} (moveCode == 0) \textcolor{comment}{// NULL MOVE}}
+\DoxyCodeLine{356                 \textcolor{keywordflow}{return} \{from, \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}}\};}
+\DoxyCodeLine{357 }
+\DoxyCodeLine{358             \textcolor{keywordflow}{if} (moveCode <= 8) \{}
+\DoxyCodeLine{359                 \textcolor{keyword}{static} \textcolor{keyword}{const} int8\_t sqdiff[] = \{0, -\/9, -\/8, -\/7, -\/1, 1, 7, 8, 9\};}
+\DoxyCodeLine{360                 \textcolor{keywordflow}{return} \{from + sqdiff[moveCode], \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}\};}
+\DoxyCodeLine{361             \}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363             \textcolor{keywordflow}{if} (moveCode == 9) \textcolor{comment}{// CASTLE QUEENSIDE}}
+\DoxyCodeLine{364                 \textcolor{keywordflow}{return} \{from, \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}}\};}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{366             \textcolor{keywordflow}{if} (moveCode == 10) \textcolor{comment}{// CASTLE KINGSIDE}}
+\DoxyCodeLine{367                 \textcolor{keywordflow}{return} \{from, \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}}\};}
+\DoxyCodeLine{368         \}}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370         \textcolor{keywordflow}{return} \{from, \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}\}; \textcolor{comment}{// decode error}}
+\DoxyCodeLine{371     \}}
+\DoxyCodeLine{372 \};}
+
+\end{DoxyCode}

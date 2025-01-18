@@ -1,0 +1,625 @@
+\hypertarget{codec__scid5_8h_source}{}\doxysection{codec\+\_\+scid5.\+h}
+\mbox{\hyperlink{codec__scid5_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2022  Fulvio Benini.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a}}
+\DoxyCodeLine{5 \textcolor{comment}{ * copy of this software and associated documentation files (the "{}Software"{}),}}
+\DoxyCodeLine{6 \textcolor{comment}{ * to deal in the Software without restriction, including without limitation}}
+\DoxyCodeLine{7 \textcolor{comment}{ * the rights to use, copy, modify, merge, publish, distribute, sublicense,}}
+\DoxyCodeLine{8 \textcolor{comment}{ * and/or sell copies of the Software, and to permit persons to whom the}}
+\DoxyCodeLine{9 \textcolor{comment}{ * Software is furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included}}
+\DoxyCodeLine{12 \textcolor{comment}{ * in all copies or substantial portions of the Software.}}
+\DoxyCodeLine{13 \textcolor{comment}{ *}}
+\DoxyCodeLine{14 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND,}}
+\DoxyCodeLine{15 \textcolor{comment}{ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF}}
+\DoxyCodeLine{16 \textcolor{comment}{ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.}}
+\DoxyCodeLine{17 \textcolor{comment}{ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY}}
+\DoxyCodeLine{18 \textcolor{comment}{ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH}}
+\DoxyCodeLine{20 \textcolor{comment}{ * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{21 \textcolor{comment}{ */}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{codec_8h}{codec.h}}"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{filebuf_8h}{filebuf.h}}"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{index_8h}{index.h}}"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{namebase_8h}{namebase.h}}"{}}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <array>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <filesystem>}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <future>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{// -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{43 \textcolor{comment}{// SCID database version 5.}}
+\DoxyCodeLine{44 \textcolor{comment}{// -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{45 \textcolor{comment}{//}}
+\DoxyCodeLine{46 \textcolor{comment}{// The database is composed of 3 files:}}
+\DoxyCodeLine{47 \textcolor{comment}{// database\_name.si5 -\/> Index}}
+\DoxyCodeLine{48 \textcolor{comment}{// database\_name.sn5 -\/> Namebase}}
+\DoxyCodeLine{49 \textcolor{comment}{// database\_name.sg5 -\/> Games}}
+\DoxyCodeLine{50 \textcolor{comment}{// The Index file contains a fixed size record for each game (see below for}}
+\DoxyCodeLine{51 \textcolor{comment}{// details). Using a fixed size have some advantages, mainly the ability to}}
+\DoxyCodeLine{52 \textcolor{comment}{// overwrite a record in the middle of the file, but creates a few limit:}}
+\DoxyCodeLine{53 \textcolor{comment}{// -\/ Maximum number of games: 4 billion}}
+\DoxyCodeLine{54 \textcolor{comment}{// -\/ Maximum size of the games' data file (.sg5): 128TB}}
+\DoxyCodeLine{55 \textcolor{comment}{// -\/ Maximum size of each game's data (extra tags, moves, comments): 128KB}}
+\DoxyCodeLine{56 \textcolor{comment}{// -\/ Maximum number of unique player names: 268 million (2\string^28 = 268435456)}}
+\DoxyCodeLine{57 \textcolor{comment}{// -\/ Maximum number of unique values for the tag "{}Event"{}: 268 million (2\string^28).}}
+\DoxyCodeLine{58 \textcolor{comment}{// -\/ Maximum number of unique values for the tag "{}Round"{}: 2 billion (2\string^31).}}
+\DoxyCodeLine{59 \textcolor{comment}{//}}
+\DoxyCodeLine{60 \textcolor{comment}{// Index}}
+\DoxyCodeLine{61 \textcolor{comment}{// The index file (extension .si5) contains a record of 56 byte for each game.}}
+\DoxyCodeLine{62 \textcolor{comment}{// A record consists of 12 uint32\_t (12 * 4 = 48 bytes) encoded as little-\/endian}}
+\DoxyCodeLine{63 \textcolor{comment}{// and 8 bytes at the end for the "{}home pawn"{} data.}}
+\DoxyCodeLine{64 \textcolor{comment}{// The fields are:}}
+\DoxyCodeLine{65 \textcolor{comment}{// -\/  4 bits -\/ rating* based on the number of comment}}
+\DoxyCodeLine{66 \textcolor{comment}{// -\/ 28 bits -\/ while player ID (reference to the Namebase)}}
+\DoxyCodeLine{67 \textcolor{comment}{// -\/  4 bits -\/ rating* based on the number of RAV (alternative move sequence)}}
+\DoxyCodeLine{68 \textcolor{comment}{// -\/ 28 bits -\/ black player ID (reference to the Namebase)}}
+\DoxyCodeLine{69 \textcolor{comment}{// -\/  4 bits -\/ rating* based on the number of NAGs (Numeric Annotation Glyphs)}}
+\DoxyCodeLine{70 \textcolor{comment}{// -\/ 28 bits -\/ event ID (reference to the Namebase)}}
+\DoxyCodeLine{71 \textcolor{comment}{// -\/ 32 bits -\/ site ID (reference to the Namebase)}}
+\DoxyCodeLine{72 \textcolor{comment}{// -\/  1 bit  -\/ 0 = standard chess; 1 = chess960}}
+\DoxyCodeLine{73 \textcolor{comment}{// -\/ 31 bits -\/ round ID (reference to the Namebase)}}
+\DoxyCodeLine{74 \textcolor{comment}{// -\/ 12 bits -\/ white elo (max 4000)}}
+\DoxyCodeLine{75 \textcolor{comment}{// -\/ 20 bits -\/ game's date (max 2047-\/12-\/31)}}
+\DoxyCodeLine{76 \textcolor{comment}{// -\/ 12 bits -\/ black's elo (max 4000)}}
+\DoxyCodeLine{77 \textcolor{comment}{// -\/ 20 bits -\/ events's date (max 2047-\/12-\/31)}}
+\DoxyCodeLine{78 \textcolor{comment}{// -\/ 10 bits -\/ half moves (ply) count (max 1023)}}
+\DoxyCodeLine{79 \textcolor{comment}{// -\/ 22 bits -\/ flags*}}
+\DoxyCodeLine{80 \textcolor{comment}{// -\/ 17 bits -\/ game's data size}}
+\DoxyCodeLine{81 \textcolor{comment}{// -\/ 15 bits -\/ higher bits of the game's data offset}}
+\DoxyCodeLine{82 \textcolor{comment}{// -\/ 32 bits -\/ lower bits of the game's data offset}}
+\DoxyCodeLine{83 \textcolor{comment}{// -\/  8 bits -\/ stored line code}}
+\DoxyCodeLine{84 \textcolor{comment}{// -\/ 24 bits -\/ final material}}
+\DoxyCodeLine{85 \textcolor{comment}{// -\/  8 bits -\/ home pawn count}}
+\DoxyCodeLine{86 \textcolor{comment}{// -\/  3 bits -\/ white elo type}}
+\DoxyCodeLine{87 \textcolor{comment}{// -\/  3 bits -\/ black elo type}}
+\DoxyCodeLine{88 \textcolor{comment}{// -\/  2 bits -\/ result}}
+\DoxyCodeLine{89 \textcolor{comment}{// -\/ 16 bits -\/ ECO code}}
+\DoxyCodeLine{90 \textcolor{comment}{// -\/ 64 bits -\/ home pawn data}}
+\DoxyCodeLine{91 \textcolor{comment}{// *Ratings}}
+\DoxyCodeLine{92 \textcolor{comment}{// Three ratings are assigned to each game based on the number of comments, the}}
+\DoxyCodeLine{93 \textcolor{comment}{// number of variations and the number of tags. This are usually used to find}}
+\DoxyCodeLine{94 \textcolor{comment}{// the most annotated games. A rating range from 0 to 15 and it is calculated}}
+\DoxyCodeLine{95 \textcolor{comment}{// rounding the real count to the one closest to:}}
+\DoxyCodeLine{96 \textcolor{comment}{// 0,1,2,3,4,5,6,7,8,9,10,15,20,30,40,50.}}
+\DoxyCodeLine{97 \textcolor{comment}{//    For example:}}
+\DoxyCodeLine{98 \textcolor{comment}{//    16 is rounded to 15}}
+\DoxyCodeLine{99 \textcolor{comment}{//    12 is rounded to 10}}
+\DoxyCodeLine{100 \textcolor{comment}{//    26 to 30}}
+\DoxyCodeLine{101 \textcolor{comment}{// *Flags}}
+\DoxyCodeLine{102 \textcolor{comment}{// Used to mark games. For example duplicate games can be marked for deletion.}}
+\DoxyCodeLine{103 \textcolor{comment}{// The operation can be reversed removing the flag for one or more games.}}
+\DoxyCodeLine{104 \textcolor{comment}{// Only compacting the database irreversibly deletes the games.}}
+\DoxyCodeLine{105 \textcolor{comment}{//}}
+\DoxyCodeLine{106 \textcolor{comment}{// Namebase}}
+\DoxyCodeLine{107 \textcolor{comment}{// The NameBase file (extension .sn5) is a sequence of strings with an}}
+\DoxyCodeLine{108 \textcolor{comment}{// associated type (PLAYER, EVENT, SITE, ROUND, DB\_INFO).}}
+\DoxyCodeLine{109 \textcolor{comment}{// The string are encoded as a varint (length * 8 + type) followed by the data.}}
+\DoxyCodeLine{110 \textcolor{comment}{// The last 3 bits of the varint store the name type.}}
+\DoxyCodeLine{111 \textcolor{comment}{// The file is append only. When a game is modified with a new name, it is added}}
+\DoxyCodeLine{112 \textcolor{comment}{// to the NameBase and the new ID is written in the game's IndexEntry.}}
+\DoxyCodeLine{113 \textcolor{comment}{//}}
+\DoxyCodeLine{114 \textcolor{comment}{// 1) number of characters for tags.}}
+\DoxyCodeLine{115 \textcolor{comment}{//    The tag name must consist of at least one character and at most 240 (range}}
+\DoxyCodeLine{116 \textcolor{comment}{//    [1: 240] ). The tag value must have a maximum of 255 characters (range [0:}}
+\DoxyCodeLine{117 \textcolor{comment}{//    255] ).}}
+\DoxyCodeLine{118 \textcolor{comment}{// The IDs are sequentially increasing values ​​starting with value 0}}
+\DoxyCodeLine{119 \textcolor{comment}{// The tag values ​​cannot contain the null char ('\(\backslash\)0').}}
+\DoxyCodeLine{120 \textcolor{comment}{// 10) The most important limitation in my opinion is that neither the tags nor}}
+\DoxyCodeLine{121 \textcolor{comment}{//     the comments are compressed in any way. It is now common to have games}}
+\DoxyCodeLine{122 \textcolor{comment}{//     where the clock and the eventual evaluation of each position are stored}}
+\DoxyCodeLine{123 \textcolor{comment}{//     as comments, and it would be possible to save a lot of space.}}
+\DoxyCodeLine{124 \textcolor{comment}{//}}
+\DoxyCodeLine{125 \textcolor{comment}{// Games}}
+\DoxyCodeLine{126 \textcolor{comment}{// The Games file (extension .sg5) contains blobs of data; for each game:}}
+\DoxyCodeLine{127 \textcolor{comment}{// -\/ the extra (not stored in the Index) tag pairs}}
+\DoxyCodeLine{128 \textcolor{comment}{// -\/ the optional FEN of the initial position}}
+\DoxyCodeLine{129 \textcolor{comment}{// -\/ the moves of the game}}
+\DoxyCodeLine{130 \textcolor{comment}{// -\/ the comments}}
+\DoxyCodeLine{131 \textcolor{comment}{// The moves are encoded in one byte and the most significant 4-\/bits are the}}
+\DoxyCodeLine{132 \textcolor{comment}{// index of the moving piece. The king always has index 0. This implies that all}}
+\DoxyCodeLine{133 \textcolor{comment}{// the moves of the other pieces always have a value >15. A king have only 8}}
+\DoxyCodeLine{134 \textcolor{comment}{// possible moves, leaving room for encoding special values:}}
+\DoxyCodeLine{135 \textcolor{comment}{// 0 -\/> null move}}
+\DoxyCodeLine{136 \textcolor{comment}{// 9 -\/> castle queenside}}
+\DoxyCodeLine{137 \textcolor{comment}{// 10 -\/> castle kingside}}
+\DoxyCodeLine{138 \textcolor{comment}{// 11 -\/> NAG}}
+\DoxyCodeLine{139 \textcolor{comment}{// 12 -\/> comment placeholder}}
+\DoxyCodeLine{140 \textcolor{comment}{// 13 -\/> start variation}}
+\DoxyCodeLine{141 \textcolor{comment}{// 14 -\/> end variation}}
+\DoxyCodeLine{142 \textcolor{comment}{// 15 -\/> end game}}
+\DoxyCodeLine{143 \textcolor{comment}{// Placeholders for the last comments may be omitted if they are not necessary:}}
+\DoxyCodeLine{144 \textcolor{comment}{//   d4 \{first comment] d5 c4 \{2nd\} c6 \{3rd\} Nc3 \{4th\} Nf6 Nf3}}
+\DoxyCodeLine{145 \textcolor{comment}{// is encoded as}}
+\DoxyCodeLine{146 \textcolor{comment}{//   d4 \{\} d5 c4 \{\} c6 Nc3 Nf6 Nf3}}
+\DoxyCodeLine{147 \textcolor{comment}{// The extra tag pairs are encoded as a fixed 1 byte length followed by the}}
+\DoxyCodeLine{148 \textcolor{comment}{// data. An empty tag name is not allowed.}}
+\DoxyCodeLine{149 \textcolor{comment}{// The tag name can have at most 240 characters (range [1:240] ).}}
+\DoxyCodeLine{150 \textcolor{comment}{// The tag value can have at most 255 characters (range [0:255] ).}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 \textcolor{comment}{// This class manages databases encoded in SCID format v5.}}
+\DoxyCodeLine{153 \textcolor{keyword}{class }\mbox{\hyperlink{class_codec_s_c_i_d5}{CodecSCID5}} final : \textcolor{keyword}{public} \mbox{\hyperlink{class_i_codec_database}{ICodecDatabase}} \{}
+\DoxyCodeLine{154     \mbox{\hyperlink{class_index}{Index}}* idx\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{155     \mbox{\hyperlink{class_name_base}{NameBase}}* nb\_ = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{156     std::vector<std::string> filenames\_;}
+\DoxyCodeLine{157     std::vector<std::pair<const char*, std::string>> db\_info\_ = \{}
+\DoxyCodeLine{158         \{\textcolor{stringliteral}{"{}type"{}}, \{\}\},  \{\textcolor{stringliteral}{"{}description"{}}, \{\}\}, \{\textcolor{stringliteral}{"{}autoload"{}}, \{\}\},}
+\DoxyCodeLine{159         \{\textcolor{stringliteral}{"{}flag1"{}}, \{\}\}, \{\textcolor{stringliteral}{"{}flag2"{}}, \{\}\},       \{\textcolor{stringliteral}{"{}flag3"{}}, \{\}\},}
+\DoxyCodeLine{160         \{\textcolor{stringliteral}{"{}flag4"{}}, \{\}\}, \{\textcolor{stringliteral}{"{}flag5"{}}, \{\}\},       \{\textcolor{stringliteral}{"{}flag6"{}}, \{\}\},}
+\DoxyCodeLine{161     \};}
+\DoxyCodeLine{162     \mbox{\hyperlink{class_filebuf_append}{FilebufAppend}} gfile\_;}
+\DoxyCodeLine{163     \mbox{\hyperlink{class_filebuf_append}{FilebufAppend}} nbfile\_;}
+\DoxyCodeLine{164     \mbox{\hyperlink{class_filebuf}{Filebuf}} idxfile\_;}
+\DoxyCodeLine{165     \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} idx\_seqwrite\_ = 0;}
+\DoxyCodeLine{166     \textcolor{keywordtype}{char} gcache\_[1ULL << 17];}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168     enum : \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \{}
+\DoxyCodeLine{169         LIMIT\_GAMEOFFSET = 1ULL << 47,}
+\DoxyCodeLine{170         LIMIT\_GAMELEN = 1ULL << 17,}
+\DoxyCodeLine{171         LIMIT\_NUMGAMES = (1ULL << 32) -\/ 2,}
+\DoxyCodeLine{172         LIMIT\_UNIQUENAMES\_PLAYER\_EVENT = 1ULL << 28,}
+\DoxyCodeLine{173         LIMIT\_UNIQUENAMES\_ROUND = 1ULL << 31,}
+\DoxyCodeLine{174         LIMIT\_UNIQUENAMES\_SITE = 1ULL << 32}
+\DoxyCodeLine{175     \};}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} INDEX\_ENTRY\_SIZE = 56;}
+\DoxyCodeLine{178     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{unsigned} NAME\_INFO = 4;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 \textcolor{keyword}{public}: \textcolor{comment}{// ICodecDatabase interface}}
+\DoxyCodeLine{181     \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{Codec}} \mbox{\hyperlink{class_codec_s_c_i_d5_a8f7435091536a1db0b7c820ed1f61a10}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8afd7178b535c8a117ed04b6841b048388}{ICodecDatabase::SCID5}}; \}}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     \textcolor{comment}{// Returns the full path of the three files (index, namebase and gamefile)}}
+\DoxyCodeLine{184     \textcolor{comment}{// used by the database.}}
+\DoxyCodeLine{185     std::vector<std::string> \mbox{\hyperlink{class_codec_s_c_i_d5_a5fd523429ef843d4a6a21498f284ba6c}{getFilenames}}() const final \{ \textcolor{keywordflow}{return} filenames\_; \};}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187     std::vector<std::pair<const char*, std::string>>}
+\DoxyCodeLine{188     \mbox{\hyperlink{class_codec_s_c_i_d5_ac26c0eee164b2f4cebc4d4f3273008b4}{getExtraInfo}}() const final \{}
+\DoxyCodeLine{189         \textcolor{keywordflow}{return} db\_info\_;}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a952acc034a02c68e31eaebf0487175b8}{setExtraInfo}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* new\_value) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{193         \textcolor{keywordflow}{return} set\_db\_info(std::string(name).append(new\_value));}
+\DoxyCodeLine{194     \};}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \mbox{\hyperlink{class_codec_s_c_i_d5_a4adb9d13ded7e684d4f123bfd72e0106}{getGameData}}(uint64\_t offset, uint32\_t length) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{197         \textcolor{keywordflow}{if} (offset >= gfile\_.\mbox{\hyperlink{class_filebuf_append_a624cd84c55089c76400d7dd1e996964c}{size}}())}
+\DoxyCodeLine{198             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{199         \textcolor{keywordflow}{if} (length >= LIMIT\_GAMELEN)}
+\DoxyCodeLine{200             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202         \textcolor{keywordflow}{if} (gfile\_.\mbox{\hyperlink{class_filebuf_append_ac58a66252c857f417be2eb86e9001963}{pubseekpos}}(offset) < 0)}
+\DoxyCodeLine{203             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{204         \textcolor{keywordflow}{if} (gfile\_.\mbox{\hyperlink{class_filebuf_append_a58b16d816e9fa4795fb2072a80ba9fdd}{sgetn}}(gcache\_, length) != length)}
+\DoxyCodeLine{205             \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207         \textcolor{keywordflow}{return} \{\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{byte}*\textcolor{keyword}{>}(gcache\_), length\};}
+\DoxyCodeLine{208     \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \mbox{\hyperlink{class_codec_s_c_i_d5_a686fef629cd82fb010de35b4718c69f8}{getGameMoves}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{211         \textcolor{keyword}{auto} data = \mbox{\hyperlink{class_codec_s_c_i_d5_a4adb9d13ded7e684d4f123bfd72e0106}{getGameData}}(ie.GetOffset(), ie.GetLength());}
+\DoxyCodeLine{212         \textcolor{keywordflow}{if} (data \&\& \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} == data.decodeTags([](\textcolor{keyword}{auto}, \textcolor{keyword}{auto}) \{\}))}
+\DoxyCodeLine{213             \textcolor{keywordflow}{return} data;}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215         \textcolor{keywordflow}{return} \{\textcolor{keyword}{nullptr}, 0\};}
+\DoxyCodeLine{216     \}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_af8aacaecd6a71c7f4581bfb6cbf5d477}{addGame}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie\_src, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{219                    \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \textcolor{keyword}{const}\& data) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{220         \textcolor{keyword}{const} \textcolor{keyword}{auto} nGames = idx\_-\/>GetNumGames();}
+\DoxyCodeLine{221         \textcolor{keywordflow}{if} (nGames >= LIMIT\_NUMGAMES)}
+\DoxyCodeLine{222             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a87ae28bb35b3b971f3f849990374c527}{ERROR\_NumGamesLimit}};}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224         \mbox{\hyperlink{class_index_entry}{IndexEntry}} ie = ie\_src;}
+\DoxyCodeLine{225         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = add\_names\_and\_data(ie, tags, data))}
+\DoxyCodeLine{226             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = write\_IndexEntry(ie, nGames))}
+\DoxyCodeLine{229             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231         idx\_-\/>addEntry(ie);}
+\DoxyCodeLine{232         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{233     \}}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a3a96823d46c218fe458f50a7719d78ae}{saveGame}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie\_src, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{236                     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \textcolor{keyword}{const}\& data, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{237         \mbox{\hyperlink{class_index_entry}{IndexEntry}} ie = ie\_src;}
+\DoxyCodeLine{238         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = add\_names\_and\_data(ie, tags, data))}
+\DoxyCodeLine{239             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_codec_s_c_i_d5_a1be4d8dfa2fa8c47406425ba9052b98a}{saveIndexEntry}}(ie, replaced);}
+\DoxyCodeLine{242     \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a1be4d8dfa2fa8c47406425ba9052b98a}{saveIndexEntry}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{245         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = write\_IndexEntry(ie, replaced))}
+\DoxyCodeLine{246             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248         idx\_-\/>replaceEntry(ie, replaced);}
+\DoxyCodeLine{249         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{250     \}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{252     std::pair<errorT, idNumberT> \mbox{\hyperlink{class_codec_s_c_i_d5_aba7b1c9b4a37a6d96ea25d41c2c245ad}{addName}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{253         \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} id;}
+\DoxyCodeLine{254         \textcolor{keywordflow}{if} (\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} == nb\_-\/>\mbox{\hyperlink{class_name_base_a2fa187d2180d33ecb24ba92dad55e0ce}{FindExactName}}(nt, name, \&\textcolor{keywordtype}{id}))}
+\DoxyCodeLine{255             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}, \textcolor{keywordtype}{id}\};}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257         \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} limit\_unique\_names = [] \{}
+\DoxyCodeLine{258             std::array<unsigned long long, NUM\_NAME\_TYPES> res;}
+\DoxyCodeLine{259             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}] = LIMIT\_UNIQUENAMES\_PLAYER\_EVENT;}
+\DoxyCodeLine{260             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}}] = LIMIT\_UNIQUENAMES\_PLAYER\_EVENT;}
+\DoxyCodeLine{261             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}}] = LIMIT\_UNIQUENAMES\_SITE;}
+\DoxyCodeLine{262             res[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}}] = LIMIT\_UNIQUENAMES\_ROUND;}
+\DoxyCodeLine{263             \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{264         \}();}
+\DoxyCodeLine{265         \textcolor{keywordflow}{if} (nb\_-\/>\mbox{\hyperlink{class_name_base_aa7df9fc70f800c278ccf5b6dd01ab547}{namebase\_size}}(nt) >= limit\_unique\_names[nt])}
+\DoxyCodeLine{266             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a7acdf5083c6646776ef43a0d28481319}{ERROR\_NameLimit}}, 0\};}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = append\_nbfile(nt, name))}
+\DoxyCodeLine{269             \textcolor{keywordflow}{return} \{err, 0\};}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271         \textcolor{keywordflow}{return} \{\mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}, nb\_-\/>\mbox{\hyperlink{class_name_base_aa2943febf5ac38488f66efa14b7a2f9c}{namebase\_add}}(nt, name)\};}
+\DoxyCodeLine{272     \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a2765d7f28e780f363c6655886d30f5e9}{flush}}() final \{}
+\DoxyCodeLine{275         idx\_seqwrite\_ = 0;}
+\DoxyCodeLine{276         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} errGfile = (gfile\_.\mbox{\hyperlink{class_filebuf_append_af17ccf399f8c1f3916314435a7f8a36e}{pubsync}}() == 0) ? \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} : \mbox{\hyperlink{error_8h_ab13779c6cb65867602cfa92c27d6d659}{ERROR\_FileWrite}};}
+\DoxyCodeLine{277         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} errNBfile = (nbfile\_.\mbox{\hyperlink{class_filebuf_append_af17ccf399f8c1f3916314435a7f8a36e}{pubsync}}() == 0) ? \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} : \mbox{\hyperlink{error_8h_ab13779c6cb65867602cfa92c27d6d659}{ERROR\_FileWrite}};}
+\DoxyCodeLine{278         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} errIndex = (idxfile\_.pubsync() == 0) ? \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} : \mbox{\hyperlink{error_8h_ab13779c6cb65867602cfa92c27d6d659}{ERROR\_FileWrite}};}
+\DoxyCodeLine{279         \textcolor{keywordflow}{return} errIndex ? errIndex : errGfile ? errGfile : errNBfile;}
+\DoxyCodeLine{280     \}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_ab750ced98d20c742aae6bcbc0104e3a9}{dyn\_open}}(\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} fmode, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* dbname,}
+\DoxyCodeLine{283                     \textcolor{keyword}{const} \mbox{\hyperlink{class_progress}{Progress}}\& progress, \mbox{\hyperlink{class_index}{Index}}* idx, \mbox{\hyperlink{class_name_base}{NameBase}}* nb) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{284         \textcolor{keywordflow}{if} (fmode == \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1af6c5155cf88504f8758d3c5ebdfe17aa}{FMODE\_WriteOnly}} || !dbname || !idx || !nb)}
+\DoxyCodeLine{285             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a87eb2338247db0507ee425f0732e0ae6}{ERROR}};}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287         idx\_ = idx;}
+\DoxyCodeLine{288         nb\_ = nb;}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{290         \textcolor{keyword}{auto} dbpath = std::filesystem::path(dbname);}
+\DoxyCodeLine{291         \textcolor{keywordflow}{if} (dbpath.stem().empty())}
+\DoxyCodeLine{292             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a5556811f4fbef9102f895fca624ecf13}{ERROR\_FileOpen}};}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294         filenames\_.resize(3);}
+\DoxyCodeLine{295         filenames\_[0] = dbpath.extension().empty()}
+\DoxyCodeLine{296                             ? dbpath.replace\_extension(\textcolor{stringliteral}{"{}si5"{}}).string()}
+\DoxyCodeLine{297                             : dbpath.string();}
+\DoxyCodeLine{298         filenames\_[1] = dbpath.replace\_extension(\textcolor{stringliteral}{"{}sg5"{}}).string();}
+\DoxyCodeLine{299         filenames\_[2] = dbpath.replace\_extension(\textcolor{stringliteral}{"{}sn5"{}}).string();}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301         \textcolor{keywordflow}{if} (fmode == \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1a0e2d884279c8f8d4bc987e8d6e9f20ba}{FMODE\_Create}}) \{}
+\DoxyCodeLine{302             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \textcolor{keyword}{const}\& fname : filenames\_) \{}
+\DoxyCodeLine{303                 std::error\_code ec;}
+\DoxyCodeLine{304                 \textcolor{keywordflow}{if} (std::filesystem::exists(fname, ec) || ec)}
+\DoxyCodeLine{305                     \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a67ceaf2706acf2e3f70da4026f9a7389}{ERROR\_Exists}};}
+\DoxyCodeLine{306             \}}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308             \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = idxfile\_.\mbox{\hyperlink{class_filebuf_a3104b2ca3d08dc1beb23bc88d0016232}{Open}}(filenames\_[0].c\_str(), fmode))}
+\DoxyCodeLine{309                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311             \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = gfile\_.\mbox{\hyperlink{class_filebuf_append_ad5bfb07ac62a96eb2dfacb22a80f31bd}{open}}(filenames\_[1], fmode))}
+\DoxyCodeLine{312                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314             \textcolor{keywordflow}{return} nbfile\_.\mbox{\hyperlink{class_filebuf_append_ad5bfb07ac62a96eb2dfacb22a80f31bd}{open}}(filenames\_[2], fmode);}
+\DoxyCodeLine{315         \}}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317         \textcolor{keyword}{auto} read\_names = std::async(std::launch::async,}
+\DoxyCodeLine{318                                      \&CodecSCID5::read\_nbfile, \textcolor{keyword}{this}, fmode,}
+\DoxyCodeLine{319                                      filenames\_[2]);}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{321         \textcolor{keyword}{auto} err\_idx = read\_index(fmode, filenames\_[0].c\_str(), progress);}
+\DoxyCodeLine{322         \textcolor{keyword}{auto} err\_games = gfile\_.\mbox{\hyperlink{class_filebuf_append_ad5bfb07ac62a96eb2dfacb22a80f31bd}{open}}(filenames\_[1], fmode);}
+\DoxyCodeLine{323         \textcolor{keyword}{auto} err\_names = read\_names.get();}
+\DoxyCodeLine{324         progress.report(1, 1);}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326         \textcolor{keywordflow}{if} (!err\_names \&\& nb\_-\/>\mbox{\hyperlink{class_name_base_ae0233cba43158dd5b8e56d1a1263eb45}{count\_invalid\_ids}}(*idx\_) > 0) \{}
+\DoxyCodeLine{327             err\_names = \mbox{\hyperlink{error_8h_aea25b5f4a9bf5c396529ef22c9f8f837}{ERROR\_CorruptData}};}
+\DoxyCodeLine{328             \textcolor{comment}{// TODO: err\_names = ERROR\_NameDataLoss;}}
+\DoxyCodeLine{329         \}}
+\DoxyCodeLine{330         \textcolor{keywordflow}{return} err\_idx ? err\_idx : err\_games ? err\_games : err\_names;}
+\DoxyCodeLine{331     \}}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \textcolor{keyword}{private}:}
+\DoxyCodeLine{336     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} add\_names\_and\_data(\mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{337                               \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \textcolor{keyword}{const}\& data) \{}
+\DoxyCodeLine{338         \textcolor{keyword}{const} \textcolor{keyword}{auto} data\_sz = data.\mbox{\hyperlink{class_byte_buffer_ac06a598447807d32f6594a97a32bce94}{size}}();}
+\DoxyCodeLine{339         \textcolor{keywordflow}{if} (data\_sz >= LIMIT\_GAMELEN)}
+\DoxyCodeLine{340             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a21fae4fb02bbd16517b513723be5e4be}{ERROR\_GameLengthLimit}};}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = tags.\mbox{\hyperlink{struct_tag_roster_a06f4707d65a7a76735e1f3f5d005d7b1}{map}}(}
+\DoxyCodeLine{343                 ie, [\&](\textcolor{keyword}{auto} nt, \textcolor{keyword}{auto} name) \{ return addName(nt, name); \}))}
+\DoxyCodeLine{344             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{346         \textcolor{comment}{// The SCID5 format stores games into blocks of 128KB.}}
+\DoxyCodeLine{347         \textcolor{comment}{// If the current block does not have enough space, we fill it with}}
+\DoxyCodeLine{348         \textcolor{comment}{// random data and use the next one.}}
+\DoxyCodeLine{349         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* gdata = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(data.\mbox{\hyperlink{class_byte_buffer_a54a6584d0562f3fd3c04b136e9908ee9}{data}}());}
+\DoxyCodeLine{350         uint64\_t blockSpace = LIMIT\_GAMELEN -\/ (gfile\_.\mbox{\hyperlink{class_filebuf_append_a624cd84c55089c76400d7dd1e996964c}{size}}() \% LIMIT\_GAMELEN);}
+\DoxyCodeLine{351         \textcolor{keywordflow}{if} (blockSpace < data\_sz) \{}
+\DoxyCodeLine{352             \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = gfile\_.\mbox{\hyperlink{class_filebuf_append_ab5bdd89607d420ba77d087794a5c1136}{append}}(gdata, blockSpace))}
+\DoxyCodeLine{353                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{354         \}}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356         uint64\_t offset = gfile\_.\mbox{\hyperlink{class_filebuf_append_a624cd84c55089c76400d7dd1e996964c}{size}}();}
+\DoxyCodeLine{357         \textcolor{keywordflow}{if} (offset >= LIMIT\_GAMEOFFSET)}
+\DoxyCodeLine{358             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a156975cfd967aa89108f95c1b9d8de16}{ERROR\_OffsetLimit}};}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360         ie.\mbox{\hyperlink{class_index_entry_a964e3057d9b9ffae3f93bdda31972efc}{SetOffset}}(offset);}
+\DoxyCodeLine{361         ie.\mbox{\hyperlink{class_index_entry_abcdc23b94aa2f4acdcea2beda6926dd8}{SetLength}}(data\_sz);}
+\DoxyCodeLine{362         \textcolor{keywordflow}{return} gfile\_.\mbox{\hyperlink{class_filebuf_append_ab5bdd89607d420ba77d087794a5c1136}{append}}(gdata, data\_sz);}
+\DoxyCodeLine{363     \}}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365     \textcolor{comment}{// Read all the IndexEntry contained in the Index file.}}
+\DoxyCodeLine{366     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} read\_index(\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} fmode, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* fname,}
+\DoxyCodeLine{367                       \mbox{\hyperlink{class_progress}{Progress}} \textcolor{keyword}{const}\& progress) \{}
+\DoxyCodeLine{368         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = idxfile\_.\mbox{\hyperlink{class_filebuf_a3104b2ca3d08dc1beb23bc88d0016232}{Open}}(fname, fmode))}
+\DoxyCodeLine{369             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371         \textcolor{keyword}{const} \textcolor{keyword}{auto} file\_size = idxfile\_.pubseekoff(0, std::ios::end);}
+\DoxyCodeLine{372         \textcolor{keywordflow}{if} (file\_size < 0 || (file\_size \% INDEX\_ENTRY\_SIZE) != 0 ||}
+\DoxyCodeLine{373             idxfile\_.pubseekoff(0, std::ios::beg) != 0) \{}
+\DoxyCodeLine{374             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a7be2263f48a543ab3ea5d1675af5c20e}{ERROR\_Corrupt}};}
+\DoxyCodeLine{375         \}}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377         \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} n\_games = file\_size / INDEX\_ENTRY\_SIZE;}
+\DoxyCodeLine{378         idx\_-\/>entries\_.resize(n\_games);}
+\DoxyCodeLine{379         \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} eof = Filebuf::traits\_type::eof();}
+\DoxyCodeLine{380         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} gnum = 0; idxfile\_.sgetc() != eof; ++gnum) \{}
+\DoxyCodeLine{381             \textcolor{keywordflow}{if} ((gnum \% 8192) == 0) \{}
+\DoxyCodeLine{382                 \textcolor{keywordflow}{if} (!progress.\mbox{\hyperlink{class_old_progress_ab7ccc161b3ca7753576ab9bb708f3532}{report}}(gnum, n\_games))}
+\DoxyCodeLine{383                     \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a0a27e2c5de262a3ef4ba9de640dd0b4d}{ERROR\_UserCancel}};}
+\DoxyCodeLine{384             \}}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386             \textcolor{keywordtype}{char} buf[INDEX\_ENTRY\_SIZE];}
+\DoxyCodeLine{387             \textcolor{keywordflow}{if} (idxfile\_.sgetn(buf, INDEX\_ENTRY\_SIZE) != INDEX\_ENTRY\_SIZE)}
+\DoxyCodeLine{388                 \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a59f9c38efdd5c5bd106abf792bc01838}{ERROR\_FileRead}};}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390             idx\_-\/>entries\_[gnum] = decode\_IndexEntry(buf);}
+\DoxyCodeLine{391         \}}
+\DoxyCodeLine{392         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{393     \}}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395     \textcolor{comment}{// Write an IndexEntry into the Index file.}}
+\DoxyCodeLine{396     \textcolor{comment}{// Stores gnum (gamenumT of the last written IndexEntry) into idx\_seqwrite\_}}
+\DoxyCodeLine{397     \textcolor{comment}{// and avoid invoking pubseekpos() if it is not necessary.}}
+\DoxyCodeLine{398     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} write\_IndexEntry(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} gnum) \{}
+\DoxyCodeLine{399         \textcolor{keywordflow}{if} (idx\_seqwrite\_ == 0 || (gnum != idx\_seqwrite\_ + 1)) \{}
+\DoxyCodeLine{400             std::streampos pos = gnum;}
+\DoxyCodeLine{401             pos = pos * INDEX\_ENTRY\_SIZE;}
+\DoxyCodeLine{402             \textcolor{keywordflow}{if} (idxfile\_.pubseekpos(pos) != pos) \{}
+\DoxyCodeLine{403                 idx\_seqwrite\_ = 0;}
+\DoxyCodeLine{404                 \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_ab13779c6cb65867602cfa92c27d6d659}{ERROR\_FileWrite}};}
+\DoxyCodeLine{405             \}}
+\DoxyCodeLine{406         \}}
+\DoxyCodeLine{407         \textcolor{keywordtype}{char} buf[INDEX\_ENTRY\_SIZE];}
+\DoxyCodeLine{408         encode\_IndexEntry(ie, buf);}
+\DoxyCodeLine{409         \textcolor{keyword}{auto} res = idxfile\_.sputn(buf, INDEX\_ENTRY\_SIZE) == INDEX\_ENTRY\_SIZE}
+\DoxyCodeLine{410                        ? \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}}
+\DoxyCodeLine{411                        : \mbox{\hyperlink{error_8h_ab13779c6cb65867602cfa92c27d6d659}{ERROR\_FileWrite}};}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{413         idx\_seqwrite\_ = (res == \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}) ? gnum : 0;}
+\DoxyCodeLine{414         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{415     \}}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417     \textcolor{keywordtype}{void} encode\_IndexEntry(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie, \textcolor{keywordtype}{char}* buf) \{}
+\DoxyCodeLine{418         \textcolor{keyword}{auto} pack = [](uint32\_t a, \textcolor{keyword}{auto} a\_sz, uint32\_t b) \{}
+\DoxyCodeLine{419             assert(a < (uint32\_t(1) << a\_sz));}
+\DoxyCodeLine{420             assert(b < (uint32\_t(1) << (32 -\/ a\_sz)));}
+\DoxyCodeLine{421             \textcolor{keywordflow}{return} (a << (32 -\/ a\_sz)) | b;}
+\DoxyCodeLine{422         \};}
+\DoxyCodeLine{423 }
+\DoxyCodeLine{424         \textcolor{keyword}{const} \textcolor{keyword}{auto} counts = ie.\mbox{\hyperlink{class_index_entry_ab4d6cff01955210035f85e6a9fef33fe}{GetRaw4bitsCounts}}();}
+\DoxyCodeLine{425         \textcolor{keyword}{const} \textcolor{keyword}{auto} nVariations = counts \& 0x0F;}
+\DoxyCodeLine{426         \textcolor{keyword}{const} \textcolor{keyword}{auto} nComments = (counts >> 4) \& 0x0F;}
+\DoxyCodeLine{427         \textcolor{keyword}{const} \textcolor{keyword}{auto} nNags = (counts >> 8) \& 0x0F;}
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429         \textcolor{keyword}{const} \textcolor{keyword}{auto} chess960 = ie.\mbox{\hyperlink{class_index_entry_ae3e75616529bc120625d241368ff95a2}{isChessStd}}() ? 0 : 1;}
+\DoxyCodeLine{430         \textcolor{keyword}{const} \textcolor{keyword}{auto} rtypes\_result = (ie.\mbox{\hyperlink{class_index_entry_acb85bca2f53635711c867a6f49439d4a}{GetWhiteRatingType}}() << 5) |}
+\DoxyCodeLine{431                                    (ie.\mbox{\hyperlink{class_index_entry_a68388abfa58f47f1a5d8eef282a4a5c8}{GetBlackRatingType}}() << 2) |}
+\DoxyCodeLine{432                                    ie.\mbox{\hyperlink{class_index_entry_a940b237c632951db339a5e6e9ffe4f71}{GetResult}}();}
+\DoxyCodeLine{433         \textcolor{keyword}{auto} home\_pawn = ie.\mbox{\hyperlink{class_index_entry_a6716a6ff9cec5307ee78b4ae8039119a}{GetHomePawnData}}();}
+\DoxyCodeLine{434         \textcolor{keyword}{const} uint32\_t home\_pawn\_count = *home\_pawn++;}
+\DoxyCodeLine{435         encode\_uint32(buf + 0, pack(nComments, 4, ie.\mbox{\hyperlink{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}{GetWhite}}()));}
+\DoxyCodeLine{436         encode\_uint32(buf + 4, pack(nVariations, 4, ie.\mbox{\hyperlink{class_index_entry_a812dafa8a43c269681d8a8171c13526e}{GetBlack}}()));}
+\DoxyCodeLine{437         encode\_uint32(buf + 8, pack(nNags, 4, ie.\mbox{\hyperlink{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}{GetEvent}}()));}
+\DoxyCodeLine{438         encode\_uint32(buf + 12, ie.\mbox{\hyperlink{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}{GetSite}}());}
+\DoxyCodeLine{439         encode\_uint32(buf + 16, pack(chess960, 1, ie.\mbox{\hyperlink{class_index_entry_a6799286fea8f9d004217d547f68add06}{GetRound}}()));}
+\DoxyCodeLine{440         encode\_uint32(buf + 20, pack(ie.\mbox{\hyperlink{class_index_entry_ade16d2fe229cb5de291b237356127ff4}{GetWhiteElo}}(), 12, ie.\mbox{\hyperlink{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}{GetDate}}()));}
+\DoxyCodeLine{441         encode\_uint32(buf + 24, pack(ie.\mbox{\hyperlink{class_index_entry_a3a5157afa93f85aa599cc8b6b3a4b13f}{GetBlackElo}}(), 12, ie.\mbox{\hyperlink{class_index_entry_a4fcaa0618a723f53aacf032d42d41d64}{GetEventDate}}()));}
+\DoxyCodeLine{442         encode\_uint32(buf + 28,}
+\DoxyCodeLine{443                       pack(ie.\mbox{\hyperlink{class_index_entry_ab1fc3c37c283a58fef092af909d8103a}{GetNumHalfMoves}}(), 10, ie.\mbox{\hyperlink{class_index_entry_a138b18c5dee510959f1095fa799f07bc}{GetRawFlags}}()));}
+\DoxyCodeLine{444         encode\_uint32(buf + 32, pack(ie.\mbox{\hyperlink{class_index_entry_aa078012466b69951bf5421646e4988e9}{GetLength}}(), 17, ie.\mbox{\hyperlink{class_index_entry_acb9e8a47119feff794b4f460600052ce}{GetOffset}}() >> 32));}
+\DoxyCodeLine{445         encode\_uint32(buf + 36, \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(ie.\mbox{\hyperlink{class_index_entry_acb9e8a47119feff794b4f460600052ce}{GetOffset}}()));}
+\DoxyCodeLine{446         encode\_uint32(buf + 40,}
+\DoxyCodeLine{447                       pack(ie.\mbox{\hyperlink{class_index_entry_acc96a0bac7dd6593d10adcae12e6d741}{GetStoredLineCode}}(), 8, ie.\mbox{\hyperlink{class_index_entry_ab284b4b6bf30b7b9157ea1b485e8963d}{GetFinalMatSig}}()));}
+\DoxyCodeLine{448         encode\_uint32(buf + 44, pack((home\_pawn\_count << 8) | rtypes\_result, 16,}
+\DoxyCodeLine{449                                      ie.\mbox{\hyperlink{class_index_entry_a606973d42c43ed54ea8c8773e3a7e29f}{GetEcoCode}}()));}
+\DoxyCodeLine{450         std::copy\_n(home\_pawn, 8, buf + 48);}
+\DoxyCodeLine{451     \}}
+\DoxyCodeLine{452 }
+\DoxyCodeLine{453     \mbox{\hyperlink{class_index_entry}{IndexEntry}} decode\_IndexEntry(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* data) \{}
+\DoxyCodeLine{454         \textcolor{keyword}{auto} unpack = [](uint32\_t val, \textcolor{keyword}{auto} sz) \{}
+\DoxyCodeLine{455             \textcolor{keyword}{const} \textcolor{keyword}{auto} clear\_high = val << sz;}
+\DoxyCodeLine{456             \textcolor{keywordflow}{return} std::pair(val >> (32 -\/ sz), clear\_high >> sz);}
+\DoxyCodeLine{457         \};}
+\DoxyCodeLine{458         \textcolor{keyword}{auto} res = \mbox{\hyperlink{class_index_entry}{IndexEntry}}();}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460         \textcolor{keyword}{auto} val = unpack(decode\_uint32(data + 0), 4);}
+\DoxyCodeLine{461         res.SetRawCommentCount(val.first);}
+\DoxyCodeLine{462         res.SetWhite(val.second);}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464         val = unpack(decode\_uint32(data + 4), 4);}
+\DoxyCodeLine{465         res.SetRawVariationCount(val.first);}
+\DoxyCodeLine{466         res.SetBlack(val.second);}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468         val = unpack(decode\_uint32(data + 8), 4);}
+\DoxyCodeLine{469         res.SetRawNagCount(val.first);}
+\DoxyCodeLine{470         res.SetEvent(val.second);}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472         res.SetSite(decode\_uint32(data + 12));}
+\DoxyCodeLine{473 }
+\DoxyCodeLine{474         val = unpack(decode\_uint32(data + 16), 1);}
+\DoxyCodeLine{475         \textcolor{keywordflow}{if} (val.first)}
+\DoxyCodeLine{476             res.setChess960();}
+\DoxyCodeLine{477         res.SetRound(val.second);}
+\DoxyCodeLine{478 }
+\DoxyCodeLine{479         val = unpack(decode\_uint32(data + 20), 12);}
+\DoxyCodeLine{480         res.SetWhiteElo(val.first);}
+\DoxyCodeLine{481         res.SetDate(val.second);}
+\DoxyCodeLine{482 }
+\DoxyCodeLine{483         val = unpack(decode\_uint32(data + 24), 12);}
+\DoxyCodeLine{484         res.SetBlackElo(val.first);}
+\DoxyCodeLine{485         res.SetEventDate(val.second);}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487         val = unpack(decode\_uint32(data + 28), 10);}
+\DoxyCodeLine{488         res.SetNumHalfMoves(val.first);}
+\DoxyCodeLine{489         res.SetFlag(val.second, \textcolor{keyword}{true});}
+\DoxyCodeLine{490 }
+\DoxyCodeLine{491         val = unpack(decode\_uint32(data + 32), 17);}
+\DoxyCodeLine{492         res.SetLength(val.first);}
+\DoxyCodeLine{493         res.SetOffset((\textcolor{keyword}{static\_cast<}uint64\_t\textcolor{keyword}{>}(val.second) << 32) |}
+\DoxyCodeLine{494                       decode\_uint32(data + 36));}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496         val = unpack(decode\_uint32(data + 40), 8);}
+\DoxyCodeLine{497         res.SetStoredLineCode(val.first);}
+\DoxyCodeLine{498         res.SetFinalMatSig(val.second);}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500         val = unpack(decode\_uint32(data + 44), 16);}
+\DoxyCodeLine{501         \textcolor{keyword}{const} \textcolor{keyword}{auto} home\_pawn\_count = val.first >> 8;}
+\DoxyCodeLine{502         res.SetWhiteRatingType((val.first >> 5) \& 0b00000111);}
+\DoxyCodeLine{503         res.SetBlackRatingType((val.first >> 2) \& 0b00000111);}
+\DoxyCodeLine{504         res.SetResult(val.first \& 0b00000011);}
+\DoxyCodeLine{505         res.SetEcoCode(val.second);}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507         res.SetHomePawnData(home\_pawn\_count,}
+\DoxyCodeLine{508                             \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{byte}*\textcolor{keyword}{>}(data + 48));}
+\DoxyCodeLine{509         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{510     \}}
+\DoxyCodeLine{511 }
+\DoxyCodeLine{512     \textcolor{comment}{// Read all the strings contained in the NameBase file.}}
+\DoxyCodeLine{513     \textcolor{comment}{// The string are encoded as a varint (length+type) followed by the data.}}
+\DoxyCodeLine{514     \textcolor{comment}{// The last 3 bits of the varint store the name type.}}
+\DoxyCodeLine{515     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} read\_nbfile(\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} fMode, std::string \textcolor{keyword}{const}\& filename) \{}
+\DoxyCodeLine{516         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = nbfile\_.\mbox{\hyperlink{class_filebuf_append_ad5bfb07ac62a96eb2dfacb22a80f31bd}{open}}(filename, fMode))}
+\DoxyCodeLine{517             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{518 }
+\DoxyCodeLine{519         \textcolor{keywordflow}{if} (nbfile\_.\mbox{\hyperlink{class_filebuf_append_ac58a66252c857f417be2eb86e9001963}{pubseekpos}}(0))}
+\DoxyCodeLine{520             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a59f9c38efdd5c5bd106abf792bc01838}{ERROR\_FileRead}};}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522         \textcolor{keyword}{auto} buf = std::vector<char>(1024);}
+\DoxyCodeLine{523         \textcolor{keyword}{auto} ch = Filebuf::traits\_type::eof();}
+\DoxyCodeLine{524         \textcolor{keywordflow}{while} ((ch = nbfile\_.\mbox{\hyperlink{class_filebuf_append_a862d9d3648e35cd8dfc8b5b4fa3d9d7b}{sbumpc}}()) != Filebuf::traits\_type::eof()) \{}
+\DoxyCodeLine{525             \textcolor{keyword}{auto} [nt, len] = read\_nbvarint(ch);}
+\DoxyCodeLine{526             \textcolor{keywordflow}{if} (nt > NAME\_INFO || len > nbfile\_.\mbox{\hyperlink{class_filebuf_append_a624cd84c55089c76400d7dd1e996964c}{size}}())}
+\DoxyCodeLine{527                 \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a7be2263f48a543ab3ea5d1675af5c20e}{ERROR\_Corrupt}};}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{529             \textcolor{keywordflow}{if} (len > buf.size()) \{}
+\DoxyCodeLine{530                 buf.resize(len);}
+\DoxyCodeLine{531             \}}
+\DoxyCodeLine{532             \textcolor{keywordflow}{if} (uint64\_t nread = nbfile\_.\mbox{\hyperlink{class_filebuf_append_a58b16d816e9fa4795fb2072a80ba9fdd}{sgetn}}(buf.data(), len); nread != len)}
+\DoxyCodeLine{533                 \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a7be2263f48a543ab3ea5d1675af5c20e}{ERROR\_Corrupt}};}
+\DoxyCodeLine{534 }
+\DoxyCodeLine{535             \textcolor{keywordflow}{if} (nt < \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}) \{}
+\DoxyCodeLine{536                 nb\_-\/>\mbox{\hyperlink{class_name_base_aa2943febf5ac38488f66efa14b7a2f9c}{namebase\_add}}(nt, \{buf.data(), len\});}
+\DoxyCodeLine{537             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{538                 \textcolor{comment}{// Ignore unknown extra info. This way, new fields can be added}}
+\DoxyCodeLine{539                 \textcolor{comment}{// without breaking compatibility with old versions.}}
+\DoxyCodeLine{540                 set\_db\_info(\{buf.data(), len\}, \textcolor{keyword}{false});}
+\DoxyCodeLine{541             \}}
+\DoxyCodeLine{542         \}}
+\DoxyCodeLine{543         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{544     \}}
+\DoxyCodeLine{545 }
+\DoxyCodeLine{546     \textcolor{comment}{// Read a varint from the NameBase file and split the type from the length.}}
+\DoxyCodeLine{547     std::pair<uint8\_t, uint64\_t>}
+\DoxyCodeLine{548     read\_nbvarint(Filebuf::traits\_type::int\_type ch) \{}
+\DoxyCodeLine{549         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(ch >= 0);}
+\DoxyCodeLine{550 }
+\DoxyCodeLine{551         uint64\_t res = 0;}
+\DoxyCodeLine{552         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} shift = 0; shift < 64; shift += 7) \{}
+\DoxyCodeLine{553             uint8\_t val = Filebuf::traits\_type::to\_char\_type(ch);}
+\DoxyCodeLine{554             res |= (\textcolor{keyword}{static\_cast<}uint64\_t\textcolor{keyword}{>}(val \& 127) << shift);}
+\DoxyCodeLine{555             \textcolor{keywordflow}{if} (val < 128) \{}
+\DoxyCodeLine{556                 \textcolor{keywordflow}{return} \{\textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(res \& 0b111), res >> 3\};}
+\DoxyCodeLine{557             \}}
+\DoxyCodeLine{558 }
+\DoxyCodeLine{559             ch = nbfile\_.\mbox{\hyperlink{class_filebuf_append_a862d9d3648e35cd8dfc8b5b4fa3d9d7b}{sbumpc}}();}
+\DoxyCodeLine{560             \textcolor{keywordflow}{if} (ch == Filebuf::traits\_type::eof())}
+\DoxyCodeLine{561                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{562         \}}
+\DoxyCodeLine{563         \textcolor{keywordflow}{return} \{0b1000, 0\};}
+\DoxyCodeLine{564     \}}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566     \textcolor{comment}{// Add a new name to the NameBase file. The string is encoded as a varint}}
+\DoxyCodeLine{567     \textcolor{comment}{// (length + type in the least significant 3 bits) followed by the data.}}
+\DoxyCodeLine{568     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} append\_nbfile(\textcolor{keywordtype}{unsigned} nt, std::string\_view name) \{}
+\DoxyCodeLine{569         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(nt <= NAME\_INFO);}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571         uint64\_t val = name.size();}
+\DoxyCodeLine{572         val = (val << 3) | (nt \& 0b111);}
+\DoxyCodeLine{573         uint8\_t buf[10];}
+\DoxyCodeLine{574         \textcolor{keyword}{auto} n = encode\_varint(buf, val);}
+\DoxyCodeLine{575 }
+\DoxyCodeLine{576         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = nbfile\_.\mbox{\hyperlink{class_filebuf_append_ab5bdd89607d420ba77d087794a5c1136}{append}}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char} const*\textcolor{keyword}{>}(buf), n))}
+\DoxyCodeLine{577             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{579         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = nbfile\_.\mbox{\hyperlink{class_filebuf_append_ab5bdd89607d420ba77d087794a5c1136}{append}}(name.data(), name.size()))}
+\DoxyCodeLine{580             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{581 }
+\DoxyCodeLine{582         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{583     \}}
+\DoxyCodeLine{584 }
+\DoxyCodeLine{585     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} set\_db\_info(std::string\_view new\_value, \textcolor{keywordtype}{bool} write = \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{586         \textcolor{keyword}{auto} it = std::find\_if(db\_info\_.begin(), db\_info\_.end(),}
+\DoxyCodeLine{587                                [\&](\textcolor{keyword}{auto} \textcolor{keyword}{const}\& elem) \{}
+\DoxyCodeLine{588                                    return new\_value.starts\_with(elem.first);}
+\DoxyCodeLine{589                                \});}
+\DoxyCodeLine{590         \textcolor{keywordflow}{if} (it == db\_info\_.end())}
+\DoxyCodeLine{591             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_aa10fd36251076e0f163b06c291118bcc}{ERROR\_CodecUnsupFeat}};}
+\DoxyCodeLine{592 }
+\DoxyCodeLine{593         \textcolor{keywordflow}{if} (write) \{}
+\DoxyCodeLine{594             \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = append\_nbfile(NAME\_INFO, new\_value))}
+\DoxyCodeLine{595                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{596         \}}
+\DoxyCodeLine{597         it-\/>second = new\_value.substr(std::string\_view(it-\/>first).size());}
+\DoxyCodeLine{598         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{599     \};}
+\DoxyCodeLine{600 }
+\DoxyCodeLine{601     \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} encode\_uint32(\textcolor{keywordtype}{char}* dst, uint32\_t value) \{}
+\DoxyCodeLine{602         uint8\_t* \textcolor{keyword}{const} buf = \textcolor{keyword}{reinterpret\_cast<}uint8\_t*\textcolor{keyword}{>}(dst);}
+\DoxyCodeLine{603         buf[0] = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(value);}
+\DoxyCodeLine{604         buf[1] = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(value >> 8);}
+\DoxyCodeLine{605         buf[2] = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(value >> 16);}
+\DoxyCodeLine{606         buf[3] = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(value >> 24);}
+\DoxyCodeLine{607     \}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609     \textcolor{keyword}{static} \textcolor{keyword}{inline} uint32\_t decode\_uint32(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* src) \{}
+\DoxyCodeLine{610         \textcolor{keyword}{const} uint8\_t* \textcolor{keyword}{const} buf = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }uint8\_t*\textcolor{keyword}{>}(src);}
+\DoxyCodeLine{611         \textcolor{keywordflow}{return} (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(buf[0])) |}
+\DoxyCodeLine{612                (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(buf[1]) << 8) |}
+\DoxyCodeLine{613                (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(buf[2]) << 16) |}
+\DoxyCodeLine{614                (\textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(buf[3]) << 24);}
+\DoxyCodeLine{615     \}}
+\DoxyCodeLine{616 }
+\DoxyCodeLine{617     \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{int} encode\_varint(uint8\_t* dst, uint64\_t val) \{}
+\DoxyCodeLine{618         \textcolor{keywordtype}{int} n = 0;}
+\DoxyCodeLine{619         \textcolor{keywordflow}{while} (val >= 128) \{}
+\DoxyCodeLine{620             dst[n++] = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(val | 128);}
+\DoxyCodeLine{621             val >>= 7;}
+\DoxyCodeLine{622         \}}
+\DoxyCodeLine{623         dst[n++] = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(val);}
+\DoxyCodeLine{624         \textcolor{keywordflow}{return} n;}
+\DoxyCodeLine{625     \}}
+\DoxyCodeLine{626 \};}
+
+\end{DoxyCode}

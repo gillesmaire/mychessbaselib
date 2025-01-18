@@ -1,0 +1,626 @@
+\hypertarget{matsig_8h}{}\doxysection{matsig.\+h File Reference}
+\label{matsig_8h}\index{matsig.h@{matsig.h}}
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for matsig.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{matsig_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{matsig_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a3e807b3627a3282d92601ee62a0eebed}{SHIFT\+\_\+\+BP}}~0
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ac5c3dd9a920153c8678f7442b2a2276c}{SHIFT\+\_\+\+BN}}~4
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a5d2fcc7c24919ae6c19cca953f02a973}{SHIFT\+\_\+\+BB}}~6
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a6a8bbe616e394610837ce9a03c937f2d}{SHIFT\+\_\+\+BR}}~8
+\item 
+\#define \mbox{\hyperlink{matsig_8h_af6415351ecf5e2e54fbe97470b5d95ca}{SHIFT\+\_\+\+BQ}}~10
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a2e8fd0218d932f7704ef42c40a90bb6f}{SHIFT\+\_\+\+WP}}~12
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ad3cdefa4ae26861c0970f9f7534764b5}{SHIFT\+\_\+\+WN}}~16
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a9474583dd81576958e5c02753ef8a1dd}{SHIFT\+\_\+\+WB}}~18
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a17858c99cd09c92023cb8988254199f7}{SHIFT\+\_\+\+WR}}~20
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a117c914033cd76af39ee424fc2f7d90a}{SHIFT\+\_\+\+WQ}}~22
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\+\_\+\+BP}}~0x0000000F
+\item 
+\#define \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\+\_\+\+BN}}~0x00000030
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\+\_\+\+BB}}~0x000000\+C0
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\+\_\+\+BR}}~0x00000300
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\+\_\+\+BQ}}~0x00000\+C00
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\+\_\+\+WP}}~0x0000\+F000
+\item 
+\#define \mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\+\_\+\+WN}}~0x00030000
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\+\_\+\+WB}}~0x000\+C0000
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\+\_\+\+WR}}~0x00300000
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\+\_\+\+WQ}}~0x00\+C00000
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ad5f1a764eb96c02be74b7e63db0868e4}{MATSIG\+\_\+\+Flip\+Color}}(x)~((x) $>$$>$ 12) $\vert$ (((x) \& 0x00000\+FFF) $<$$<$ 12)
+\item 
+\#define \mbox{\hyperlink{matsig_8h_aec912383eede11909a99b90534cf9080}{MATSIG\+\_\+\+Has\+\_\+\+WQ}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\+\_\+\+WQ}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a49de7f626e9940c40ece94d092a297c5}{MATSIG\+\_\+\+Has\+\_\+\+BQ}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\+\_\+\+BQ}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a61356a6054ef567d9489105ee84a3298}{MATSIG\+\_\+\+Has\+\_\+\+WR}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\+\_\+\+WR}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ad8a08e625f8979f3827b89483ffe329a}{MATSIG\+\_\+\+Has\+\_\+\+BR}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\+\_\+\+BR}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a5fc244e4494704ab347a6523ef550ac1}{MATSIG\+\_\+\+Has\+\_\+\+WB}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\+\_\+\+WB}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ae7b5a947fe27c3e42b1464fa4a79d972}{MATSIG\+\_\+\+Has\+\_\+\+BB}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\+\_\+\+BB}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ae975740d035893ea0f9eeb142db6126e}{MATSIG\+\_\+\+Has\+\_\+\+WN}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\+\_\+\+WN}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a93ae63ca84876cd038e4b5d470b6ef48}{MATSIG\+\_\+\+Has\+\_\+\+BN}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\+\_\+\+BN}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a48390d0871d2f4e262a4199ee5a6a465}{MATSIG\+\_\+\+Has\+\_\+\+WP}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\+\_\+\+WP}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ad14e8848621676e4042cda6e6c9d2bdd}{MATSIG\+\_\+\+Has\+\_\+\+BP}}(x)~((x) \& \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\+\_\+\+BP}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_afcf88e429e5b6216aeb3286a3518c150}{MATSIG\+\_\+\+Has\+Queens}}(x)~((x) \& (\mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\+\_\+\+WQ}} $\vert$ \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\+\_\+\+BQ}}))
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a23c2241ce8d46c3e7d4e0aab80137854}{MATSIG\+\_\+\+Has\+Rooks}}(x)~((x) \& (\mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\+\_\+\+WR}} $\vert$ \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\+\_\+\+BR}}))
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a8926f6c30884718fdf1b635d1e0991fb}{MATSIG\+\_\+\+Has\+Bishops}}(x)~((x) \& (\mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\+\_\+\+WB}} $\vert$ \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\+\_\+\+BB}}))
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a401f9c7cba45e64ca745479bf0d2de2c}{MATSIG\+\_\+\+Has\+Knights}}(x)~((x) \& (\mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\+\_\+\+WN}} $\vert$ \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\+\_\+\+BN}}))
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ae52f6a521f48bece6503108e50c25b26}{MATSIG\+\_\+\+Has\+Pawns}}(x)~((x) \& (\mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\+\_\+\+WP}} $\vert$ \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\+\_\+\+BP}}))
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a821e723619c850fe0992ee342f3e81f1}{MATSIG\+\_\+\+Count\+\_\+\+WQ}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\+\_\+\+WQ}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a117c914033cd76af39ee424fc2f7d90a}{SHIFT\+\_\+\+WQ}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a9c0bb19ef12e59b576c8f353b39d5153}{MATSIG\+\_\+\+Count\+\_\+\+BQ}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\+\_\+\+BQ}}) $>$$>$ \mbox{\hyperlink{matsig_8h_af6415351ecf5e2e54fbe97470b5d95ca}{SHIFT\+\_\+\+BQ}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_aff004e373f6e532689351f05fa26e19b}{MATSIG\+\_\+\+Count\+\_\+\+WR}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\+\_\+\+WR}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a17858c99cd09c92023cb8988254199f7}{SHIFT\+\_\+\+WR}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_af3091b65f8ec72f725b64bfe1c189771}{MATSIG\+\_\+\+Count\+\_\+\+BR}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\+\_\+\+BR}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a6a8bbe616e394610837ce9a03c937f2d}{SHIFT\+\_\+\+BR}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ad9ef4db82c6b573570e61b8e371e9bab}{MATSIG\+\_\+\+Count\+\_\+\+WB}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\+\_\+\+WB}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a9474583dd81576958e5c02753ef8a1dd}{SHIFT\+\_\+\+WB}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a4d3b5b4a21cdf92c585ba8b244fd3449}{MATSIG\+\_\+\+Count\+\_\+\+BB}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\+\_\+\+BB}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a5d2fcc7c24919ae6c19cca953f02a973}{SHIFT\+\_\+\+BB}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a53d9527dd8f35c055c2a723fc6236591}{MATSIG\+\_\+\+Count\+\_\+\+WN}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\+\_\+\+WN}}) $>$$>$ \mbox{\hyperlink{matsig_8h_ad3cdefa4ae26861c0970f9f7534764b5}{SHIFT\+\_\+\+WN}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_a9b0766910057fb99906bd8e4da013426}{MATSIG\+\_\+\+Count\+\_\+\+BN}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\+\_\+\+BN}}) $>$$>$ \mbox{\hyperlink{matsig_8h_ac5c3dd9a920153c8678f7442b2a2276c}{SHIFT\+\_\+\+BN}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_af75ac9358914da419f2209ab002e9f1e}{MATSIG\+\_\+\+Count\+\_\+\+WP}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\+\_\+\+WP}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a2e8fd0218d932f7704ef42c40a90bb6f}{SHIFT\+\_\+\+WP}})
+\item 
+\#define \mbox{\hyperlink{matsig_8h_ae0532d485415a189e66aa1549d0c4dea}{MATSIG\+\_\+\+Count\+\_\+\+BP}}(x)~(((x) \& \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\+\_\+\+BP}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a3e807b3627a3282d92601ee62a0eebed}{SHIFT\+\_\+\+BP}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8h_a2262c2110cea42a1313c30f5b6f07b36}{matsig\+\_\+get\+Count}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p)
+\item 
+\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} \mbox{\hyperlink{matsig_8h_a71541715bf2c48e28bbf120c15b9dd5a}{matsig\+\_\+set\+Count}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} count)
+\item 
+std\+::string \mbox{\hyperlink{matsig_8h_abe6be35ef2cf163638ca8f8116491830}{matsig\+\_\+make\+String}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} matsig)
+\item 
+bool \mbox{\hyperlink{matsig_8h_a2b4cb89e477024de874c437e9f9f5bda}{matsig\+\_\+is\+Reachable}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m\+Start, \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m\+Target, bool promos, bool upromo)
+\item 
+bool \mbox{\hyperlink{matsig_8h_ade0014b5dd281c7442e03f09493f4ec6}{matsig\+\_\+is\+Reachable\+Pawns}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m\+Start, \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m\+Target)
+\item 
+\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} \mbox{\hyperlink{matsig_8h_acbd6516561fa4a66fe37952fd0ec4944}{matsig\+\_\+\+Make}} (const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$material\+Counts)
+\item 
+bool \mbox{\hyperlink{matsig_8h_ac6b2c7221d5f43b48cffadb40f116398}{hp\+Sig\+\_\+\+Possible\+Match}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig, const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+List)
+\item 
+bool \mbox{\hyperlink{matsig_8h_a9937e7670b254f377f248d9c4dbdde27}{hp\+Sig\+\_\+\+Prefix}} (const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+ListA, const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+ListB)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8h_ac851e6bd93af9220764588ff8b461531}{hp\+Sig\+\_\+\+Final}} (const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+List)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8h_ae47e8d524d9c3f55c5afcf05e5a660c9}{hp\+Sig\+\_\+\+Add\+Pawn}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} fyle)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8h_ae8cb31c3b5bd1d8bd0e8e135ce671cf1}{hp\+Sig\+\_\+\+Clear\+Pawn}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} fyle)
+\item 
+std\+::pair$<$ uint16\+\_\+t, uint16\+\_\+t $>$ \mbox{\hyperlink{matsig_8h_a1beeaf2a082cdfe8cede757f1243450d}{hp\+Sig\+\_\+make}} (const \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} $\ast$board)
+\item 
+bool \mbox{\hyperlink{matsig_8h_ac3717ee25b06338a0195a14eea615112}{hp\+Sig\+\_\+match}} (int hp\+Sig, int n\+Moved, const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+List)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} \mbox{\hyperlink{matsig_8h_a420413edffc6d3656315df06bff069a7}{MASK\+\_\+\+BY\+\_\+\+PIECE}} \mbox{[}16\mbox{]}
+\item 
+const \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8h_aaa894fa6550ed8b3b8276446658b1032}{SHIFT\+\_\+\+BY\+\_\+\+PIECE}} \mbox{[}16\mbox{]}
+\item 
+const \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} \mbox{\hyperlink{matsig_8h_a0a139631e78e3b8d50a34a3f04379bad}{MATSIG\+\_\+\+Empty}} = 0
+\item 
+const \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} \mbox{\hyperlink{matsig_8h_a984525258a77f3632a1a8198405f6470}{MATSIG\+\_\+\+Std\+Start}}
+\item 
+const \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8h_a2a4db221537a43c7f87ddb5349ac78ba}{HPSIG\+\_\+\+Empty}} = 0x0
+\item 
+const \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8h_a123ebaff19da6d4c8897632e681eb5ab}{HPSIG\+\_\+\+Std\+Start}} = 0x\+FFFF
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}\label{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}} 
+\index{matsig.h@{matsig.h}!MASK\_BB@{MASK\_BB}}
+\index{MASK\_BB@{MASK\_BB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_BB}{MASK\_BB}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+BB~0x000000\+C0}
+
+\mbox{\Hypertarget{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}\label{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}} 
+\index{matsig.h@{matsig.h}!MASK\_BN@{MASK\_BN}}
+\index{MASK\_BN@{MASK\_BN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_BN}{MASK\_BN}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+BN~0x00000030}
+
+\mbox{\Hypertarget{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}\label{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}} 
+\index{matsig.h@{matsig.h}!MASK\_BP@{MASK\_BP}}
+\index{MASK\_BP@{MASK\_BP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_BP}{MASK\_BP}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+BP~0x0000000F}
+
+\mbox{\Hypertarget{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}\label{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}} 
+\index{matsig.h@{matsig.h}!MASK\_BQ@{MASK\_BQ}}
+\index{MASK\_BQ@{MASK\_BQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_BQ}{MASK\_BQ}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+BQ~0x00000\+C00}
+
+\mbox{\Hypertarget{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}\label{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}} 
+\index{matsig.h@{matsig.h}!MASK\_BR@{MASK\_BR}}
+\index{MASK\_BR@{MASK\_BR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_BR}{MASK\_BR}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+BR~0x00000300}
+
+\mbox{\Hypertarget{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}\label{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}} 
+\index{matsig.h@{matsig.h}!MASK\_WB@{MASK\_WB}}
+\index{MASK\_WB@{MASK\_WB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_WB}{MASK\_WB}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+WB~0x000\+C0000}
+
+\mbox{\Hypertarget{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}\label{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}} 
+\index{matsig.h@{matsig.h}!MASK\_WN@{MASK\_WN}}
+\index{MASK\_WN@{MASK\_WN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_WN}{MASK\_WN}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+WN~0x00030000}
+
+\mbox{\Hypertarget{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}\label{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}} 
+\index{matsig.h@{matsig.h}!MASK\_WP@{MASK\_WP}}
+\index{MASK\_WP@{MASK\_WP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_WP}{MASK\_WP}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+WP~0x0000\+F000}
+
+\mbox{\Hypertarget{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}\label{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}} 
+\index{matsig.h@{matsig.h}!MASK\_WQ@{MASK\_WQ}}
+\index{MASK\_WQ@{MASK\_WQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_WQ}{MASK\_WQ}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+WQ~0x00\+C00000}
+
+\mbox{\Hypertarget{matsig_8h_ac8d993d0444fb428396331d529378704}\label{matsig_8h_ac8d993d0444fb428396331d529378704}} 
+\index{matsig.h@{matsig.h}!MASK\_WR@{MASK\_WR}}
+\index{MASK\_WR@{MASK\_WR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_WR}{MASK\_WR}}
+{\footnotesize\ttfamily \#define MASK\+\_\+\+WR~0x00300000}
+
+\mbox{\Hypertarget{matsig_8h_a4d3b5b4a21cdf92c585ba8b244fd3449}\label{matsig_8h_a4d3b5b4a21cdf92c585ba8b244fd3449}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_BB@{MATSIG\_Count\_BB}}
+\index{MATSIG\_Count\_BB@{MATSIG\_Count\_BB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_BB}{MATSIG\_Count\_BB}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+BB(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\+\_\+\+BB}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a5d2fcc7c24919ae6c19cca953f02a973}{SHIFT\+\_\+\+BB}})}
+
+\mbox{\Hypertarget{matsig_8h_a9b0766910057fb99906bd8e4da013426}\label{matsig_8h_a9b0766910057fb99906bd8e4da013426}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_BN@{MATSIG\_Count\_BN}}
+\index{MATSIG\_Count\_BN@{MATSIG\_Count\_BN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_BN}{MATSIG\_Count\_BN}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+BN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\+\_\+\+BN}}) $>$$>$ \mbox{\hyperlink{matsig_8h_ac5c3dd9a920153c8678f7442b2a2276c}{SHIFT\+\_\+\+BN}})}
+
+\mbox{\Hypertarget{matsig_8h_ae0532d485415a189e66aa1549d0c4dea}\label{matsig_8h_ae0532d485415a189e66aa1549d0c4dea}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_BP@{MATSIG\_Count\_BP}}
+\index{MATSIG\_Count\_BP@{MATSIG\_Count\_BP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_BP}{MATSIG\_Count\_BP}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+BP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\+\_\+\+BP}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a3e807b3627a3282d92601ee62a0eebed}{SHIFT\+\_\+\+BP}})}
+
+\mbox{\Hypertarget{matsig_8h_a9c0bb19ef12e59b576c8f353b39d5153}\label{matsig_8h_a9c0bb19ef12e59b576c8f353b39d5153}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_BQ@{MATSIG\_Count\_BQ}}
+\index{MATSIG\_Count\_BQ@{MATSIG\_Count\_BQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_BQ}{MATSIG\_Count\_BQ}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+BQ(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\+\_\+\+BQ}}) $>$$>$ \mbox{\hyperlink{matsig_8h_af6415351ecf5e2e54fbe97470b5d95ca}{SHIFT\+\_\+\+BQ}})}
+
+\mbox{\Hypertarget{matsig_8h_af3091b65f8ec72f725b64bfe1c189771}\label{matsig_8h_af3091b65f8ec72f725b64bfe1c189771}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_BR@{MATSIG\_Count\_BR}}
+\index{MATSIG\_Count\_BR@{MATSIG\_Count\_BR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_BR}{MATSIG\_Count\_BR}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+BR(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\+\_\+\+BR}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a6a8bbe616e394610837ce9a03c937f2d}{SHIFT\+\_\+\+BR}})}
+
+\mbox{\Hypertarget{matsig_8h_ad9ef4db82c6b573570e61b8e371e9bab}\label{matsig_8h_ad9ef4db82c6b573570e61b8e371e9bab}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_WB@{MATSIG\_Count\_WB}}
+\index{MATSIG\_Count\_WB@{MATSIG\_Count\_WB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_WB}{MATSIG\_Count\_WB}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+WB(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\+\_\+\+WB}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a9474583dd81576958e5c02753ef8a1dd}{SHIFT\+\_\+\+WB}})}
+
+\mbox{\Hypertarget{matsig_8h_a53d9527dd8f35c055c2a723fc6236591}\label{matsig_8h_a53d9527dd8f35c055c2a723fc6236591}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_WN@{MATSIG\_Count\_WN}}
+\index{MATSIG\_Count\_WN@{MATSIG\_Count\_WN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_WN}{MATSIG\_Count\_WN}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+WN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\+\_\+\+WN}}) $>$$>$ \mbox{\hyperlink{matsig_8h_ad3cdefa4ae26861c0970f9f7534764b5}{SHIFT\+\_\+\+WN}})}
+
+\mbox{\Hypertarget{matsig_8h_af75ac9358914da419f2209ab002e9f1e}\label{matsig_8h_af75ac9358914da419f2209ab002e9f1e}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_WP@{MATSIG\_Count\_WP}}
+\index{MATSIG\_Count\_WP@{MATSIG\_Count\_WP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_WP}{MATSIG\_Count\_WP}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+WP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\+\_\+\+WP}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a2e8fd0218d932f7704ef42c40a90bb6f}{SHIFT\+\_\+\+WP}})}
+
+\mbox{\Hypertarget{matsig_8h_a821e723619c850fe0992ee342f3e81f1}\label{matsig_8h_a821e723619c850fe0992ee342f3e81f1}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_WQ@{MATSIG\_Count\_WQ}}
+\index{MATSIG\_Count\_WQ@{MATSIG\_Count\_WQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_WQ}{MATSIG\_Count\_WQ}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+WQ(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\+\_\+\+WQ}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a117c914033cd76af39ee424fc2f7d90a}{SHIFT\+\_\+\+WQ}})}
+
+\mbox{\Hypertarget{matsig_8h_aff004e373f6e532689351f05fa26e19b}\label{matsig_8h_aff004e373f6e532689351f05fa26e19b}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Count\_WR@{MATSIG\_Count\_WR}}
+\index{MATSIG\_Count\_WR@{MATSIG\_Count\_WR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Count\_WR}{MATSIG\_Count\_WR}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Count\+\_\+\+WR(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(((x) \& \mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\+\_\+\+WR}}) $>$$>$ \mbox{\hyperlink{matsig_8h_a17858c99cd09c92023cb8988254199f7}{SHIFT\+\_\+\+WR}})}
+
+\mbox{\Hypertarget{matsig_8h_ad5f1a764eb96c02be74b7e63db0868e4}\label{matsig_8h_ad5f1a764eb96c02be74b7e63db0868e4}} 
+\index{matsig.h@{matsig.h}!MATSIG\_FlipColor@{MATSIG\_FlipColor}}
+\index{MATSIG\_FlipColor@{MATSIG\_FlipColor}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_FlipColor}{MATSIG\_FlipColor}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Flip\+Color(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) $>$$>$ 12) $\vert$ (((x) \& 0x00000\+FFF) $<$$<$ 12)}
+
+\mbox{\Hypertarget{matsig_8h_ae7b5a947fe27c3e42b1464fa4a79d972}\label{matsig_8h_ae7b5a947fe27c3e42b1464fa4a79d972}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_BB@{MATSIG\_Has\_BB}}
+\index{MATSIG\_Has\_BB@{MATSIG\_Has\_BB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_BB}{MATSIG\_Has\_BB}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+BB(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\+\_\+\+BB}})}
+
+\mbox{\Hypertarget{matsig_8h_a93ae63ca84876cd038e4b5d470b6ef48}\label{matsig_8h_a93ae63ca84876cd038e4b5d470b6ef48}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_BN@{MATSIG\_Has\_BN}}
+\index{MATSIG\_Has\_BN@{MATSIG\_Has\_BN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_BN}{MATSIG\_Has\_BN}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+BN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\+\_\+\+BN}})}
+
+\mbox{\Hypertarget{matsig_8h_ad14e8848621676e4042cda6e6c9d2bdd}\label{matsig_8h_ad14e8848621676e4042cda6e6c9d2bdd}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_BP@{MATSIG\_Has\_BP}}
+\index{MATSIG\_Has\_BP@{MATSIG\_Has\_BP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_BP}{MATSIG\_Has\_BP}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+BP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\+\_\+\+BP}})}
+
+\mbox{\Hypertarget{matsig_8h_a49de7f626e9940c40ece94d092a297c5}\label{matsig_8h_a49de7f626e9940c40ece94d092a297c5}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_BQ@{MATSIG\_Has\_BQ}}
+\index{MATSIG\_Has\_BQ@{MATSIG\_Has\_BQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_BQ}{MATSIG\_Has\_BQ}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+BQ(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\+\_\+\+BQ}})}
+
+\mbox{\Hypertarget{matsig_8h_ad8a08e625f8979f3827b89483ffe329a}\label{matsig_8h_ad8a08e625f8979f3827b89483ffe329a}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_BR@{MATSIG\_Has\_BR}}
+\index{MATSIG\_Has\_BR@{MATSIG\_Has\_BR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_BR}{MATSIG\_Has\_BR}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+BR(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\+\_\+\+BR}})}
+
+\mbox{\Hypertarget{matsig_8h_a5fc244e4494704ab347a6523ef550ac1}\label{matsig_8h_a5fc244e4494704ab347a6523ef550ac1}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_WB@{MATSIG\_Has\_WB}}
+\index{MATSIG\_Has\_WB@{MATSIG\_Has\_WB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_WB}{MATSIG\_Has\_WB}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+WB(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\+\_\+\+WB}})}
+
+\mbox{\Hypertarget{matsig_8h_ae975740d035893ea0f9eeb142db6126e}\label{matsig_8h_ae975740d035893ea0f9eeb142db6126e}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_WN@{MATSIG\_Has\_WN}}
+\index{MATSIG\_Has\_WN@{MATSIG\_Has\_WN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_WN}{MATSIG\_Has\_WN}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+WN(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\+\_\+\+WN}})}
+
+\mbox{\Hypertarget{matsig_8h_a48390d0871d2f4e262a4199ee5a6a465}\label{matsig_8h_a48390d0871d2f4e262a4199ee5a6a465}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_WP@{MATSIG\_Has\_WP}}
+\index{MATSIG\_Has\_WP@{MATSIG\_Has\_WP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_WP}{MATSIG\_Has\_WP}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+WP(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\+\_\+\+WP}})}
+
+\mbox{\Hypertarget{matsig_8h_aec912383eede11909a99b90534cf9080}\label{matsig_8h_aec912383eede11909a99b90534cf9080}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_WQ@{MATSIG\_Has\_WQ}}
+\index{MATSIG\_Has\_WQ@{MATSIG\_Has\_WQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_WQ}{MATSIG\_Has\_WQ}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+WQ(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\+\_\+\+WQ}})}
+
+\mbox{\Hypertarget{matsig_8h_a61356a6054ef567d9489105ee84a3298}\label{matsig_8h_a61356a6054ef567d9489105ee84a3298}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Has\_WR@{MATSIG\_Has\_WR}}
+\index{MATSIG\_Has\_WR@{MATSIG\_Has\_WR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Has\_WR}{MATSIG\_Has\_WR}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+\_\+\+WR(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& \mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\+\_\+\+WR}})}
+
+\mbox{\Hypertarget{matsig_8h_a8926f6c30884718fdf1b635d1e0991fb}\label{matsig_8h_a8926f6c30884718fdf1b635d1e0991fb}} 
+\index{matsig.h@{matsig.h}!MATSIG\_HasBishops@{MATSIG\_HasBishops}}
+\index{MATSIG\_HasBishops@{MATSIG\_HasBishops}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_HasBishops}{MATSIG\_HasBishops}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+Bishops(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& (\mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\+\_\+\+WB}} $\vert$ \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\+\_\+\+BB}}))}
+
+\mbox{\Hypertarget{matsig_8h_a401f9c7cba45e64ca745479bf0d2de2c}\label{matsig_8h_a401f9c7cba45e64ca745479bf0d2de2c}} 
+\index{matsig.h@{matsig.h}!MATSIG\_HasKnights@{MATSIG\_HasKnights}}
+\index{MATSIG\_HasKnights@{MATSIG\_HasKnights}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_HasKnights}{MATSIG\_HasKnights}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+Knights(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& (\mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\+\_\+\+WN}} $\vert$ \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\+\_\+\+BN}}))}
+
+\mbox{\Hypertarget{matsig_8h_ae52f6a521f48bece6503108e50c25b26}\label{matsig_8h_ae52f6a521f48bece6503108e50c25b26}} 
+\index{matsig.h@{matsig.h}!MATSIG\_HasPawns@{MATSIG\_HasPawns}}
+\index{MATSIG\_HasPawns@{MATSIG\_HasPawns}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_HasPawns}{MATSIG\_HasPawns}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+Pawns(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& (\mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\+\_\+\+WP}} $\vert$ \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\+\_\+\+BP}}))}
+
+\mbox{\Hypertarget{matsig_8h_afcf88e429e5b6216aeb3286a3518c150}\label{matsig_8h_afcf88e429e5b6216aeb3286a3518c150}} 
+\index{matsig.h@{matsig.h}!MATSIG\_HasQueens@{MATSIG\_HasQueens}}
+\index{MATSIG\_HasQueens@{MATSIG\_HasQueens}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_HasQueens}{MATSIG\_HasQueens}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+Queens(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& (\mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\+\_\+\+WQ}} $\vert$ \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\+\_\+\+BQ}}))}
+
+\mbox{\Hypertarget{matsig_8h_a23c2241ce8d46c3e7d4e0aab80137854}\label{matsig_8h_a23c2241ce8d46c3e7d4e0aab80137854}} 
+\index{matsig.h@{matsig.h}!MATSIG\_HasRooks@{MATSIG\_HasRooks}}
+\index{MATSIG\_HasRooks@{MATSIG\_HasRooks}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_HasRooks}{MATSIG\_HasRooks}}
+{\footnotesize\ttfamily \#define MATSIG\+\_\+\+Has\+Rooks(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x) \& (\mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\+\_\+\+WR}} $\vert$ \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\+\_\+\+BR}}))}
+
+\mbox{\Hypertarget{matsig_8h_a5d2fcc7c24919ae6c19cca953f02a973}\label{matsig_8h_a5d2fcc7c24919ae6c19cca953f02a973}} 
+\index{matsig.h@{matsig.h}!SHIFT\_BB@{SHIFT\_BB}}
+\index{SHIFT\_BB@{SHIFT\_BB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_BB}{SHIFT\_BB}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+BB~6}
+
+\mbox{\Hypertarget{matsig_8h_ac5c3dd9a920153c8678f7442b2a2276c}\label{matsig_8h_ac5c3dd9a920153c8678f7442b2a2276c}} 
+\index{matsig.h@{matsig.h}!SHIFT\_BN@{SHIFT\_BN}}
+\index{SHIFT\_BN@{SHIFT\_BN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_BN}{SHIFT\_BN}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+BN~4}
+
+\mbox{\Hypertarget{matsig_8h_a3e807b3627a3282d92601ee62a0eebed}\label{matsig_8h_a3e807b3627a3282d92601ee62a0eebed}} 
+\index{matsig.h@{matsig.h}!SHIFT\_BP@{SHIFT\_BP}}
+\index{SHIFT\_BP@{SHIFT\_BP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_BP}{SHIFT\_BP}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+BP~0}
+
+\mbox{\Hypertarget{matsig_8h_af6415351ecf5e2e54fbe97470b5d95ca}\label{matsig_8h_af6415351ecf5e2e54fbe97470b5d95ca}} 
+\index{matsig.h@{matsig.h}!SHIFT\_BQ@{SHIFT\_BQ}}
+\index{SHIFT\_BQ@{SHIFT\_BQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_BQ}{SHIFT\_BQ}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+BQ~10}
+
+\mbox{\Hypertarget{matsig_8h_a6a8bbe616e394610837ce9a03c937f2d}\label{matsig_8h_a6a8bbe616e394610837ce9a03c937f2d}} 
+\index{matsig.h@{matsig.h}!SHIFT\_BR@{SHIFT\_BR}}
+\index{SHIFT\_BR@{SHIFT\_BR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_BR}{SHIFT\_BR}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+BR~8}
+
+\mbox{\Hypertarget{matsig_8h_a9474583dd81576958e5c02753ef8a1dd}\label{matsig_8h_a9474583dd81576958e5c02753ef8a1dd}} 
+\index{matsig.h@{matsig.h}!SHIFT\_WB@{SHIFT\_WB}}
+\index{SHIFT\_WB@{SHIFT\_WB}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_WB}{SHIFT\_WB}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+WB~18}
+
+\mbox{\Hypertarget{matsig_8h_ad3cdefa4ae26861c0970f9f7534764b5}\label{matsig_8h_ad3cdefa4ae26861c0970f9f7534764b5}} 
+\index{matsig.h@{matsig.h}!SHIFT\_WN@{SHIFT\_WN}}
+\index{SHIFT\_WN@{SHIFT\_WN}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_WN}{SHIFT\_WN}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+WN~16}
+
+\mbox{\Hypertarget{matsig_8h_a2e8fd0218d932f7704ef42c40a90bb6f}\label{matsig_8h_a2e8fd0218d932f7704ef42c40a90bb6f}} 
+\index{matsig.h@{matsig.h}!SHIFT\_WP@{SHIFT\_WP}}
+\index{SHIFT\_WP@{SHIFT\_WP}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_WP}{SHIFT\_WP}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+WP~12}
+
+\mbox{\Hypertarget{matsig_8h_a117c914033cd76af39ee424fc2f7d90a}\label{matsig_8h_a117c914033cd76af39ee424fc2f7d90a}} 
+\index{matsig.h@{matsig.h}!SHIFT\_WQ@{SHIFT\_WQ}}
+\index{SHIFT\_WQ@{SHIFT\_WQ}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_WQ}{SHIFT\_WQ}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+WQ~22}
+
+\mbox{\Hypertarget{matsig_8h_a17858c99cd09c92023cb8988254199f7}\label{matsig_8h_a17858c99cd09c92023cb8988254199f7}} 
+\index{matsig.h@{matsig.h}!SHIFT\_WR@{SHIFT\_WR}}
+\index{SHIFT\_WR@{SHIFT\_WR}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_WR}{SHIFT\_WR}}
+{\footnotesize\ttfamily \#define SHIFT\+\_\+\+WR~20}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}\label{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}} 
+\index{matsig.h@{matsig.h}!matSigT@{matSigT}}
+\index{matSigT@{matSigT}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{matSigT}{matSigT}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{matsig_8h_ae47e8d524d9c3f55c5afcf05e5a660c9}\label{matsig_8h_ae47e8d524d9c3f55c5afcf05e5a660c9}} 
+\index{matsig.h@{matsig.h}!hpSig\_AddPawn@{hpSig\_AddPawn}}
+\index{hpSig\_AddPawn@{hpSig\_AddPawn}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{hpSig\_AddPawn()}{hpSig\_AddPawn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig\+\_\+\+Add\+Pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{hp\+Sig,  }\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{color,  }\item[{\mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}}}]{fyle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{matsig_8h_ae8cb31c3b5bd1d8bd0e8e135ce671cf1}\label{matsig_8h_ae8cb31c3b5bd1d8bd0e8e135ce671cf1}} 
+\index{matsig.h@{matsig.h}!hpSig\_ClearPawn@{hpSig\_ClearPawn}}
+\index{hpSig\_ClearPawn@{hpSig\_ClearPawn}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{hpSig\_ClearPawn()}{hpSig\_ClearPawn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig\+\_\+\+Clear\+Pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{hp\+Sig,  }\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{color,  }\item[{\mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}}}]{fyle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{matsig_8h_ac851e6bd93af9220764588ff8b461531}\label{matsig_8h_ac851e6bd93af9220764588ff8b461531}} 
+\index{matsig.h@{matsig.h}!hpSig\_Final@{hpSig\_Final}}
+\index{hpSig\_Final@{hpSig\_Final}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{hpSig\_Final()}{hpSig\_Final()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig\+\_\+\+Final (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+List }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8h_a1beeaf2a082cdfe8cede757f1243450d}\label{matsig_8h_a1beeaf2a082cdfe8cede757f1243450d}} 
+\index{matsig.h@{matsig.h}!hpSig\_make@{hpSig\_make}}
+\index{hpSig\_make@{hpSig\_make}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{hpSig\_make()}{hpSig\_make()}}
+{\footnotesize\ttfamily std\+::pair$<$ uint16\+\_\+t, uint16\+\_\+t $>$ hp\+Sig\+\_\+make (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} $\ast$}]{board }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates a 16-\/bits bitmap of the missing pawns in the home ranks.
+
+Used to speed up the searches of positions with the same pawn structure. \begin{DoxyReturn}{Returns}
+a std\+::pair containing the bitmap and the number of moved pawns. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{matsig_8h_ac3717ee25b06338a0195a14eea615112}\label{matsig_8h_ac3717ee25b06338a0195a14eea615112}} 
+\index{matsig.h@{matsig.h}!hpSig\_match@{hpSig\_match}}
+\index{hpSig\_match@{hpSig\_match}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{hpSig\_match()}{hpSig\_match()}}
+{\footnotesize\ttfamily bool hp\+Sig\+\_\+match (\begin{DoxyParamCaption}\item[{int}]{hp\+Sig,  }\item[{int}]{n\+Moved,  }\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{matsig_8h_ac6b2c7221d5f43b48cffadb40f116398}\label{matsig_8h_ac6b2c7221d5f43b48cffadb40f116398}} 
+\index{matsig.h@{matsig.h}!hpSig\_PossibleMatch@{hpSig\_PossibleMatch}}
+\index{hpSig\_PossibleMatch@{hpSig\_PossibleMatch}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{hpSig\_PossibleMatch()}{hpSig\_PossibleMatch()}}
+{\footnotesize\ttfamily bool hp\+Sig\+\_\+\+Possible\+Match (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{hp\+Sig,  }\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+List }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8h_a9937e7670b254f377f248d9c4dbdde27}\label{matsig_8h_a9937e7670b254f377f248d9c4dbdde27}} 
+\index{matsig.h@{matsig.h}!hpSig\_Prefix@{hpSig\_Prefix}}
+\index{hpSig\_Prefix@{hpSig\_Prefix}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{hpSig\_Prefix()}{hpSig\_Prefix()}}
+{\footnotesize\ttfamily bool hp\+Sig\+\_\+\+Prefix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+ListA,  }\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+ListB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8h_a2262c2110cea42a1313c30f5b6f07b36}\label{matsig_8h_a2262c2110cea42a1313c30f5b6f07b36}} 
+\index{matsig.h@{matsig.h}!matsig\_getCount@{matsig\_getCount}}
+\index{matsig\_getCount@{matsig\_getCount}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{matsig\_getCount()}{matsig\_getCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} matsig\+\_\+get\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{matsig_8h_a2b4cb89e477024de874c437e9f9f5bda}\label{matsig_8h_a2b4cb89e477024de874c437e9f9f5bda}} 
+\index{matsig.h@{matsig.h}!matsig\_isReachable@{matsig\_isReachable}}
+\index{matsig\_isReachable@{matsig\_isReachable}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{matsig\_isReachable()}{matsig\_isReachable()}}
+{\footnotesize\ttfamily bool matsig\+\_\+is\+Reachable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m\+Start,  }\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m\+Target,  }\item[{bool}]{promos,  }\item[{bool}]{upromo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8h_ade0014b5dd281c7442e03f09493f4ec6}\label{matsig_8h_ade0014b5dd281c7442e03f09493f4ec6}} 
+\index{matsig.h@{matsig.h}!matsig\_isReachablePawns@{matsig\_isReachablePawns}}
+\index{matsig\_isReachablePawns@{matsig\_isReachablePawns}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{matsig\_isReachablePawns()}{matsig\_isReachablePawns()}}
+{\footnotesize\ttfamily bool matsig\+\_\+is\+Reachable\+Pawns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m\+Start,  }\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m\+Target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{matsig_8h_acbd6516561fa4a66fe37952fd0ec4944}\label{matsig_8h_acbd6516561fa4a66fe37952fd0ec4944}} 
+\index{matsig.h@{matsig.h}!matsig\_Make@{matsig\_Make}}
+\index{matsig\_Make@{matsig\_Make}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{matsig\_Make()}{matsig\_Make()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} matsig\+\_\+\+Make (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{material\+Counts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{matsig_8h_abe6be35ef2cf163638ca8f8116491830}\label{matsig_8h_abe6be35ef2cf163638ca8f8116491830}} 
+\index{matsig.h@{matsig.h}!matsig\_makeString@{matsig\_makeString}}
+\index{matsig\_makeString@{matsig\_makeString}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{matsig\_makeString()}{matsig\_makeString()}}
+{\footnotesize\ttfamily std\+::string matsig\+\_\+make\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{matsig }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8h_a71541715bf2c48e28bbf120c15b9dd5a}\label{matsig_8h_a71541715bf2c48e28bbf120c15b9dd5a}} 
+\index{matsig.h@{matsig.h}!matsig\_setCount@{matsig\_setCount}}
+\index{matsig\_setCount@{matsig\_setCount}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{matsig\_setCount()}{matsig\_setCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} matsig\+\_\+set\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{matsig_8h_a2a4db221537a43c7f87ddb5349ac78ba}\label{matsig_8h_a2a4db221537a43c7f87ddb5349ac78ba}} 
+\index{matsig.h@{matsig.h}!HPSIG\_Empty@{HPSIG\_Empty}}
+\index{HPSIG\_Empty@{HPSIG\_Empty}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{HPSIG\_Empty}{HPSIG\_Empty}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} HPSIG\+\_\+\+Empty = 0x0}
+
+\mbox{\Hypertarget{matsig_8h_a123ebaff19da6d4c8897632e681eb5ab}\label{matsig_8h_a123ebaff19da6d4c8897632e681eb5ab}} 
+\index{matsig.h@{matsig.h}!HPSIG\_StdStart@{HPSIG\_StdStart}}
+\index{HPSIG\_StdStart@{HPSIG\_StdStart}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{HPSIG\_StdStart}{HPSIG\_StdStart}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} HPSIG\+\_\+\+Std\+Start = 0x\+FFFF}
+
+\mbox{\Hypertarget{matsig_8h_a420413edffc6d3656315df06bff069a7}\label{matsig_8h_a420413edffc6d3656315df06bff069a7}} 
+\index{matsig.h@{matsig.h}!MASK\_BY\_PIECE@{MASK\_BY\_PIECE}}
+\index{MASK\_BY\_PIECE@{MASK\_BY\_PIECE}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MASK\_BY\_PIECE}{MASK\_BY\_PIECE}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} MASK\+\_\+\+BY\+\_\+\+PIECE\mbox{[}16\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0,        }
+\DoxyCodeLine{    0,        }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a81c1413a284c06395b7bea85b2b9d66d}{MASK\_WQ}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_ac8d993d0444fb428396331d529378704}{MASK\_WR}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a253d1f434a5a5d38f7bb8abe71a5133a}{MASK\_WB}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_abd29838eacbeb11e1c2f51ab219c03cb}{MASK\_WN}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a38caa73fe94105faedcc4fcb8a10fe9d}{MASK\_WP}},  }
+\DoxyCodeLine{    0, 0,     }
+\DoxyCodeLine{    0,        }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a2e31b4040d515762d57eec6fae0088d5}{MASK\_BQ}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a82a5efe1dabb4c8e967b454284f45a31}{MASK\_BR}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a736f136a17bc9de80c73cd9ee6711f7b}{MASK\_BB}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_afc9b5f7bfcfd4624f610682f28f48208}{MASK\_BN}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a3890f5e9de99696bec0c78d75788b77d}{MASK\_BP}},  }
+\DoxyCodeLine{    0         }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matsig_8h_a0a139631e78e3b8d50a34a3f04379bad}\label{matsig_8h_a0a139631e78e3b8d50a34a3f04379bad}} 
+\index{matsig.h@{matsig.h}!MATSIG\_Empty@{MATSIG\_Empty}}
+\index{MATSIG\_Empty@{MATSIG\_Empty}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_Empty}{MATSIG\_Empty}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} MATSIG\+\_\+\+Empty = 0}
+
+\mbox{\Hypertarget{matsig_8h_a984525258a77f3632a1a8198405f6470}\label{matsig_8h_a984525258a77f3632a1a8198405f6470}} 
+\index{matsig.h@{matsig.h}!MATSIG\_StdStart@{MATSIG\_StdStart}}
+\index{MATSIG\_StdStart@{MATSIG\_StdStart}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{MATSIG\_StdStart}{MATSIG\_StdStart}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} MATSIG\+\_\+\+Std\+Start}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{   ((1 << \mbox{\hyperlink{matsig_8h_a117c914033cd76af39ee424fc2f7d90a}{SHIFT\_WQ}}) | (1 << \mbox{\hyperlink{matsig_8h_af6415351ecf5e2e54fbe97470b5d95ca}{SHIFT\_BQ}}) | (2 << \mbox{\hyperlink{matsig_8h_a17858c99cd09c92023cb8988254199f7}{SHIFT\_WR}}) | (2 << \mbox{\hyperlink{matsig_8h_a6a8bbe616e394610837ce9a03c937f2d}{SHIFT\_BR}}) |}
+\DoxyCodeLine{    (2 << \mbox{\hyperlink{matsig_8h_a9474583dd81576958e5c02753ef8a1dd}{SHIFT\_WB}}) | (2 << \mbox{\hyperlink{matsig_8h_a5d2fcc7c24919ae6c19cca953f02a973}{SHIFT\_BB}}) | (2 << \mbox{\hyperlink{matsig_8h_ad3cdefa4ae26861c0970f9f7534764b5}{SHIFT\_WN}}) | (2 << \mbox{\hyperlink{matsig_8h_ac5c3dd9a920153c8678f7442b2a2276c}{SHIFT\_BN}}) |}
+\DoxyCodeLine{    (8 << \mbox{\hyperlink{matsig_8h_a2e8fd0218d932f7704ef42c40a90bb6f}{SHIFT\_WP}}) | (8 << \mbox{\hyperlink{matsig_8h_a3e807b3627a3282d92601ee62a0eebed}{SHIFT\_BP}}))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matsig_8h_aaa894fa6550ed8b3b8276446658b1032}\label{matsig_8h_aaa894fa6550ed8b3b8276446658b1032}} 
+\index{matsig.h@{matsig.h}!SHIFT\_BY\_PIECE@{SHIFT\_BY\_PIECE}}
+\index{SHIFT\_BY\_PIECE@{SHIFT\_BY\_PIECE}!matsig.h@{matsig.h}}
+\doxysubsubsection{\texorpdfstring{SHIFT\_BY\_PIECE}{SHIFT\_BY\_PIECE}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} SHIFT\+\_\+\+BY\+\_\+\+PIECE\mbox{[}16\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0, 0,      }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a117c914033cd76af39ee424fc2f7d90a}{SHIFT\_WQ}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a17858c99cd09c92023cb8988254199f7}{SHIFT\_WR}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a9474583dd81576958e5c02753ef8a1dd}{SHIFT\_WB}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_ad3cdefa4ae26861c0970f9f7534764b5}{SHIFT\_WN}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a2e8fd0218d932f7704ef42c40a90bb6f}{SHIFT\_WP}},  }
+\DoxyCodeLine{    0, 0, 0,   }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_af6415351ecf5e2e54fbe97470b5d95ca}{SHIFT\_BQ}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a6a8bbe616e394610837ce9a03c937f2d}{SHIFT\_BR}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a5d2fcc7c24919ae6c19cca953f02a973}{SHIFT\_BB}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_ac5c3dd9a920153c8678f7442b2a2276c}{SHIFT\_BN}},  }
+\DoxyCodeLine{    \mbox{\hyperlink{matsig_8h_a3e807b3627a3282d92601ee62a0eebed}{SHIFT\_BP}},  }
+\DoxyCodeLine{    0          }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

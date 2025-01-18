@@ -1,0 +1,77 @@
+\hypertarget{hash_8h}{}\doxysection{hash.\+h File Reference}
+\label{hash_8h}\index{hash.h@{hash.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{hash_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_hash_val}{Hash\+Val}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr auto \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} = \mbox{\hyperlink{class_hash_val}{Hash\+Val}}()
+\item 
+auto const  \& \mbox{\hyperlink{hash_8h_a294a572e6bd3ee50b41118a2a17aa0a7}{UNHASH}} = \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}}
+\item 
+constexpr unsigned \mbox{\hyperlink{hash_8h_a155cb9da8a4b0754625bf943dca64d51}{std\+Start\+Pawn\+Hash}}
+\item 
+constexpr unsigned \mbox{\hyperlink{hash_8h_af9c25d91addcfc6b3e6536f53d263747}{std\+Start\+Hash}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}\label{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}} 
+\index{hash.h@{hash.h}!HASH@{HASH}}
+\index{HASH@{HASH}!hash.h@{hash.h}}
+\doxysubsubsection{\texorpdfstring{HASH}{HASH}}
+{\footnotesize\ttfamily constexpr auto HASH = \mbox{\hyperlink{class_hash_val}{Hash\+Val}}()\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{hash_8h_af9c25d91addcfc6b3e6536f53d263747}\label{hash_8h_af9c25d91addcfc6b3e6536f53d263747}} 
+\index{hash.h@{hash.h}!stdStartHash@{stdStartHash}}
+\index{stdStartHash@{stdStartHash}!hash.h@{hash.h}}
+\doxysubsubsection{\texorpdfstring{stdStartHash}{stdStartHash}}
+{\footnotesize\ttfamily constexpr unsigned std\+Start\+Hash\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= [] \{}
+\DoxyCodeLine{    \textcolor{keyword}{auto} h = \mbox{\hyperlink{hash_8h_a155cb9da8a4b0754625bf943dca64d51}{stdStartPawnHash}};}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_af4aa2ab334837d64386e2b18356a5417}{WR}},\mbox{\hyperlink{board__def_8h_a065708667a22073299416bcb2d07ec49}{A1}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a1f3338eaf38ab7db8fc38e8e0f65c080}{WN}},\mbox{\hyperlink{board__def_8h_a18379ead0c4e7f1e5aa7168dbe770c65}{B1}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_afd45947348b8b22184cb5c605a2464e4}{WB}},\mbox{\hyperlink{board__def_8h_a7c7f317a89a312dc646081e3dffee1ed}{C1}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a6fcd496bb2acee064bb07b93258e21cb}{WQ}},\mbox{\hyperlink{board__def_8h_a33533c162e16bd58175763f1a3a3214e}{D1}});}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a6741904a9bc89c5d6f6ff9d9258f8078}{WK}},\mbox{\hyperlink{board__def_8h_a25d4363b024d1b259d5eeeae46b981ce}{E1}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_afd45947348b8b22184cb5c605a2464e4}{WB}},\mbox{\hyperlink{board__def_8h_ab9643d3117b1fb90114cd8eb8691ba93}{F1}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a1f3338eaf38ab7db8fc38e8e0f65c080}{WN}},\mbox{\hyperlink{board__def_8h_ab2f9d37a4f9d8f68498d9ba1762bf1cc}{G1}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_af4aa2ab334837d64386e2b18356a5417}{WR}},\mbox{\hyperlink{board__def_8h_aa38c7fec44b4f2cbaf1b7aef5dac7f2d}{H1}});}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_ab2aa81e436a9bfcce5ae577714a9d465}{BR}},\mbox{\hyperlink{board__def_8h_afa0f51ebb5c7bc99f144c75a3296ca5a}{A8}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a45729871ae31fd5175aba7ee50d2c600}{BN}},\mbox{\hyperlink{board__def_8h_acb27ac6029e8f2a0e1452cb457745845}{B8}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a8779bc5a380e6bb7f3221dd0e3e7190a}{BB}},\mbox{\hyperlink{board__def_8h_a60b7b0c98ffc5cd17f1d2f4bda3ace9f}{C8}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a66e36a051216e05e14ce562dd3438809}{BQ}},\mbox{\hyperlink{board__def_8h_a7a1859b60d3dd03eac6a5a9699e34fd2}{D8}});}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aeeb76222aa901b0ad6f0c4971dc73627}{BK}},\mbox{\hyperlink{board__def_8h_a37333874c57695ee0b631fdd9fa9f2d4}{E8}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a8779bc5a380e6bb7f3221dd0e3e7190a}{BB}},\mbox{\hyperlink{board__def_8h_a125f22dd0603c208765fc72a83e92026}{F8}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a45729871ae31fd5175aba7ee50d2c600}{BN}},\mbox{\hyperlink{board__def_8h_ab3e90a51780b4e86be8768c66462a498}{G8}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_ab2aa81e436a9bfcce5ae577714a9d465}{BR}},\mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} h;}
+\DoxyCodeLine{\}()}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{hash_8h_a155cb9da8a4b0754625bf943dca64d51}\label{hash_8h_a155cb9da8a4b0754625bf943dca64d51}} 
+\index{hash.h@{hash.h}!stdStartPawnHash@{stdStartPawnHash}}
+\index{stdStartPawnHash@{stdStartPawnHash}!hash.h@{hash.h}}
+\doxysubsubsection{\texorpdfstring{stdStartPawnHash}{stdStartPawnHash}}
+{\footnotesize\ttfamily constexpr unsigned std\+Start\+Pawn\+Hash\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= [] \{}
+\DoxyCodeLine{    \textcolor{keywordtype}{unsigned} h = 0;}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_aefb8a7275c4f54fd30fd2afa58693dc7}{A2}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_ad0760750f684de4bab1d71889b18ed40}{B2}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_aaf6290ecfc1ecd2707f03c595f087516}{C2}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_a91f4dc48b456d2bc41d7b84925d3d440}{D2}});}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_ad5dc4c9d82ff342cc59a307162e4b719}{E2}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_a7e34282453c7659c611ebc27646b2644}{F2}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_a4eb4443b82f6ab1947c782f3f5bcc83e}{G2}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},\mbox{\hyperlink{board__def_8h_a55354257acd6dfa0f48b269d2550fabd}{H2}});}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_a2ee4914b4d5a616d89a0a4e0cb18242f}{A7}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_a9ad57d3bb9929ce3ecfee3d555a1fb64}{B7}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_a2bf43c7c84c9f96ba9c1cf7ee1ef0b75}{C7}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_aa8800f149179a76d7dc39c8dfd3c54dc}{D7}});}
+\DoxyCodeLine{    \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_aa55d1e79ca065bbf6031f96a5a0a5d66}{E7}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_a7b8cf4976cba09d0cc4b298a27e34b68}{F7}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_a6ba77aaec37ee683e3d9f03498020f45}{G7}});  \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}} (h,\mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},\mbox{\hyperlink{board__def_8h_a1f6319cad5bad8632d21b3b6e1a1da15}{H7}});}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} h;}
+\DoxyCodeLine{\}()}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{hash_8h_a294a572e6bd3ee50b41118a2a17aa0a7}\label{hash_8h_a294a572e6bd3ee50b41118a2a17aa0a7}} 
+\index{hash.h@{hash.h}!UNHASH@{UNHASH}}
+\index{UNHASH@{UNHASH}!hash.h@{hash.h}}
+\doxysubsubsection{\texorpdfstring{UNHASH}{UNHASH}}
+{\footnotesize\ttfamily auto const\& UNHASH = \mbox{\hyperlink{hash_8h_ae4d108278c84bcee4752b434fe5cf37f}{HASH}}\hspace{0.3cm}{\ttfamily [inline]}}
+

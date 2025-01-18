@@ -1,0 +1,117 @@
+\hypertarget{class_search_tournaments}{}\doxysection{Search\+Tournaments Class Reference}
+\label{class_search_tournaments}\index{SearchTournaments@{SearchTournaments}}
+
+
+{\ttfamily \#include $<$searchtournaments.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ \mbox{\hyperlink{class_tourney}{Tourney}} $>$\+::const\+\_\+iterator \mbox{\hyperlink{class_search_tournaments_a6cf04c2d9423e8568851981794641539}{Iter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_search_tournaments_a17f445bdd7ff3598728b716fe341bd62}{Search\+Tournaments}} (const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, const \mbox{\hyperlink{class_h_filter}{HFilter}} \&filter)
+\item 
+\mbox{\hyperlink{class_search_tournaments_a6cf04c2d9423e8568851981794641539}{Iter}} \mbox{\hyperlink{class_search_tournaments_a3cb379e0edcb37a54c1e0d6fd297ed27}{begin}} () const
+\item 
+\mbox{\hyperlink{class_search_tournaments_a6cf04c2d9423e8568851981794641539}{Iter}} \mbox{\hyperlink{class_search_tournaments_abf237c12646ecec4a71261cc73932308}{end}} () const
+\item 
+void \mbox{\hyperlink{class_search_tournaments_a346cf185662736bf3c268c7c3b3fac7f}{filter\+By\+Avg\+Elo}} (const \mbox{\hyperlink{class_str_range}{Str\+Range}} \&range)
+\item 
+void \mbox{\hyperlink{class_search_tournaments_ac5be67dca37e7c32cf1b7c335df426f5}{filter\+By\+NPlayers}} (const \mbox{\hyperlink{class_str_range}{Str\+Range}} \&range)
+\item 
+void \mbox{\hyperlink{class_search_tournaments_a86a85337263cb14697abfecb72587b18}{filter\+By\+NGames}} (const \mbox{\hyperlink{class_str_range}{Str\+Range}} \&range)
+\item 
+void \mbox{\hyperlink{class_search_tournaments_af4dad3d3855aa981976914d63f28bcb2}{filter\+By\+Player}} (const char $\ast$name)
+\item 
+bool \mbox{\hyperlink{class_search_tournaments_a7c9a048593f5515dd9e0192c15539d57}{sort}} (const char $\ast$criteria, size\+\_\+t max)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class Search\+Tournamens -\/ Search tournaments in a database
+
+This class group games in tournaments. Games with the same Event\+Id, Site\+Id and Event\+Date are considered a tournament. A game with Event\+Date == 0 is also considered part of a tournament if its date is greater than or equal to the Event\+Date of the other games. It\textquotesingle{}s also possible to filter the results further by\+:
+\begin{DoxyItemize}
+\item average elo
+\item number of partecipants
+\item number of games
+\item name of a participant Results can be sorted by
+\item event name
+\item event date
+\item site name
+\item number of partecipants
+\item number of games
+\item average elo
+\end{DoxyItemize}
+
+Dependencies\+: Indexes of \mbox{\hyperlink{class_name_base}{Name\+Base}} are used for the names of the event, site and player and they must be valid and unchanged throughout all the life of the Search\+Tournament object. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_search_tournaments_a6cf04c2d9423e8568851981794641539}\label{class_search_tournaments_a6cf04c2d9423e8568851981794641539}} 
+\index{SearchTournaments@{SearchTournaments}!Iter@{Iter}}
+\index{Iter@{Iter}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{Iter}{Iter}}
+{\footnotesize\ttfamily typedef std\+::vector$<$\mbox{\hyperlink{class_tourney}{Tourney}}$>$\+::const\+\_\+iterator \mbox{\hyperlink{class_search_tournaments_a6cf04c2d9423e8568851981794641539}{Search\+Tournaments\+::\+Iter}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_search_tournaments_a17f445bdd7ff3598728b716fe341bd62}\label{class_search_tournaments_a17f445bdd7ff3598728b716fe341bd62}} 
+\index{SearchTournaments@{SearchTournaments}!SearchTournaments@{SearchTournaments}}
+\index{SearchTournaments@{SearchTournaments}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{SearchTournaments()}{SearchTournaments()}}
+{\footnotesize\ttfamily Search\+Tournaments\+::\+Search\+Tournaments (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{const \mbox{\hyperlink{class_h_filter}{HFilter}} \&}]{filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_search_tournaments_a3cb379e0edcb37a54c1e0d6fd297ed27}\label{class_search_tournaments_a3cb379e0edcb37a54c1e0d6fd297ed27}} 
+\index{SearchTournaments@{SearchTournaments}!begin@{begin}}
+\index{begin@{begin}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_search_tournaments_a6cf04c2d9423e8568851981794641539}{Iter}} Search\+Tournaments\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_search_tournaments_abf237c12646ecec4a71261cc73932308}\label{class_search_tournaments_abf237c12646ecec4a71261cc73932308}} 
+\index{SearchTournaments@{SearchTournaments}!end@{end}}
+\index{end@{end}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_search_tournaments_a6cf04c2d9423e8568851981794641539}{Iter}} Search\+Tournaments\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_search_tournaments_a346cf185662736bf3c268c7c3b3fac7f}\label{class_search_tournaments_a346cf185662736bf3c268c7c3b3fac7f}} 
+\index{SearchTournaments@{SearchTournaments}!filterByAvgElo@{filterByAvgElo}}
+\index{filterByAvgElo@{filterByAvgElo}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{filterByAvgElo()}{filterByAvgElo()}}
+{\footnotesize\ttfamily void Search\+Tournaments\+::filter\+By\+Avg\+Elo (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_str_range}{Str\+Range}} \&}]{range }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_search_tournaments_a86a85337263cb14697abfecb72587b18}\label{class_search_tournaments_a86a85337263cb14697abfecb72587b18}} 
+\index{SearchTournaments@{SearchTournaments}!filterByNGames@{filterByNGames}}
+\index{filterByNGames@{filterByNGames}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{filterByNGames()}{filterByNGames()}}
+{\footnotesize\ttfamily void Search\+Tournaments\+::filter\+By\+NGames (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_str_range}{Str\+Range}} \&}]{range }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_search_tournaments_ac5be67dca37e7c32cf1b7c335df426f5}\label{class_search_tournaments_ac5be67dca37e7c32cf1b7c335df426f5}} 
+\index{SearchTournaments@{SearchTournaments}!filterByNPlayers@{filterByNPlayers}}
+\index{filterByNPlayers@{filterByNPlayers}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{filterByNPlayers()}{filterByNPlayers()}}
+{\footnotesize\ttfamily void Search\+Tournaments\+::filter\+By\+NPlayers (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_str_range}{Str\+Range}} \&}]{range }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_search_tournaments_af4dad3d3855aa981976914d63f28bcb2}\label{class_search_tournaments_af4dad3d3855aa981976914d63f28bcb2}} 
+\index{SearchTournaments@{SearchTournaments}!filterByPlayer@{filterByPlayer}}
+\index{filterByPlayer@{filterByPlayer}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{filterByPlayer()}{filterByPlayer()}}
+{\footnotesize\ttfamily void Search\+Tournaments\+::filter\+By\+Player (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_search_tournaments_a7c9a048593f5515dd9e0192c15539d57}\label{class_search_tournaments_a7c9a048593f5515dd9e0192c15539d57}} 
+\index{SearchTournaments@{SearchTournaments}!sort@{sort}}
+\index{sort@{sort}!SearchTournaments@{SearchTournaments}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}}
+{\footnotesize\ttfamily bool Search\+Tournaments\+::sort (\begin{DoxyParamCaption}\item[{const char $\ast$}]{criteria,  }\item[{size\+\_\+t}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{searchtournaments_8h}{searchtournaments.\+h}}\end{DoxyCompactItemize}

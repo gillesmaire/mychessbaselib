@@ -1,0 +1,189 @@
+\hypertarget{class_h_filter}{}\doxysection{HFilter Class Reference}
+\label{class_h_filter}\index{HFilter@{HFilter}}
+
+
+{\ttfamily \#include $<$hfilter.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{class_h_filter_a6e60093a5f7641dd24ee064ac2eac479}{begin}} () const
+\item 
+\mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{class_h_filter_acb6c7ab006bca003b4a4065459a3d99a}{end}} () const
+\item 
+\mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{class_h_filter_a329e5c45329dcfb7e44ad2f4a8892b14}{begin\+Inverted}} () const
+\item 
+\mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{class_h_filter_ae1b9a0a303c03562ded1a480931de9ec}{end\+Inverted}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_h_filter_a511609acda27dbe884493198af63999e}{size\+Inverted}} () const
+\item 
+bool \mbox{\hyperlink{class_h_filter_a32f9f1c0fd08b9aba3f3fc9eed28d4cd}{operator==}} (const \mbox{\hyperlink{class_filter}{Filter}} $\ast$b) const
+\item 
+bool \mbox{\hyperlink{class_h_filter_a6541df6b9c0001c9efc547fa8003290c}{operator!=}} (const \mbox{\hyperlink{class_filter}{Filter}} $\ast$b) const
+\item 
+\mbox{\hyperlink{class_h_filter}{HFilter}} $\ast$ \mbox{\hyperlink{class_h_filter_a24a62036d0401b1a104d64f774fe6213}{operator-\/$>$}} ()
+\item 
+const \mbox{\hyperlink{class_h_filter}{HFilter}} $\ast$ \mbox{\hyperlink{class_h_filter_aa8863188f14b23e2bb507b5a87e8b577}{operator-\/$>$}} () const
+\item 
+\mbox{\hyperlink{class_h_filter}{HFilter}} \& \mbox{\hyperlink{class_h_filter_a36ab47309e152d59bb342a1ae80a6344}{operator$\ast$}} ()
+\item 
+const \mbox{\hyperlink{class_h_filter}{HFilter}} \& \mbox{\hyperlink{class_h_filter_a5e92747f38278bfd71f5b37bd8e603aa}{operator$\ast$}} () const
+\item 
+\mbox{\hyperlink{class_h_filter_a25dcee9266fff922d5bdc760397c670a}{HFilter}} (\mbox{\hyperlink{class_filter}{Filter}} $\ast$main, const \mbox{\hyperlink{class_filter}{Filter}} $\ast$mask=0)
+\item 
+void \mbox{\hyperlink{class_h_filter_a8d5cf3b3c7fa0059a4ede6b888a58c5f}{clear}} ()
+\item 
+void \mbox{\hyperlink{class_h_filter_ab2c397236407eb8ad7c1adc0807412f0}{erase}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} gnum)
+\item 
+void \mbox{\hyperlink{class_h_filter_a6d4702c9477e1f97fd15cbc9e5f29ac9}{insert\+\_\+or\+\_\+assign}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} gnum, uint8\+\_\+t ply)
+\item 
+\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} \mbox{\hyperlink{class_h_filter_a4f50c85fd0e23c8677b987b69e5ab0d9}{size}} () const
+\item 
+size\+\_\+t \mbox{\hyperlink{class_h_filter_aaaffbd845650c61c6a74e4f666aeefb9}{main\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Returns the number of games included in the main filter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_h_filter_ac5ddf5b13cfd3560f745dcb1fde85aad}{include\+All}} ()
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_h_filter_a4fff7e0ea7457e2f398227f838534794}{get}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} gnum) const
+\item 
+void \mbox{\hyperlink{class_h_filter_ad5e4b6e2dc280abaecc6612e91c10236}{set}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} gnum, \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_h_filter_a25dcee9266fff922d5bdc760397c670a}\label{class_h_filter_a25dcee9266fff922d5bdc760397c670a}} 
+\index{HFilter@{HFilter}!HFilter@{HFilter}}
+\index{HFilter@{HFilter}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{HFilter()}{HFilter()}}
+{\footnotesize\ttfamily HFilter\+::\+HFilter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_filter}{Filter}} $\ast$}]{main,  }\item[{const \mbox{\hyperlink{class_filter}{Filter}} $\ast$}]{mask = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_h_filter_a6e60093a5f7641dd24ee064ac2eac479}\label{class_h_filter_a6e60093a5f7641dd24ee064ac2eac479}} 
+\index{HFilter@{HFilter}!begin@{begin}}
+\index{begin@{begin}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} HFilter\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a329e5c45329dcfb7e44ad2f4a8892b14}\label{class_h_filter_a329e5c45329dcfb7e44ad2f4a8892b14}} 
+\index{HFilter@{HFilter}!beginInverted@{beginInverted}}
+\index{beginInverted@{beginInverted}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{beginInverted()}{beginInverted()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} HFilter\+::begin\+Inverted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a8d5cf3b3c7fa0059a4ede6b888a58c5f}\label{class_h_filter_a8d5cf3b3c7fa0059a4ede6b888a58c5f}} 
+\index{HFilter@{HFilter}!clear@{clear}}
+\index{clear@{clear}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void HFilter\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_acb6c7ab006bca003b4a4065459a3d99a}\label{class_h_filter_acb6c7ab006bca003b4a4065459a3d99a}} 
+\index{HFilter@{HFilter}!end@{end}}
+\index{end@{end}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} HFilter\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_ae1b9a0a303c03562ded1a480931de9ec}\label{class_h_filter_ae1b9a0a303c03562ded1a480931de9ec}} 
+\index{HFilter@{HFilter}!endInverted@{endInverted}}
+\index{endInverted@{endInverted}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{endInverted()}{endInverted()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_h_filter_1_1const__iterator}{const\+\_\+iterator}} HFilter\+::end\+Inverted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_ab2c397236407eb8ad7c1adc0807412f0}\label{class_h_filter_ab2c397236407eb8ad7c1adc0807412f0}} 
+\index{HFilter@{HFilter}!erase@{erase}}
+\index{erase@{erase}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily void HFilter\+::erase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{gnum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a4fff7e0ea7457e2f398227f838534794}\label{class_h_filter_a4fff7e0ea7457e2f398227f838534794}} 
+\index{HFilter@{HFilter}!get@{get}}
+\index{get@{get}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} HFilter\+::get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{gnum }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_ac5ddf5b13cfd3560f745dcb1fde85aad}\label{class_h_filter_ac5ddf5b13cfd3560f745dcb1fde85aad}} 
+\index{HFilter@{HFilter}!includeAll@{includeAll}}
+\index{includeAll@{includeAll}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{includeAll()}{includeAll()}}
+{\footnotesize\ttfamily void HFilter\+::include\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a6d4702c9477e1f97fd15cbc9e5f29ac9}\label{class_h_filter_a6d4702c9477e1f97fd15cbc9e5f29ac9}} 
+\index{HFilter@{HFilter}!insert\_or\_assign@{insert\_or\_assign}}
+\index{insert\_or\_assign@{insert\_or\_assign}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{insert\_or\_assign()}{insert\_or\_assign()}}
+{\footnotesize\ttfamily void HFilter\+::insert\+\_\+or\+\_\+assign (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{gnum,  }\item[{uint8\+\_\+t}]{ply }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_aaaffbd845650c61c6a74e4f666aeefb9}\label{class_h_filter_aaaffbd845650c61c6a74e4f666aeefb9}} 
+\index{HFilter@{HFilter}!mainSize@{mainSize}}
+\index{mainSize@{mainSize}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{mainSize()}{mainSize()}}
+{\footnotesize\ttfamily size\+\_\+t HFilter\+::main\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the number of games included in the main filter. 
+
+\mbox{\Hypertarget{class_h_filter_a6541df6b9c0001c9efc547fa8003290c}\label{class_h_filter_a6541df6b9c0001c9efc547fa8003290c}} 
+\index{HFilter@{HFilter}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool HFilter\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_filter}{Filter}} $\ast$}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a36ab47309e152d59bb342a1ae80a6344}\label{class_h_filter_a36ab47309e152d59bb342a1ae80a6344}} 
+\index{HFilter@{HFilter}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_h_filter}{HFilter}} \& HFilter\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a5e92747f38278bfd71f5b37bd8e603aa}\label{class_h_filter_a5e92747f38278bfd71f5b37bd8e603aa}} 
+\index{HFilter@{HFilter}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_h_filter}{HFilter}} \& HFilter\+::operator$\ast$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a24a62036d0401b1a104d64f774fe6213}\label{class_h_filter_a24a62036d0401b1a104d64f774fe6213}} 
+\index{HFilter@{HFilter}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_h_filter}{HFilter}} $\ast$ HFilter\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_aa8863188f14b23e2bb507b5a87e8b577}\label{class_h_filter_aa8863188f14b23e2bb507b5a87e8b577}} 
+\index{HFilter@{HFilter}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_h_filter}{HFilter}} $\ast$ HFilter\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a32f9f1c0fd08b9aba3f3fc9eed28d4cd}\label{class_h_filter_a32f9f1c0fd08b9aba3f3fc9eed28d4cd}} 
+\index{HFilter@{HFilter}!operator==@{operator==}}
+\index{operator==@{operator==}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool HFilter\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_filter}{Filter}} $\ast$}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_ad5e4b6e2dc280abaecc6612e91c10236}\label{class_h_filter_ad5e4b6e2dc280abaecc6612e91c10236}} 
+\index{HFilter@{HFilter}!set@{set}}
+\index{set@{set}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void HFilter\+::set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{gnum,  }\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a4f50c85fd0e23c8677b987b69e5ab0d9}\label{class_h_filter_a4f50c85fd0e23c8677b987b69e5ab0d9}} 
+\index{HFilter@{HFilter}!size@{size}}
+\index{size@{size}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} HFilter\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_h_filter_a511609acda27dbe884493198af63999e}\label{class_h_filter_a511609acda27dbe884493198af63999e}} 
+\index{HFilter@{HFilter}!sizeInverted@{sizeInverted}}
+\index{sizeInverted@{sizeInverted}!HFilter@{HFilter}}
+\doxysubsubsection{\texorpdfstring{sizeInverted()}{sizeInverted()}}
+{\footnotesize\ttfamily size\+\_\+t HFilter\+::size\+Inverted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hfilter_8h}{hfilter.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,60 @@
+\hypertarget{movegen_8h}{}\doxysection{movegen.\+h File Reference}
+\label{movegen_8h}\index{movegen.h@{movegen.h}}
+{\ttfamily \#include $<$utility$>$}\newline
+Include dependency graph for movegen.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{movegen_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{movegen_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacemovegen}{movegen}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacemovegen_a51c3bd822af7e3536a549a3a0ab03c24}{movegen\+::valid\+\_\+king}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To)
+\item 
+bool \mbox{\hyperlink{namespacemovegen_abd587e0073db8b862ea89d3e310d9443}{movegen\+::valid\+\_\+knight}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To)
+\item 
+int \mbox{\hyperlink{namespacemovegen_af7beb8bac7ba4a8b6b5bf57473b52647}{movegen\+::valid\+\_\+slider}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type)
+\item 
+bool \mbox{\hyperlink{namespacemovegen_a905091dbd7646571a1f52e6fe0dd853a}{movegen\+::attack\+\_\+pawn}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} piece\+Col)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_a73a7570f460acad0aec543423626cbb2}{movegen\+::attack\+\_\+slider}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_aba25d288da9b9d4a5871d159c74403fe}{movegen\+::attack}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Col, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_a4dd2e169ba7b2bd3f2cb0a5540954de6}{movegen\+::pseudo\+\_\+advance\+\_\+pawn}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} piece\+Col, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_a6fe28fb54e64dea8b1129e5a264fa3ce}{movegen\+::pseudo}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} piece\+Col, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\std\+::pair$<$ \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} $>$ \mbox{\hyperlink{namespacemovegen_a0fe1902db984e0b659321558265c50c2}{movegen\+::opens\+\_\+ray}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+Ray, TFunc is\+Occupied)
+\item 
+bool \mbox{\hyperlink{namespacemovegen_afea29a60c3447c14fde18156960c2943}{movegen\+::blocks\+\_\+ray}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+Block)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{movegen\+::\+NSQUARES}} = 8
+\item 
+constexpr int \mbox{\hyperlink{namespacemovegen_a7536cd1e35e44f0c04d224394630a110}{movegen\+::k\+WPHome\+Rank}} = 1
+\item 
+constexpr int \mbox{\hyperlink{namespacemovegen_a0ae4c04e0648594a8b5e20ff3976de42}{movegen\+::k\+BPHome\+Rank}} = NSQUARES -\/ 2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements functions for the validation of chess moves. 

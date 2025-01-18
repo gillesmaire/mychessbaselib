@@ -1,0 +1,210 @@
+\hypertarget{movetree_8h_source}{}\doxysection{movetree.\+h}
+\mbox{\hyperlink{movetree_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2017  Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{ * it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{ * the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{ * GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{ * along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{ *}}
+\DoxyCodeLine{18 \textcolor{comment}{ */}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef SCID\_MOVETREE\_H}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define SCID\_MOVETREE\_H}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{movelist_8h}{movelist.h}}"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{keyword}{enum} \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481c}{markerT}} : \textcolor{keywordtype}{byte} \{ \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481ca8c5acd2316f1ec8bda9bfd1ae028142a}{NO\_MARKER}} = 0, \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481caba54ad82f2ffb984f13e8a05b977d7be}{START\_MARKER}} = 1, \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481cad4dbe2af87d97274d85513bf8a2a9c10}{END\_MARKER}} = 2 \};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{// MAX\_NAGS is the maximum number of NAGs (annotation symbols) a single}}
+\DoxyCodeLine{34 \textcolor{comment}{// move can have:}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define MAX\_NAGS 8}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// This class creates a tree graph of moves representing a game.}}
+\DoxyCodeLine{38 \textcolor{comment}{//}}
+\DoxyCodeLine{39 \textcolor{comment}{// For each node there are two edges: *next* (to the next move) and *varChild*}}
+\DoxyCodeLine{40 \textcolor{comment}{// (to an alternative line). For example the graph for the move sequence}}
+\DoxyCodeLine{41 \textcolor{comment}{// "{}1.d4 (1.e4 e5 ( 1...c5)) (1.c4) 1...d5 2.c4"{} is:}}
+\DoxyCodeLine{42 \textcolor{comment}{// clang-\/format off}}
+\DoxyCodeLine{43 \textcolor{comment}{// (START\_MARKER, pgn\_1) -\/-\/next-\/> (d4, pgn\_2) -\/-\/next-\/> (d5, pgn\_10) -\/-\/next-\/> (c4, pgn\_11) -\/-\/next-\/> (END\_MARKER, none)}}
+\DoxyCodeLine{44 \textcolor{comment}{//                                      |}}
+\DoxyCodeLine{45 \textcolor{comment}{//                                      |-\/child-\/> (START\_MARKER, pgn\_3) -\/-\/next-\/> (e4, pgn\_4) -\/-\/next-\/> (e5, pgn\_5) -\/-\/next-\/> (END\_MARKER, none)}}
+\DoxyCodeLine{46 \textcolor{comment}{//                                                           |                                             |}}
+\DoxyCodeLine{47 \textcolor{comment}{//                                                           |                                             |-\/child-\/> (START\_MARKER, pgn\_6) -\/-\/next-\/> (c5, pgn\_7) -\/-\/next-\/> (END\_MARKER, none)}}
+\DoxyCodeLine{48 \textcolor{comment}{//                                                           |}}
+\DoxyCodeLine{49 \textcolor{comment}{//                                                           |-\/child-\/> (START\_MARKER, pgn\_8) -\/-\/next-\/> (c4, pgn\_9) -\/-\/next-\/> (END\_MARKER, none)}}
+\DoxyCodeLine{50 \textcolor{comment}{// clang-\/format on}}
+\DoxyCodeLine{51 \textcolor{comment}{// The graph illustrates also that:}}
+\DoxyCodeLine{52 \textcolor{comment}{// -\/ each variation starts and ends with two nodes containing a START\_MARKER}}
+\DoxyCodeLine{53 \textcolor{comment}{//   and a END\_MARKER instead of a move. This implies that *next* never points}}
+\DoxyCodeLine{54 \textcolor{comment}{//   to a START\_MARKER node and *varChild* always point to a START\_MARKER.}}
+\DoxyCodeLine{55 \textcolor{comment}{// -\/ multiple variations are stored as a list of children. In the example there}}
+\DoxyCodeLine{56 \textcolor{comment}{//   are two alternatives to "{}1.d4"{}: "{}1.e4"{} is stored as direct child of "{}1.d4"{},}}
+\DoxyCodeLine{57 \textcolor{comment}{//   instead "{}1.c4"{} is stored as the child of the START\_MARKER of "{}1.e4"{}.}}
+\DoxyCodeLine{58 \textcolor{comment}{// -\/ when represented as a PGN string, the moves creates a sequence that can be}}
+\DoxyCodeLine{59 \textcolor{comment}{//   counted (each new variation is counted as an additional move). This is used}}
+\DoxyCodeLine{60 \textcolor{comment}{//   to specify a location in the game.}}
+\DoxyCodeLine{61 \textcolor{comment}{//}}
+\DoxyCodeLine{62 \textcolor{keyword}{struct }\mbox{\hyperlink{structmove_t}{moveT}} \{}
+\DoxyCodeLine{63     \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}};}
+\DoxyCodeLine{64     \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}{next}};}
+\DoxyCodeLine{65     \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}};}
+\DoxyCodeLine{66     \mbox{\hyperlink{structsimple_move_t}{simpleMoveT}} \mbox{\hyperlink{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}{moveData}}; \textcolor{comment}{// piece moving, target square etc}}
+\DoxyCodeLine{67     \textcolor{keywordtype}{char} \mbox{\hyperlink{structmove_t_a751bad59bbaf4454b86c24b8ab215de4}{san}}[10];   \textcolor{comment}{// SAN representation of move}}
+\DoxyCodeLine{68     \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481c}{markerT}} \mbox{\hyperlink{structmove_t_a2cb3e95a41f2d8bfad53169431ad33c9}{marker}}; \textcolor{comment}{// can be NO\_MARKER, START\_MARKER or END\_MARKER}}
+\DoxyCodeLine{69     \textcolor{keywordtype}{byte} \mbox{\hyperlink{structmove_t_a3b1d71470188bb30eb064bfab6011cab}{numVariations}};}
+\DoxyCodeLine{70     \textcolor{keywordtype}{byte} \mbox{\hyperlink{structmove_t_a28d943e80ef544c31f93bb34f585b2b2}{nagCount}};}
+\DoxyCodeLine{71     \textcolor{keywordtype}{byte} \mbox{\hyperlink{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}{nags}}[\mbox{\hyperlink{movetree_8h_a2ab6038df3b02e956599bf26ce306f04}{MAX\_NAGS}}];}
+\DoxyCodeLine{72     std::string \mbox{\hyperlink{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}{comment}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} \mbox{\hyperlink{structmove_t_abcd9a3df898e3ec7575551e056a4304a}{clear}}() \{}
+\DoxyCodeLine{75         \mbox{\hyperlink{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}{moveData}} = \mbox{\hyperlink{structsimple_move_t}{simpleMoveT}}();}
+\DoxyCodeLine{76         \mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{77         \mbox{\hyperlink{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}{next}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{78         \mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{79         std::fill\_n(\mbox{\hyperlink{structmove_t_a751bad59bbaf4454b86c24b8ab215de4}{san}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmove_t_a751bad59bbaf4454b86c24b8ab215de4}{san}}), \textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{80         \mbox{\hyperlink{structmove_t_a2cb3e95a41f2d8bfad53169431ad33c9}{marker}} = \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481ca8c5acd2316f1ec8bda9bfd1ae028142a}{NO\_MARKER}};}
+\DoxyCodeLine{81         \mbox{\hyperlink{structmove_t_a3b1d71470188bb30eb064bfab6011cab}{numVariations}} = 0;}
+\DoxyCodeLine{82         \mbox{\hyperlink{structmove_t_a28d943e80ef544c31f93bb34f585b2b2}{nagCount}} = 0;}
+\DoxyCodeLine{83         std::fill\_n(\mbox{\hyperlink{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}{nags}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}{nags}}), 0);}
+\DoxyCodeLine{84         \mbox{\hyperlink{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}{comment}}.clear();}
+\DoxyCodeLine{85     \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{structmove_t_a2cb3e95a41f2d8bfad53169431ad33c9}{marker}} == \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481caba54ad82f2ffb984f13e8a05b977d7be}{START\_MARKER}}; \}}
+\DoxyCodeLine{88     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}{endMarker}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{structmove_t_a2cb3e95a41f2d8bfad53169431ad33c9}{marker}} == \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481cad4dbe2af87d97274d85513bf8a2a9c10}{END\_MARKER}}; \}}
+\DoxyCodeLine{89     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structmove_t_ac3591be4d575b8fa9ee2e0e4e9ac5caa}{isNull}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}{moveData}}.\mbox{\hyperlink{structsimple_move_t_a0ee523dd0010dce111c02f95f8f79624}{isNullMove}}(); \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{keyword}{const} \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_a512c4d371415e459fcb0bbe03b000a75}{Next}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}{next}}; \}}
+\DoxyCodeLine{92     \mbox{\hyperlink{structsimple_move_t}{simpleMoveT}} \textcolor{keyword}{const}\& \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}{moveData}}; \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TNew>}
+\DoxyCodeLine{95     \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_ac343d2eb8c3412ad2f29fdcc69f14260}{cloneLine}}(\mbox{\hyperlink{structmove_t}{moveT}}* parent, TNew newMove)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{96         \textcolor{keyword}{const} \mbox{\hyperlink{structmove_t}{moveT}}* orig = \textcolor{keyword}{this};}
+\DoxyCodeLine{97         \mbox{\hyperlink{structmove_t}{moveT}}* top = newMove();}
+\DoxyCodeLine{98         *top = *orig;}
+\DoxyCodeLine{99         top-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}} = parent;}
+\DoxyCodeLine{100         parent = top;}
+\DoxyCodeLine{101         \textcolor{keywordflow}{if} (orig-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}}) \{}
+\DoxyCodeLine{102             \textcolor{keyword}{auto} root = parent-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}() ? parent-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}} : parent;}
+\DoxyCodeLine{103             parent-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}} = orig-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}}-\/>\mbox{\hyperlink{structmove_t_ac343d2eb8c3412ad2f29fdcc69f14260}{cloneLine}}(root, newMove);}
+\DoxyCodeLine{104         \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106         \textcolor{keywordflow}{while} (orig-\/>\mbox{\hyperlink{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}{next}}) \{}
+\DoxyCodeLine{107             orig = orig-\/>\mbox{\hyperlink{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}{next}};}
+\DoxyCodeLine{108             \textcolor{keyword}{auto} copy = newMove();}
+\DoxyCodeLine{109             *copy = *orig;}
+\DoxyCodeLine{110             parent-\/>\mbox{\hyperlink{structmove_t_ad74b2158a1a41f42731fe6ae4b17208b}{setNext}}(copy);}
+\DoxyCodeLine{111             parent = copy;}
+\DoxyCodeLine{112             \textcolor{keywordflow}{if} (orig-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}}) \{}
+\DoxyCodeLine{113                 \textcolor{keyword}{auto} root = parent-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}() ? parent-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}} : parent;}
+\DoxyCodeLine{114                 parent-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}} = orig-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}}-\/>\mbox{\hyperlink{structmove_t_ac343d2eb8c3412ad2f29fdcc69f14260}{cloneLine}}(root, newMove);}
+\DoxyCodeLine{115             \}}
+\DoxyCodeLine{116         \}}
+\DoxyCodeLine{117         \textcolor{keywordflow}{return} top;}
+\DoxyCodeLine{118     \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \textcolor{keywordtype}{void} \mbox{\hyperlink{structmove_t_a05de01b6f6b37cd9373b0360b197bd14}{swapLine}}(\mbox{\hyperlink{structmove_t}{moveT}}\& \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}) \{}
+\DoxyCodeLine{121         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}} \&\& \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}.prev);}
+\DoxyCodeLine{122         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(!\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}() \&\& !\mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}.startMarker());}
+\DoxyCodeLine{123         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(!\mbox{\hyperlink{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}{endMarker}}() \&\& !\mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}.endMarker());}
+\DoxyCodeLine{124         \textcolor{comment}{// Swap lines}}
+\DoxyCodeLine{125         \textcolor{keyword}{auto} swap\_tmp = \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}.prev;}
+\DoxyCodeLine{126         \mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_ad74b2158a1a41f42731fe6ae4b17208b}{setNext}}(\&\mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}});}
+\DoxyCodeLine{127         swap\_tmp-\/>setNext(\textcolor{keyword}{this});}
+\DoxyCodeLine{128         \textcolor{comment}{// Swap children}}
+\DoxyCodeLine{129         std::swap(\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}}, \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}.varChild);}
+\DoxyCodeLine{130         std::swap(\mbox{\hyperlink{structmove_t_a3b1d71470188bb30eb064bfab6011cab}{numVariations}}, \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}.numVariations);}
+\DoxyCodeLine{131         \textcolor{keyword}{auto} updateParentLink = [](\mbox{\hyperlink{structmove_t}{moveT}}\& parent) \{}
+\DoxyCodeLine{132             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} tmp = parent.varChild; tmp; tmp = tmp-\/>varChild) \{}
+\DoxyCodeLine{133                 tmp-\/>prev = \&parent;}
+\DoxyCodeLine{134             \}}
+\DoxyCodeLine{135         \};}
+\DoxyCodeLine{136         updateParentLink(*\textcolor{keyword}{this});}
+\DoxyCodeLine{137         updateParentLink(\mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}});}
+\DoxyCodeLine{138     \}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140     \textcolor{keyword}{const} \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_a9179ac049dc54edc3855e1f862f309fb}{getPrevMove}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{141         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}() \&\& !\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}())}
+\DoxyCodeLine{142             \textcolor{keywordflow}{return} \mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}};}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144         \textcolor{keyword}{auto} root = \mbox{\hyperlink{structmove_t_a747d4c95c57329834fbbc9964dbdc3af}{getParent}}().first;}
+\DoxyCodeLine{145         \textcolor{keywordflow}{return} root ? root-\/>getPrevMove() : \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{146     \}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     std::pair<const moveT*, const moveT*> \mbox{\hyperlink{structmove_t_a747d4c95c57329834fbbc9964dbdc3af}{getParent}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{149         \textcolor{keyword}{const} \mbox{\hyperlink{structmove_t}{moveT}}* varStart = \textcolor{keyword}{this};}
+\DoxyCodeLine{150         \textcolor{keywordflow}{while} (!varStart-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}()) \{}
+\DoxyCodeLine{151             varStart = varStart-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}};}
+\DoxyCodeLine{152         \}}
+\DoxyCodeLine{153         \textcolor{keywordflow}{return} \{varStart-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}, varStart\};}
+\DoxyCodeLine{154     \}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     std::pair<moveT*, moveT*> \mbox{\hyperlink{structmove_t_ae8f827feca53900c3b74800938b96db9}{getParent}}() \{}
+\DoxyCodeLine{157         \mbox{\hyperlink{structmove_t}{moveT}}* varStart = \textcolor{keyword}{this};}
+\DoxyCodeLine{158         \textcolor{keywordflow}{while} (!varStart-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}()) \{}
+\DoxyCodeLine{159             varStart = varStart-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}};}
+\DoxyCodeLine{160         \}}
+\DoxyCodeLine{161         \textcolor{keywordflow}{return} \{varStart-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}, varStart\};}
+\DoxyCodeLine{162     \}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_ab93ec9906b52d94d97c426845e7afc2b}{nextMoveInPGN}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{165         \textcolor{keywordflow}{if} (\mbox{\hyperlink{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}{endMarker}}()) \{}
+\DoxyCodeLine{166             \textcolor{keyword}{auto} parent = \mbox{\hyperlink{structmove_t_a747d4c95c57329834fbbc9964dbdc3af}{getParent}}();}
+\DoxyCodeLine{167             \textcolor{keyword}{auto} nextVar = parent.second-\/>varChild;}
+\DoxyCodeLine{168             \textcolor{keywordflow}{return} (nextVar) ? nextVar}
+\DoxyCodeLine{169                              : (parent.first) ? parent.first-\/>next : \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{170         \}}
+\DoxyCodeLine{171         \textcolor{keywordflow}{return} (\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}() || !\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}}) ? \mbox{\hyperlink{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}{next}} : \mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}};}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174     \textcolor{keywordtype}{void} \mbox{\hyperlink{structmove_t_ad74b2158a1a41f42731fe6ae4b17208b}{setNext}}(\mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}) \{}
+\DoxyCodeLine{175         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}});}
+\DoxyCodeLine{176         this-\/>next = \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}};}
+\DoxyCodeLine{177         \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}}-\/>prev = \textcolor{keyword}{this};}
+\DoxyCodeLine{178     \}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     \textcolor{keywordtype}{void} \mbox{\hyperlink{structmove_t_ad8207ff8b694ba8bd09d7fc9830a0d4b}{insertChild}}(\mbox{\hyperlink{structmove_t}{moveT}}* varStart, \textcolor{keywordtype}{int} pos) \{}
+\DoxyCodeLine{181         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(!this-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}() \&\& !this-\/>\mbox{\hyperlink{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}{endMarker}}());}
+\DoxyCodeLine{182         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\textcolor{keyword}{this} != varStart);}
+\DoxyCodeLine{183         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(varStart-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}());}
+\DoxyCodeLine{184         \textcolor{keyword}{auto} parent = \textcolor{keyword}{this};}
+\DoxyCodeLine{185         \textcolor{keywordflow}{for} (; parent-\/>varChild \&\& pos != 0; -\/-\/pos) \{}
+\DoxyCodeLine{186             parent = parent-\/>varChild;}
+\DoxyCodeLine{187         \}}
+\DoxyCodeLine{188         varStart-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}} = varStart;}
+\DoxyCodeLine{189         std::swap(parent-\/>varChild, varStart-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}});}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191         varStart-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}} = \textcolor{keyword}{this};}
+\DoxyCodeLine{192         ++\mbox{\hyperlink{structmove_t_a3b1d71470188bb30eb064bfab6011cab}{numVariations}};}
+\DoxyCodeLine{193     \}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \textcolor{keywordtype}{void} \mbox{\hyperlink{structmove_t_a72ec867fcd1e1ca5ccdf49bdff1bc856}{appendChild}}(\mbox{\hyperlink{structmove_t}{moveT}}* varStart) \{ \mbox{\hyperlink{structmove_t_ad8207ff8b694ba8bd09d7fc9830a0d4b}{insertChild}}(varStart, -\/1); \}}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197     \textcolor{keywordtype}{void} \mbox{\hyperlink{structmove_t_ac6b27c0d0167e6571be28aaedae6ab63}{detachChild}}(\mbox{\hyperlink{structmove_t}{moveT}}* varStart) \{}
+\DoxyCodeLine{198         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\textcolor{keyword}{this} != varStart);}
+\DoxyCodeLine{199         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(varStart-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}());}
+\DoxyCodeLine{200         \textcolor{keyword}{auto} parent = \textcolor{keyword}{this};}
+\DoxyCodeLine{201         \textcolor{keywordflow}{while} (parent-\/>varChild != varStart) \{}
+\DoxyCodeLine{202             parent = parent-\/>varChild;}
+\DoxyCodeLine{203         \}}
+\DoxyCodeLine{204         std::swap(parent-\/>varChild, varStart-\/>\mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{varChild}});}
+\DoxyCodeLine{205         -\/-\/\mbox{\hyperlink{structmove_t_a3b1d71470188bb30eb064bfab6011cab}{numVariations}};}
+\DoxyCodeLine{206     \};}
+\DoxyCodeLine{207 \};}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SCID\_MOVETREE\_H}}
+
+\end{DoxyCode}

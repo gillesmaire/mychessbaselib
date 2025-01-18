@@ -1,0 +1,1339 @@
+\hypertarget{class_chess_base}{}\doxysection{Chess\+Base Class Reference}
+\label{class_chess_base}\index{ChessBase@{ChessBase}}
+
+
+{\ttfamily \#include $<$chessbase.\+h$>$}
+
+
+
+Inheritance diagram for Chess\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{class_chess_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chess\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{class_chess_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639}{Command\+Flag}} \{ \newline
+\mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639ad7593a8ab2cf9272c83bb091326e0468}{nothing}}
+, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae45fe3231fe841ce6544ad655dc43ece}{get}}
+, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639afb2d6089c5615cb154f79681e2c88bb4}{set}}
+, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639aa6bf6f2006072cdd6c3e1630c9e7015c}{unset}}
+, \newline
+\mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae5ee96c41b79029d0934f6f7ad5d3220}{invert}}
+ \}
+\item 
+enum \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}{delete\+StrategyT}} \{ \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0ab06f851279dd03a946d09a4b81fff93f}{DELETE\+\_\+\+SHORTER}}
+, \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a4c2c6b120b0ee583bd6dc57c5c602da8}{DELETE\+\_\+\+OLDER}}
+, \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a794be07b8ee46657414a891f9009fece}{DELETE\+\_\+\+NEWER}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_chess_base_a1d8b803ef64ff0b81b136f16a7fd0fe0}{Chess\+Base}} (QWidget $\ast$widget, QProgress\+Bar $\ast$pg=nullptr)
+\item 
+\mbox{\hyperlink{class_chess_base_a16bf62794669a60c733bb7034a1ac80e}{$\sim$\+Chess\+Base}} ()
+\item 
+bool \mbox{\hyperlink{class_chess_base_a91bee29c500f0ff1663e3b7770b11c6c}{base\+In\+Use}} (int number)
+\begin{DoxyCompactList}\small\item\em base\+In\+Use \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_chess_base_a3eb5bbd81aa06d14276306a272845c58}{Base\+Switch}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em Marked Change the current database and the current base. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_chess_base_ac70e22e7b9d13cda7e95b4514b554b76}{check\+Duplicate}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, const \mbox{\hyperlink{class_index_entry}{Index\+Entry}} $\ast$ie1, const \mbox{\hyperlink{class_index_entry}{Index\+Entry}} $\ast$ie2, dup\+CriteriaT $\ast$cr)
+\begin{DoxyCompactList}\small\item\em check\+Duplicate used by dupplicate check if two record games are dupplicated The event, Site, Round, Year, Month, Day, Result, Eco\+Code and moves are tested if Flag delete the record the result is false. This method is used by duplicates method and isnot generally usefull \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a0e40456230c816dc1b5da60ba7df753b}{duplicates}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, bool players=false, bool colors=true, bool event=true, bool site=true, bool round=true, bool year=true, bool month=true, bool day=false, bool result=false, bool eco=false, bool moves=true, bool skip\+Short\+Games=false, bool keep\+All\+Commented\+Games=true, bool keep\+All\+Games\+With\+Vars=true, bool set\+Filter\+To\+Dups=false, bool only\+Filter\+Games=false, \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}{delete\+StrategyT}} Delete=\mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0ab06f851279dd03a946d09a4b81fff93f}{DELETE\+\_\+\+SHORTER}})
+\begin{DoxyCompactList}\small\item\em duplicates \+: Finds duplicate games and marks them deleted. A pair of games are considered duplicates if the Event, Site, White, Black, and Round values all match identically, and the Date matches to within 2 days (that is, the same year, the same month, and the days of month differ by 2 at most). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a4d52046fdacb9f26a87ff2bfde318812}{close}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em close the database given by the pointer \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{class_chess_base_a22c87db1c6d74e709096462a1ef15483}{Codec\+Enum2\+QString}} (\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}} codec)
+\begin{DoxyCompactList}\small\item\em Codec\+Enum2\+Str convert Enum PGN SCID5 SCID4 MEM to QString equivalent. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a317e521328d8361ee6de293d8a7b73f6}{compact}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em compact the database ie \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a86b60ee74ebb8ac2b9cf3949850222fa}{copy\+Games}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$sourcebase, QString Filter\+Name, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} targed\+Base\+Id)
+\begin{DoxyCompactList}\small\item\em copy\+Games copy \mbox{\hyperlink{class_game}{Game}} from data\+Base to another one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a1871574701a827362bff4c6bd00b69c1}{copy\+Games}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$sourcebase, int num\+Game, int targed\+Base\+Id)
+\begin{DoxyCompactList}\small\item\em copy\+Games copy \mbox{\hyperlink{class_game}{Game}} from data\+Base to another one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_af82da4995e2ed8e04eaaffeaf805310f}{create}} (QString name, \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}} codec, int \&number\+Base)
+\begin{DoxyCompactList}\small\item\em create a new database (is the convenience method for open with flag create) the Database created is empty. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{class_chess_base_a5f4d8bc815b3510948b415d5f720e6dd}{Error\+Code}} (\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} code)
+\begin{DoxyCompactList}\small\item\em Error\+Code get a QString from errorT code. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_chess_base_aa90e62990e2a8698698e4aed98b7cac8}{export\+Base}} (const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString filter, bool append\+To\+File, \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{game\+FormatT}} output\+Format, QString export\+File\+Name, QString start\+Text=QString(), QString end\+Text=QString(), bool comments=false, bool variation=false, bool spaces=false, bool symbols=false, bool indent\+Comments=false, bool indent\+Variation=false, bool column=false, bool no\+Mark\+Codes=false, bool convert\+Null\+Moves=false)
+\begin{DoxyCompactList}\small\item\em export\+Base \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_base_a1f7ecab82a671f1f15d74e94c4ad85dc}{export\+Game}} (\mbox{\hyperlink{class_game}{Game}} $\ast$g, FILE $\ast$export\+File, \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{game\+FormatT}} format, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} pgn\+Style)
+\item 
+QString \mbox{\hyperlink{class_chess_base_afc523c524d3e8d8c5d9107cc3ac1a8cd}{filename}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em filename return the filename of database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a3d5c037247160e7694e4258198808290}{game\+Command\+Flag}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString filter, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639}{Command\+Flag}} command, char flagtype)
+\begin{DoxyCompactList}\small\item\em game\+Command\+Flag \+: allows same operation like set\+Game\+Flag, get\+Game\+Flag, unset\+Game\+Flag and invert\+Game\+Flag but allow to apply on gamenum but also on filtername or all \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a487548c3b441749c3dfd7e213290703c}{gameslist}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} start, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} count, QString filt, QString sort, QList$<$ QVariant $>$ \&res)
+\begin{DoxyCompactList}\small\item\em gameslist \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_adf90f5382d1ef242a35875d1ebf87f46}{gamelocation}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString filt, QString sort\+Crit, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gnumber, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \&result)
+\begin{DoxyCompactList}\small\item\em gamelocation find the position of a game by number of game \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a552b51987a6aaea9a65f9272a160cf5c}{gamelocation}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString filt, QString sort, QString text, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} start, bool forwardir, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \&result)
+\begin{DoxyCompactList}\small\item\em gamelocation find the first game that contains text in white name or black name of event name or site name \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a32775ce6d32b77333fa014f922ef725a}{gamesummary}} (const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \&base, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} game\+Num, QList$<$ QVariant $>$ \&res)
+\begin{DoxyCompactList}\small\item\em gamesummary \end{DoxyCompactList}\item 
+QList$<$ QPair$<$ QString, QString $>$ $>$ \mbox{\hyperlink{class_chess_base_af5e134418dc4d4cb8d5fbcb873115486}{get\+Extra\+Tags}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em get\+Extra\+Tags get the list of Pair of extratags \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a662818f48faa20d8a0167ced7c2d5b74}{get\+Game}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, bool live, QList$<$ QVariant $>$ \&res)
+\begin{DoxyCompactList}\small\item\em get\+Game \+: return all positions of a game \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ab747b29b6c6ffb528742f4f2f6640dc1}{get\+Game\+Flag}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, char flagtype, bool \&result)
+\begin{DoxyCompactList}\small\item\em get\+Game\+Flag get Flag flagtype of gamenum. For example D \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ad69b33e3588490831babf11f684c6fbd}{import\+Games}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString file\+Name, int \&numgame)
+\begin{DoxyCompactList}\small\item\em import\+Games import a PGN game in base \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a238f870a22cb3b2142e4ce3340ae1a49}{Invert\+Game\+Flag}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, char flagtype)
+\begin{DoxyCompactList}\small\item\em Invert\+Game\+Flag invert a Flag for the game. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_chess_base_a275c13afb90cb1c30b1cd37d896d2751}{List\+Opened\+Bases}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em List\+Opened\+Bases. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_chess_base_a9fd95fc89c7b20583f35597878ce951a}{number\+Games}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em number\+Games return the number of games in the current data\+Base \end{DoxyCompactList}\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_chess_base_a34f6df903735e4e91ea311557347b08d}{number\+Games}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, int base\+Id)
+\begin{DoxyCompactList}\small\item\em number\+Games \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a7104e6ce42cb33437cdabd8bab6c8fda}{open}} (QString \mbox{\hyperlink{class_chess_base_afc523c524d3e8d8c5d9107cc3ac1a8cd}{filename}}, \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}} codec, \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{file\+ModeT}} fmode, int \&numberbase)
+\begin{DoxyCompactList}\small\item\em open a base with value of codec \char`\"{}\+MEMORY\char`\"{}, \char`\"{}\+PGN\char`\"{}, \char`\"{}\+SCID4\char`\"{},\char`\"{}\+SCID5\char`\"{} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a203857195d7e61fe10b0872a0abdbf6c}{piecetrack}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, bool time\+On\+Square\+Mode, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} min\+Moves, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} max\+Moves, QString moves, std\+::array$<$ unsigned int, 64 $>$ \&result)
+\begin{DoxyCompactList}\small\item\em piecetrack \+: Examines games in the filter of the current database and return a list of 64 integers indicating how frequently the specified piece moves for each square \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a8a26e868217dfe0ab502b86111000295}{player\+Elo}} (const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString filter\+Name, QString player\+Name, QList$<$ QPair$<$ unsigned int, \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} $>$ $>$ \&res)
+\begin{DoxyCompactList}\small\item\em player\+Elo return a list of elo values of a player \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a732737bdab75bac2a3c62ca813a6e37d}{set\+Game\+Flag}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, char flagtype)
+\begin{DoxyCompactList}\small\item\em set\+Game\+Flag set a Flag for the game \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_af0459053a03ca5ed2d91f0596ed9d8b3}{set\+Extra\+Tags}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString tag, QString value)
+\begin{DoxyCompactList}\small\item\em set\+Extra\+Tags set in the Database extra tag value \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_base_a3b85105c594a7e7f7844415c855d0dfa}{set\+Progress\+Bar}} (QProgress\+Bar $\ast$ptr)
+\item 
+int \mbox{\hyperlink{class_chess_base_a098b46bbbe8143914da7acbb8d6a0718}{Slot}} (QString file\+Name)
+\begin{DoxyCompactList}\small\item\em Slot get the handle of opened database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ab24182fe510e05d22b689f545e554275}{sort\+Chache\+Create}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString sort\+Crit)
+\begin{DoxyCompactList}\small\item\em sort\+Chache\+Create create a sort\+Cache \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_chess_base_a842c62d54b7b6c1939b08ce02dc731b1}{sort\+Chache\+Release}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString sort\+Crit)
+\begin{DoxyCompactList}\small\item\em sort\+Chache\+Release \end{DoxyCompactList}\item 
+QList$<$ quint32 $>$ \mbox{\hyperlink{class_chess_base_ad3a170c90ac7999e9d7e3aa970e5d632}{stats\+Dates}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em stats\+Dates return statistic about minimum dates, maximum dates and mean year \end{DoxyCompactList}\item 
+QList$<$ quint32 $>$ \mbox{\hyperlink{class_chess_base_abb6af484615a135cc59a03c6e0f8290b}{stats\+ECO}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString ECO)
+\begin{DoxyCompactList}\small\item\em stats\+ECO return statistic about \end{DoxyCompactList}\item 
+quint32 \mbox{\hyperlink{class_chess_base_a595097d89fb6a98218424b95808dbb5a}{stats\+FLAG}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QChar flag)
+\begin{DoxyCompactList}\small\item\em stats\+FLAG \+: number of games with the flag set The flag must be a valid flag char like in \mbox{\hyperlink{class_index_entry_a7660845e306c185d9146501cd0225057}{Index\+Entry\+::\+Char\+To\+Flag()}} ie D DELETE W WHITE OP B Black OP M Middlegame E End\+Game N Novelty P Pawn T TACTICS K KSIDE Q QSIDE ! BRILLANCY ? BLUNDER U User 1..6 CUSTOM \end{DoxyCompactList}\item 
+QList$<$ quint32 $>$ \mbox{\hyperlink{class_chess_base_a159f75bd97b0134cc5725cbe9eee8157}{stats\+FLAGS}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em stats\+FLAGS number of games with the flags D W and B set \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a89444c51b63d3a1b41a9b5bca3208a45}{stats\+Info\+To\+Be\+Compacted}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QList$<$ quint64 $>$ \&list)
+\begin{DoxyCompactList}\small\item\em stats return a QList of informations who must be compacted \end{DoxyCompactList}\item 
+QList$<$ quint32 $>$ \mbox{\hyperlink{class_chess_base_ae66c2b616578c9984771bbaf33ac0382}{stats\+RATINGS}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em stats\+RATINGS \end{DoxyCompactList}\item 
+QList$<$ quint32 $>$ \mbox{\hyperlink{class_chess_base_a6d83dc311d3558938a8e8a3a16386d0f}{stats\+RESULTS}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase)
+\begin{DoxyCompactList}\small\item\em stats\+RESULTS \end{DoxyCompactList}\item 
+QList$<$ unsigned short $>$ \mbox{\hyperlink{class_chess_base_af724b19435ff98bda3b9d3015dd2405b}{strip}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QString\+List tag\+Names)
+\begin{DoxyCompactList}\small\item\em strip remove all occurences of the spedified tags from the database \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ada6fe0f71bef52d0e08b6731bcb9935e}{tag\+List}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, QList$<$ QPair$<$ QString, int $>$ $>$ \&res)
+\begin{DoxyCompactList}\small\item\em tag\+List produce a list of PGN tags used in the Data\+Base \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_aa0ca434e24011cb701cf87db496173ce}{tournaments}} (const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, \mbox{\hyperlink{class_filter}{Filter}}, QString filter, long maxresult, QList$<$ QList$<$ QVariant $>$ $>$ \&res, int elo=0, int games=0, int players=0, QString player=QString(), QString sort=QString())
+\begin{DoxyCompactList}\small\item\em tournaments return a list of tournaments Games with the same Event Site and Event\+Date tags are considered as a tournament The list returned can be restricted based on \+: \end{DoxyCompactList}\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a25f5a1daa97c66ff3ae256b7d61530db}{unset\+Game\+Flag}} (\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, char flagtype)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_chess_base_a98397c07dc8a1aa7b2d5a95f1def2ff9}{Codec\+Enum2\+Str}} (\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}} codec)
+\begin{DoxyCompactList}\small\item\em Codec\+Enum2\+Str convert Enum PGN SCID5 SCID4 MEM to string equivalent. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ae8fb2b7f3450a20e39a61c71fb187918}{get\+Game\+Helper}} (\mbox{\hyperlink{class_game}{Game}} \&game, QList$<$ QVariant $>$ \&res)
+\begin{DoxyCompactList}\small\item\em unset\+Game\+Flag unset a Flag for the game \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This Class is the Qt database management for Scid5 base with Qt and not with Tcl/\+Tk. the sc\+\_\+base.\+cpp has be converted with ~\newline
+ 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_chess_base_a47e732d7e5b3b9273896eb255f729639}\label{class_chess_base_a47e732d7e5b3b9273896eb255f729639}} 
+\index{ChessBase@{ChessBase}!CommandFlag@{CommandFlag}}
+\index{CommandFlag@{CommandFlag}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{CommandFlag}{CommandFlag}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639}{Chess\+Base\+::\+Command\+Flag}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{nothing@{nothing}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!nothing@{nothing}}}\mbox{\Hypertarget{class_chess_base_a47e732d7e5b3b9273896eb255f729639ad7593a8ab2cf9272c83bb091326e0468}\label{class_chess_base_a47e732d7e5b3b9273896eb255f729639ad7593a8ab2cf9272c83bb091326e0468}} 
+nothing&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{get@{get}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!get@{get}}}\mbox{\Hypertarget{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae45fe3231fe841ce6544ad655dc43ece}\label{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae45fe3231fe841ce6544ad655dc43ece}} 
+get&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{set@{set}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!set@{set}}}\mbox{\Hypertarget{class_chess_base_a47e732d7e5b3b9273896eb255f729639afb2d6089c5615cb154f79681e2c88bb4}\label{class_chess_base_a47e732d7e5b3b9273896eb255f729639afb2d6089c5615cb154f79681e2c88bb4}} 
+set&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{unset@{unset}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!unset@{unset}}}\mbox{\Hypertarget{class_chess_base_a47e732d7e5b3b9273896eb255f729639aa6bf6f2006072cdd6c3e1630c9e7015c}\label{class_chess_base_a47e732d7e5b3b9273896eb255f729639aa6bf6f2006072cdd6c3e1630c9e7015c}} 
+unset&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{invert@{invert}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!invert@{invert}}}\mbox{\Hypertarget{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae5ee96c41b79029d0934f6f7ad5d3220}\label{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae5ee96c41b79029d0934f6f7ad5d3220}} 
+invert&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}\label{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}} 
+\index{ChessBase@{ChessBase}!deleteStrategyT@{deleteStrategyT}}
+\index{deleteStrategyT@{deleteStrategyT}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{deleteStrategyT}{deleteStrategyT}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}{Chess\+Base\+::delete\+StrategyT}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DELETE\_SHORTER@{DELETE\_SHORTER}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!DELETE\_SHORTER@{DELETE\_SHORTER}}}\mbox{\Hypertarget{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0ab06f851279dd03a946d09a4b81fff93f}\label{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0ab06f851279dd03a946d09a4b81fff93f}} 
+DELETE\+\_\+\+SHORTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DELETE\_OLDER@{DELETE\_OLDER}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!DELETE\_OLDER@{DELETE\_OLDER}}}\mbox{\Hypertarget{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a4c2c6b120b0ee583bd6dc57c5c602da8}\label{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a4c2c6b120b0ee583bd6dc57c5c602da8}} 
+DELETE\+\_\+\+OLDER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DELETE\_NEWER@{DELETE\_NEWER}!ChessBase@{ChessBase}}\index{ChessBase@{ChessBase}!DELETE\_NEWER@{DELETE\_NEWER}}}\mbox{\Hypertarget{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a794be07b8ee46657414a891f9009fece}\label{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a794be07b8ee46657414a891f9009fece}} 
+DELETE\+\_\+\+NEWER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_chess_base_a1d8b803ef64ff0b81b136f16a7fd0fe0}\label{class_chess_base_a1d8b803ef64ff0b81b136f16a7fd0fe0}} 
+\index{ChessBase@{ChessBase}!ChessBase@{ChessBase}}
+\index{ChessBase@{ChessBase}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{ChessBase()}{ChessBase()}}
+{\footnotesize\ttfamily Chess\+Base\+::\+Chess\+Base (\begin{DoxyParamCaption}\item[{QWidget $\ast$}]{widget,  }\item[{QProgress\+Bar $\ast$}]{pg = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_chess_base_a16bf62794669a60c733bb7034a1ac80e}\label{class_chess_base_a16bf62794669a60c733bb7034a1ac80e}} 
+\index{ChessBase@{ChessBase}!````~ChessBase@{$\sim$ChessBase}}
+\index{````~ChessBase@{$\sim$ChessBase}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{$\sim$ChessBase()}{~ChessBase()}}
+{\footnotesize\ttfamily Chess\+Base\+::$\sim$\+Chess\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chess_base_a91bee29c500f0ff1663e3b7770b11c6c}\label{class_chess_base_a91bee29c500f0ff1663e3b7770b11c6c}} 
+\index{ChessBase@{ChessBase}!baseInUse@{baseInUse}}
+\index{baseInUse@{baseInUse}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{baseInUse()}{baseInUse()}}
+{\footnotesize\ttfamily bool Chess\+Base\+::base\+In\+Use (\begin{DoxyParamCaption}\item[{int}]{number }\end{DoxyParamCaption})}
+
+
+
+base\+In\+Use 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & $\ast$\+: pointer ont \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+{\em number} & \+: the number of base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if base has been opened succesfully and is in use. false if the base is not opened. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a3eb5bbd81aa06d14276306a272845c58}\label{class_chess_base_a3eb5bbd81aa06d14276306a272845c58}} 
+\index{ChessBase@{ChessBase}!BaseSwitch@{BaseSwitch}}
+\index{BaseSwitch@{BaseSwitch}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{BaseSwitch()}{BaseSwitch()}}
+{\footnotesize\ttfamily int Chess\+Base\+::\+Base\+Switch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+Marked Change the current database and the current base. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer onto \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: the current Database ID after the switch 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_ac70e22e7b9d13cda7e95b4514b554b76}\label{class_chess_base_ac70e22e7b9d13cda7e95b4514b554b76}} 
+\index{ChessBase@{ChessBase}!checkDuplicate@{checkDuplicate}}
+\index{checkDuplicate@{checkDuplicate}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{checkDuplicate()}{checkDuplicate()}}
+{\footnotesize\ttfamily bool Chess\+Base\+::check\+Duplicate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{const \mbox{\hyperlink{class_index_entry}{Index\+Entry}} $\ast$}]{ie1,  }\item[{const \mbox{\hyperlink{class_index_entry}{Index\+Entry}} $\ast$}]{ie2,  }\item[{dup\+CriteriaT $\ast$}]{cr }\end{DoxyParamCaption})}
+
+
+
+check\+Duplicate used by dupplicate check if two record games are dupplicated The event, Site, Round, Year, Month, Day, Result, Eco\+Code and moves are tested if Flag delete the record the result is false. This method is used by duplicates method and isnot generally usefull 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+{\em ie1} & \+: first element checked \\
+\hline
+{\em ie2} & \+: second element checked \\
+\hline
+{\em cr} & \+: criteria given by dup\+CriteriaT \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the the game are equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a4d52046fdacb9f26a87ff2bfde318812}\label{class_chess_base_a4d52046fdacb9f26a87ff2bfde318812}} 
+\index{ChessBase@{ChessBase}!close@{close}}
+\index{close@{close}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+close the database given by the pointer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointer} & on Base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a22c87db1c6d74e709096462a1ef15483}\label{class_chess_base_a22c87db1c6d74e709096462a1ef15483}} 
+\index{ChessBase@{ChessBase}!CodecEnum2QString@{CodecEnum2QString}}
+\index{CodecEnum2QString@{CodecEnum2QString}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{CodecEnum2QString()}{CodecEnum2QString()}}
+{\footnotesize\ttfamily QString Chess\+Base\+::\+Codec\+Enum2\+QString (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}}}]{codec }\end{DoxyParamCaption})}
+
+
+
+Codec\+Enum2\+Str convert Enum PGN SCID5 SCID4 MEM to QString equivalent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em codec} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the string in QString format 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a98397c07dc8a1aa7b2d5a95f1def2ff9}\label{class_chess_base_a98397c07dc8a1aa7b2d5a95f1def2ff9}} 
+\index{ChessBase@{ChessBase}!CodecEnum2Str@{CodecEnum2Str}}
+\index{CodecEnum2Str@{CodecEnum2Str}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{CodecEnum2Str()}{CodecEnum2Str()}}
+{\footnotesize\ttfamily std\+::string Chess\+Base\+::\+Codec\+Enum2\+Str (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}}}]{codec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Codec\+Enum2\+Str convert Enum PGN SCID5 SCID4 MEM to string equivalent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em codec} & the enum codec \\
+\hline
+{\em number\+Base} & \+: the number of base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the string in std\+::string format 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a317e521328d8361ee6de293d8a7b73f6}\label{class_chess_base_a317e521328d8361ee6de293d8a7b73f6}} 
+\index{ChessBase@{ChessBase}!compact@{compact}}
+\index{compact@{compact}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{compact()}{compact()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::compact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+compact the database ie 
+
+
+\begin{DoxyItemize}
+\item remove all games marked deleted
+\item remove unused games
+\item improve search operations
+\item replace bad names by \char`\"{}???\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em pointer} & on base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} ~\newline
+ 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_chess_base_a1871574701a827362bff4c6bd00b69c1}\label{class_chess_base_a1871574701a827362bff4c6bd00b69c1}} 
+\index{ChessBase@{ChessBase}!copyGames@{copyGames}}
+\index{copyGames@{copyGames}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{copyGames()}{copyGames()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::copy\+Games (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{sourcebase,  }\item[{int}]{num\+Game,  }\item[{int}]{targed\+Base\+Id }\end{DoxyParamCaption})}
+
+
+
+copy\+Games copy \mbox{\hyperlink{class_game}{Game}} from data\+Base to another one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sourcebase} & is a pointer of source data\+Base \\
+\hline
+{\em num\+Game} & \+: the number of game \\
+\hline
+{\em targed\+Base\+Id} & \+: Id of the target base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a86b60ee74ebb8ac2b9cf3949850222fa}\label{class_chess_base_a86b60ee74ebb8ac2b9cf3949850222fa}} 
+\index{ChessBase@{ChessBase}!copyGames@{copyGames}}
+\index{copyGames@{copyGames}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{copyGames()}{copyGames()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::copy\+Games (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{sourcebase,  }\item[{QString}]{Filter\+Name,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{targed\+Base\+Id }\end{DoxyParamCaption})}
+
+
+
+copy\+Games copy \mbox{\hyperlink{class_game}{Game}} from data\+Base to another one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sourcebase} & is a pointer of source data\+Base \\
+\hline
+{\em Filter\+Name} & \+: Filter\+Name \\
+\hline
+{\em targed\+Base\+Id} & \+: Id of the target base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_af82da4995e2ed8e04eaaffeaf805310f}\label{class_chess_base_af82da4995e2ed8e04eaaffeaf805310f}} 
+\index{ChessBase@{ChessBase}!create@{create}}
+\index{create@{create}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::create (\begin{DoxyParamCaption}\item[{QString}]{name,  }\item[{\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}}}]{codec,  }\item[{int \&}]{number\+Base }\end{DoxyParamCaption})}
+
+
+
+create a new database (is the convenience method for open with flag create) the Database created is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & for the base.
+\begin{DoxyItemize}
+\item if codec is SCID4 create the files name.\+si4 name.\+sg4 name.\+sn4
+\item if codec is SCID5 create the files name.\+si5 name.\+sg5 name.\+sn5
+\item if codec is PGN create the file name.\+pgn. If pgn extention is ometted the file PGN is created but without extention .pgn
+\item if name = /dir/name create the file in the directory /dir/ 
+\end{DoxyItemize}\\
+\hline
+{\em codec} & MEMORY PGN SCID4 SCID5 \\
+\hline
+{\em number\+Base} & \+: is the number of base used (you can use 9 bases at the same time) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a0e40456230c816dc1b5da60ba7df753b}\label{class_chess_base_a0e40456230c816dc1b5da60ba7df753b}} 
+\index{ChessBase@{ChessBase}!duplicates@{duplicates}}
+\index{duplicates@{duplicates}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{duplicates()}{duplicates()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::duplicates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{bool}]{players = {\ttfamily false},  }\item[{bool}]{colors = {\ttfamily true},  }\item[{bool}]{event = {\ttfamily true},  }\item[{bool}]{site = {\ttfamily true},  }\item[{bool}]{round = {\ttfamily true},  }\item[{bool}]{year = {\ttfamily true},  }\item[{bool}]{month = {\ttfamily true},  }\item[{bool}]{day = {\ttfamily false},  }\item[{bool}]{result = {\ttfamily false},  }\item[{bool}]{eco = {\ttfamily false},  }\item[{bool}]{moves = {\ttfamily true},  }\item[{bool}]{skip\+Short\+Games = {\ttfamily false},  }\item[{bool}]{keep\+All\+Commented\+Games = {\ttfamily true},  }\item[{bool}]{keep\+All\+Games\+With\+Vars = {\ttfamily true},  }\item[{bool}]{set\+Filter\+To\+Dups = {\ttfamily false},  }\item[{bool}]{only\+Filter\+Games = {\ttfamily false},  }\item[{\mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}{delete\+StrategyT}}}]{Delete = {\ttfamily \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0ab06f851279dd03a946d09a4b81fff93f}{DELETE\+\_\+\+SHORTER}}} }\end{DoxyParamCaption})}
+
+
+
+duplicates \+: Finds duplicate games and marks them deleted. A pair of games are considered duplicates if the Event, Site, White, Black, and Round values all match identically, and the Date matches to within 2 days (that is, the same year, the same month, and the days of month differ by 2 at most). 
+
+Furthermore, the moves of one game should, after truncating, be the same as the moves of the other game, for them to be duplicate.
+
+You can unset or set the criteria used / 
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+{\em players} & \+: sometime they are error on name firstname default is false \\
+\hline
+{\em colors} & \+: generally true \\
+\hline
+{\em event} & \+: generally true \\
+\hline
+{\em site} & \+: generally true \\
+\hline
+{\em round} & \+: generally true \\
+\hline
+{\em year} & \+: generally true \\
+\hline
+{\em month} & \+: generally true \\
+\hline
+{\em day} & \+: generally false begin or end of game ? \\
+\hline
+{\em result} & \+: genarally false (ir result is ometted) \\
+\hline
+{\em eco} & \+: genrally false \\
+\hline
+{\em moves} & \+: gnerally true \\
+\hline
+{\em skip\+Short\+Games} & \\
+\hline
+{\em keep\+All\+Commented\+Games} & \\
+\hline
+{\em keep\+All\+Games\+With\+Vars} & \\
+\hline
+{\em set\+Filter\+To\+Dups} & \\
+\hline
+{\em only\+Filter\+Games} & \\
+\hline
+{\em Delete} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a5f4d8bc815b3510948b415d5f720e6dd}\label{class_chess_base_a5f4d8bc815b3510948b415d5f720e6dd}} 
+\index{ChessBase@{ChessBase}!ErrorCode@{ErrorCode}}
+\index{ErrorCode@{ErrorCode}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{ErrorCode()}{ErrorCode()}}
+{\footnotesize\ttfamily QString Chess\+Base\+::\+Error\+Code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}}]{code }\end{DoxyParamCaption})}
+
+
+
+Error\+Code get a QString from errorT code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & \+: the code returned by a function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the QString containing
+\begin{DoxyItemize}
+\item the ERROR CODE in integer value (0)
+\item the ERROR CODE in QString value (OK) 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_aa90e62990e2a8698698e4aed98b7cac8}\label{class_chess_base_aa90e62990e2a8698698e4aed98b7cac8}} 
+\index{ChessBase@{ChessBase}!exportBase@{exportBase}}
+\index{exportBase@{exportBase}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{exportBase()}{exportBase()}}
+{\footnotesize\ttfamily int Chess\+Base\+::export\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{filter,  }\item[{bool}]{append\+To\+File,  }\item[{\mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{game\+FormatT}}}]{output\+Format,  }\item[{QString}]{export\+File\+Name,  }\item[{QString}]{start\+Text = {\ttfamily QString()},  }\item[{QString}]{end\+Text = {\ttfamily QString()},  }\item[{bool}]{comments = {\ttfamily false},  }\item[{bool}]{variation = {\ttfamily false},  }\item[{bool}]{spaces = {\ttfamily false},  }\item[{bool}]{symbols = {\ttfamily false},  }\item[{bool}]{indent\+Comments = {\ttfamily false},  }\item[{bool}]{indent\+Variation = {\ttfamily false},  }\item[{bool}]{column = {\ttfamily false},  }\item[{bool}]{no\+Mark\+Codes = {\ttfamily false},  }\item[{bool}]{convert\+Null\+Moves = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+export\+Base 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \\
+\hline
+{\em filter} & \\
+\hline
+{\em append\+Mode} & \\
+\hline
+{\em output\+Format} & \\
+\hline
+{\em output\+File} & \\
+\hline
+{\em append} & \\
+\hline
+{\em starttext} & \\
+\hline
+{\em endtext} & \\
+\hline
+{\em comments} & \\
+\hline
+{\em variation} & \\
+\hline
+{\em space} & \\
+\hline
+{\em symbols} & \\
+\hline
+{\em indent\+Comments} & \\
+\hline
+{\em indent\+Variation} & \\
+\hline
+{\em column} & \\
+\hline
+{\em no\+Make\+Codes} & \\
+\hline
+{\em convert\+Null\+Moves} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a1f7ecab82a671f1f15d74e94c4ad85dc}\label{class_chess_base_a1f7ecab82a671f1f15d74e94c4ad85dc}} 
+\index{ChessBase@{ChessBase}!exportGame@{exportGame}}
+\index{exportGame@{exportGame}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{exportGame()}{exportGame()}}
+{\footnotesize\ttfamily void Chess\+Base\+::export\+Game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game}{Game}} $\ast$}]{g,  }\item[{FILE $\ast$}]{export\+File,  }\item[{\mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{game\+FormatT}}}]{format,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{pgn\+Style }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_chess_base_afc523c524d3e8d8c5d9107cc3ac1a8cd}\label{class_chess_base_afc523c524d3e8d8c5d9107cc3ac1a8cd}} 
+\index{ChessBase@{ChessBase}!filename@{filename}}
+\index{filename@{filename}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{filename()}{filename()}}
+{\footnotesize\ttfamily QString Chess\+Base\+::filename (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+filename return the filename of database. 
+
+
+\begin{DoxyItemize}
+\item for PGN returns the full path filename
+\item for scid base returns the name of base without the extention si4 or si5
+\item for clipbase returns $<$clipbase$>$ 
+\begin{DoxyParams}{Parameters}
+{\em dbase} & pointer on the base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_chess_base_a3d5c037247160e7694e4258198808290}\label{class_chess_base_a3d5c037247160e7694e4258198808290}} 
+\index{ChessBase@{ChessBase}!gameCommandFlag@{gameCommandFlag}}
+\index{gameCommandFlag@{gameCommandFlag}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{gameCommandFlag()}{gameCommandFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::game\+Command\+Flag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{filter,  }\item[{\mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639}{Command\+Flag}}}]{command,  }\item[{char}]{flagtype }\end{DoxyParamCaption})}
+
+
+
+game\+Command\+Flag \+: allows same operation like set\+Game\+Flag, get\+Game\+Flag, unset\+Game\+Flag and invert\+Game\+Flag but allow to apply on gamenum but also on filtername or all 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & $\ast$ \+: pointer on base \\
+\hline
+{\em filter} & \+: a string egal game\+Num or filtername or all \\
+\hline
+{\em command} & \\
+\hline
+{\em flagtype} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a552b51987a6aaea9a65f9272a160cf5c}\label{class_chess_base_a552b51987a6aaea9a65f9272a160cf5c}} 
+\index{ChessBase@{ChessBase}!gamelocation@{gamelocation}}
+\index{gamelocation@{gamelocation}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{gamelocation()}{gamelocation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::gamelocation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{filt,  }\item[{QString}]{sort,  }\item[{QString}]{text,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{start,  }\item[{bool}]{forwardir,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \&}]{result }\end{DoxyParamCaption})}
+
+
+
+gamelocation find the first game that contains text in white name or black name of event name or site name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on base \\
+\hline
+{\em filt} & \+: a string egal game\+Num or filtername or all \\
+\hline
+{\em sort} & \+: the order for the list of games to search \\
+\hline
+{\em text} & \+: text of white name nlack name or whit or black event or site \\
+\hline
+{\em start} & \+: offset to begining to search \\
+\hline
+{\em forwardir} & \+: if true search from startpos tp num game else search from 0 to num game \\
+\hline
+{\em result} & the position ( 0 for first ) if return is OK ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_adf90f5382d1ef242a35875d1ebf87f46}\label{class_chess_base_adf90f5382d1ef242a35875d1ebf87f46}} 
+\index{ChessBase@{ChessBase}!gamelocation@{gamelocation}}
+\index{gamelocation@{gamelocation}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{gamelocation()}{gamelocation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::gamelocation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{filt,  }\item[{QString}]{sort\+Crit,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{gnumber,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \&}]{result }\end{DoxyParamCaption})}
+
+
+
+gamelocation find the position of a game by number of game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+{\em filt} & \+: a string egal game\+Num or filtername or all \\
+\hline
+{\em sort\+Crit} & \+: the order for the list of games to search \\
+\hline
+{\em gnumber} & \+: the number of game to search \\
+\hline
+{\em result} & \+: the position ( 0 for first ) if return is OK \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a487548c3b441749c3dfd7e213290703c}\label{class_chess_base_a487548c3b441749c3dfd7e213290703c}} 
+\index{ChessBase@{ChessBase}!gameslist@{gameslist}}
+\index{gameslist@{gameslist}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{gameslist()}{gameslist()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::gameslist (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{start,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{count,  }\item[{QString}]{filt,  }\item[{QString}]{sort,  }\item[{QList$<$ QVariant $>$ \&}]{res }\end{DoxyParamCaption})}
+
+
+
+gameslist 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \\
+\hline
+{\em start} & \\
+\hline
+{\em count} & \\
+\hline
+{\em filt} & \\
+\hline
+{\em sort} & \\
+\hline
+{\em res} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a32775ce6d32b77333fa014f922ef725a}\label{class_chess_base_a32775ce6d32b77333fa014f922ef725a}} 
+\index{ChessBase@{ChessBase}!gamesummary@{gamesummary}}
+\index{gamesummary@{gamesummary}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{gamesummary()}{gamesummary()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::gamesummary (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \&}]{base,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{game\+Num,  }\item[{QList$<$ QVariant $>$ \&}]{res }\end{DoxyParamCaption})}
+
+
+
+gamesummary 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & \\
+\hline
+{\em game\+Num} & \\
+\hline
+{\em res} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_af5e134418dc4d4cb8d5fbcb873115486}\label{class_chess_base_af5e134418dc4d4cb8d5fbcb873115486}} 
+\index{ChessBase@{ChessBase}!getExtraTags@{getExtraTags}}
+\index{getExtraTags@{getExtraTags}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{getExtraTags()}{getExtraTags()}}
+{\footnotesize\ttfamily QList$<$ QPair$<$ QString, QString $>$ $>$ Chess\+Base\+::get\+Extra\+Tags (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+get\+Extra\+Tags get the list of Pair of extratags 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & pointer on the \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a QList of QPair$<$\+QString,\+QString$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a662818f48faa20d8a0167ced7c2d5b74}\label{class_chess_base_a662818f48faa20d8a0167ced7c2d5b74}} 
+\index{ChessBase@{ChessBase}!getGame@{getGame}}
+\index{getGame@{getGame}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{getGame()}{getGame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::get\+Game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{gamenum,  }\item[{bool}]{live,  }\item[{QList$<$ QVariant $>$ \&}]{res }\end{DoxyParamCaption})}
+
+
+
+get\+Game \+: return all positions of a game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+{\em gamenum} & the number of requested game \\
+\hline
+{\em live} & \+:optional parameter which specify the behavior when the requested game have unsaved changes. If present the latest unsaved version is returned, otherwise the saved copy in the database is used. \\
+\hline
+{\em res} & \+: list containing all the positions of a game, including variations. The positions are sorted according to pgn standard\+: The alternate move sequence given by an RAV is one that may be legally played by first unplaying the move that appears immediately prior to the RAV\char`\"{}. For each position the following informations are provided\+: RAVdepth\+:     current variation depth. RAVnum\+: current variation num. FEN\+: \char`\"{}Forsyth-\/\+Edwards Notation\char`\"{} describing the current position. NAGS\+: \char`\"{}Numeric Annotation Glyph\char`\"{}      is a non-\/negative integer from 0 to 255 used to indicate a simple annotation     in a language independent manner. comment\+: text annotation of the     current position. last\+Move\+SAN\+: the last move that was played to reach the      current position. The move is indicated using English \char`\"{}Standard Algebraic \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_ab747b29b6c6ffb528742f4f2f6640dc1}\label{class_chess_base_ab747b29b6c6ffb528742f4f2f6640dc1}} 
+\index{ChessBase@{ChessBase}!getGameFlag@{getGameFlag}}
+\index{getGameFlag@{getGameFlag}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{getGameFlag()}{getGameFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::get\+Game\+Flag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{gamenum,  }\item[{char}]{flagtype,  }\item[{bool \&}]{result }\end{DoxyParamCaption})}
+
+
+
+get\+Game\+Flag get Flag flagtype of gamenum. For example D 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase$\ast$} & \+: pointer on the base \\
+\hline
+{\em gamenum} & \+: game number \\
+\hline
+{\em flagtype} & \+: \textquotesingle{}D\textquotesingle{} for Delete \textquotesingle{}S\textquotesingle{} start see \mbox{\hyperlink{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}{Index\+Entry\+::\+Char\+To\+Flag\+Mask}} \\
+\hline
+{\em result} & contain true if flag is true or false else \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_ae8fb2b7f3450a20e39a61c71fb187918}\label{class_chess_base_ae8fb2b7f3450a20e39a61c71fb187918}} 
+\index{ChessBase@{ChessBase}!getGameHelper@{getGameHelper}}
+\index{getGameHelper@{getGameHelper}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{getGameHelper()}{getGameHelper()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::get\+Game\+Helper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game}{Game}} \&}]{game,  }\item[{QList$<$ QVariant $>$ \&}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+unset\+Game\+Flag unset a Flag for the game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & $\ast$ pointeur on base \\
+\hline
+{\em gamenum} & \+: num of game to set he flag \\
+\hline
+{\em flagtype} & \+: the type fo flag to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_ad69b33e3588490831babf11f684c6fbd}\label{class_chess_base_ad69b33e3588490831babf11f684c6fbd}} 
+\index{ChessBase@{ChessBase}!importGames@{importGames}}
+\index{importGames@{importGames}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{importGames()}{importGames()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::import\+Games (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{file\+Name,  }\item[{int \&}]{numgame }\end{DoxyParamCaption})}
+
+
+
+import\+Games import a PGN game in base 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: $\ast$ pointeur on base \\
+\hline
+{\em file\+Name} & \+: the path and pgn file name to import for example \+: QString(\char`\"{}/home/test/\+PGN/00003265gamses.\+pgn\char`\"{}) or \char`\"{}/home/test/\+PGN/00003265gamses.\+pgn\char`\"{} \\
+\hline
+{\em numgame} & \+: number of game imported returned Import\+Games \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a238f870a22cb3b2142e4ce3340ae1a49}\label{class_chess_base_a238f870a22cb3b2142e4ce3340ae1a49}} 
+\index{ChessBase@{ChessBase}!InvertGameFlag@{InvertGameFlag}}
+\index{InvertGameFlag@{InvertGameFlag}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{InvertGameFlag()}{InvertGameFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::\+Invert\+Game\+Flag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{gamenum,  }\item[{char}]{flagtype }\end{DoxyParamCaption})}
+
+
+
+Invert\+Game\+Flag invert a Flag for the game. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & $\ast$ pointeur on base \\
+\hline
+{\em gamenum} & \+: num of game to invert he flag \\
+\hline
+{\em flagtype} & \+: the type fo flag to invert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a275c13afb90cb1c30b1cd37d896d2751}\label{class_chess_base_a275c13afb90cb1c30b1cd37d896d2751}} 
+\index{ChessBase@{ChessBase}!ListOpenedBases@{ListOpenedBases}}
+\index{ListOpenedBases@{ListOpenedBases}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{ListOpenedBases()}{ListOpenedBases()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Chess\+Base\+::\+List\+Opened\+Bases (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+List\+Opened\+Bases. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a9fd95fc89c7b20583f35597878ce951a}\label{class_chess_base_a9fd95fc89c7b20583f35597878ce951a}} 
+\index{ChessBase@{ChessBase}!numberGames@{numberGames}}
+\index{numberGames@{numberGames}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{numberGames()}{numberGames()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Chess\+Base\+::number\+Games (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+number\+Games return the number of games in the current data\+Base 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & the pointer on the database For example \+: cb.\+number\+Games(\+DBase\+Pool\+::get\+Base(numberbase)) return the number of games included in base number numberbase \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of games in uint 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a34f6df903735e4e91ea311557347b08d}\label{class_chess_base_a34f6df903735e4e91ea311557347b08d}} 
+\index{ChessBase@{ChessBase}!numberGames@{numberGames}}
+\index{numberGames@{numberGames}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{numberGames()}{numberGames()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Chess\+Base\+::number\+Games (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{int}]{base\+Id }\end{DoxyParamCaption})}
+
+
+
+number\+Games 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \\
+\hline
+{\em base\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a7104e6ce42cb33437cdabd8bab6c8fda}\label{class_chess_base_a7104e6ce42cb33437cdabd8bab6c8fda}} 
+\index{ChessBase@{ChessBase}!open@{open}}
+\index{open@{open}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::open (\begin{DoxyParamCaption}\item[{QString}]{filename,  }\item[{\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodec\+Database\+::\+Codec}}}]{codec,  }\item[{\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{file\+ModeT}}}]{fmode,  }\item[{int \&}]{numberbase }\end{DoxyParamCaption})}
+
+
+
+open a base with value of codec \char`\"{}\+MEMORY\char`\"{}, \char`\"{}\+PGN\char`\"{}, \char`\"{}\+SCID4\char`\"{},\char`\"{}\+SCID5\char`\"{} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & \+: name of filename \\
+\hline
+{\em codec} & \+: can be \char`\"{}\+MEMORY\char`\"{}, \char`\"{}\+PGN\char`\"{}, \char`\"{}\+SCID4\char`\"{},\char`\"{}\+SCID5\char`\"{} \\
+\hline
+{\em fmode} & \+: can be member of enum FMODE\+\_\+\+None = 0,FMODE\+\_\+\+Read\+Only,FMODE\+\_\+\+Write\+Only,FMODE\+\_\+\+Both,FMODE\+\_\+\+Create \\
+\hline
+{\em numberbase} & \+: a return parameter indicate the number of base selected ( this is not the number of games in the base but the number of DBase\+Spool \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: 0 if no error else a value given in \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a203857195d7e61fe10b0872a0abdbf6c}\label{class_chess_base_a203857195d7e61fe10b0872a0abdbf6c}} 
+\index{ChessBase@{ChessBase}!piecetrack@{piecetrack}}
+\index{piecetrack@{piecetrack}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{piecetrack()}{piecetrack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::piecetrack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{bool}]{time\+On\+Square\+Mode,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{min\+Moves,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{max\+Moves,  }\item[{QString}]{moves,  }\item[{std\+::array$<$ unsigned int, 64 $>$ \&}]{result }\end{DoxyParamCaption})}
+
+
+
+piecetrack \+: Examines games in the filter of the current database and return a list of 64 integers indicating how frequently the specified piece moves for each square 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on the base \\
+\hline
+{\em time\+On\+Square\+Mode} & \+: by default the time\+On\+Square\+Mode is false and game\+On\+Square\+Mode is set. on time\+On\+Square\+Mode the mode is given in time , on gameon\+Square\+Mode the mode is give in number of game \\
+\hline
+{\em min\+Moves} & \+: anolyses from min\+Moves for example 0 for start of games 10 \+: after 10 moves \\
+\hline
+{\em max\+Moves} & \+: analyses to max\+Moves for example 30 to analyse until 30 moves \\
+\hline
+{\em moves} & \+: list of case to analyse for example \char`\"{}e4 d4\char`\"{} \\
+\hline
+{\em arr} & \+: the result is array ok 64 uint declared as reference \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK for not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a8a26e868217dfe0ab502b86111000295}\label{class_chess_base_a8a26e868217dfe0ab502b86111000295}} 
+\index{ChessBase@{ChessBase}!playerElo@{playerElo}}
+\index{playerElo@{playerElo}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{playerElo()}{playerElo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::player\+Elo (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{filter\+Name,  }\item[{QString}]{player\+Name,  }\item[{QList$<$ QPair$<$ unsigned int, \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} $>$ $>$ \&}]{res }\end{DoxyParamCaption})}
+
+
+
+player\+Elo return a list of elo values of a player 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Scid Base \\
+\hline
+{\em filter\+Name} & \+: \\
+\hline
+{\em player\+Name} & \\
+\hline
+{\em res} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK for not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_af0459053a03ca5ed2d91f0596ed9d8b3}\label{class_chess_base_af0459053a03ca5ed2d91f0596ed9d8b3}} 
+\index{ChessBase@{ChessBase}!setExtraTags@{setExtraTags}}
+\index{setExtraTags@{setExtraTags}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{setExtraTags()}{setExtraTags()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::set\+Extra\+Tags (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{tag,  }\item[{QString}]{value }\end{DoxyParamCaption})}
+
+
+
+set\+Extra\+Tags set in the Database extra tag value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on the base \\
+\hline
+{\em tag} & \+: tag name to set \\
+\hline
+{\em value} & \+: tag value to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a732737bdab75bac2a3c62ca813a6e37d}\label{class_chess_base_a732737bdab75bac2a3c62ca813a6e37d}} 
+\index{ChessBase@{ChessBase}!setGameFlag@{setGameFlag}}
+\index{setGameFlag@{setGameFlag}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{setGameFlag()}{setGameFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::set\+Game\+Flag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{gamenum,  }\item[{char}]{flagtype }\end{DoxyParamCaption})}
+
+
+
+set\+Game\+Flag set a Flag for the game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & $\ast$ \+: pointer on base \\
+\hline
+{\em gamenum} & \+: num of game to set he flag \\
+\hline
+{\em flagtype} & \+: the type fo flag to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a3b85105c594a7e7f7844415c855d0dfa}\label{class_chess_base_a3b85105c594a7e7f7844415c855d0dfa}} 
+\index{ChessBase@{ChessBase}!setProgressBar@{setProgressBar}}
+\index{setProgressBar@{setProgressBar}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{setProgressBar()}{setProgressBar()}}
+{\footnotesize\ttfamily void Chess\+Base\+::set\+Progress\+Bar (\begin{DoxyParamCaption}\item[{QProgress\+Bar $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_chess_base_a098b46bbbe8143914da7acbb8d6a0718}\label{class_chess_base_a098b46bbbe8143914da7acbb8d6a0718}} 
+\index{ChessBase@{ChessBase}!Slot@{Slot}}
+\index{Slot@{Slot}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{Slot()}{Slot()}}
+{\footnotesize\ttfamily int Chess\+Base\+::\+Slot (\begin{DoxyParamCaption}\item[{QString}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Slot get the handle of opened database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & \+: the filename of wanted database Database in native Scid format doesn\textquotesingle{}t use extension Other databases require file extention, (.pgn) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the handke of the database corresponding to file\+Name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_ab24182fe510e05d22b689f545e554275}\label{class_chess_base_ab24182fe510e05d22b689f545e554275}} 
+\index{ChessBase@{ChessBase}!sortChacheCreate@{sortChacheCreate}}
+\index{sortChacheCreate@{sortChacheCreate}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{sortChacheCreate()}{sortChacheCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::sort\+Chache\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{sort\+Crit }\end{DoxyParamCaption})}
+
+
+
+sort\+Chache\+Create create a sort\+Cache 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+{\em sort\+Crit} & \+: Sort critera \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: 0 for not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a842c62d54b7b6c1939b08ce02dc731b1}\label{class_chess_base_a842c62d54b7b6c1939b08ce02dc731b1}} 
+\index{ChessBase@{ChessBase}!sortChacheRelease@{sortChacheRelease}}
+\index{sortChacheRelease@{sortChacheRelease}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{sortChacheRelease()}{sortChacheRelease()}}
+{\footnotesize\ttfamily void Chess\+Base\+::sort\+Chache\+Release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{sort\+Crit }\end{DoxyParamCaption})}
+
+
+
+sort\+Chache\+Release 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+{\em sort\+Crit} & \+: sort critera \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_chess_base_ad3a170c90ac7999e9d7e3aa970e5d632}\label{class_chess_base_ad3a170c90ac7999e9d7e3aa970e5d632}} 
+\index{ChessBase@{ChessBase}!statsDates@{statsDates}}
+\index{statsDates@{statsDates}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{statsDates()}{statsDates()}}
+{\footnotesize\ttfamily QList$<$ quint32 $>$ Chess\+Base\+::stats\+Dates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+stats\+Dates return statistic about minimum dates, maximum dates and mean year 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+QList of 3 uint32-\/t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_abb6af484615a135cc59a03c6e0f8290b}\label{class_chess_base_abb6af484615a135cc59a03c6e0f8290b}} 
+\index{ChessBase@{ChessBase}!statsECO@{statsECO}}
+\index{statsECO@{statsECO}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{statsECO()}{statsECO()}}
+{\footnotesize\ttfamily QList$<$ quint32 $>$ Chess\+Base\+::stats\+ECO (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString}]{ECO }\end{DoxyParamCaption})}
+
+
+
+stats\+ECO return statistic about 
+
+
+\begin{DoxyItemize}
+\item number of games with the ECO
+\item number of white wins
+\item number of draws
+\item number of black wins
+\item number of no result games
+\item score in \% 
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+{\em ECO} & \+: must be a valid ECO code or an abbreviation. For example\+: A returns the sum of all the A00,A00a...A99z4 A1 returns the sum of all the A10,A10a,A10a1...A19z4 A10 returns the sum of all the A10,A10a,A10a1...A10z4 An empty string returns the sum of all valid ECO codes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a QList of 5 results 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_chess_base_a595097d89fb6a98218424b95808dbb5a}\label{class_chess_base_a595097d89fb6a98218424b95808dbb5a}} 
+\index{ChessBase@{ChessBase}!statsFLAG@{statsFLAG}}
+\index{statsFLAG@{statsFLAG}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{statsFLAG()}{statsFLAG()}}
+{\footnotesize\ttfamily quint32 Chess\+Base\+::stats\+FLAG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QChar}]{flag }\end{DoxyParamCaption})}
+
+
+
+stats\+FLAG \+: number of games with the flag set The flag must be a valid flag char like in \mbox{\hyperlink{class_index_entry_a7660845e306c185d9146501cd0225057}{Index\+Entry\+::\+Char\+To\+Flag()}} ie D DELETE W WHITE OP B Black OP M Middlegame E End\+Game N Novelty P Pawn T TACTICS K KSIDE Q QSIDE ! BRILLANCY ? BLUNDER U User 1..6 CUSTOM 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+{\em flag} & \+: the flag \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a159f75bd97b0134cc5725cbe9eee8157}\label{class_chess_base_a159f75bd97b0134cc5725cbe9eee8157}} 
+\index{ChessBase@{ChessBase}!statsFLAGS@{statsFLAGS}}
+\index{statsFLAGS@{statsFLAGS}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{statsFLAGS()}{statsFLAGS()}}
+{\footnotesize\ttfamily QList$<$ quint32 $>$ Chess\+Base\+::stats\+FLAGS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+stats\+FLAGS number of games with the flags D W and B set 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a89444c51b63d3a1b41a9b5bca3208a45}\label{class_chess_base_a89444c51b63d3a1b41a9b5bca3208a45}} 
+\index{ChessBase@{ChessBase}!statsInfoToBeCompacted@{statsInfoToBeCompacted}}
+\index{statsInfoToBeCompacted@{statsInfoToBeCompacted}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{statsInfoToBeCompacted()}{statsInfoToBeCompacted()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::stats\+Info\+To\+Be\+Compacted (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QList$<$ quint64 $>$ \&}]{list }\end{DoxyParamCaption})}
+
+
+
+stats return a QList of informations who must be compacted 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & is a pointeur on the Data\+Base \\
+\hline
+{\em list} & is a QList of 4 informations \+:
+\begin{DoxyItemize}
+\item games marked deleted
+\item unused games
+\item parse optimizations
+\item bad named 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 of not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_ae66c2b616578c9984771bbaf33ac0382}\label{class_chess_base_ae66c2b616578c9984771bbaf33ac0382}} 
+\index{ChessBase@{ChessBase}!statsRATINGS@{statsRATINGS}}
+\index{statsRATINGS@{statsRATINGS}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{statsRATINGS()}{statsRATINGS()}}
+{\footnotesize\ttfamily QList$<$ quint32 $>$ Chess\+Base\+::stats\+RATINGS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+stats\+RATINGS 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{minimum elo\} \{maximum elo\} \{mean elo\} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_a6d83dc311d3558938a8e8a3a16386d0f}\label{class_chess_base_a6d83dc311d3558938a8e8a3a16386d0f}} 
+\index{ChessBase@{ChessBase}!statsRESULTS@{statsRESULTS}}
+\index{statsRESULTS@{statsRESULTS}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{statsRESULTS()}{statsRESULTS()}}
+{\footnotesize\ttfamily QList$<$ quint32 $>$ Chess\+Base\+::stats\+RESULTS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase }\end{DoxyParamCaption})}
+
+
+
+stats\+RESULTS 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer on Base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{number of games won by white\} \{number of draws\} \{number of games won by black\} \{number of games with no result\} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_af724b19435ff98bda3b9d3015dd2405b}\label{class_chess_base_af724b19435ff98bda3b9d3015dd2405b}} 
+\index{ChessBase@{ChessBase}!strip@{strip}}
+\index{strip@{strip}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{strip()}{strip()}}
+{\footnotesize\ttfamily QList$<$ unsigned short $>$ Chess\+Base\+::strip (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QString\+List}]{tag\+Names }\end{DoxyParamCaption})}
+
+
+
+strip remove all occurences of the spedified tags from the database 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer onto \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+{\em tag\+Names} & \+: list on tag names \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_ada6fe0f71bef52d0e08b6731bcb9935e}\label{class_chess_base_ada6fe0f71bef52d0e08b6731bcb9935e}} 
+\index{ChessBase@{ChessBase}!tagList@{tagList}}
+\index{tagList@{tagList}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{tagList()}{tagList()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::tag\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{QList$<$ QPair$<$ QString, int $>$ $>$ \&}]{res }\end{DoxyParamCaption})}
+
+
+
+tag\+List produce a list of PGN tags used in the Data\+Base 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbase} & \+: pointer onto \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} \\
+\hline
+{\em QList$<$\+QPair$<$\+QString,int$>$$>$} & \&res output paramter if errorT is OK \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK for not error else a value given by \mbox{\hyperlink{error_8h}{error.\+h}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chess_base_aa0ca434e24011cb701cf87db496173ce}\label{class_chess_base_aa0ca434e24011cb701cf87db496173ce}} 
+\index{ChessBase@{ChessBase}!tournaments@{tournaments}}
+\index{tournaments@{tournaments}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{tournaments()}{tournaments()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::tournaments (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{\mbox{\hyperlink{class_filter}{Filter}}}]{,  }\item[{QString}]{filter,  }\item[{long}]{maxresult,  }\item[{QList$<$ QList$<$ QVariant $>$ $>$ \&}]{res,  }\item[{int}]{elo = {\ttfamily 0},  }\item[{int}]{games = {\ttfamily 0},  }\item[{int}]{players = {\ttfamily 0},  }\item[{QString}]{player = {\ttfamily QString()},  }\item[{QString}]{sort = {\ttfamily QString()} }\end{DoxyParamCaption})}
+
+
+
+tournaments return a list of tournaments Games with the same Event Site and Event\+Date tags are considered as a tournament The list returned can be restricted based on \+: 
+
+
+\begin{DoxyItemize}
+\item the average elo og participants
+\item the number of games
+\item the number of players
+\item the nae of a participant Ranges can be specified with one or two numvers separated by spaces (min max) The returned list cat ne sorted according to the followinf critera \+:
+\item Date \+: date on the first games in the tournament
+\item Players \+: number of participants to tournament
+\item Games \+: number of games
+\item Elo \+: average elo of the participants
+\item Site \+: site name
+\item Event \+: event name 
+\begin{DoxyParams}{Parameters}
+{\em dbase} & ~\newline
+ \\
+\hline
+{\em maxresult} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+on Succes return a list of tournaments ofr eah tournament the followinf informations are provided \+: date of the first game, site name, event name, number of players , number of games, average elo, lowest game number, winner name, winner elo, winner score, 2nd place name , 2 nd elo 2nd score 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_chess_base_a25f5a1daa97c66ff3ae256b7d61530db}\label{class_chess_base_a25f5a1daa97c66ff3ae256b7d61530db}} 
+\index{ChessBase@{ChessBase}!unsetGameFlag@{unsetGameFlag}}
+\index{unsetGameFlag@{unsetGameFlag}!ChessBase@{ChessBase}}
+\doxysubsubsection{\texorpdfstring{unsetGameFlag()}{unsetGameFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Chess\+Base\+::unset\+Game\+Flag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structscid_base_t}{scid\+BaseT}} $\ast$}]{dbase,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{gamenum,  }\item[{char}]{flagtype }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{chessbase_8h}{chessbase.\+h}}\item 
+\mbox{\hyperlink{chessbase_8cpp}{chessbase.\+cpp}}\end{DoxyCompactItemize}

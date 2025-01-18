@@ -1,0 +1,180 @@
+\hypertarget{class_full_move}{}\doxysection{Full\+Move Class Reference}
+\label{class_full_move}\index{FullMove@{FullMove}}
+
+
+{\ttfamily \#include $<$fullmove.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{class_full_move_ac7af8bd0be75ef0412504aa80078e90b}{Full\+Move}} (uint32\+\_\+t m=0)
+\item 
+\mbox{\hyperlink{class_full_move_a894c63ccd647761a96c57bf2a04ebf46}{Full\+Move}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} king\+Sq, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} rook\+Sq)
+\item 
+\mbox{\hyperlink{class_full_move_ac3044edf60a53fcc36f36cd4a39f62c3}{Full\+Move}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pt)
+\item 
+bool \mbox{\hyperlink{class_full_move_a90b8faaceb377292f816b335f5bf2d62}{operator==}} (\mbox{\hyperlink{class_full_move}{Full\+Move}} const \&f) const
+\item 
+\mbox{\hyperlink{class_full_move_ab1a603354ba562e8419bf3df3437bb92}{operator bool}} () const
+\item 
+bool \mbox{\hyperlink{class_full_move_a6cd2b28455168c6170118f066e48afc1}{is\+Null}} () const
+\item 
+bool \mbox{\hyperlink{class_full_move_afb6098c93f9bb863c7699a927565561a}{is\+Promo}} () const
+\item 
+bool \mbox{\hyperlink{class_full_move_a1fcd45b72e0491f81affc57c81efb64f}{is\+Enpassant}} () const
+\item 
+bool \mbox{\hyperlink{class_full_move_ae68e31b0a832f27aaef40179e708abcd}{is\+Castle}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_full_move_aba4e00634f8fd78e41680523d3ff54ce}{get\+To}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_full_move_ac202fc11b822d791e31bbe024c920693}{get\+From}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_full_move_af0ccbd845375365154f5acfecae9a993}{get\+Piece}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} \mbox{\hyperlink{class_full_move_a1b5c20d0fb533521d677868fd2823ee1}{get\+Color}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_full_move_a55b197af141b649c6570d7b7d608ee01}{get\+Promo}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_full_move_a08ae3d4867a970e0fe73bf0781fff4aa}{get\+Captured}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_full_move_a1982b80d0ccf5a24cf9d358ed550eb41}{get\+SAN}} () const
+\item 
+void \mbox{\hyperlink{class_full_move_a6bed5bc37ffa03a4f93c3b2bf7d22bd9}{set\+Promo}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} promo)
+\item 
+void \mbox{\hyperlink{class_full_move_ae12576d0e521873f7760ef5b49386282}{set\+Capture}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece, bool en\+Passant)
+\item 
+void \mbox{\hyperlink{class_full_move_adfe4f0a132c04743cc531e4d8d07ebf0}{set\+Ambiguity}} (bool fyle, bool rank)
+\item 
+void \mbox{\hyperlink{class_full_move_aa1df2021dd86681d58e37d286fb139b5}{set\+Check}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_full_move_ac7af8bd0be75ef0412504aa80078e90b}\label{class_full_move_ac7af8bd0be75ef0412504aa80078e90b}} 
+\index{FullMove@{FullMove}!FullMove@{FullMove}}
+\index{FullMove@{FullMove}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{FullMove()}{FullMove()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily constexpr Full\+Move\+::\+Full\+Move (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{m = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{class_full_move_a894c63ccd647761a96c57bf2a04ebf46}\label{class_full_move_a894c63ccd647761a96c57bf2a04ebf46}} 
+\index{FullMove@{FullMove}!FullMove@{FullMove}}
+\index{FullMove@{FullMove}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{FullMove()}{FullMove()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Full\+Move\+::\+Full\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{king\+Sq,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{rook\+Sq }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_ac3044edf60a53fcc36f36cd4a39f62c3}\label{class_full_move_ac3044edf60a53fcc36f36cd4a39f62c3}} 
+\index{FullMove@{FullMove}!FullMove@{FullMove}}
+\index{FullMove@{FullMove}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{FullMove()}{FullMove()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Full\+Move\+::\+Full\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{from,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{to,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_full_move_a08ae3d4867a970e0fe73bf0781fff4aa}\label{class_full_move_a08ae3d4867a970e0fe73bf0781fff4aa}} 
+\index{FullMove@{FullMove}!getCaptured@{getCaptured}}
+\index{getCaptured@{getCaptured}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{getCaptured()}{getCaptured()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} Full\+Move\+::get\+Captured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_a1b5c20d0fb533521d677868fd2823ee1}\label{class_full_move_a1b5c20d0fb533521d677868fd2823ee1}} 
+\index{FullMove@{FullMove}!getColor@{getColor}}
+\index{getColor@{getColor}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{getColor()}{getColor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} Full\+Move\+::get\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_ac202fc11b822d791e31bbe024c920693}\label{class_full_move_ac202fc11b822d791e31bbe024c920693}} 
+\index{FullMove@{FullMove}!getFrom@{getFrom}}
+\index{getFrom@{getFrom}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{getFrom()}{getFrom()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Full\+Move\+::get\+From (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_af0ccbd845375365154f5acfecae9a993}\label{class_full_move_af0ccbd845375365154f5acfecae9a993}} 
+\index{FullMove@{FullMove}!getPiece@{getPiece}}
+\index{getPiece@{getPiece}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{getPiece()}{getPiece()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} Full\+Move\+::get\+Piece (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_a55b197af141b649c6570d7b7d608ee01}\label{class_full_move_a55b197af141b649c6570d7b7d608ee01}} 
+\index{FullMove@{FullMove}!getPromo@{getPromo}}
+\index{getPromo@{getPromo}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{getPromo()}{getPromo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} Full\+Move\+::get\+Promo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_a1982b80d0ccf5a24cf9d358ed550eb41}\label{class_full_move_a1982b80d0ccf5a24cf9d358ed550eb41}} 
+\index{FullMove@{FullMove}!getSAN@{getSAN}}
+\index{getSAN@{getSAN}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{getSAN()}{getSAN()}}
+{\footnotesize\ttfamily std\+::string Full\+Move\+::get\+SAN (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_aba4e00634f8fd78e41680523d3ff54ce}\label{class_full_move_aba4e00634f8fd78e41680523d3ff54ce}} 
+\index{FullMove@{FullMove}!getTo@{getTo}}
+\index{getTo@{getTo}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{getTo()}{getTo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Full\+Move\+::get\+To (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_ae68e31b0a832f27aaef40179e708abcd}\label{class_full_move_ae68e31b0a832f27aaef40179e708abcd}} 
+\index{FullMove@{FullMove}!isCastle@{isCastle}}
+\index{isCastle@{isCastle}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{isCastle()}{isCastle()}}
+{\footnotesize\ttfamily bool Full\+Move\+::is\+Castle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_a1fcd45b72e0491f81affc57c81efb64f}\label{class_full_move_a1fcd45b72e0491f81affc57c81efb64f}} 
+\index{FullMove@{FullMove}!isEnpassant@{isEnpassant}}
+\index{isEnpassant@{isEnpassant}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{isEnpassant()}{isEnpassant()}}
+{\footnotesize\ttfamily bool Full\+Move\+::is\+Enpassant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_a6cd2b28455168c6170118f066e48afc1}\label{class_full_move_a6cd2b28455168c6170118f066e48afc1}} 
+\index{FullMove@{FullMove}!isNull@{isNull}}
+\index{isNull@{isNull}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{isNull()}{isNull()}}
+{\footnotesize\ttfamily bool Full\+Move\+::is\+Null (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_afb6098c93f9bb863c7699a927565561a}\label{class_full_move_afb6098c93f9bb863c7699a927565561a}} 
+\index{FullMove@{FullMove}!isPromo@{isPromo}}
+\index{isPromo@{isPromo}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{isPromo()}{isPromo()}}
+{\footnotesize\ttfamily bool Full\+Move\+::is\+Promo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_ab1a603354ba562e8419bf3df3437bb92}\label{class_full_move_ab1a603354ba562e8419bf3df3437bb92}} 
+\index{FullMove@{FullMove}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily Full\+Move\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_full_move_a90b8faaceb377292f816b335f5bf2d62}\label{class_full_move_a90b8faaceb377292f816b335f5bf2d62}} 
+\index{FullMove@{FullMove}!operator==@{operator==}}
+\index{operator==@{operator==}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Full\+Move\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_full_move}{Full\+Move}} const \&}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_adfe4f0a132c04743cc531e4d8d07ebf0}\label{class_full_move_adfe4f0a132c04743cc531e4d8d07ebf0}} 
+\index{FullMove@{FullMove}!setAmbiguity@{setAmbiguity}}
+\index{setAmbiguity@{setAmbiguity}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{setAmbiguity()}{setAmbiguity()}}
+{\footnotesize\ttfamily void Full\+Move\+::set\+Ambiguity (\begin{DoxyParamCaption}\item[{bool}]{fyle,  }\item[{bool}]{rank }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_ae12576d0e521873f7760ef5b49386282}\label{class_full_move_ae12576d0e521873f7760ef5b49386282}} 
+\index{FullMove@{FullMove}!setCapture@{setCapture}}
+\index{setCapture@{setCapture}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{setCapture()}{setCapture()}}
+{\footnotesize\ttfamily void Full\+Move\+::set\+Capture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{piece,  }\item[{bool}]{en\+Passant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_aa1df2021dd86681d58e37d286fb139b5}\label{class_full_move_aa1df2021dd86681d58e37d286fb139b5}} 
+\index{FullMove@{FullMove}!setCheck@{setCheck}}
+\index{setCheck@{setCheck}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{setCheck()}{setCheck()}}
+{\footnotesize\ttfamily void Full\+Move\+::set\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_full_move_a6bed5bc37ffa03a4f93c3b2bf7d22bd9}\label{class_full_move_a6bed5bc37ffa03a4f93c3b2bf7d22bd9}} 
+\index{FullMove@{FullMove}!setPromo@{setPromo}}
+\index{setPromo@{setPromo}!FullMove@{FullMove}}
+\doxysubsubsection{\texorpdfstring{setPromo()}{setPromo()}}
+{\footnotesize\ttfamily void Full\+Move\+::set\+Promo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{promo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{fullmove_8h}{fullmove.\+h}}\end{DoxyCompactItemize}

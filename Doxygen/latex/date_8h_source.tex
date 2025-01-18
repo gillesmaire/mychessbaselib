@@ -1,0 +1,206 @@
+\hypertarget{date_8h_source}{}\doxysection{date.\+h}
+\mbox{\hyperlink{date_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  FILE:       date.h}}
+\DoxyCodeLine{4 \textcolor{comment}{//              Date format and inline date functions.}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{//  Part of:    Scid (Shane's Chess Information Database)}}
+\DoxyCodeLine{7 \textcolor{comment}{//  Version:    1.9}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Notice:     Copyright (c) 1999  Shane Hudson.  All rights reserved.}}
+\DoxyCodeLine{10 \textcolor{comment}{//}}
+\DoxyCodeLine{11 \textcolor{comment}{//  Author:     Shane Hudson (sgh@users.sourceforge.net)}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{14 \textcolor{comment}{}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef SCID\_DATE\_H}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define SCID\_DATE\_H}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{comment}{// DATE STORAGE FORMAT:}}
+\DoxyCodeLine{25 \textcolor{comment}{// In memory, dates are stored in a 32-\/bit (4-\/byte) uint, of which only}}
+\DoxyCodeLine{26 \textcolor{comment}{// the lowest 3 bytes need be used, with the lowest 5 bits for the}}
+\DoxyCodeLine{27 \textcolor{comment}{// day, the next highest 4 bits for the month and the highest bits for}}
+\DoxyCodeLine{28 \textcolor{comment}{// the year. This makes date comparisons easy: a bigger date value is}}
+\DoxyCodeLine{29 \textcolor{comment}{// a more recent date.  If a field is unknown, its value is set to zero.}}
+\DoxyCodeLine{30 \textcolor{comment}{// On disk, the date is stored in 3 bytes.}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{34 \textcolor{comment}{//  CONSTANTS and MACROS:}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{typedef} uint32\_t    \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{keyword}{const} \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} \mbox{\hyperlink{date_8h_a595f5d8135194ea54a673ed64c126f9c}{ZERO\_DATE}} = 0;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{const} uint32\_t  \mbox{\hyperlink{date_8h_a33a06e34340a3b261375591f92f0d6ab}{YEAR\_SHIFT}}  = 9;}
+\DoxyCodeLine{41 \textcolor{keyword}{const} uint32\_t  \mbox{\hyperlink{date_8h_ad67bb67bef9fc5d32e7a125a683e92a9}{MONTH\_SHIFT}} = 5;}
+\DoxyCodeLine{42 \textcolor{keyword}{const} uint32\_t  \mbox{\hyperlink{date_8h_a1c26548c3bfe9c649c201c4cd69f39c4}{DAY\_SHIFT}}   = 0;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{// DAY (31 days) 5 bits (32) , MONTH (12 months) 4 bits (16)}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{date_8h_af5e0ba6fef77fc665d828586f7fd7860}{YEAR\_MAX}} = 2047;  \textcolor{comment}{// 2\string^11 -\/ 1}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define DATE\_MAKE(y,m,d) (((y) << YEAR\_SHIFT) | ((m) << MONTH\_SHIFT) | (d))}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{52 \textcolor{comment}{// date\_GetYear():}}
+\DoxyCodeLine{53 \textcolor{comment}{//      Get the year from a date.}}
+\DoxyCodeLine{54 \textcolor{keyword}{inline} uint32\_t}
+\DoxyCodeLine{55 \mbox{\hyperlink{date_8h_a379ed8fcf8bb882a7d873de0a473200d}{date\_GetYear}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date)}
+\DoxyCodeLine{56 \{}
+\DoxyCodeLine{57     \textcolor{keywordflow}{return} (uint32\_t) (date >> \mbox{\hyperlink{date_8h_a33a06e34340a3b261375591f92f0d6ab}{YEAR\_SHIFT}});}
+\DoxyCodeLine{58 \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{61 \textcolor{comment}{// date\_GetMonth():}}
+\DoxyCodeLine{62 \textcolor{comment}{//      Get the month from a date.}}
+\DoxyCodeLine{63 \textcolor{keyword}{inline} uint32\_t}
+\DoxyCodeLine{64 \mbox{\hyperlink{date_8h_a18918728faf7b14050b0d9fef109fd77}{date\_GetMonth}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date)}
+\DoxyCodeLine{65 \{}
+\DoxyCodeLine{66     \textcolor{keywordflow}{return} (uint32\_t) ((date >> \mbox{\hyperlink{date_8h_ad67bb67bef9fc5d32e7a125a683e92a9}{MONTH\_SHIFT}}) \& 15);}
+\DoxyCodeLine{67 \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{70 \textcolor{comment}{//\#\#\# date\_GetDay():}}
+\DoxyCodeLine{71 \textcolor{comment}{//      Get the day of the month from a date.}}
+\DoxyCodeLine{72 \textcolor{keyword}{inline} uint32\_t}
+\DoxyCodeLine{73 \mbox{\hyperlink{date_8h_a3beeba947e374e80f14c7a6c6cd7052a}{date\_GetDay}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date)}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75     \textcolor{keywordflow}{return} (uint32\_t) (date \& 31);}
+\DoxyCodeLine{76 \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{// Return true if the date does not include the year, the month or the day.}}
+\DoxyCodeLine{79 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{date_8h_a02340a455066307d94bcc92bfb663736}{date\_isPartial}}(\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date) \{}
+\DoxyCodeLine{80     \textcolor{keywordflow}{return} \mbox{\hyperlink{date_8h_a379ed8fcf8bb882a7d873de0a473200d}{date\_GetYear}}(date) == 0 || \mbox{\hyperlink{date_8h_a18918728faf7b14050b0d9fef109fd77}{date\_GetMonth}}(date) == 0 ||}
+\DoxyCodeLine{81            \mbox{\hyperlink{date_8h_a3beeba947e374e80f14c7a6c6cd7052a}{date\_GetDay}}(date) == 0;}
+\DoxyCodeLine{82 \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{85 \textcolor{comment}{// date\_DecodeToString(): convert date to PGN tag string.}}
+\DoxyCodeLine{86 \textcolor{keyword}{inline} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{87 \mbox{\hyperlink{date_8h_a7c4f37fa199cf628143ebcbf5f2f9b77}{date\_DecodeToString}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date, \textcolor{keywordtype}{char} * str)}
+\DoxyCodeLine{88 \{}
+\DoxyCodeLine{89     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str != NULL);}
+\DoxyCodeLine{90     uint32\_t year, month, day;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     year = \mbox{\hyperlink{date_8h_a379ed8fcf8bb882a7d873de0a473200d}{date\_GetYear}} (date);}
+\DoxyCodeLine{93     month = \mbox{\hyperlink{date_8h_a18918728faf7b14050b0d9fef109fd77}{date\_GetMonth}} (date);}
+\DoxyCodeLine{94     day = \mbox{\hyperlink{date_8h_a3beeba947e374e80f14c7a6c6cd7052a}{date\_GetDay}} (date);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{keywordflow}{if} (year == 0) \{}
+\DoxyCodeLine{97         *str++ = \textcolor{charliteral}{'?'}; *str++ = \textcolor{charliteral}{'?'}; *str++ = \textcolor{charliteral}{'?'}; *str++ = \textcolor{charliteral}{'?'};}
+\DoxyCodeLine{98     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{99         *str++ = \textcolor{charliteral}{'0'} + (year / 1000);}
+\DoxyCodeLine{100         *str++ = \textcolor{charliteral}{'0'} + (year \% 1000) / 100;}
+\DoxyCodeLine{101         *str++ = \textcolor{charliteral}{'0'} + (year \% 100) / 10;}
+\DoxyCodeLine{102         *str++ = \textcolor{charliteral}{'0'} + (year \% 10);}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104     *str++ = \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{keywordflow}{if} (month == 0) \{}
+\DoxyCodeLine{107         *str++ = \textcolor{charliteral}{'?'}; *str++ = \textcolor{charliteral}{'?'};}
+\DoxyCodeLine{108     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{109         *str++ = \textcolor{charliteral}{'0'} + (month / 10);}
+\DoxyCodeLine{110         *str++ = \textcolor{charliteral}{'0'} + (month \% 10);}
+\DoxyCodeLine{111     \}}
+\DoxyCodeLine{112     *str++ = \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114     \textcolor{keywordflow}{if} (day == 0) \{}
+\DoxyCodeLine{115         *str++ = \textcolor{charliteral}{'?'}; *str++ = \textcolor{charliteral}{'?'};}
+\DoxyCodeLine{116     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{117         *str++ = \textcolor{charliteral}{'0'} + (day / 10);}
+\DoxyCodeLine{118         *str++ = \textcolor{charliteral}{'0'} + (day \% 10);}
+\DoxyCodeLine{119     \}}
+\DoxyCodeLine{120     *str = 0;}
+\DoxyCodeLine{121 \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{124 \textcolor{comment}{// date\_EncodeFromString(): convert PGN tag string to date.}}
+\DoxyCodeLine{125 \textcolor{comment}{//      The date string format is: "{}yyyy.mm.dd"{}.}}
+\DoxyCodeLine{126 \textcolor{keyword}{inline} \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}}
+\DoxyCodeLine{127 \mbox{\hyperlink{date_8h_a88b972420cb1858cea84d9e2fec1f21e}{date\_EncodeFromString}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str)}
+\DoxyCodeLine{128 \{}
+\DoxyCodeLine{129     \textcolor{comment}{// Do checks on str's validity as a date string:}}
+\DoxyCodeLine{130     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str != NULL);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date;}
+\DoxyCodeLine{133     uint32\_t year, month, day;}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     \textcolor{comment}{// convert year:}}
+\DoxyCodeLine{136     year = std::strtoul(str, NULL, 10);}
+\DoxyCodeLine{137     \textcolor{keywordflow}{if} (year > \mbox{\hyperlink{date_8h_af5e0ba6fef77fc665d828586f7fd7860}{YEAR\_MAX}}) \{ year = 0; \}}
+\DoxyCodeLine{138     date = year << \mbox{\hyperlink{date_8h_a33a06e34340a3b261375591f92f0d6ab}{YEAR\_SHIFT}};}
+\DoxyCodeLine{139     \textcolor{keywordflow}{while} (*str != 0  \&\&  *str != \textcolor{charliteral}{'.'}) \{ str++; \}}
+\DoxyCodeLine{140     \textcolor{keywordflow}{if} (*str == \textcolor{charliteral}{'.'}) \{ str++; \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{comment}{// convert month:}}
+\DoxyCodeLine{143     month = std::strtoul(str, NULL, 10);}
+\DoxyCodeLine{144     \textcolor{keywordflow}{if} (month > 12) \{ \textcolor{keywordflow}{return} date; \}}
+\DoxyCodeLine{145     date |= (month << \mbox{\hyperlink{date_8h_ad67bb67bef9fc5d32e7a125a683e92a9}{MONTH\_SHIFT}});}
+\DoxyCodeLine{146     \textcolor{keywordflow}{while} (*str != 0  \&\&  *str != \textcolor{charliteral}{'.'}) \{ str++; \}}
+\DoxyCodeLine{147     \textcolor{keywordflow}{if} (*str == \textcolor{charliteral}{'.'}) \{ str++; \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     \textcolor{comment}{// convert day:}}
+\DoxyCodeLine{150     day = std::strtoul(str, NULL, 10);}
+\DoxyCodeLine{151     \textcolor{keywordflow}{if} (day > 31) \{ \textcolor{keywordflow}{return} date; \}}
+\DoxyCodeLine{152     date |= (day << \mbox{\hyperlink{date_8h_a1c26548c3bfe9c649c201c4cd69f39c4}{DAY\_SHIFT}});}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154     \textcolor{keywordflow}{return} date;}
+\DoxyCodeLine{155 \}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{166 \textcolor{keyword}{inline} \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} \mbox{\hyperlink{date_8h_a0963f675bee026f75e2d069e6e1fa691}{date\_parsePGNTag}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{size\_t} len) \{}
+\DoxyCodeLine{167     \textcolor{keyword}{auto} is\_digit = [](\textcolor{keyword}{auto} v) \{ \textcolor{keywordflow}{return} v >= 0 \&\& v <= 9; \};}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \textcolor{keywordflow}{if} (len < 4 || len > 10)}
+\DoxyCodeLine{170         \textcolor{keywordflow}{return} \{\};}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172     \textcolor{keywordtype}{int} tmp[10];}
+\DoxyCodeLine{173     std::transform(str, str + len, tmp, [](\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ch) \{}
+\DoxyCodeLine{174         \textcolor{keywordflow}{return} ch -\/ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{175     \});}
+\DoxyCodeLine{176     std::fill(tmp + len, tmp + 10, -\/1);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178     uint32\_t year = tmp[0] * 1000 + tmp[1] * 100 + tmp[2] * 10 + tmp[3];}
+\DoxyCodeLine{179     \textcolor{keywordflow}{if} (!std::all\_of(tmp, tmp + 4, is\_digit) || year > \mbox{\hyperlink{date_8h_af5e0ba6fef77fc665d828586f7fd7860}{YEAR\_MAX}})}
+\DoxyCodeLine{180         \textcolor{keywordflow}{return} \{\};}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182     uint32\_t month = 0;}
+\DoxyCodeLine{183     \textcolor{keywordflow}{if} (!is\_digit(tmp[4]) \&\& is\_digit(tmp[5])) \{}
+\DoxyCodeLine{184         \textcolor{keywordflow}{if} (!is\_digit(tmp[6])) \{}
+\DoxyCodeLine{185             \textcolor{comment}{// Accept the format YYYY.M.DD or YYYY.M.D}}
+\DoxyCodeLine{186             std::rotate(tmp + 5, tmp + 9, tmp + 10);}
+\DoxyCodeLine{187             tmp[5] = 0;}
+\DoxyCodeLine{188         \}}
+\DoxyCodeLine{189         month = tmp[5] * 10 + tmp[6];}
+\DoxyCodeLine{190         \textcolor{keywordflow}{if} (month > 12)}
+\DoxyCodeLine{191             month = 0;}
+\DoxyCodeLine{192     \}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194     uint32\_t day = 0;}
+\DoxyCodeLine{195     \textcolor{keywordflow}{if} (!is\_digit(tmp[7]) \&\& is\_digit(tmp[8])) \{}
+\DoxyCodeLine{196         day = is\_digit(tmp[9]) ? tmp[8] * 10 + tmp[9] : tmp[8];}
+\DoxyCodeLine{197         \textcolor{keywordflow}{if} (day > 31)}
+\DoxyCodeLine{198             day = 0;}
+\DoxyCodeLine{199     \}}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201     \textcolor{keywordflow}{return} (year << \mbox{\hyperlink{date_8h_a33a06e34340a3b261375591f92f0d6ab}{YEAR\_SHIFT}}) | (month << \mbox{\hyperlink{date_8h_ad67bb67bef9fc5d32e7a125a683e92a9}{MONTH\_SHIFT}}) | (day << \mbox{\hyperlink{date_8h_a1c26548c3bfe9c649c201c4cd69f39c4}{DAY\_SHIFT}});}
+\DoxyCodeLine{202 \}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 \textcolor{keyword}{inline} \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} \mbox{\hyperlink{date_8h_a0963f675bee026f75e2d069e6e1fa691}{date\_parsePGNTag}}(std::pair<const char*, const char*> str) \{}
+\DoxyCodeLine{205     \textcolor{keywordflow}{return} \mbox{\hyperlink{date_8h_a0963f675bee026f75e2d069e6e1fa691}{date\_parsePGNTag}}(str.first, std::distance(str.first, str.second));}
+\DoxyCodeLine{206 \}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#endif   }\textcolor{comment}{// \#ifndef SCID\_DATE\_H}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{211 \textcolor{comment}{//  EOF: date.h}}
+\DoxyCodeLine{213 \textcolor{comment}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,184 @@
+\hypertarget{chessbase_8h_source}{}\doxysection{chessbase.\+h}
+\mbox{\hyperlink{chessbase_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CHESSBASE\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CHESSBASE\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <QObject>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{error_8h}{error.h}}"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{scidbase_8h}{scidbase.h}}"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <QList>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <QPair>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_chess_base}{ChessBase}}  : \textcolor{keyword}{public} QWidget}
+\DoxyCodeLine{14 \{}
+\DoxyCodeLine{15   Q\_OBJECT}
+\DoxyCodeLine{16 \textcolor{keyword}{private}:}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18  \textcolor{keyword}{struct }dupCriteriaT \{}
+\DoxyCodeLine{19     \textcolor{keywordtype}{bool} exactNames;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{bool} sameColors;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{bool} sameEvent;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{bool} sameSite;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{bool} sameRound;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{bool} sameResult;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{bool} sameYear;}
+\DoxyCodeLine{26     \textcolor{keywordtype}{bool} sameMonth;}
+\DoxyCodeLine{27     \textcolor{keywordtype}{bool} sameDay;}
+\DoxyCodeLine{28     \textcolor{keywordtype}{bool} sameEcoCode;}
+\DoxyCodeLine{29     \textcolor{keywordtype}{bool} sameMoves;}
+\DoxyCodeLine{30     \};}
+\DoxyCodeLine{31     }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{struct }gNumListT \{}
+\DoxyCodeLine{34     uint64\_t hash;}
+\DoxyCodeLine{35     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gNumber;}
+\DoxyCodeLine{36     \textcolor{keywordtype}{bool} operator<(\textcolor{keyword}{const} gNumListT\& a)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} hash < a.hash; \}}
+\DoxyCodeLine{37     \};}
+\DoxyCodeLine{38     }
+\DoxyCodeLine{39 QProgressBar *mProgressBar=\textcolor{keyword}{nullptr};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42     \textcolor{keyword}{enum} \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639}{CommandFlag}} \{ \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639ad7593a8ab2cf9272c83bb091326e0468}{nothing}}, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae45fe3231fe841ce6544ad655dc43ece}{get}}, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639afb2d6089c5615cb154f79681e2c88bb4}{set}}, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639aa6bf6f2006072cdd6c3e1630c9e7015c}{unset}}, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639ae5ee96c41b79029d0934f6f7ad5d3220}{invert}} \};}
+\DoxyCodeLine{43     \textcolor{keyword}{enum} \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}{deleteStrategyT}} \{ \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0ab06f851279dd03a946d09a4b81fff93f}{DELETE\_SHORTER}}, \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a4c2c6b120b0ee583bd6dc57c5c602da8}{DELETE\_OLDER}}, \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0a794be07b8ee46657414a891f9009fece}{DELETE\_NEWER}} \};}
+\DoxyCodeLine{44     }
+\DoxyCodeLine{45     \mbox{\hyperlink{class_chess_base_a1d8b803ef64ff0b81b136f16a7fd0fe0}{ChessBase}}( QWidget *widget, QProgressBar *pg = \textcolor{keyword}{nullptr} );}
+\DoxyCodeLine{46     \mbox{\hyperlink{class_chess_base_a16bf62794669a60c733bb7034a1ac80e}{\string~ChessBase}}();}
+\DoxyCodeLine{47   }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_chess_base_a91bee29c500f0ff1663e3b7770b11c6c}{baseInUse}}(\textcolor{keywordtype}{int} number );}
+\DoxyCodeLine{55       }
+\DoxyCodeLine{61     \textcolor{keywordtype}{int}  \mbox{\hyperlink{class_chess_base_a3eb5bbd81aa06d14276306a272845c58}{BaseSwitch}}( \mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{62     }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{74     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_chess_base_ac70e22e7b9d13cda7e95b4514b554b76}{checkDuplicate}}  (\mbox{\hyperlink{structscid_base_t}{scidBaseT}}* dbase, \textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}} *ie1, \textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}} *ie2,}
+\DoxyCodeLine{75                         dupCriteriaT *cr);}
+\DoxyCodeLine{76     }
+\DoxyCodeLine{107     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a0e40456230c816dc1b5da60ba7df753b}{duplicates}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, \textcolor{keywordtype}{bool} players = \textcolor{keyword}{false}, \textcolor{keywordtype}{bool} colors = \textcolor{keyword}{true},}
+\DoxyCodeLine{108                       \textcolor{keywordtype}{bool} event = \textcolor{keyword}{true}, \textcolor{keywordtype}{bool} site = \textcolor{keyword}{true}, \textcolor{keywordtype}{bool} round = \textcolor{keyword}{true},}
+\DoxyCodeLine{109                       \textcolor{keywordtype}{bool} year = \textcolor{keyword}{true}, \textcolor{keywordtype}{bool} month = \textcolor{keyword}{true}, \textcolor{keywordtype}{bool} day = \textcolor{keyword}{false},}
+\DoxyCodeLine{110                       \textcolor{keywordtype}{bool} result = \textcolor{keyword}{false}, \textcolor{keywordtype}{bool} eco = \textcolor{keyword}{false}, \textcolor{keywordtype}{bool} moves = \textcolor{keyword}{true},}
+\DoxyCodeLine{111                       \textcolor{keywordtype}{bool} skipShortGames = \textcolor{keyword}{false}, \textcolor{keywordtype}{bool} keepAllCommentedGames = \textcolor{keyword}{true},}
+\DoxyCodeLine{112                       \textcolor{keywordtype}{bool} keepAllGamesWithVars = \textcolor{keyword}{true}, \textcolor{keywordtype}{bool} setFilterToDups = \textcolor{keyword}{false},}
+\DoxyCodeLine{113                       \textcolor{keywordtype}{bool} onlyFilterGames = \textcolor{keyword}{false}, \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0}{deleteStrategyT}} Delete = \mbox{\hyperlink{class_chess_base_a0b80770b2a2b53e657ca193ea7c5e3c0ab06f851279dd03a946d09a4b81fff93f}{DELETE\_SHORTER}});}
+\DoxyCodeLine{114       }
+\DoxyCodeLine{118     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a4d52046fdacb9f26a87ff2bfde318812}{close}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{119   }
+\DoxyCodeLine{120 }
+\DoxyCodeLine{124     QString \mbox{\hyperlink{class_chess_base_a22c87db1c6d74e709096462a1ef15483}{CodecEnum2QString}}( \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodecDatabase::Codec}} codec ) ;}
+\DoxyCodeLine{125     }
+\DoxyCodeLine{130     \textcolor{keyword}{static} std::string \mbox{\hyperlink{class_chess_base_a98397c07dc8a1aa7b2d5a95f1def2ff9}{CodecEnum2Str}}( \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodecDatabase::Codec}} codec ) ;}
+\DoxyCodeLine{131     }
+\DoxyCodeLine{132     }
+\DoxyCodeLine{140     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a317e521328d8361ee6de293d8a7b73f6}{compact}}( \mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase) ;}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{148     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a86b60ee74ebb8ac2b9cf3949850222fa}{copyGames}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *sourcebase, QString FilterName, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}  targedBaseId );}
+\DoxyCodeLine{149   }
+\DoxyCodeLine{150   }
+\DoxyCodeLine{151     }
+\DoxyCodeLine{157     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a86b60ee74ebb8ac2b9cf3949850222fa}{copyGames}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *sourcebase, \textcolor{keywordtype}{int} numGame, \textcolor{keywordtype}{int} targedBaseId);}
+\DoxyCodeLine{158      }
+\DoxyCodeLine{170     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_af82da4995e2ed8e04eaaffeaf805310f}{create}}(QString name,\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodecDatabase::Codec}} codec, \textcolor{keywordtype}{int} \&numberBase  );}
+\DoxyCodeLine{171     }
+\DoxyCodeLine{178     QString \mbox{\hyperlink{class_chess_base_a5f4d8bc815b3510948b415d5f720e6dd}{ErrorCode}}( \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} code ) ;}
+\DoxyCodeLine{179     }
+\DoxyCodeLine{200     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_chess_base_aa90e62990e2a8698698e4aed98b7cac8}{exportBase}}(\textcolor{keyword}{const} \mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QString filter, \textcolor{keywordtype}{bool} appendToFile, \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{gameFormatT}} outputFormat, QString exportFileName, QString startText=QString(), QString endText=QString(), \textcolor{keywordtype}{bool} comments=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} variation=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} spaces=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} symbols=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} indentComments=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} indentVariation=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} column=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} noMarkCodes=\textcolor{keyword}{false}, \textcolor{keywordtype}{bool} convertNullMoves=\textcolor{keyword}{false});}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202  }
+\DoxyCodeLine{203     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_chess_base_a1f7ecab82a671f1f15d74e94c4ad85dc}{exportGame}}(\mbox{\hyperlink{class_game}{Game}} *g, FILE *exportFile, \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{gameFormatT}} format, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} pgnStyle );}
+\DoxyCodeLine{204     }
+\DoxyCodeLine{205   }
+\DoxyCodeLine{206     }
+\DoxyCodeLine{207     }
+\DoxyCodeLine{208 }
+\DoxyCodeLine{215     QString \mbox{\hyperlink{class_chess_base_afc523c524d3e8d8c5d9107cc3ac1a8cd}{filename}}( \mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{226     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a3d5c037247160e7694e4258198808290}{gameCommandFlag}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QString filter, \mbox{\hyperlink{class_chess_base_a47e732d7e5b3b9273896eb255f729639}{CommandFlag}} command, \textcolor{keywordtype}{char} flagtype);}
+\DoxyCodeLine{227     }
+\DoxyCodeLine{237     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a487548c3b441749c3dfd7e213290703c}{gameslist}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} start, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} count, QString filt, QString sort, QList<QVariant> \&res);}
+\DoxyCodeLine{238     }
+\DoxyCodeLine{247     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_adf90f5382d1ef242a35875d1ebf87f46}{gamelocation}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QString filt, QString sortCrit, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gnumber, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \&result);}
+\DoxyCodeLine{248     }
+\DoxyCodeLine{260     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_adf90f5382d1ef242a35875d1ebf87f46}{gamelocation}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QString filt, QString sort, QString text, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} start, \textcolor{keywordtype}{bool} forwardir, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \&result);}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 }
+\DoxyCodeLine{270     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a32775ce6d32b77333fa014f922ef725a}{gamesummary}}(\textcolor{keyword}{const} \mbox{\hyperlink{structscid_base_t}{scidBaseT}} \&base, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gameNum, QList<QVariant> \&res);}
+\DoxyCodeLine{271     }
+\DoxyCodeLine{272     }
+\DoxyCodeLine{277     QList <QPair <QString,QString>>  \mbox{\hyperlink{class_chess_base_af5e134418dc4d4cb8d5fbcb873115486}{getExtraTags}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{278     }
+\DoxyCodeLine{279         }
+\DoxyCodeLine{298     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a662818f48faa20d8a0167ced7c2d5b74}{getGame}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, \textcolor{keywordtype}{bool} live, QList<QVariant> \&res);}
+\DoxyCodeLine{299     }
+\DoxyCodeLine{300     }
+\DoxyCodeLine{308     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ab747b29b6c6ffb528742f4f2f6640dc1}{getGameFlag}}( \mbox{\hyperlink{structscid_base_t}{scidBaseT}} * dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, \textcolor{keywordtype}{char} flagtype, \textcolor{keywordtype}{bool} \&result );}
+\DoxyCodeLine{309      }
+\DoxyCodeLine{316     \textcolor{keyword}{static} \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ae8fb2b7f3450a20e39a61c71fb187918}{getGameHelper}}(\mbox{\hyperlink{class_game}{Game}} \&game, QList<QVariant> \&res);}
+\DoxyCodeLine{317   }
+\DoxyCodeLine{318    }
+\DoxyCodeLine{327     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ad69b33e3588490831babf11f684c6fbd}{importGames}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QString fileName, \textcolor{keywordtype}{int} \&numgame);}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{336     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a238f870a22cb3b2142e4ce3340ae1a49}{InvertGameFlag}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, \textcolor{keywordtype}{char} flagtype);}
+\DoxyCodeLine{337   }
+\DoxyCodeLine{338   }
+\DoxyCodeLine{343     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_chess_base_a275c13afb90cb1c30b1cd37d896d2751}{ListOpenedBases}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{344     }
+\DoxyCodeLine{345 }
+\DoxyCodeLine{352     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_chess_base_a9fd95fc89c7b20583f35597878ce951a}{numberGames}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{353     }
+\DoxyCodeLine{359     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_chess_base_a34f6df903735e4e91ea311557347b08d}{numberGames}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, \textcolor{keywordtype}{int} baseId);}
+\DoxyCodeLine{360     }
+\DoxyCodeLine{369     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a7104e6ce42cb33437cdabd8bab6c8fda}{open}}(QString \mbox{\hyperlink{class_chess_base_afc523c524d3e8d8c5d9107cc3ac1a8cd}{filename}}, \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{ICodecDatabase::Codec}} codec, \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} fmode , \textcolor{keywordtype}{int}  \&numberbase);}
+\DoxyCodeLine{370     }
+\DoxyCodeLine{371 }
+\DoxyCodeLine{372    }
+\DoxyCodeLine{384     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a203857195d7e61fe10b0872a0abdbf6c}{piecetrack}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, \textcolor{keywordtype}{bool} timeOnSquareMode,  \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} minMoves, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} maxMoves, QString moves, std::array<unsigned int, 64>\& result);}
+\DoxyCodeLine{385   }
+\DoxyCodeLine{386     }
+\DoxyCodeLine{394     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a8a26e868217dfe0ab502b86111000295}{playerElo}}(\textcolor{keyword}{const} \mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QString filterName, QString playerName, QList<QPair<unsigned int, ushort> > \&res);}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{402     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a732737bdab75bac2a3c62ca813a6e37d}{setGameFlag}}( \mbox{\hyperlink{structscid_base_t}{scidBaseT}} * dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, \textcolor{keywordtype}{char} flagtype );}
+\DoxyCodeLine{403     }
+\DoxyCodeLine{410     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_af0459053a03ca5ed2d91f0596ed9d8b3}{setExtraTags}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase , QString  tag, QString value);}
+\DoxyCodeLine{411   }
+\DoxyCodeLine{412     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_chess_base_a3b85105c594a7e7f7844415c855d0dfa}{setProgressBar}}( QProgressBar *ptr) ;}
+\DoxyCodeLine{413     }
+\DoxyCodeLine{421     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_chess_base_a098b46bbbe8143914da7acbb8d6a0718}{Slot}}( QString fileName);  }
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423     }
+\DoxyCodeLine{429     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ab24182fe510e05d22b689f545e554275}{sortChacheCreate}}( \mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase,  QString sortCrit );}
+\DoxyCodeLine{430     }
+\DoxyCodeLine{435     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_chess_base_a842c62d54b7b6c1939b08ce02dc731b1}{sortChacheRelease}}( \mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QString sortCrit );}
+\DoxyCodeLine{436     }
+\DoxyCodeLine{441     QList<quint32> \mbox{\hyperlink{class_chess_base_ad3a170c90ac7999e9d7e3aa970e5d632}{statsDates}} (\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase ) ;}
+\DoxyCodeLine{442     }
+\DoxyCodeLine{459     QList<quint32> \mbox{\hyperlink{class_chess_base_abb6af484615a135cc59a03c6e0f8290b}{statsECO}} (\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase , QString ECO ) ;}
+\DoxyCodeLine{460     }
+\DoxyCodeLine{482     quint32 \mbox{\hyperlink{class_chess_base_a595097d89fb6a98218424b95808dbb5a}{statsFLAG}} (\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QChar flag) ;}
+\DoxyCodeLine{483     }
+\DoxyCodeLine{489     QList<quint32> \mbox{\hyperlink{class_chess_base_a159f75bd97b0134cc5725cbe9eee8157}{statsFLAGS}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{490     }
+\DoxyCodeLine{501     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a89444c51b63d3a1b41a9b5bca3208a45}{statsInfoToBeCompacted}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QList<quint64> \&list);}
+\DoxyCodeLine{502     }
+\DoxyCodeLine{507     QList<quint32> \mbox{\hyperlink{class_chess_base_ae66c2b616578c9984771bbaf33ac0382}{statsRATINGS}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{508     }
+\DoxyCodeLine{514     QList<quint32> \mbox{\hyperlink{class_chess_base_a6d83dc311d3558938a8e8a3a16386d0f}{statsRESULTS}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase);}
+\DoxyCodeLine{515     }
+\DoxyCodeLine{521     QList<unsigned short> \mbox{\hyperlink{class_chess_base_af724b19435ff98bda3b9d3015dd2405b}{strip}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, QStringList tagNames);}
+\DoxyCodeLine{522     }
+\DoxyCodeLine{528     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_ada6fe0f71bef52d0e08b6731bcb9935e}{tagList}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase,QList<QPair<QString,int>> \&res);}
+\DoxyCodeLine{529     }
+\DoxyCodeLine{553     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_aa0ca434e24011cb701cf87db496173ce}{tournaments}}( \textcolor{keyword}{const} \mbox{\hyperlink{structscid_base_t}{scidBaseT}} * dbase, \mbox{\hyperlink{class_filter}{Filter}}, QString filter, \textcolor{keywordtype}{long} maxresult, QList<QList<QVariant>> \&res, \textcolor{keywordtype}{int} elo =0, }
+\DoxyCodeLine{554                         \textcolor{keywordtype}{int} games=0, \textcolor{keywordtype}{int} players=0, QString player=QString(),  QString sort= QString());}
+\DoxyCodeLine{555     }
+\DoxyCodeLine{556     }
+\DoxyCodeLine{557     }
+\DoxyCodeLine{558     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_chess_base_a25f5a1daa97c66ff3ae256b7d61530db}{unsetGameFlag}}(\mbox{\hyperlink{structscid_base_t}{scidBaseT}} *dbase, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} gamenum, \textcolor{keywordtype}{char} flagtype);}
+\DoxyCodeLine{559      }
+\DoxyCodeLine{560 \};}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// CHESSBASE\_H}}
+
+\end{DoxyCode}

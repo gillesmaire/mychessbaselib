@@ -1,0 +1,441 @@
+\hypertarget{indexentry_8h_source}{}\doxysection{indexentry.\+h}
+\mbox{\hyperlink{indexentry_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{* Copyright (c) 1999-\/2002  Shane Hudson}}
+\DoxyCodeLine{3 \textcolor{comment}{* Copyright (c) 2006-\/2009  Pascal Georges}}
+\DoxyCodeLine{4 \textcolor{comment}{* Copyright (C) 2014-\/2017  Fulvio Benini}}
+\DoxyCodeLine{5 \textcolor{comment}{}}
+\DoxyCodeLine{6 \textcolor{comment}{* This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{* Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{9 \textcolor{comment}{* it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{10 \textcolor{comment}{* the Free Software Foundation.}}
+\DoxyCodeLine{11 \textcolor{comment}{*}}
+\DoxyCodeLine{12 \textcolor{comment}{* Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{13 \textcolor{comment}{* but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{14 \textcolor{comment}{* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{15 \textcolor{comment}{* GNU General Public License for more details.}}
+\DoxyCodeLine{16 \textcolor{comment}{*}}
+\DoxyCodeLine{17 \textcolor{comment}{* You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{18 \textcolor{comment}{* along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{19 \textcolor{comment}{*/}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef SCID\_INDEXENTRY\_H}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define SCID\_INDEXENTRY\_H}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{date_8h}{date.h}}"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{matsig_8h}{matsig.h}}"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <cstring>} \textcolor{comment}{//memcmp}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{using }\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} = uint32\_t; \textcolor{comment}{// Should be idNameT}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{// HPSIG\_SIZE = size of HomePawnData array in an IndexEntry.}}
+\DoxyCodeLine{32 \textcolor{comment}{// It is nine bytes: the first byte contains the number of valid entries}}
+\DoxyCodeLine{33 \textcolor{comment}{// in the array, and the next 8 bytes contain up to 16 half-\/byte entries.}}
+\DoxyCodeLine{34 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{indexentry_8h_a56c89dd29628fb247671cd555e278039}{HPSIG\_SIZE}} = 9;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} \mbox{\hyperlink{indexentry_8h_a77edc8da5766f2b07bf6eba7e5ad1252}{MAX\_ELO}} = 4000; \textcolor{comment}{// Since we store Elo Ratings in 12 bits}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{indexentry_8h_aade9cdfdcb97ed45cf8d578619997d0f}{CUSTOM\_FLAG\_MASK}}[] = \{ 1, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5 \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{42 \textcolor{comment}{// Class IndexEntry: one of these per game in the index file.}}
+\DoxyCodeLine{43 \textcolor{comment}{//}}
+\DoxyCodeLine{44 \textcolor{comment}{//    It contains more than just the location of the game data in the main}}
+\DoxyCodeLine{45 \textcolor{comment}{//    data file.  For fast searching, it also store some other important}}
+\DoxyCodeLine{46 \textcolor{comment}{//    values: players, event, site, date, result, eco, gamelength.}}
+\DoxyCodeLine{47 \textcolor{comment}{//}}
+\DoxyCodeLine{48 \textcolor{comment}{//    It takes 56 bytes.}}
+\DoxyCodeLine{49 \textcolor{keyword}{class }\mbox{\hyperlink{class_index_entry}{IndexEntry}} \{}
+\DoxyCodeLine{50     uint64\_t offset\_         : 46; \textcolor{comment}{// Start of gamefile record for this game.}}
+\DoxyCodeLine{51     uint64\_t gameDataSize\_   : 18; \textcolor{comment}{// Length of gamefile record for this game.}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     uint32\_t nComments\_      :  4;}
+\DoxyCodeLine{54     uint32\_t whiteID\_        : 28;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     uint32\_t nVariations\_    :  4;}
+\DoxyCodeLine{57     uint32\_t blackID\_        : 28;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     uint32\_t nNags\_          :  4;}
+\DoxyCodeLine{60     uint32\_t eventID\_        : 28;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     uint32\_t siteID\_;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64     uint32\_t variant\_        :  1;}
+\DoxyCodeLine{65     uint32\_t roundID\_        : 31;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     uint32\_t whiteElo\_       : 12;}
+\DoxyCodeLine{68     uint32\_t date\_           : 20;}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     uint32\_t blackElo\_       : 12;}
+\DoxyCodeLine{71     uint32\_t eventDate\_      : 20;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     uint32\_t numHalfMoves\_   : 10;}
+\DoxyCodeLine{74     uint32\_t flags\_          : 22;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     uint32\_t result\_         :  2;}
+\DoxyCodeLine{77     uint32\_t whiteEloType\_   :  3;}
+\DoxyCodeLine{78     uint32\_t blackEloType\_   :  3;}
+\DoxyCodeLine{79     uint32\_t finalMatSig\_    : 24; \textcolor{comment}{// material of the final position in the game}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81     uint16\_t ECOcode\_;}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     uint8\_t  storedLineCode\_;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{byte}     HomePawnData [\mbox{\hyperlink{indexentry_8h_a56c89dd29628fb247671cd555e278039}{HPSIG\_SIZE}}];  \textcolor{comment}{// homePawnSig data.}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{keyword}{public}:}
+\DoxyCodeLine{88     uint64\_t  \mbox{\hyperlink{class_index_entry_acb9e8a47119feff794b4f460600052ce}{GetOffset}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} offset\_; \}}
+\DoxyCodeLine{89     uint32\_t  \mbox{\hyperlink{class_index_entry_aa078012466b69951bf5421646e4988e9}{GetLength}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} gameDataSize\_; \}}
+\DoxyCodeLine{90     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}{GetWhite}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} whiteID\_; \}}
+\DoxyCodeLine{91     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}      \mbox{\hyperlink{class_index_entry_ade16d2fe229cb5de291b237356127ff4}{GetWhiteElo}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} whiteElo\_; \}}
+\DoxyCodeLine{92     \textcolor{keywordtype}{byte}      \mbox{\hyperlink{class_index_entry_acb85bca2f53635711c867a6f49439d4a}{GetWhiteRatingType}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} whiteEloType\_; \}}
+\DoxyCodeLine{93     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_index_entry_a812dafa8a43c269681d8a8171c13526e}{GetBlack}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} blackID\_; \}}
+\DoxyCodeLine{94     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}      \mbox{\hyperlink{class_index_entry_a3a5157afa93f85aa599cc8b6b3a4b13f}{GetBlackElo}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} blackElo\_; \}}
+\DoxyCodeLine{95     \textcolor{keywordtype}{byte}      \mbox{\hyperlink{class_index_entry_a68388abfa58f47f1a5d8eef282a4a5c8}{GetBlackRatingType}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} blackEloType\_; \}}
+\DoxyCodeLine{96     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}{GetEvent}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} eventID\_; \}}
+\DoxyCodeLine{97     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}{GetSite}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} siteID\_; \}}
+\DoxyCodeLine{98     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_index_entry_a6799286fea8f9d004217d547f68add06}{GetRound}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} roundID\_; \}}
+\DoxyCodeLine{99     \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}     \mbox{\hyperlink{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}{GetDate}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} date\_; \}}
+\DoxyCodeLine{100     \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}     \mbox{\hyperlink{class_index_entry_a4fcaa0618a723f53aacf032d42d41d64}{GetEventDate}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} eventDate\_; \}}
+\DoxyCodeLine{101     \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}}   \mbox{\hyperlink{class_index_entry_a940b237c632951db339a5e6e9ffe4f71}{GetResult}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} result\_; \}}
+\DoxyCodeLine{102     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}      \mbox{\hyperlink{class_index_entry_a5e29a96385a19e91fabb264e9077ab4c}{GetVariationCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} DecodeCount(nVariations\_); \}}
+\DoxyCodeLine{103     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}      \mbox{\hyperlink{class_index_entry_a1f7917dd8dc36f2fa49f5b26fdfb21ab}{GetCommentCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} DecodeCount(nComments\_); \}}
+\DoxyCodeLine{104     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}      \mbox{\hyperlink{class_index_entry_ade496ec60f891d52bcd4a9f06f8f18a5}{GetNagCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} DecodeCount(nNags\_); \}}
+\DoxyCodeLine{105     uint16\_t  \mbox{\hyperlink{class_index_entry_ab1fc3c37c283a58fef092af909d8103a}{GetNumHalfMoves}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} numHalfMoves\_; \}}
+\DoxyCodeLine{106     \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{matSigT}}   \mbox{\hyperlink{class_index_entry_ab284b4b6bf30b7b9157ea1b485e8963d}{GetFinalMatSig}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} finalMatSig\_; \}}
+\DoxyCodeLine{107     \textcolor{keywordtype}{byte}      \mbox{\hyperlink{class_index_entry_acc96a0bac7dd6593d10adcae12e6d741}{GetStoredLineCode}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} storedLineCode\_; \}}
+\DoxyCodeLine{108     \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}      \mbox{\hyperlink{class_index_entry_a606973d42c43ed54ea8c8773e3a7e29f}{GetEcoCode}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} ECOcode\_; \}}
+\DoxyCodeLine{109     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}{GetFlag}}(uint32\_t mask)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (flags\_ \& mask) == mask; \}}
+\DoxyCodeLine{110     uint32\_t  \mbox{\hyperlink{class_index_entry_a138b18c5dee510959f1095fa799f07bc}{GetRawFlags}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} flags\_; \}}
+\DoxyCodeLine{111     uint16\_t  \mbox{\hyperlink{class_index_entry_ab4d6cff01955210035f85e6a9fef33fe}{GetRaw4bitsCounts}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{112         uint16\_t res = nVariations\_ \& 0x0F;}
+\DoxyCodeLine{113         res |= \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(nComments\_ \& 0x0F) << 4;}
+\DoxyCodeLine{114         res |= \textcolor{keyword}{static\_cast<}uint16\_t\textcolor{keyword}{>}(nNags\_ \& 0x0F) << 8;}
+\DoxyCodeLine{115         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{116     \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ab5c8faac1e7a800a36b81363990e03e9}{setChessStd}}() \{ variant\_ = 0; \}}
+\DoxyCodeLine{119     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a336b261986e0e44fe7c94a1fa9754f5a}{setChess960}}() \{ variant\_ = 1; \}}
+\DoxyCodeLine{120     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_ae3e75616529bc120625d241368ff95a2}{isChessStd}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} variant\_ == 0; \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{keyword}{const} \textcolor{keywordtype}{byte}* \mbox{\hyperlink{class_index_entry_a6716a6ff9cec5307ee78b4ae8039119a}{GetHomePawnData}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} HomePawnData; \}}
+\DoxyCodeLine{123     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a381edb946eb4f74c5b67ea097b6b4b6e}{SetHomePawnData}}(\textcolor{keywordtype}{byte} hpCount, \textcolor{keyword}{const} \textcolor{keywordtype}{byte} hpVal[8]) \{}
+\DoxyCodeLine{124         HomePawnData[0] = hpCount; \textcolor{comment}{// First byte stores the count}}
+\DoxyCodeLine{125         std::copy\_n(hpVal, 8, HomePawnData + 1);}
+\DoxyCodeLine{126     \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \textcolor{comment}{// set functions, assert that the value is not truncated.}}
+\DoxyCodeLine{129     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a964e3057d9b9ffae3f93bdda31972efc}{SetOffset}}(uint64\_t offset) \{}
+\DoxyCodeLine{130         offset\_ = offset;}
+\DoxyCodeLine{131         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_acb9e8a47119feff794b4f460600052ce}{GetOffset}}() == offset);}
+\DoxyCodeLine{132     \}}
+\DoxyCodeLine{133     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_abcdc23b94aa2f4acdcea2beda6926dd8}{SetLength}}(\textcolor{keywordtype}{size\_t} length) \{}
+\DoxyCodeLine{134         gameDataSize\_ = length;}
+\DoxyCodeLine{135         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_aa078012466b69951bf5421646e4988e9}{GetLength}}() == length);}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_aab203360f3bb93d8833280ac42f70a20}{SetWhite}}(\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{138         whiteID\_ = id;}
+\DoxyCodeLine{139         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}{GetWhite}}() == \textcolor{keywordtype}{id});}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a86dcef8057efaa275bb484f28a2b4432}{SetWhiteElo}}(\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} elo) \{}
+\DoxyCodeLine{142         whiteElo\_ = elo;}
+\DoxyCodeLine{143         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_ade16d2fe229cb5de291b237356127ff4}{GetWhiteElo}}() == elo);}
+\DoxyCodeLine{144     \}}
+\DoxyCodeLine{145     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ad77af7107077a7eecad3e3b4e426f534}{SetWhiteRatingType}}(\textcolor{keywordtype}{byte} b) \{}
+\DoxyCodeLine{146         whiteEloType\_ = b;}
+\DoxyCodeLine{147         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_acb85bca2f53635711c867a6f49439d4a}{GetWhiteRatingType}}() == b);}
+\DoxyCodeLine{148     \}}
+\DoxyCodeLine{149     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a381acfc68cffbf97831444031e978d13}{SetBlack}}(\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{150         blackID\_ = id;}
+\DoxyCodeLine{151         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a812dafa8a43c269681d8a8171c13526e}{GetBlack}}() == \textcolor{keywordtype}{id});}
+\DoxyCodeLine{152     \}}
+\DoxyCodeLine{153     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_aa83a64b45c3c0afad93a855f9843cbef}{SetBlackElo}}(\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} elo) \{}
+\DoxyCodeLine{154         blackElo\_ = elo;}
+\DoxyCodeLine{155         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a3a5157afa93f85aa599cc8b6b3a4b13f}{GetBlackElo}}() == elo);}
+\DoxyCodeLine{156     \}}
+\DoxyCodeLine{157     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a0d36da0d7dbdf121a9f4a3337e26ccc5}{SetBlackRatingType}}(\textcolor{keywordtype}{byte} b) \{}
+\DoxyCodeLine{158         blackEloType\_ = b;}
+\DoxyCodeLine{159         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a68388abfa58f47f1a5d8eef282a4a5c8}{GetBlackRatingType}}() == b);}
+\DoxyCodeLine{160     \}}
+\DoxyCodeLine{161     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ab3c8d5fe535dc4a9d349c6ba54a7f224}{SetEvent}}(\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{162         eventID\_ = id;}
+\DoxyCodeLine{163         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}{GetEvent}}() == \textcolor{keywordtype}{id});}
+\DoxyCodeLine{164     \}}
+\DoxyCodeLine{165     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ab642354b48aa8a1bf56a5bca2b433f68}{SetSite}}(\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{166         siteID\_ = id;}
+\DoxyCodeLine{167         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}{GetSite}}() == \textcolor{keywordtype}{id});}
+\DoxyCodeLine{168     \}}
+\DoxyCodeLine{169     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a600eb267be7ac5b722ae16a4fb6befa7}{SetRound}}(\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{170         roundID\_ = id;}
+\DoxyCodeLine{171         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a6799286fea8f9d004217d547f68add06}{GetRound}}() == \textcolor{keywordtype}{id});}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a772741ad1f99354f623e8f61d42de73b}{SetDate}}(\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date) \{}
+\DoxyCodeLine{174         date\_ = date;}
+\DoxyCodeLine{175         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}{GetDate}}() == date);}
+\DoxyCodeLine{176     \}}
+\DoxyCodeLine{177     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ad11785a304841d325da786bd93a4d7dd}{SetEventDate}}(\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} edate) \{}
+\DoxyCodeLine{178         eventDate\_ = edate;}
+\DoxyCodeLine{179         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a4fcaa0618a723f53aacf032d42d41d64}{GetEventDate}}() == edate);}
+\DoxyCodeLine{180     \}}
+\DoxyCodeLine{181     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a70019a4ecb50ed0ce536ad953476af91}{SetResult}}(\mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} res) \{}
+\DoxyCodeLine{182         result\_ = res;}
+\DoxyCodeLine{183         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a940b237c632951db339a5e6e9ffe4f71}{GetResult}}() == res);}
+\DoxyCodeLine{184     \}}
+\DoxyCodeLine{185     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a5e8ffe9437734755cc757889a99232ef}{SetVariationCount}}(\textcolor{keywordtype}{unsigned} x) \{ nVariations\_ = EncodeCount(x); \}}
+\DoxyCodeLine{186     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ad291f7770c4194472bed57e227fc6084}{SetCommentCount}}(\textcolor{keywordtype}{unsigned} x) \{ nComments\_ = EncodeCount(x); \}}
+\DoxyCodeLine{187     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ac2ef9ebe3b34947bae0a9a21959f590f}{SetNagCount}}(\textcolor{keywordtype}{unsigned} x) \{ nNags\_ = EncodeCount(x); \}}
+\DoxyCodeLine{188     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a5380346975818e43e6fa2d14110d57da}{SetRawVariationCount}}(\textcolor{keywordtype}{unsigned} x) \{}
+\DoxyCodeLine{189         nVariations\_ = x;}
+\DoxyCodeLine{190         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(x == nVariations\_);}
+\DoxyCodeLine{191     \}}
+\DoxyCodeLine{192     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_aa7c99978b12bfd1abc21ea7abe217867}{SetRawCommentCount}}(\textcolor{keywordtype}{unsigned} x) \{}
+\DoxyCodeLine{193         nComments\_ = x;}
+\DoxyCodeLine{194         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(x == nComments\_);}
+\DoxyCodeLine{195     \}}
+\DoxyCodeLine{196     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a836a0f3cb895c1dd2bc173625c709184}{SetRawNagCount}}(\textcolor{keywordtype}{unsigned} x) \{}
+\DoxyCodeLine{197         nNags\_ = x;}
+\DoxyCodeLine{198         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(x == nNags\_);}
+\DoxyCodeLine{199     \}}
+\DoxyCodeLine{200     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a307bfcb1bf089698cf8e47c8c128fe67}{SetNumHalfMoves}}(\mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} b) \{}
+\DoxyCodeLine{201         numHalfMoves\_ = b;}
+\DoxyCodeLine{202         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_ab1fc3c37c283a58fef092af909d8103a}{GetNumHalfMoves}}() == b);}
+\DoxyCodeLine{203     \}}
+\DoxyCodeLine{204     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a9c3d3b6b5845099f2209fc518288131b}{SetFinalMatSig}}(\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{matSigT}} ms) \{}
+\DoxyCodeLine{205         finalMatSig\_ = ms;}
+\DoxyCodeLine{206         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_ab284b4b6bf30b7b9157ea1b485e8963d}{GetFinalMatSig}}() == ms);}
+\DoxyCodeLine{207     \}}
+\DoxyCodeLine{208     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a928f361c7307d0fd9ab2b3f5e73c0ecc}{SetStoredLineCode}}(\textcolor{keywordtype}{byte} b) \{}
+\DoxyCodeLine{209         storedLineCode\_ = b;}
+\DoxyCodeLine{210         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_acc96a0bac7dd6593d10adcae12e6d741}{GetStoredLineCode}}() == b);}
+\DoxyCodeLine{211     \}}
+\DoxyCodeLine{212     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a6d142c6953365dd742d0005303f78db9}{SetEcoCode}}(\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco) \{}
+\DoxyCodeLine{213         ECOcode\_ = eco;}
+\DoxyCodeLine{214         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_index_entry_a606973d42c43ed54ea8c8773e3a7e29f}{GetEcoCode}}() == eco);}
+\DoxyCodeLine{215     \}}
+\DoxyCodeLine{216     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}{SetFlag}}(uint32\_t flagMask, \textcolor{keywordtype}{bool} set) \{}
+\DoxyCodeLine{217         \textcolor{keywordflow}{if} (set)}
+\DoxyCodeLine{218             flags\_ |= flagMask;}
+\DoxyCodeLine{219         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{220             flags\_ \&= \string~flagMask;}
+\DoxyCodeLine{221     \}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223     \textcolor{comment}{// Handy functions that do not directly access member vars.}}
+\DoxyCodeLine{224     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}  \mbox{\hyperlink{class_index_entry_a1e6a3a03ee08fe8680efc1019c2bbc00}{GetYear}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{date_8h_a379ed8fcf8bb882a7d873de0a473200d}{date\_GetYear}} (\mbox{\hyperlink{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}{GetDate}}()); \}}
+\DoxyCodeLine{225     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}  \mbox{\hyperlink{class_index_entry_ae5d4092815465502f4a6d4e848c09a84}{GetMonth}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{date_8h_a18918728faf7b14050b0d9fef109fd77}{date\_GetMonth}} (\mbox{\hyperlink{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}{GetDate}}()); \}}
+\DoxyCodeLine{226     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}  \mbox{\hyperlink{class_index_entry_aa7f6e9e83d341f2e7e4138349761056a}{GetDay}} ()\textcolor{keyword}{  const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{date_8h_a3beeba947e374e80f14c7a6c6cd7052a}{date\_GetDay}} (\mbox{\hyperlink{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}{GetDate}}()); \}}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a7961cbcb1f75ff6a35560cff62f96571}{SetPlayer}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} col, \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{229         \textcolor{keywordflow}{return} (col == \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}) ? \mbox{\hyperlink{class_index_entry_a381acfc68cffbf97831444031e978d13}{SetBlack}}(\textcolor{keywordtype}{id}) : \mbox{\hyperlink{class_index_entry_aab203360f3bb93d8833280ac42f70a20}{SetWhite}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{230     \}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232     \textcolor{keywordtype}{byte}   \mbox{\hyperlink{class_index_entry_ab32579432ba6d8507f46d6571e688115}{GetRating}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_a8a2bfbca861309e73da317cbfc04a9c3}{GetStartFlag}} ()\textcolor{keyword}{ const      }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}{GetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada45c860f5813ae2c8f185fa8ceca2d0ef}{IDX\_FLAG\_START}}); \}}
+\DoxyCodeLine{235     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_af29d0df0810890b57fd8a89bc7b88c39}{GetPromotionsFlag}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}{GetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabe3cb55d7646522566193f615d4e5f16}{IDX\_FLAG\_PROMO}}); \}}
+\DoxyCodeLine{236     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_a6f0d338a3f9e0f047bc95bc626880046}{GetUnderPromoFlag}}()\textcolor{keyword}{ const  }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}{GetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada6e9bd19ebc4b5f14ea2c0f3a472b0f1a}{IDX\_FLAG\_UPROMO}}); \}}
+\DoxyCodeLine{237     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_a2a092be4a8bba3f4640a3dd9078bbfa6}{GetCommentsFlag}} ()\textcolor{keyword}{ const   }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{class_index_entry_a1f7917dd8dc36f2fa49f5b26fdfb21ab}{GetCommentCount}}() > 0); \}}
+\DoxyCodeLine{238     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_a2a246587b1a05091a61047bc79862f74}{GetVariationsFlag}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{class_index_entry_a5e29a96385a19e91fabb264e9077ab4c}{GetVariationCount}}() > 0); \}}
+\DoxyCodeLine{239     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_aae4bdeaec343ea9b0ec764fb013ca608}{GetNagsFlag}} ()\textcolor{keyword}{ const       }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{class_index_entry_ade496ec60f891d52bcd4a9f06f8f18a5}{GetNagCount}}() > 0); \}}
+\DoxyCodeLine{240     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_a772a72a62646bc4cfb00bc22287fcb2e}{GetDeleteFlag}} ()\textcolor{keyword}{ const     }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}{GetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}{IDX\_FLAG\_DELETE}}); \}}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242     \textcolor{keyword}{static} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_a7660845e306c185d9146501cd0225057}{CharToFlag}} (\textcolor{keywordtype}{char} ch);}
+\DoxyCodeLine{243     \textcolor{keyword}{static} uint32\_t \mbox{\hyperlink{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}{CharToFlagMask}} (\textcolor{keywordtype}{char} flag);}
+\DoxyCodeLine{244     \textcolor{keyword}{static} uint32\_t \mbox{\hyperlink{class_index_entry_a7cfd913f990d69e6f89626437d40d0be}{StrToFlagMask}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char}* flags);}
+\DoxyCodeLine{245     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_a3c6de0a9732a08e63d1e3e50c1005194}{GetFlagStr}}(\textcolor{keywordtype}{char}* dest, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* flags) \textcolor{keyword}{const};}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a0aa2446f71f93314ee889c0a50257df4}{SetStartFlag}} (\textcolor{keywordtype}{bool} b)      \{ \mbox{\hyperlink{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}{SetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada45c860f5813ae2c8f185fa8ceca2d0ef}{IDX\_FLAG\_START}}, b); \}}
+\DoxyCodeLine{248     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_a6001c4ce1fa035be5134d0fe18bf87bf}{SetPromotionsFlag}} (\textcolor{keywordtype}{bool} b) \{ \mbox{\hyperlink{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}{SetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabe3cb55d7646522566193f615d4e5f16}{IDX\_FLAG\_PROMO}}, b); \}}
+\DoxyCodeLine{249     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_abf9cdf850e382c451df3ee8be86a5589}{SetUnderPromoFlag}} (\textcolor{keywordtype}{bool} b) \{ \mbox{\hyperlink{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}{SetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada6e9bd19ebc4b5f14ea2c0f3a472b0f1a}{IDX\_FLAG\_UPROMO}}, b); \}}
+\DoxyCodeLine{250     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ad4a20c6a767f34727277c399052ee366}{SetDeleteFlag}} (\textcolor{keywordtype}{bool} b)     \{ \mbox{\hyperlink{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}{SetFlag}}(1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}{IDX\_FLAG\_DELETE}}, b); \}}
+\DoxyCodeLine{251     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_entry_ae756b3726268ae74f1ad09c198fde931}{clearFlags}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}{SetFlag}}(\mbox{\hyperlink{class_index_entry_a089d97dc36737cd2c0595f215ca57b04}{IDX\_MASK\_ALLFLAGS}}, \textcolor{keyword}{false}); \}}
+\DoxyCodeLine{252     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_index_entry_ab54293be54b61bcfb15cb75953cd2bfd}{equalExceptFlags}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} ie)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{253         ie.flags\_ = flags\_;}
+\DoxyCodeLine{254         \textcolor{keyword}{static\_assert}(std::has\_unique\_object\_representations\_v<IndexEntry>);}
+\DoxyCodeLine{255         \textcolor{keywordflow}{return} memcmp(\textcolor{keyword}{this}, \&ie, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_index_entry}{IndexEntry}})) == 0;}
+\DoxyCodeLine{256     \}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258     \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{259         \textcolor{comment}{// IndexEntry Flag types:}}
+\DoxyCodeLine{260         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada45c860f5813ae2c8f185fa8ceca2d0ef}{IDX\_FLAG\_START}}      =  0,   \textcolor{comment}{// Game has own start position.}}
+\DoxyCodeLine{261         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabe3cb55d7646522566193f615d4e5f16}{IDX\_FLAG\_PROMO}}      =  1,   \textcolor{comment}{// Game contains promotion(s).}}
+\DoxyCodeLine{262         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada6e9bd19ebc4b5f14ea2c0f3a472b0f1a}{IDX\_FLAG\_UPROMO}}     =  2,   \textcolor{comment}{// Game contains promotion(s).}}
+\DoxyCodeLine{263         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}{IDX\_FLAG\_DELETE}}     =  3,   \textcolor{comment}{// Game marked for deletion.}}
+\DoxyCodeLine{264         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabd828387729000c8e1be8758662dc117}{IDX\_FLAG\_WHITE\_OP}}   =  4,   \textcolor{comment}{// White openings flag.}}
+\DoxyCodeLine{265         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaed5b0d970bcc02d0c8f0b86b9556e987}{IDX\_FLAG\_BLACK\_OP}}   =  5,   \textcolor{comment}{// Black openings flag.}}
+\DoxyCodeLine{266         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadad266d1122d61505744f935af2b18e4a2}{IDX\_FLAG\_MIDDLEGAME}} =  6,   \textcolor{comment}{// Middlegames flag.}}
+\DoxyCodeLine{267         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada72d91354db29557bc775ffba1203e96f}{IDX\_FLAG\_ENDGAME}}    =  7,   \textcolor{comment}{// Endgames flag.}}
+\DoxyCodeLine{268         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada16fc12b30b6aaf4ad7cb38bf56be5ee8}{IDX\_FLAG\_NOVELTY}}    =  8,   \textcolor{comment}{// Novelty flag.}}
+\DoxyCodeLine{269         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadab657dbc2cd34ffb0c1b1fd9876802674}{IDX\_FLAG\_PAWN}}       =  9,   \textcolor{comment}{// Pawn structure flag.}}
+\DoxyCodeLine{270         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada64906e1ac47b8c0034853cdb7452d3a0}{IDX\_FLAG\_TACTICS}}    = 10,   \textcolor{comment}{// Tactics flag.}}
+\DoxyCodeLine{271         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3a776f706aafd89df6d30364aa9df4de}{IDX\_FLAG\_KSIDE}}      = 11,   \textcolor{comment}{// Kingside play flag.}}
+\DoxyCodeLine{272         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaadb0861e9fdb100c744d43c905c91eda}{IDX\_FLAG\_QSIDE}}      = 12,   \textcolor{comment}{// Queenside play flag.}}
+\DoxyCodeLine{273         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadae13818a037f98cc5f132774a0660bffa}{IDX\_FLAG\_BRILLIANCY}} = 13,   \textcolor{comment}{// Brilliancy or good play.}}
+\DoxyCodeLine{274         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3324f3d3ba94d3a226a4d49064bf4773}{IDX\_FLAG\_BLUNDER}}    = 14,   \textcolor{comment}{// Blunder or bad play.}}
+\DoxyCodeLine{275         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada4565aac611c258ae97740b836f7e6b3d}{IDX\_FLAG\_USER}}       = 15,   \textcolor{comment}{// User-\/defined flag.}}
+\DoxyCodeLine{276         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadadbc1021cd9f42bd6d18f7c1a07b54c48}{IDX\_FLAG\_CUSTOM1}}    = 16,   \textcolor{comment}{// Custom flag.}}
+\DoxyCodeLine{277         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf24e21d1cd0d3951ae165f0df6556e3e}{IDX\_FLAG\_CUSTOM2}}    = 17,   \textcolor{comment}{// Custom flag.}}
+\DoxyCodeLine{278         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3c935e77c801d5540173c91efffe3832}{IDX\_FLAG\_CUSTOM3}}    = 18,   \textcolor{comment}{// Custom flag.}}
+\DoxyCodeLine{279         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada98590ae2ede3b8887db14021679b9f82}{IDX\_FLAG\_CUSTOM4}}    = 19,   \textcolor{comment}{// Custom flag.}}
+\DoxyCodeLine{280         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada24e896a8b47d40b70608e153dc483112}{IDX\_FLAG\_CUSTOM5}}    = 20,   \textcolor{comment}{// Custom flag.}}
+\DoxyCodeLine{281         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf8caf7f162e0635353bdda24ff52235d}{IDX\_FLAG\_CUSTOM6}}    = 21,   \textcolor{comment}{// Custom flag.}}
+\DoxyCodeLine{282         \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaaba0cd43671b248cdf69e4bb1a42c1a9}{IDX\_NUM\_FLAGS}}       = 22,}
+\DoxyCodeLine{283     \};}
+\DoxyCodeLine{284     \textcolor{keyword}{static} \textcolor{keyword}{const} uint32\_t \mbox{\hyperlink{class_index_entry_a089d97dc36737cd2c0595f215ca57b04}{IDX\_MASK\_ALLFLAGS}} = 0xFFFFFFFF;}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286 \textcolor{keyword}{private}:}
+\DoxyCodeLine{287     \textcolor{keyword}{static} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} EncodeCount (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} x) \{}
+\DoxyCodeLine{288         \textcolor{keywordflow}{if} (x <= 10) \{ \textcolor{keywordflow}{return} x; \}}
+\DoxyCodeLine{289         \textcolor{keywordflow}{if} (x <= 12) \{ \textcolor{keywordflow}{return} 10; \}}
+\DoxyCodeLine{290         \textcolor{keywordflow}{if} (x <= 17) \{ \textcolor{keywordflow}{return} 11; \}  \textcolor{comment}{// 11 indicates 15 (13-\/17)}}
+\DoxyCodeLine{291         \textcolor{keywordflow}{if} (x <= 24) \{ \textcolor{keywordflow}{return} 12; \}  \textcolor{comment}{// 12 indicates 20 (18-\/24)}}
+\DoxyCodeLine{292         \textcolor{keywordflow}{if} (x <= 34) \{ \textcolor{keywordflow}{return} 13; \}  \textcolor{comment}{// 13 indicates 30 (25-\/34)}}
+\DoxyCodeLine{293         \textcolor{keywordflow}{if} (x <= 44) \{ \textcolor{keywordflow}{return} 14; \}  \textcolor{comment}{// 14 indicates 40 (35-\/44)}}
+\DoxyCodeLine{294         \textcolor{keywordflow}{return} 15;                   \textcolor{comment}{// 15 indicates 50 or more}}
+\DoxyCodeLine{295     \}}
+\DoxyCodeLine{296     \textcolor{keyword}{static} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} DecodeCount (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} x) \{}
+\DoxyCodeLine{297         \textcolor{keyword}{static} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} countCodes[16] = \{0,1,2,3,4,5,6,7,8,9,10,15,20,30,40,50\};}
+\DoxyCodeLine{298         \textcolor{keywordflow}{return} countCodes[x \& 15];}
+\DoxyCodeLine{299     \}}
+\DoxyCodeLine{300 \};}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{keyword}{inline} \textcolor{keywordtype}{byte} \mbox{\hyperlink{class_index_entry_ab32579432ba6d8507f46d6571e688115}{IndexEntry::GetRating}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{304     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} welo = \mbox{\hyperlink{class_index_entry_ade16d2fe229cb5de291b237356127ff4}{GetWhiteElo}}();}
+\DoxyCodeLine{305     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} belo = \mbox{\hyperlink{class_index_entry_a3a5157afa93f85aa599cc8b6b3a4b13f}{GetBlackElo}}();}
+\DoxyCodeLine{306     \textcolor{keyword}{auto} rating = (welo != 0 \&\& belo != 0) ? (welo + belo) / 140 : 0;}
+\DoxyCodeLine{307     \textcolor{keyword}{static\_assert}(std::is\_signed\_v<\textcolor{keyword}{decltype}(rating)>);}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309     \textcolor{comment}{// Bonus for comments or Nags}}
+\DoxyCodeLine{310     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_index_entry_a1f7917dd8dc36f2fa49f5b26fdfb21ab}{GetCommentCount}}() > 2 || \mbox{\hyperlink{class_index_entry_ade496ec60f891d52bcd4a9f06f8f18a5}{GetNagCount}}() > 2) \{}
+\DoxyCodeLine{311         \textcolor{keywordflow}{if} (rating < 21) \{ \textcolor{comment}{// Missing elo}}
+\DoxyCodeLine{312             rating = 38;}
+\DoxyCodeLine{313         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{314             rating += 6;}
+\DoxyCodeLine{315         \}}
+\DoxyCodeLine{316     \}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318     \textcolor{comment}{// Early draw penalty}}
+\DoxyCodeLine{319     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_index_entry_a940b237c632951db339a5e6e9ffe4f71}{GetResult}}() == \mbox{\hyperlink{common_8h_a4946769bd12af555df43f7df4a071761}{RESULT\_Draw}}) \{}
+\DoxyCodeLine{320         \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} moves = \mbox{\hyperlink{class_index_entry_ab1fc3c37c283a58fef092af909d8103a}{GetNumHalfMoves}}();}
+\DoxyCodeLine{321         \textcolor{keywordflow}{if} (moves < 80) \{}
+\DoxyCodeLine{322             rating -\/= 3;}
+\DoxyCodeLine{323             \textcolor{keywordflow}{if} (moves < 60) \{}
+\DoxyCodeLine{324                 rating -\/= 2;}
+\DoxyCodeLine{325                 \textcolor{keywordflow}{if} (moves < 40) rating -\/= 2;}
+\DoxyCodeLine{326             \}}
+\DoxyCodeLine{327         \}}
+\DoxyCodeLine{328     \}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330     \textcolor{keywordflow}{if} (rating < 0) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{331     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{byte}\textcolor{keyword}{>} (rating);}
+\DoxyCodeLine{332 \}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{335 \textcolor{comment}{// IndexEntry::CharToFlag():}}
+\DoxyCodeLine{336 \textcolor{comment}{//    Returns the flag number corresponding to the given character.}}
+\DoxyCodeLine{337 \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}
+\DoxyCodeLine{338 \mbox{\hyperlink{class_index_entry_a7660845e306c185d9146501cd0225057}{IndexEntry::CharToFlag}} (\textcolor{keywordtype}{char} ch)}
+\DoxyCodeLine{339 \{}
+\DoxyCodeLine{340     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} flag = 0;}
+\DoxyCodeLine{341     \textcolor{keywordflow}{switch} (toupper(ch)) \{}
+\DoxyCodeLine{342         \textcolor{keywordflow}{case} \textcolor{charliteral}{'D'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}{IDX\_FLAG\_DELETE}};     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{343         \textcolor{keywordflow}{case} \textcolor{charliteral}{'W'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabd828387729000c8e1be8758662dc117}{IDX\_FLAG\_WHITE\_OP}};   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{344         \textcolor{keywordflow}{case} \textcolor{charliteral}{'B'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaed5b0d970bcc02d0c8f0b86b9556e987}{IDX\_FLAG\_BLACK\_OP}};   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{345         \textcolor{keywordflow}{case} \textcolor{charliteral}{'M'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadad266d1122d61505744f935af2b18e4a2}{IDX\_FLAG\_MIDDLEGAME}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{346         \textcolor{keywordflow}{case} \textcolor{charliteral}{'E'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada72d91354db29557bc775ffba1203e96f}{IDX\_FLAG\_ENDGAME}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{347         \textcolor{keywordflow}{case} \textcolor{charliteral}{'N'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada16fc12b30b6aaf4ad7cb38bf56be5ee8}{IDX\_FLAG\_NOVELTY}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{348         \textcolor{keywordflow}{case} \textcolor{charliteral}{'P'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadab657dbc2cd34ffb0c1b1fd9876802674}{IDX\_FLAG\_PAWN}};       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{349         \textcolor{keywordflow}{case} \textcolor{charliteral}{'T'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada64906e1ac47b8c0034853cdb7452d3a0}{IDX\_FLAG\_TACTICS}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{350         \textcolor{keywordflow}{case} \textcolor{charliteral}{'K'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3a776f706aafd89df6d30364aa9df4de}{IDX\_FLAG\_KSIDE}};      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{351         \textcolor{keywordflow}{case} \textcolor{charliteral}{'Q'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaadb0861e9fdb100c744d43c905c91eda}{IDX\_FLAG\_QSIDE}};      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{352         \textcolor{keywordflow}{case} \textcolor{charliteral}{'!'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadae13818a037f98cc5f132774a0660bffa}{IDX\_FLAG\_BRILLIANCY}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{353         \textcolor{keywordflow}{case} \textcolor{charliteral}{'?'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3324f3d3ba94d3a226a4d49064bf4773}{IDX\_FLAG\_BLUNDER}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{354         \textcolor{keywordflow}{case} \textcolor{charliteral}{'U'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada4565aac611c258ae97740b836f7e6b3d}{IDX\_FLAG\_USER}};       \textcolor{keywordflow}{break};}
+\DoxyCodeLine{355         \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadadbc1021cd9f42bd6d18f7c1a07b54c48}{IDX\_FLAG\_CUSTOM1}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{356         \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf24e21d1cd0d3951ae165f0df6556e3e}{IDX\_FLAG\_CUSTOM2}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{357         \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3c935e77c801d5540173c91efffe3832}{IDX\_FLAG\_CUSTOM3}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{358         \textcolor{keywordflow}{case} \textcolor{charliteral}{'4'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada98590ae2ede3b8887db14021679b9f82}{IDX\_FLAG\_CUSTOM4}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{359         \textcolor{keywordflow}{case} \textcolor{charliteral}{'5'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada24e896a8b47d40b70608e153dc483112}{IDX\_FLAG\_CUSTOM5}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{360         \textcolor{keywordflow}{case} \textcolor{charliteral}{'6'}: flag = \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf8caf7f162e0635353bdda24ff52235d}{IDX\_FLAG\_CUSTOM6}};    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{361     \}}
+\DoxyCodeLine{362     \textcolor{keywordflow}{return} flag;}
+\DoxyCodeLine{363 \}}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{366 \textcolor{comment}{// IndexEntry::CharToFlagMask():}}
+\DoxyCodeLine{367 \textcolor{comment}{//    Transform a char in a mask that can be used with GetFlag() and SetFlag()}}
+\DoxyCodeLine{368 \textcolor{keyword}{inline} uint32\_t \mbox{\hyperlink{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}{IndexEntry::CharToFlagMask}}(\textcolor{keywordtype}{char} flag)}
+\DoxyCodeLine{369 \{}
+\DoxyCodeLine{370     \textcolor{keywordflow}{switch} (toupper(flag)) \{}
+\DoxyCodeLine{371         \textcolor{keywordflow}{case} \textcolor{charliteral}{'S'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada45c860f5813ae2c8f185fa8ceca2d0ef}{IDX\_FLAG\_START}};}
+\DoxyCodeLine{372         \textcolor{keywordflow}{case} \textcolor{charliteral}{'X'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabe3cb55d7646522566193f615d4e5f16}{IDX\_FLAG\_PROMO}};}
+\DoxyCodeLine{373         \textcolor{keywordflow}{case} \textcolor{charliteral}{'Y'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada6e9bd19ebc4b5f14ea2c0f3a472b0f1a}{IDX\_FLAG\_UPROMO}};}
+\DoxyCodeLine{374         \textcolor{keywordflow}{case} \textcolor{charliteral}{'D'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}{IDX\_FLAG\_DELETE}};}
+\DoxyCodeLine{375         \textcolor{keywordflow}{case} \textcolor{charliteral}{'W'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabd828387729000c8e1be8758662dc117}{IDX\_FLAG\_WHITE\_OP}};}
+\DoxyCodeLine{376         \textcolor{keywordflow}{case} \textcolor{charliteral}{'B'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaed5b0d970bcc02d0c8f0b86b9556e987}{IDX\_FLAG\_BLACK\_OP}};}
+\DoxyCodeLine{377         \textcolor{keywordflow}{case} \textcolor{charliteral}{'M'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadad266d1122d61505744f935af2b18e4a2}{IDX\_FLAG\_MIDDLEGAME}};}
+\DoxyCodeLine{378         \textcolor{keywordflow}{case} \textcolor{charliteral}{'E'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada72d91354db29557bc775ffba1203e96f}{IDX\_FLAG\_ENDGAME}};}
+\DoxyCodeLine{379         \textcolor{keywordflow}{case} \textcolor{charliteral}{'N'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada16fc12b30b6aaf4ad7cb38bf56be5ee8}{IDX\_FLAG\_NOVELTY}};}
+\DoxyCodeLine{380         \textcolor{keywordflow}{case} \textcolor{charliteral}{'P'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadab657dbc2cd34ffb0c1b1fd9876802674}{IDX\_FLAG\_PAWN}};}
+\DoxyCodeLine{381         \textcolor{keywordflow}{case} \textcolor{charliteral}{'T'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada64906e1ac47b8c0034853cdb7452d3a0}{IDX\_FLAG\_TACTICS}};}
+\DoxyCodeLine{382         \textcolor{keywordflow}{case} \textcolor{charliteral}{'K'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3a776f706aafd89df6d30364aa9df4de}{IDX\_FLAG\_KSIDE}};}
+\DoxyCodeLine{383         \textcolor{keywordflow}{case} \textcolor{charliteral}{'Q'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaadb0861e9fdb100c744d43c905c91eda}{IDX\_FLAG\_QSIDE}};}
+\DoxyCodeLine{384         \textcolor{keywordflow}{case} \textcolor{charliteral}{'!'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadae13818a037f98cc5f132774a0660bffa}{IDX\_FLAG\_BRILLIANCY}};}
+\DoxyCodeLine{385         \textcolor{keywordflow}{case} \textcolor{charliteral}{'?'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3324f3d3ba94d3a226a4d49064bf4773}{IDX\_FLAG\_BLUNDER}};}
+\DoxyCodeLine{386         \textcolor{keywordflow}{case} \textcolor{charliteral}{'U'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada4565aac611c258ae97740b836f7e6b3d}{IDX\_FLAG\_USER}};}
+\DoxyCodeLine{387         \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadadbc1021cd9f42bd6d18f7c1a07b54c48}{IDX\_FLAG\_CUSTOM1}};}
+\DoxyCodeLine{388         \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf24e21d1cd0d3951ae165f0df6556e3e}{IDX\_FLAG\_CUSTOM2}};}
+\DoxyCodeLine{389         \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3c935e77c801d5540173c91efffe3832}{IDX\_FLAG\_CUSTOM3}};}
+\DoxyCodeLine{390         \textcolor{keywordflow}{case} \textcolor{charliteral}{'4'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada98590ae2ede3b8887db14021679b9f82}{IDX\_FLAG\_CUSTOM4}};}
+\DoxyCodeLine{391         \textcolor{keywordflow}{case} \textcolor{charliteral}{'5'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada24e896a8b47d40b70608e153dc483112}{IDX\_FLAG\_CUSTOM5}};}
+\DoxyCodeLine{392         \textcolor{keywordflow}{case} \textcolor{charliteral}{'6'}: \textcolor{keywordflow}{return} 1 << \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf8caf7f162e0635353bdda24ff52235d}{IDX\_FLAG\_CUSTOM6}};}
+\DoxyCodeLine{393     \}}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(0);}
+\DoxyCodeLine{396     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{397 \}}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{400 \textcolor{comment}{// IndexEntry::StrToFlagMask():}}
+\DoxyCodeLine{401 \textcolor{comment}{//    Transform a string in a mask that can be used with GetFlag() and SetFlag()}}
+\DoxyCodeLine{402 \textcolor{keyword}{inline} uint32\_t \mbox{\hyperlink{class_index_entry_a7cfd913f990d69e6f89626437d40d0be}{IndexEntry::StrToFlagMask}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* flags)}
+\DoxyCodeLine{403 \{}
+\DoxyCodeLine{404     \textcolor{keywordflow}{if} (flags == 0) \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{405 }
+\DoxyCodeLine{406     uint32\_t res = 0;}
+\DoxyCodeLine{407     \textcolor{keywordflow}{while} (*flags != 0) \{}
+\DoxyCodeLine{408         res |= \mbox{\hyperlink{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}{IndexEntry::CharToFlagMask}}(*(flags++));}
+\DoxyCodeLine{409     \}}
+\DoxyCodeLine{410     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{411 \}}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{413 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{414 \textcolor{comment}{// IndexEntry::GetFlagStr():}}
+\DoxyCodeLine{415 \textcolor{comment}{//    Fills in the provided flag string with information on the}}
+\DoxyCodeLine{416 \textcolor{comment}{//    user-\/settable flags set for this game.}}
+\DoxyCodeLine{417 \textcolor{comment}{//    Returns the number of specified flags that are turned on.}}
+\DoxyCodeLine{418 \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}
+\DoxyCodeLine{419 \mbox{\hyperlink{class_index_entry_a3c6de0a9732a08e63d1e3e50c1005194}{IndexEntry::GetFlagStr}}(\textcolor{keywordtype}{char}* dest, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* flags)\textcolor{keyword}{ const}}
+\DoxyCodeLine{420 \textcolor{keyword}{}\{}
+\DoxyCodeLine{421     \textcolor{keywordflow}{if} (flags == NULL) \{ flags = \textcolor{stringliteral}{"{}DWBMENPTKQ!?U123456"{}}; \}}
+\DoxyCodeLine{422     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} count = 0;}
+\DoxyCodeLine{423     \textcolor{keywordflow}{while} (*flags != 0) \{}
+\DoxyCodeLine{424         uint32\_t mask = \mbox{\hyperlink{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}{CharToFlagMask}}(*flags);}
+\DoxyCodeLine{425         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(mask != 0);}
+\DoxyCodeLine{426         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}{GetFlag}}(mask)) \{}
+\DoxyCodeLine{427             *dest++ = *flags;}
+\DoxyCodeLine{428             count++;}
+\DoxyCodeLine{429         \}}
+\DoxyCodeLine{430         flags++;}
+\DoxyCodeLine{431     \}}
+\DoxyCodeLine{432     *dest = 0;}
+\DoxyCodeLine{433     \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{434 \}}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

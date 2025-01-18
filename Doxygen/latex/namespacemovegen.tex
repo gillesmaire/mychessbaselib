@@ -1,0 +1,165 @@
+\hypertarget{namespacemovegen}{}\doxysection{movegen Namespace Reference}
+\label{namespacemovegen}\index{movegen@{movegen}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacemovegen_a51c3bd822af7e3536a549a3a0ab03c24}{valid\+\_\+king}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To)
+\item 
+bool \mbox{\hyperlink{namespacemovegen_abd587e0073db8b862ea89d3e310d9443}{valid\+\_\+knight}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To)
+\item 
+int \mbox{\hyperlink{namespacemovegen_af7beb8bac7ba4a8b6b5bf57473b52647}{valid\+\_\+slider}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type)
+\item 
+bool \mbox{\hyperlink{namespacemovegen_a905091dbd7646571a1f52e6fe0dd853a}{attack\+\_\+pawn}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} piece\+Col)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_a73a7570f460acad0aec543423626cbb2}{attack\+\_\+slider}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_aba25d288da9b9d4a5871d159c74403fe}{attack}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Col, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_a4dd2e169ba7b2bd3f2cb0a5540954de6}{pseudo\+\_\+advance\+\_\+pawn}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} piece\+Col, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\bool \mbox{\hyperlink{namespacemovegen_a6fe28fb54e64dea8b1129e5a264fa3ce}{pseudo}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} piece\+Col, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\+Type, TFunc is\+Occupied)
+\item 
+{\footnotesize template$<$typename TFunc $>$ }\\std\+::pair$<$ \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} $>$ \mbox{\hyperlink{namespacemovegen_a0fe1902db984e0b659321558265c50c2}{opens\+\_\+ray}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+Ray, TFunc is\+Occupied)
+\item 
+bool \mbox{\hyperlink{namespacemovegen_afea29a60c3447c14fde18156960c2943}{blocks\+\_\+ray}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+From, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+To, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq\+Block)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} = 8
+\item 
+constexpr int \mbox{\hyperlink{namespacemovegen_a7536cd1e35e44f0c04d224394630a110}{k\+WPHome\+Rank}} = 1
+\item 
+constexpr int \mbox{\hyperlink{namespacemovegen_a0ae4c04e0648594a8b5e20ff3976de42}{k\+BPHome\+Rank}} = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacemovegen_aba25d288da9b9d4a5871d159c74403fe}\label{namespacemovegen_aba25d288da9b9d4a5871d159c74403fe}} 
+\index{movegen@{movegen}!attack@{attack}}
+\index{attack@{attack}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily template$<$typename TFunc $>$ \\
+bool movegen\+::attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{piece\+Col,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{piece\+Type,  }\item[{TFunc}]{is\+Occupied }\end{DoxyParamCaption})}
+
+Validate an ATTACK move, that is if a piece placed at {\itshape sq\+From} can capture an enemy piece at {\itshape sq\+To}. 
+\begin{DoxyParams}{Parameters}
+{\em sq\+From} & square of the piece. \\
+\hline
+{\em sq\+To} & square of the piece to be captured. \\
+\hline
+{\em piece\+Col} & color of the moving piece. \\
+\hline
+{\em piece\+Type} & type of the moving piece. \\
+\hline
+{\em is\+Occupied} & callable object which should returns true if a square is occupied by a piece. Since it is not invoked with {\itshape sq\+From} or {\itshape sq\+To}, it\textquotesingle{}s is irrelevant if the position is the one before or after the move was made. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the move is a valid ATTACK move. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemovegen_a905091dbd7646571a1f52e6fe0dd853a}\label{namespacemovegen_a905091dbd7646571a1f52e6fe0dd853a}} 
+\index{movegen@{movegen}!attack\_pawn@{attack\_pawn}}
+\index{attack\_pawn@{attack\_pawn}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{attack\_pawn()}{attack\_pawn()}}
+{\footnotesize\ttfamily bool movegen\+::attack\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{piece\+Col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacemovegen_a73a7570f460acad0aec543423626cbb2}\label{namespacemovegen_a73a7570f460acad0aec543423626cbb2}} 
+\index{movegen@{movegen}!attack\_slider@{attack\_slider}}
+\index{attack\_slider@{attack\_slider}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{attack\_slider()}{attack\_slider()}}
+{\footnotesize\ttfamily template$<$typename TFunc $>$ \\
+bool movegen\+::attack\+\_\+slider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{piece\+Type,  }\item[{TFunc}]{is\+Occupied }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacemovegen_afea29a60c3447c14fde18156960c2943}\label{namespacemovegen_afea29a60c3447c14fde18156960c2943}} 
+\index{movegen@{movegen}!blocks\_ray@{blocks\_ray}}
+\index{blocks\_ray@{blocks\_ray}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{blocks\_ray()}{blocks\_ray()}}
+{\footnotesize\ttfamily bool movegen\+::blocks\+\_\+ray (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+Block }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if there is a valid ray from {\itshape sq\+From} to {\itshape sq\+To} and if a piece on {\itshape sq\+Block} would block that ray. 
+\begin{DoxyParams}{Parameters}
+{\em sq\+From} & start square of the ray. \\
+\hline
+{\em sq\+To} & end square of the ray. \\
+\hline
+{\em sq\+Block} & the square that may block the ray. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a piece on {\itshape sq\+Block} would block the ray. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemovegen_a0fe1902db984e0b659321558265c50c2}\label{namespacemovegen_a0fe1902db984e0b659321558265c50c2}} 
+\index{movegen@{movegen}!opens\_ray@{opens\_ray}}
+\index{opens\_ray@{opens\_ray}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{opens\_ray()}{opens\_ray()}}
+{\footnotesize\ttfamily template$<$typename TFunc $>$ \\
+std\+::pair$<$ \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} $>$ movegen\+::opens\+\_\+ray (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+Ray,  }\item[{TFunc}]{is\+Occupied }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given a pseudo-\/legal move, this functions return the type and the location of the piece that can possibly pin the moving piece, making the move not legal. 
+\begin{DoxyParams}{Parameters}
+{\em sq\+From} & start square of the pseudo-\/legal move. \\
+\hline
+{\em sq\+To} & destination square of the pseudo-\/legal move. \\
+\hline
+{\em sq\+Ray} & the projected ray starts from {\itshape sq\+Ray} and goes through {\itshape sq\+From}; it is usually the square where the king is. \\
+\hline
+{\em is\+Occupied} & callable object which should returns true if a square is occupied by a piece. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a std\+::pair with the type (INVALID\+\_\+\+PIECE, BISHOP, ROOK) and the square of the candidate pinning piece. If the type is INVALID\+\_\+\+PIECE there is no pin and the move is legal, otherwise it\textquotesingle{}s necessary to test the board position and if the returned square is occupied by an enemy QUEEN, or an enemy piece matching the returned type, the move is not legal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemovegen_a6fe28fb54e64dea8b1129e5a264fa3ce}\label{namespacemovegen_a6fe28fb54e64dea8b1129e5a264fa3ce}} 
+\index{movegen@{movegen}!pseudo@{pseudo}}
+\index{pseudo@{pseudo}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{pseudo()}{pseudo()}}
+{\footnotesize\ttfamily template$<$typename TFunc $>$ \\
+bool movegen\+::pseudo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{piece\+Col,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{piece\+Type,  }\item[{TFunc}]{is\+Occupied }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacemovegen_a4dd2e169ba7b2bd3f2cb0a5540954de6}\label{namespacemovegen_a4dd2e169ba7b2bd3f2cb0a5540954de6}} 
+\index{movegen@{movegen}!pseudo\_advance\_pawn@{pseudo\_advance\_pawn}}
+\index{pseudo\_advance\_pawn@{pseudo\_advance\_pawn}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{pseudo\_advance\_pawn()}{pseudo\_advance\_pawn()}}
+{\footnotesize\ttfamily template$<$typename TFunc $>$ \\
+bool movegen\+::pseudo\+\_\+advance\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{piece\+Col,  }\item[{TFunc}]{is\+Occupied }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacemovegen_a51c3bd822af7e3536a549a3a0ab03c24}\label{namespacemovegen_a51c3bd822af7e3536a549a3a0ab03c24}} 
+\index{movegen@{movegen}!valid\_king@{valid\_king}}
+\index{valid\_king@{valid\_king}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{valid\_king()}{valid\_king()}}
+{\footnotesize\ttfamily bool movegen\+::valid\+\_\+king (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacemovegen_abd587e0073db8b862ea89d3e310d9443}\label{namespacemovegen_abd587e0073db8b862ea89d3e310d9443}} 
+\index{movegen@{movegen}!valid\_knight@{valid\_knight}}
+\index{valid\_knight@{valid\_knight}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{valid\_knight()}{valid\_knight()}}
+{\footnotesize\ttfamily bool movegen\+::valid\+\_\+knight (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{namespacemovegen_af7beb8bac7ba4a8b6b5bf57473b52647}\label{namespacemovegen_af7beb8bac7ba4a8b6b5bf57473b52647}} 
+\index{movegen@{movegen}!valid\_slider@{valid\_slider}}
+\index{valid\_slider@{valid\_slider}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{valid\_slider()}{valid\_slider()}}
+{\footnotesize\ttfamily int movegen\+::valid\+\_\+slider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+From,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq\+To,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{piece\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacemovegen_a0ae4c04e0648594a8b5e20ff3976de42}\label{namespacemovegen_a0ae4c04e0648594a8b5e20ff3976de42}} 
+\index{movegen@{movegen}!kBPHomeRank@{kBPHomeRank}}
+\index{kBPHomeRank@{kBPHomeRank}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{kBPHomeRank}{kBPHomeRank}}
+{\footnotesize\ttfamily constexpr int movegen\+::k\+BPHome\+Rank = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 2\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacemovegen_a7536cd1e35e44f0c04d224394630a110}\label{namespacemovegen_a7536cd1e35e44f0c04d224394630a110}} 
+\index{movegen@{movegen}!kWPHomeRank@{kWPHomeRank}}
+\index{kWPHomeRank@{kWPHomeRank}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{kWPHomeRank}{kWPHomeRank}}
+{\footnotesize\ttfamily constexpr int movegen\+::k\+WPHome\+Rank = 1\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{namespacemovegen_a032a82007765c062e2a55820fba39b79}\label{namespacemovegen_a032a82007765c062e2a55820fba39b79}} 
+\index{movegen@{movegen}!NSQUARES@{NSQUARES}}
+\index{NSQUARES@{NSQUARES}!movegen@{movegen}}
+\doxysubsubsection{\texorpdfstring{NSQUARES}{NSQUARES}}
+{\footnotesize\ttfamily constexpr int movegen\+::\+NSQUARES = 8\hspace{0.3cm}{\ttfamily [constexpr]}}
+

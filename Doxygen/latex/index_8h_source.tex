@@ -1,0 +1,88 @@
+\hypertarget{index_8h_source}{}\doxysection{index.\+h}
+\mbox{\hyperlink{index_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{* Copyright (c) 1999-\/2002  Shane Hudson}}
+\DoxyCodeLine{3 \textcolor{comment}{* Copyright (c) 2006-\/2009  Pascal Georges}}
+\DoxyCodeLine{4 \textcolor{comment}{* Copyright (C) 2014-\/2016  Fulvio Benini}}
+\DoxyCodeLine{5 \textcolor{comment}{}}
+\DoxyCodeLine{6 \textcolor{comment}{* This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{* Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{9 \textcolor{comment}{* it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{10 \textcolor{comment}{* the Free Software Foundation.}}
+\DoxyCodeLine{11 \textcolor{comment}{*}}
+\DoxyCodeLine{12 \textcolor{comment}{* Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{13 \textcolor{comment}{* but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{14 \textcolor{comment}{* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{15 \textcolor{comment}{* GNU General Public License for more details.}}
+\DoxyCodeLine{16 \textcolor{comment}{*}}
+\DoxyCodeLine{17 \textcolor{comment}{* You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{18 \textcolor{comment}{* along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{19 \textcolor{comment}{*/}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef SCID\_INDEX\_H}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define SCID\_INDEX\_H}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{containers_8h}{containers.h}}"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{indexentry_8h}{indexentry.h}}"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32 \textcolor{comment}{//  Index:  Class Definition}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{class }\mbox{\hyperlink{class_index}{Index}}}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36 \textcolor{keyword}{private}:}
+\DoxyCodeLine{37     \textcolor{comment}{// The complete index will be loaded in memory and can be pretty huge.}}
+\DoxyCodeLine{38     \textcolor{comment}{// To avoid the slow reallocation when adding games we split the data in chunks.}}
+\DoxyCodeLine{39     \textcolor{comment}{// CHUNKSHIFT is the base-\/2 logarithm of the number of index entries allocated as one chunk.}}
+\DoxyCodeLine{40     \textcolor{comment}{// i.e 16 = 2\string^16 = 65536 (total size of one chunk: 65536*48 = 3MB)}}
+\DoxyCodeLine{41     \mbox{\hyperlink{class_vector_chunked}{VectorChunked<IndexEntry, 16>}} entries\_; \textcolor{comment}{// A two-\/level array of the entire index.}}
+\DoxyCodeLine{42     \textcolor{keywordtype}{int} nInvalidNameId\_;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_codec_s_c_i_d4}{CodecSCID4}};}
+\DoxyCodeLine{45     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_codec_s_c_i_d5}{CodecSCID5}};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{keyword}{public}:}
+\DoxyCodeLine{48     \mbox{\hyperlink{class_index_ae767eedba252c26cc0dc5e60f0b9ed9b}{Index}}()  \{ Init(); \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_afd4f96d7213cc9b28a85c1b0227d9303}{Close}}() \{ Init(); \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}* \mbox{\hyperlink{class_index_aa8ad6c94005a8c7e40e0cd9751058ca9}{GetEntry}} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} g)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{53         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(g < \mbox{\hyperlink{class_index_a0365ae79ab3c02790431799ba630cbf0}{GetNumGames}}());}
+\DoxyCodeLine{54         \textcolor{keywordflow}{return} \&(entries\_[g]);}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_index_a46a76ccbd92dce314c603bc64ffd658a}{GetBadNameIdCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} nInvalidNameId\_; \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{71     \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} \mbox{\hyperlink{class_index_a0365ae79ab3c02790431799ba630cbf0}{GetNumGames}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{72         \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}\textcolor{keyword}{>}(entries\_.\mbox{\hyperlink{class_vector_chunked_af2f42b26b0af50d3a509f32ed76c90c6}{size}}());}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_a7157a2c4d6541a6ce5da36636e891dd8}{addEntry}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie) \{}
+\DoxyCodeLine{76         entries\_.\mbox{\hyperlink{class_vector_chunked_a19f98140ff68db7aa34f7facd6331407}{push\_back}}(ie);}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_index_ab67895479bb89583573387dbe8267cbe}{replaceEntry}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \{}
+\DoxyCodeLine{80         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(replaced < this-\/>\mbox{\hyperlink{class_index_a0365ae79ab3c02790431799ba630cbf0}{GetNumGames}}());}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82         entries\_[replaced] = ie;}
+\DoxyCodeLine{83     \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{keyword}{private}:}
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} Init() \{}
+\DoxyCodeLine{87         nInvalidNameId\_ = 0;}
+\DoxyCodeLine{88         entries\_.\mbox{\hyperlink{class_vector_chunked_a770afcc962ae94744f3e91bc1cda8ad5}{resize}}(0);}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90 \};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// \#ifdef SCID\_INDEX\_H}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{96 \textcolor{comment}{//  EOF: index.h}}
+\DoxyCodeLine{98 \textcolor{comment}{}}
+
+\end{DoxyCode}

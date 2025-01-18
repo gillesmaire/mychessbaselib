@@ -1,0 +1,13 @@
+<map id="movetree.h" name="movetree.h">
+<area shape="rect" id="node1" title=" " alt="" coords="197,5,294,32"/>
+<area shape="rect" id="node2" href="$game_8h.html" title=" " alt="" coords="210,80,281,107"/>
+<area shape="rect" id="node3" href="$codec__proxy_8h.html" title=" " alt="" coords="5,155,120,181"/>
+<area shape="rect" id="node6" href="$game_8cpp.html" title=" " alt="" coords="145,155,231,181"/>
+<area shape="rect" id="node7" href="$pgnparse_8h.html" title=" " alt="" coords="255,155,350,181"/>
+<area shape="rect" id="node8" href="$scidbase_8h.html" title=" " alt="" coords="375,155,465,181"/>
+<area shape="rect" id="node4" href="$codec__pgn_8h.html" title=" " alt="" coords="183,229,286,256"/>
+<area shape="rect" id="node5" href="$scidbase_8cpp.html" title=" " alt="" coords="227,304,333,331"/>
+<area shape="rect" id="node9" href="$chessbase_8cpp.html" title=" " alt="" coords="359,304,476,331"/>
+<area shape="rect" id="node10" href="$chessbase_8h.html" title=" " alt="" coords="413,229,515,256"/>
+<area shape="rect" id="node11" href="$dbasepool_8cpp.html" title=" " alt="" coords="539,229,655,256"/>
+</map>

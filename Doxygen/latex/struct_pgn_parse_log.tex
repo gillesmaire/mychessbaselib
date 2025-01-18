@@ -1,0 +1,69 @@
+\hypertarget{struct_pgn_parse_log}{}\doxysection{Pgn\+Parse\+Log Struct Reference}
+\label{struct_pgn_parse_log}\index{PgnParseLog@{PgnParseLog}}
+
+
+{\ttfamily \#include $<$pgnparse.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{struct_pgn_parse_log_aca0cc2baaf3ee3a64284831ee523c069}{log\+Game}} (size\+\_\+t n\+Bytes, const \mbox{\hyperlink{class_pgn_visitor}{Pgn\+Visitor}} \&visitor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_pgn_parse_log_ae090a7b2721fb337134812b79d2f6c03}{log}}
+\item 
+unsigned long long \mbox{\hyperlink{struct_pgn_parse_log_af975229e71611d8f6e6b42a8ee17060f}{n\+\_\+bytes}} = 0
+\item 
+unsigned long long \mbox{\hyperlink{struct_pgn_parse_log_afa9e0977d0ac8c7a549bae2b77438f35}{n\+\_\+lines}} = 0
+\item 
+unsigned long long \mbox{\hyperlink{struct_pgn_parse_log_ab6a9586a0609a82c815d69d0d5002b3b}{n\+\_\+games}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Format and store errors. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_pgn_parse_log_aca0cc2baaf3ee3a64284831ee523c069}\label{struct_pgn_parse_log_aca0cc2baaf3ee3a64284831ee523c069}} 
+\index{PgnParseLog@{PgnParseLog}!logGame@{logGame}}
+\index{logGame@{logGame}!PgnParseLog@{PgnParseLog}}
+\doxysubsubsection{\texorpdfstring{logGame()}{logGame()}}
+{\footnotesize\ttfamily bool Pgn\+Parse\+Log\+::log\+Game (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n\+Bytes,  }\item[{const \mbox{\hyperlink{class_pgn_visitor}{Pgn\+Visitor}} \&}]{visitor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Format and store errors occurred while parsing a \mbox{\hyperlink{class_game}{Game}}. It also updates the byte, line, and game counters. \begin{DoxyReturn}{Returns}
+false if part of the game was ignored, true otherwise. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_pgn_parse_log_ae090a7b2721fb337134812b79d2f6c03}\label{struct_pgn_parse_log_ae090a7b2721fb337134812b79d2f6c03}} 
+\index{PgnParseLog@{PgnParseLog}!log@{log}}
+\index{log@{log}!PgnParseLog@{PgnParseLog}}
+\doxysubsubsection{\texorpdfstring{log}{log}}
+{\footnotesize\ttfamily std\+::string Pgn\+Parse\+Log\+::log}
+
+\mbox{\Hypertarget{struct_pgn_parse_log_af975229e71611d8f6e6b42a8ee17060f}\label{struct_pgn_parse_log_af975229e71611d8f6e6b42a8ee17060f}} 
+\index{PgnParseLog@{PgnParseLog}!n\_bytes@{n\_bytes}}
+\index{n\_bytes@{n\_bytes}!PgnParseLog@{PgnParseLog}}
+\doxysubsubsection{\texorpdfstring{n\_bytes}{n\_bytes}}
+{\footnotesize\ttfamily unsigned long long Pgn\+Parse\+Log\+::n\+\_\+bytes = 0}
+
+\mbox{\Hypertarget{struct_pgn_parse_log_ab6a9586a0609a82c815d69d0d5002b3b}\label{struct_pgn_parse_log_ab6a9586a0609a82c815d69d0d5002b3b}} 
+\index{PgnParseLog@{PgnParseLog}!n\_games@{n\_games}}
+\index{n\_games@{n\_games}!PgnParseLog@{PgnParseLog}}
+\doxysubsubsection{\texorpdfstring{n\_games}{n\_games}}
+{\footnotesize\ttfamily unsigned long long Pgn\+Parse\+Log\+::n\+\_\+games = 0}
+
+\mbox{\Hypertarget{struct_pgn_parse_log_afa9e0977d0ac8c7a549bae2b77438f35}\label{struct_pgn_parse_log_afa9e0977d0ac8c7a549bae2b77438f35}} 
+\index{PgnParseLog@{PgnParseLog}!n\_lines@{n\_lines}}
+\index{n\_lines@{n\_lines}!PgnParseLog@{PgnParseLog}}
+\doxysubsubsection{\texorpdfstring{n\_lines}{n\_lines}}
+{\footnotesize\ttfamily unsigned long long Pgn\+Parse\+Log\+::n\+\_\+lines = 0}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pgnparse_8h}{pgnparse.\+h}}\end{DoxyCompactItemize}

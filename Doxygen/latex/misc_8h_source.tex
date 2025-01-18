@@ -1,0 +1,594 @@
+\hypertarget{misc_8h_source}{}\doxysection{misc.\+h}
+\mbox{\hyperlink{misc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{//  FILE:       misc.h}}
+\DoxyCodeLine{5 \textcolor{comment}{//              Miscellaneous routines (File I/O, etc)}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//  Part of:    Scid (Shane's Chess Information Database)}}
+\DoxyCodeLine{8 \textcolor{comment}{//  Version:    3.5}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{//  Notice:     Copyright (c) 2001-\/2003  Shane Hudson.  All rights reserved.}}
+\DoxyCodeLine{11 \textcolor{comment}{//              Copyright (C) 2015  Fulvio Benini}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{13 \textcolor{comment}{//  Author:     Shane Hudson (sgh@users.sourceforge.net)}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{16 \textcolor{comment}{}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef SCID\_MISC\_H}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define SCID\_MISC\_H}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <cstring>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <ctype.h>}   \textcolor{comment}{// For isspace(), etc}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <QProgressBar>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include <QDebug>}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <QString>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{class }\mbox{\hyperlink{class_chess_base}{ChessBase}};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{43 \textcolor{keyword}{class }\mbox{\hyperlink{class_str_range}{StrRange}} \{}
+\DoxyCodeLine{44 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{45     \textcolor{keywordtype}{long} \mbox{\hyperlink{class_str_range_aa06540b6cf291910ac5115ed91e323b6}{min\_}};}
+\DoxyCodeLine{46     \textcolor{keywordtype}{long} \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\_}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{49     \mbox{\hyperlink{class_str_range_a0d21167c2b5da6158265c979227a3960}{StrRange}}()}
+\DoxyCodeLine{50     : \mbox{\hyperlink{class_str_range_aa06540b6cf291910ac5115ed91e323b6}{min\_}}(0), \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\_}}(0) \{\}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{keyword}{public}:}
+\DoxyCodeLine{53     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_str_range_ade43d93b2445ba2174c56d8e5f309ae2}{StrRange}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* range) \{}
+\DoxyCodeLine{54         \textcolor{keywordtype}{char}* next;}
+\DoxyCodeLine{55         \mbox{\hyperlink{class_str_range_aa06540b6cf291910ac5115ed91e323b6}{min\_}} = std::strtol(range, \&next, 10);}
+\DoxyCodeLine{56         \textcolor{keywordtype}{char}* end;}
+\DoxyCodeLine{57         \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\_}} = std::strtol(next, \&end, 10);}
+\DoxyCodeLine{58         \textcolor{keywordflow}{if} (next == end) \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\_}} = \mbox{\hyperlink{class_str_range_aa06540b6cf291910ac5115ed91e323b6}{min\_}};}
+\DoxyCodeLine{59         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_str_range_aa06540b6cf291910ac5115ed91e323b6}{min\_}} > \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\_}}) std::swap(\mbox{\hyperlink{class_str_range_aa06540b6cf291910ac5115ed91e323b6}{min\_}}, \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\_}});}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_str_range_a13bb979e1c4ecb61cd82542c443c39de}{inRange}}(\textcolor{keywordtype}{long} val)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{64         \textcolor{keywordflow}{if} (val < min\_ || val > \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\_}}) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{65         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67 \};}
+\DoxyCodeLine{68 \textcolor{comment}{// class Progress \{}}
+\DoxyCodeLine{69 \textcolor{comment}{// public:}}
+\DoxyCodeLine{70 \textcolor{comment}{//     struct Impl \{}}
+\DoxyCodeLine{71 \textcolor{comment}{//         virtual \string~Impl() \{\}}}
+\DoxyCodeLine{72 \textcolor{comment}{//         virtual bool report(size\_t done, size\_t total, const char* msg) = 0;}}
+\DoxyCodeLine{73 \textcolor{comment}{//     \};}}
+\DoxyCodeLine{74 \textcolor{comment}{//     Progress(Impl* f = nullptr) : f\_(f) \{\}}}
+\DoxyCodeLine{75 \textcolor{comment}{//     Progress(const Progress\&) = delete;}}
+\DoxyCodeLine{76 \textcolor{comment}{//     \string~Progress() \{ delete f\_; \}}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{//     bool report(size\_t done, size\_t total) const \{}}
+\DoxyCodeLine{79 \textcolor{comment}{//         return operator()(done, total);}}
+\DoxyCodeLine{80 \textcolor{comment}{//     \}}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{//     // bool operator()(size\_t done, size\_t total, const char* msg = nullptr) const \{}}
+\DoxyCodeLine{83 \textcolor{comment}{//     //     if (f\_) return f\_-\/>report(done, total, msg);}}
+\DoxyCodeLine{84 \textcolor{comment}{//     //     return true;}}
+\DoxyCodeLine{85 \textcolor{comment}{//     // \}}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{comment}{// private:}}
+\DoxyCodeLine{88 \textcolor{comment}{//     Impl* f\_;}}
+\DoxyCodeLine{89 \textcolor{comment}{// \};}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_impl}{Impl}} \{}
+\DoxyCodeLine{92         \textcolor{keyword}{virtual} \mbox{\hyperlink{struct_impl_a268c1224ca6e46ecbe1649aa61256df6}{\string~Impl}}() \{\}}
+\DoxyCodeLine{93         \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{struct_impl_a5224e065bb4ec96643cd08da050058e6}{report}}(\textcolor{keywordtype}{size\_t} done, \textcolor{keywordtype}{size\_t} total, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* msg) = 0;}
+\DoxyCodeLine{94     \};}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{keyword}{class }\mbox{\hyperlink{class_old_progress}{OldProgress}} \{}
+\DoxyCodeLine{97 \textcolor{keyword}{public}:}
+\DoxyCodeLine{98     }
+\DoxyCodeLine{99     \mbox{\hyperlink{class_old_progress_a40637acb858c74b63689b1b5549bc316}{OldProgress}}(\mbox{\hyperlink{struct_impl}{Impl}}* f = \textcolor{keyword}{nullptr}) : f\_(f) \{\}}
+\DoxyCodeLine{100    \textcolor{comment}{// OldProgress(const OldProgress\&) = delete;}}
+\DoxyCodeLine{101     \mbox{\hyperlink{class_old_progress_ac273faa8e1a68f40b085adbfc8264f6a}{\string~OldProgress}}() \{ \textcolor{keyword}{delete} f\_; \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_old_progress_ab7ccc161b3ca7753576ab9bb708f3532}{report}}(\textcolor{keywordtype}{size\_t} done, \textcolor{keywordtype}{size\_t} total)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{104         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_old_progress_a99e81d881dcc6fc0463c92d6e00f0e30}{operator()}}(done, total);}
+\DoxyCodeLine{105     \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_old_progress_a99e81d881dcc6fc0463c92d6e00f0e30}{operator()}}(\textcolor{keywordtype}{size\_t} done, \textcolor{keywordtype}{size\_t} total, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* msg = \textcolor{keyword}{nullptr})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{108         \textcolor{keywordflow}{if} (f\_)  \{ \textcolor{keywordflow}{return} f\_-\/>\mbox{\hyperlink{struct_impl_a5224e065bb4ec96643cd08da050058e6}{report}}(done, total, msg);\}}
+\DoxyCodeLine{109         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{112     \mbox{\hyperlink{struct_impl}{Impl}}* \mbox{\hyperlink{class_old_progress_ae805b68db38ae3334c3ae6a00e13fa3a}{impl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} f\_; \} }
+\DoxyCodeLine{113 \textcolor{keyword}{private}:}
+\DoxyCodeLine{114     \mbox{\hyperlink{struct_impl}{Impl}}* f\_;}
+\DoxyCodeLine{115     }
+\DoxyCodeLine{116 \};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{keyword}{class }\mbox{\hyperlink{class_progress_impl}{ProgressImpl}} :\textcolor{keyword}{public} QObject, \textcolor{keyword}{public} \mbox{\hyperlink{struct_impl}{Impl}} \{}
+\DoxyCodeLine{120     Q\_OBJECT}
+\DoxyCodeLine{121     \textcolor{keyword}{public}:}
+\DoxyCodeLine{122         \mbox{\hyperlink{class_progress_impl_ae5dc20c3b2735b10abb5a783ec4e33d8}{ProgressImpl}}(QProgressBar* progressBar) : \mbox{\hyperlink{class_progress_impl_afacc5583b9b9ca1e8dd766464f8d93c2}{mProgressBar}}(progressBar) \{}
+\DoxyCodeLine{123             \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_progress_impl_afacc5583b9b9ca1e8dd766464f8d93c2}{mProgressBar}}) \mbox{\hyperlink{class_progress_impl_afacc5583b9b9ca1e8dd766464f8d93c2}{mProgressBar}}-\/>setValue(0);}
+\DoxyCodeLine{124         \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_progress_impl_a7cb2e2a212f67a4499d807897547ac5b}{report}}(\textcolor{keywordtype}{size\_t} done, \textcolor{keywordtype}{size\_t} total, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* msg)\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{127             \textcolor{keywordflow}{if} (!\mbox{\hyperlink{class_progress_impl_afacc5583b9b9ca1e8dd766464f8d93c2}{mProgressBar}}) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{128             \textcolor{keywordflow}{if} (total == 0) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{129             \mbox{\hyperlink{class_progress_impl_afacc5583b9b9ca1e8dd766464f8d93c2}{mProgressBar}}-\/>setValue(done);}
+\DoxyCodeLine{130             emit \mbox{\hyperlink{class_progress_impl_aaf42ca6fe44b1146dc1afde763f12104}{progressUpdated}}(done,total);}
+\DoxyCodeLine{131             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{132         \}}
+\DoxyCodeLine{133         QProgressBar *\mbox{\hyperlink{class_progress_impl_aea1b8cc9a55ab943a95a3fb10c86b945}{getProgressBar}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_progress_impl_afacc5583b9b9ca1e8dd766464f8d93c2}{mProgressBar}};\}}
+\DoxyCodeLine{134         QProgressBar* \mbox{\hyperlink{class_progress_impl_afacc5583b9b9ca1e8dd766464f8d93c2}{mProgressBar}};}
+\DoxyCodeLine{135     signals:}
+\DoxyCodeLine{136     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_progress_impl_aaf42ca6fe44b1146dc1afde763f12104}{progressUpdated}}(\textcolor{keywordtype}{int} done , \textcolor{keywordtype}{int} total);}
+\DoxyCodeLine{137 \};}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{keyword}{class }\mbox{\hyperlink{class_progress}{Progress}} : \textcolor{keyword}{public} QObject,\textcolor{keyword}{public} \mbox{\hyperlink{class_old_progress}{OldProgress}} \{}
+\DoxyCodeLine{141     Q\_OBJECT}
+\DoxyCodeLine{142 \textcolor{keyword}{public}:}
+\DoxyCodeLine{143     \textcolor{keyword}{enum} \mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50}{CountType}}\{\mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50a3f7778fcd717012fd444bfc95273d016}{Sum}},\mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50ab309a7ab706c7de78fd309ccfb7b2cef}{SumTotal}},\mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50a192b865bd81295f273787e1e52802547}{Percent}}\};}
+\DoxyCodeLine{144     \mbox{\hyperlink{class_progress_a01d83f02dc49939dd5d14057932a8a8d}{Progress}}():\mbox{\hyperlink{class_old_progress}{OldProgress}}(nullptr) \{\}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     \mbox{\hyperlink{class_progress_a17e681ca7500d772db1f809324be0a8a}{Progress}}(QProgressBar* progressBar, QString label, \mbox{\hyperlink{class_chess_base}{ChessBase}} *ptr, \mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50}{CountType}} type = \mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50a192b865bd81295f273787e1e52802547}{Percent}})}
+\DoxyCodeLine{147         : \mbox{\hyperlink{class_old_progress}{OldProgress}}(new \mbox{\hyperlink{class_progress_impl}{ProgressImpl}}(progressBar))}
+\DoxyCodeLine{148         \{  mLabel=label;}
+\DoxyCodeLine{149            ChessBasePtr=ptr;}
+\DoxyCodeLine{150            mType=type;}
+\DoxyCodeLine{151            mProgressBar=progressBar;}
+\DoxyCodeLine{152          \textcolor{keyword}{auto}* \mbox{\hyperlink{class_old_progress_ae805b68db38ae3334c3ae6a00e13fa3a}{impl}} = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{class_progress_impl}{ProgressImpl}}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_old_progress_ae805b68db38ae3334c3ae6a00e13fa3a}{OldProgress::impl}}());}
+\DoxyCodeLine{153         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_old_progress_ae805b68db38ae3334c3ae6a00e13fa3a}{impl}})}
+\DoxyCodeLine{154             connect(\mbox{\hyperlink{class_old_progress_ae805b68db38ae3334c3ae6a00e13fa3a}{impl}}, \&\mbox{\hyperlink{class_progress_impl_aaf42ca6fe44b1146dc1afde763f12104}{ProgressImpl::progressUpdated}}, \textcolor{keyword}{this}, \&Progress::ProgressUpdated);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156        \}}
+\DoxyCodeLine{157  \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{158     \textcolor{keywordtype}{void} ProgressUpdated(\textcolor{keywordtype}{int} done, \textcolor{keywordtype}{int} total) \{}
+\DoxyCodeLine{159         refreshProgressBar(done, total ,mType) ;}
+\DoxyCodeLine{160     \}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \textcolor{keyword}{private}:  }
+\DoxyCodeLine{163     QString mLabel;}
+\DoxyCodeLine{164     \mbox{\hyperlink{class_chess_base}{ChessBase}} *ChessBasePtr;}
+\DoxyCodeLine{165     \mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50}{CountType}} mType;}
+\DoxyCodeLine{166     QProgressBar *mProgressBar;}
+\DoxyCodeLine{167      \textcolor{keywordtype}{void} refreshProgressBar(\textcolor{keywordtype}{int} value, \textcolor{keywordtype}{int} total, \textcolor{keywordtype}{int} type)}
+\DoxyCodeLine{168     \{}
+\DoxyCodeLine{169         mProgressBar-\/>setMinimum(0);}
+\DoxyCodeLine{170         mProgressBar-\/>setMaximum(total);}
+\DoxyCodeLine{171         \textcolor{keywordflow}{if} ( type  == \mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50a3f7778fcd717012fd444bfc95273d016}{Progress::Sum}} )\{}
+\DoxyCodeLine{172             mProgressBar-\/>setFormat(\textcolor{stringliteral}{"{}\%v"{}});}
+\DoxyCodeLine{173             mProgressBar-\/>setValue(value);}
+\DoxyCodeLine{174         \}}
+\DoxyCodeLine{175         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ( type  == \mbox{\hyperlink{class_progress_a5b4183c3d71da353d33ae545df077b50ab309a7ab706c7de78fd309ccfb7b2cef}{Progress::SumTotal}}) \{}
+\DoxyCodeLine{176             mProgressBar-\/>setFormat(\textcolor{stringliteral}{"{}\%v/\%m"{}});}
+\DoxyCodeLine{177             mProgressBar-\/>setValue(value);}
+\DoxyCodeLine{178         \}}
+\DoxyCodeLine{179         \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{180             mProgressBar-\/>setFormat(\textcolor{stringliteral}{"{}\%p\%"{}});}
+\DoxyCodeLine{181             mProgressBar-\/>setValue(value);}
+\DoxyCodeLine{182         \}}
+\DoxyCodeLine{183     \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \};}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 }
+\DoxyCodeLine{190 \textcolor{comment}{// class Progress : public OldProgress::Impl \{}}
+\DoxyCodeLine{191 \textcolor{comment}{// public:}}
+\DoxyCodeLine{192 \textcolor{comment}{//     Progress(QProgressBar* progressBar) : progressBar\_(progressBar) \{}}
+\DoxyCodeLine{193 \textcolor{comment}{//         if (progressBar\_) progressBar\_-\/>setValue(0); // Initialisation}}
+\DoxyCodeLine{194 \textcolor{comment}{//     \}}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 \textcolor{comment}{//     bool report(size\_t done, size\_t total, const char* msg) override \{}}
+\DoxyCodeLine{197 \textcolor{comment}{//         if (!progressBar\_) return false; // Si pas de barre, ne rien faire}}
+\DoxyCodeLine{198 \textcolor{comment}{//         if (total == 0) return false;   // Éviter la division par zéro}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{comment}{//         int percentage = static\_cast<int>(100.0 * done / total);}}
+\DoxyCodeLine{201 \textcolor{comment}{//         progressBar\_-\/>setValue(percentage);}}
+\DoxyCodeLine{202 \textcolor{comment}{//         if (msg) \{}}
+\DoxyCodeLine{203 \textcolor{comment}{//             progressBar\_-\/>setFormat(QString("{}\%1 (\%2\%)"{}).arg(msg).arg(percentage));}}
+\DoxyCodeLine{204 \textcolor{comment}{//         \}}}
+\DoxyCodeLine{205 \textcolor{comment}{//         return true; // Continuer}}
+\DoxyCodeLine{206 \textcolor{comment}{//     \}}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208 \textcolor{comment}{// private:}}
+\DoxyCodeLine{209 \textcolor{comment}{//     QProgressBar* progressBar\_;}}
+\DoxyCodeLine{210 \textcolor{comment}{// \};}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{comment}{// class Progress \{}}
+\DoxyCodeLine{214 \textcolor{comment}{// public:}}
+\DoxyCodeLine{215 \textcolor{comment}{//     explicit Progress(QProgressBar* progressBar,QString label=QString())}}
+\DoxyCodeLine{216 \textcolor{comment}{//         : mProgressBar(progressBar)}}
+\DoxyCodeLine{217 \textcolor{comment}{//         \{}}
+\DoxyCodeLine{218 \textcolor{comment}{//         std::cout<<"{}progress (1)"{}<<std::endl;}}
+\DoxyCodeLine{219 \textcolor{comment}{//         \}}}
+\DoxyCodeLine{220 \textcolor{comment}{//     Progress() : mProgressBar(nullptr) \{}}
+\DoxyCodeLine{221 \textcolor{comment}{//        std::cout<<"{}null progress bar (2)"{}<<std::endl;}}
+\DoxyCodeLine{222 \textcolor{comment}{//     \}}}
+\DoxyCodeLine{223 \textcolor{comment}{// //    bool report(size\_t done, size\_t total, const QString\& msg = QString()) const \{}}
+\DoxyCodeLine{224 \textcolor{comment}{//     bool report(size\_t done, size\_t total, const QString\& msg = QString()) const \{}}
+\DoxyCodeLine{225 \textcolor{comment}{//     qDebug()<<"{}PROGRESS"{}<<done<<total;}}
+\DoxyCodeLine{226 \textcolor{comment}{//         if (mProgressBar == nullptr) return false;}}
+\DoxyCodeLine{227 \textcolor{comment}{//         mProgressBar-\/>setValue(static\_cast<int>(done));}}
+\DoxyCodeLine{228 \textcolor{comment}{//         // Afficher le texte personnalisé sous la forme "{}done/total"{}}}
+\DoxyCodeLine{229 \textcolor{comment}{//         QString displayText = QString("{}\%v/\%m"{}).arg(done).arg(total);}}
+\DoxyCodeLine{230 \textcolor{comment}{//         std::cout<<"{}report progress bar (3)"{}<<std::endl;}}
+\DoxyCodeLine{231 \textcolor{comment}{//         mProgressBar-\/>setFormat(displayText);}}
+\DoxyCodeLine{232 \textcolor{comment}{//         return true; // Continuer}}
+\DoxyCodeLine{233 \textcolor{comment}{//     \}}}
+\DoxyCodeLine{234 \textcolor{comment}{//    void operator()(size\_t done, size\_t total, const QString\& msg = QString()) const \{}}
+\DoxyCodeLine{235 \textcolor{comment}{//         report(done, total, msg);}}
+\DoxyCodeLine{236 \textcolor{comment}{//         std::cout<<"{}op progress bar (4)"{}<<std::endl;}}
+\DoxyCodeLine{237 \textcolor{comment}{//     \}}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239 \textcolor{comment}{// private:}}
+\DoxyCodeLine{240 \textcolor{comment}{//     QProgressBar* mProgressBar;}}
+\DoxyCodeLine{241 \textcolor{comment}{// \};}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{246 \textcolor{comment}{// strGetFilterOp:}}
+\DoxyCodeLine{247 \textcolor{comment}{//    Converts a string value to a filter operation value.}}
+\DoxyCodeLine{248 \textcolor{keyword}{enum} \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764}{filterOpT}} \{ \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764ae90342aba5a1b025e859ac029aef0d87}{FILTEROP\_AND}}, \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764a37142440a52924eebe4741be7db7918e}{FILTEROP\_OR}}, \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764a63b5d8ffc1203d94df5ddf4abb0b5a07}{FILTEROP\_RESET}} \};}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 \textcolor{keyword}{inline} \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764}{filterOpT}} \mbox{\hyperlink{misc_8h_ac39b619b75213f8d7affb07c484e62ad}{strGetFilterOp}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str)}
+\DoxyCodeLine{251 \{}
+\DoxyCodeLine{252     \textcolor{keywordflow}{switch} (*str) \{}
+\DoxyCodeLine{253         \textcolor{comment}{// AND:}}
+\DoxyCodeLine{254         \textcolor{keywordflow}{case} \textcolor{charliteral}{'A'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'a'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764ae90342aba5a1b025e859ac029aef0d87}{FILTEROP\_AND}};}
+\DoxyCodeLine{255         \textcolor{comment}{// OR:}}
+\DoxyCodeLine{256         \textcolor{keywordflow}{case} \textcolor{charliteral}{'O'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'o'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764a37142440a52924eebe4741be7db7918e}{FILTEROP\_OR}};}
+\DoxyCodeLine{257         \textcolor{comment}{// RESET:}}
+\DoxyCodeLine{258         \textcolor{keywordflow}{case} \textcolor{charliteral}{'R'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}: \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764a63b5d8ffc1203d94df5ddf4abb0b5a07}{FILTEROP\_RESET}};}
+\DoxyCodeLine{259     \}}
+\DoxyCodeLine{260     \textcolor{comment}{// Default is RESET.}}
+\DoxyCodeLine{261     \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a478abccc4b714df050be2c567dadd764a63b5d8ffc1203d94df5ddf4abb0b5a07}{FILTEROP\_RESET}};}
+\DoxyCodeLine{262 \}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 \textcolor{comment}{// ECO string routines}}
+\DoxyCodeLine{265 \textcolor{comment}{//}}
+\DoxyCodeLine{266 \textcolor{keywordtype}{void} \mbox{\hyperlink{misc_8h_ac8bbc5ca9ff6d7799880628fd4ca995e}{eco\_ToString}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} ecoCode, \textcolor{keywordtype}{char} * ecoStr, \textcolor{keywordtype}{bool} extensions = \textcolor{keyword}{true});}
+\DoxyCodeLine{267 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{misc_8h_a3ba4d1dff57ca67f2d8fa8a4f0bec68b}{eco\_ToBasicString}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} ecoCode, \textcolor{keywordtype}{char} * ecoStr) \{}
+\DoxyCodeLine{268     \mbox{\hyperlink{misc_8h_ac8bbc5ca9ff6d7799880628fd4ca995e}{eco\_ToString}} (ecoCode, ecoStr, \textcolor{keyword}{false});}
+\DoxyCodeLine{269 \}}
+\DoxyCodeLine{270 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{misc_8h_a7c75658f7385b2d09285416ca1c393ee}{eco\_ToExtendedString}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} ecoCode, \textcolor{keywordtype}{char} * ecoStr) \{}
+\DoxyCodeLine{271     \mbox{\hyperlink{misc_8h_ac8bbc5ca9ff6d7799880628fd4ca995e}{eco\_ToString}} (ecoCode, ecoStr, \textcolor{keyword}{true});}
+\DoxyCodeLine{272 \}}
+\DoxyCodeLine{273 \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8h_a4babf7ee1b4b32490a857ab2af374916}{eco\_FromString}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * ecoStr);}
+\DoxyCodeLine{274 \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8h_ab723ec06ad2ad9a62db0455430ac82c6}{eco\_LastSubCode}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} ecoCode);}
+\DoxyCodeLine{275 \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8h_a7fdf5d5af7a851307e3220576362b757}{eco\_BasicCode}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} ecoCode);}
+\DoxyCodeLine{276 \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8h_a16f623343717a95b851b97ed26937a10}{eco\_Reduce}}(\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco);}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 \textcolor{comment}{// String routines. Some are identical to ANSI standard functions, but}}
+\DoxyCodeLine{279 \textcolor{comment}{//      I have included them:}}
+\DoxyCodeLine{280 \textcolor{comment}{//      (a) to keep nice consistent naming conventions, e.g. strCopy.}}
+\DoxyCodeLine{281 \textcolor{comment}{//      (b) so stats can easily be kept by modifying the functions.}}
+\DoxyCodeLine{282 \textcolor{comment}{//      (c) so some can be made inline for speed if necessary.}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{284 \textcolor{keyword}{inline} uint32\_t \mbox{\hyperlink{misc_8h_a6d50014d8c0ecb4cb3feafb9b482a974}{strStartHash}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str) \{}
+\DoxyCodeLine{285     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str != 0);}
+\DoxyCodeLine{286     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* s = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str);}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288     uint32\_t tmp = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(tolower(*s));}
+\DoxyCodeLine{289     uint32\_t result = tmp << 24;}
+\DoxyCodeLine{290     \textcolor{keywordflow}{if} (*s == \textcolor{charliteral}{'\(\backslash\)0'}) \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{291     tmp = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(tolower(*++s));}
+\DoxyCodeLine{292     result += tmp << 16;}
+\DoxyCodeLine{293     \textcolor{keywordflow}{if} (*s == \textcolor{charliteral}{'\(\backslash\)0'}) \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{294     tmp = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(tolower(*++s));}
+\DoxyCodeLine{295     result += tmp << 8;}
+\DoxyCodeLine{296     \textcolor{keywordflow}{if} (*s == \textcolor{charliteral}{'\(\backslash\)0'}) \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{297     result += \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(tolower(*++s));}
+\DoxyCodeLine{298     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{299 \}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{301 \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_a18e38b279be35356f1dffefe5536245d}{strDuplicate}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_a95f9a397bdb0dad78edc547cf02524de}{strAppend}} (\textcolor{keywordtype}{char} * target, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * extra);}
+\DoxyCodeLine{304 \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}   \mbox{\hyperlink{misc_8h_aee16f8483380b276fd72271bd2e00b37}{strPad}} (\textcolor{keywordtype}{char} * target, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * orig, \textcolor{keywordtype}{int} length, \textcolor{keywordtype}{char} pad);}
+\DoxyCodeLine{305 \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_a37571bdb54602243085773142b13cb75}{strFirstChar}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * target, \textcolor{keywordtype}{char} matchChar);}
+\DoxyCodeLine{306 \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_a3e09a504888a3e040b2cc7731592f6fe}{strLastChar}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * target, \textcolor{keywordtype}{char} matchChar);}
+\DoxyCodeLine{307 \textcolor{keywordtype}{void}   \mbox{\hyperlink{misc_8h_abb646edb91c2c99f0165da1536b31427}{strStrip}} (\textcolor{keywordtype}{char} * str, \textcolor{keywordtype}{char} ch);}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_a855dd6f4d950ff6489a0db6439a09c1c}{strTrimLeft}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * target, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * trimChars);}
+\DoxyCodeLine{310 \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_a855dd6f4d950ff6489a0db6439a09c1c}{strTrimLeft}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * target) \{}
+\DoxyCodeLine{311     \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a855dd6f4d950ff6489a0db6439a09c1c}{strTrimLeft}} (target, \textcolor{stringliteral}{"{} \(\backslash\)t\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{312 \}}
+\DoxyCodeLine{313 \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}   \mbox{\hyperlink{misc_8h_a8ceb54aafdea7d470a941c7e0255f190}{strTrimSuffix}} (\textcolor{keywordtype}{char} * target, \textcolor{keywordtype}{char} suffixChar);}
+\DoxyCodeLine{314 \textcolor{keywordtype}{void}   \mbox{\hyperlink{misc_8h_a625c9899b2acdcde9287a6cca9890015}{strTrimDate}} (\textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{315 \textcolor{keywordtype}{void}   \mbox{\hyperlink{misc_8h_aa7b0d2d338a37d8617e18705782f4639}{strTrimMarkCodes}} (\textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{316 \textcolor{keywordtype}{void}   \mbox{\hyperlink{misc_8h_a4ce2847c465656471b320b92c9bbb0fe}{strTrimMarkup}} (\textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{317 \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_a1165cfbc2223760504221101b8c320cb}{strFirstWord}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{318 \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{misc_8h_abebeb434b42d2fe55112e18a847c0a2a}{strNextWord}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320 \textcolor{comment}{// strPlural:}}
+\DoxyCodeLine{321 \textcolor{comment}{//    Returns the empty string if its parameter is 1, or "{}s"{} otherwise.}}
+\DoxyCodeLine{322 \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *}
+\DoxyCodeLine{323 \mbox{\hyperlink{misc_8h_a782db768a624f1f905a45c40383db668}{strPlural}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} x) \{}
+\DoxyCodeLine{324     \textcolor{keywordflow}{return} (x == 1 ? \textcolor{stringliteral}{"{}"{}} : \textcolor{stringliteral}{"{}s"{}});}
+\DoxyCodeLine{325 \}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{keywordtype}{bool}   \mbox{\hyperlink{misc_8h_a30bc94c4eae9bd6e54ff2b4790bb186b}{strIsUnknownName}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329 \textcolor{comment}{// strIsSurnameOnly: returns true if a string appears to only}}
+\DoxyCodeLine{330 \textcolor{comment}{//    contain a surname.}}
+\DoxyCodeLine{331 \textcolor{keywordtype}{bool}   \mbox{\hyperlink{misc_8h_a915fe19dadd1057629ca0cee75f1807d}{strIsSurnameOnly}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * name);}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333 \textcolor{keywordtype}{bool}   \mbox{\hyperlink{misc_8h_a908c998a993b6b25dd2cf964c372cbe3}{strGetBoolean}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{336 \textcolor{comment}{// strGetInteger():}}
+\DoxyCodeLine{337 \textcolor{comment}{//    Extracts a signed base-\/10 value from a string.}}
+\DoxyCodeLine{338 \textcolor{comment}{//    Defaults to zero (as strtol does) for non-\/numeric strings.}}
+\DoxyCodeLine{339 \textcolor{keyword}{inline} \textcolor{keywordtype}{int}}
+\DoxyCodeLine{340 \mbox{\hyperlink{misc_8h_ac9b74c723f0efca8c60508d4973bcf9b}{strGetInteger}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str)}
+\DoxyCodeLine{341 \{}
+\DoxyCodeLine{342     \textcolor{keywordflow}{return} std::strtol(str, NULL, 10);}
+\DoxyCodeLine{343 \}}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{346 \textcolor{comment}{// strGetUnsigned():}}
+\DoxyCodeLine{347 \textcolor{comment}{//    Extracts an unsigned base-\/10 value from a string.}}
+\DoxyCodeLine{348 \textcolor{comment}{//    Defaults to zero (as strtoul does) for non-\/numeric strings.}}
+\DoxyCodeLine{349 \textcolor{comment}{//}}
+\DoxyCodeLine{350 \textcolor{keyword}{inline} uint32\_t \mbox{\hyperlink{misc_8h_a611294105f216e981e90513c826a0cbb}{strGetUnsigned}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str) \{}
+\DoxyCodeLine{351     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str != NULL);}
+\DoxyCodeLine{352     \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(std::strtoul(str, NULL, 10));}
+\DoxyCodeLine{353 \}}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{misc_8h_a7494dbda11a7aef4ad9c7b478fa896ba}{strCaseCompare}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str1, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str2) \{}
+\DoxyCodeLine{356     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str1 != NULL \&\& str2 != NULL);}
+\DoxyCodeLine{357     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* s1 = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str1);}
+\DoxyCodeLine{358     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* s2 = \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str2);}
+\DoxyCodeLine{359     \textcolor{keywordtype}{int} c1, c2;}
+\DoxyCodeLine{360     \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{361         c1 = tolower(*s1++);}
+\DoxyCodeLine{362         c2 = tolower(*s2++);}
+\DoxyCodeLine{363         \textcolor{keywordflow}{if} (c1 == \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{364             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{365     \} \textcolor{keywordflow}{while} (c1 == c2);}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367     \textcolor{keywordflow}{return} c1 -\/ c2;}
+\DoxyCodeLine{368 \}}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{misc_8h_a7f5b220ce2f415ebf0435c393a5b66a8}{strCompareRound}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str1, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str2) \{}
+\DoxyCodeLine{371     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str1 != NULL \&\& str2 != NULL);}
+\DoxyCodeLine{372     uint32\_t a = \mbox{\hyperlink{misc_8h_a611294105f216e981e90513c826a0cbb}{strGetUnsigned}}(str1);}
+\DoxyCodeLine{373     uint32\_t b = \mbox{\hyperlink{misc_8h_a611294105f216e981e90513c826a0cbb}{strGetUnsigned}}(str2);}
+\DoxyCodeLine{374     \textcolor{keywordflow}{if} (a == b)}
+\DoxyCodeLine{375         \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a7494dbda11a7aef4ad9c7b478fa896ba}{strCaseCompare}}(str1, str2);}
+\DoxyCodeLine{376     \textcolor{keywordflow}{return} (a < b) ? -\/1 : 1;}
+\DoxyCodeLine{377 \}}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{379 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{misc_8h_a9a0507aabcc0e57ce1309a67e28aade3}{strEqual}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str1, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str2) \{}
+\DoxyCodeLine{380     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str1 != NULL \&\& str2 != NULL);}
+\DoxyCodeLine{381     \textcolor{keywordflow}{return} (std::strcmp(str1, str2) == 0);}
+\DoxyCodeLine{382 \}}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{384 \textcolor{keywordtype}{void}   \mbox{\hyperlink{misc_8h_ae2deabe7968c35a5483294867efde56b}{strGetIntegers}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str, \textcolor{keywordtype}{int} * results, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} nResults);}
+\DoxyCodeLine{385 \textcolor{keywordtype}{void}   \mbox{\hyperlink{misc_8h_a4942397a095bf8010ff508542e56ba72}{strGetUnsigneds}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} * results, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} nResults);}
+\DoxyCodeLine{386 \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} \mbox{\hyperlink{misc_8h_a8e72eb58069304f345f5e3662c43bfeb}{strGetResult}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388 \textcolor{keyword}{typedef} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}};}
+\DoxyCodeLine{389 \textcolor{keyword}{const} \mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} \mbox{\hyperlink{misc_8h_ab85c364cbebbffbbe2c43e2e3a2b0245}{FLAG\_EMPTY}} = 0;}
+\DoxyCodeLine{390 \textcolor{keyword}{const} \mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} \mbox{\hyperlink{misc_8h_a1c306693eea0f9adbf4ea5616b0ac190}{FLAG\_YES}} = 1;}
+\DoxyCodeLine{391 \textcolor{keyword}{const} \mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} \mbox{\hyperlink{misc_8h_ab9d436a23dee7267e2314916ac665bed}{FLAG\_NO}} = 2;}
+\DoxyCodeLine{392 \textcolor{keyword}{const} \mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} \mbox{\hyperlink{misc_8h_a318dca9447dd0828d0c5b6909e3d32b3}{FLAG\_BOTH}} = 3;}
+\DoxyCodeLine{393 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{misc_8h_a7ae3c6bad6b1098edb44228371ff7f27}{flag\_Yes}} (\mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} t) \{ \textcolor{keywordflow}{return} (t \& \mbox{\hyperlink{misc_8h_a1c306693eea0f9adbf4ea5616b0ac190}{FLAG\_YES}}); \}}
+\DoxyCodeLine{394 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{misc_8h_a0f5c71e1a57f3c8b129083d325f7445c}{flag\_No}} (\mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} t) \{ \textcolor{keywordflow}{return} (t \& \mbox{\hyperlink{misc_8h_ab9d436a23dee7267e2314916ac665bed}{FLAG\_NO}}); \}}
+\DoxyCodeLine{395 \mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}}  \mbox{\hyperlink{misc_8h_a3151a72b95cde698b767b2a25e3b9a3d}{strGetFlag}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397 \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{misc_8h_a9880e6d4b26e052eeba8843d44c1e062}{strGetSquare}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399 \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}
+\DoxyCodeLine{400 \mbox{\hyperlink{misc_8h_a794ebefb691233bf7f230ebcee1e5dd3}{strTrimFileSuffix}} (\textcolor{keywordtype}{char} * target) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a8ceb54aafdea7d470a941c7e0255f190}{strTrimSuffix}} (target, \textcolor{charliteral}{'.'}); \}}
+\DoxyCodeLine{401 }
+\DoxyCodeLine{402 \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *}
+\DoxyCodeLine{403 \mbox{\hyperlink{misc_8h_ae32fea61687da7f2c246b13ebfb08f67}{strFileSuffix}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * target) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a3e09a504888a3e040b2cc7731592f6fe}{strLastChar}} (target, \textcolor{charliteral}{'.'}); \}}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{405 }
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407 \textcolor{keywordtype}{int} \mbox{\hyperlink{misc_8h_a98bc2190f72358c51e09bf95ff100cc1}{strUniqueExactMatch}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * keyStr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} ** strTable,}
+\DoxyCodeLine{408                          \textcolor{keywordtype}{bool} exact);}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{misc_8h_ac1d76cd605c20c55f561b8264dc73349}{strUniqueMatch}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * keyStr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} ** strTable) \{}
+\DoxyCodeLine{411     \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a98bc2190f72358c51e09bf95ff100cc1}{strUniqueExactMatch}} (keyStr, strTable, \textcolor{keyword}{false});}
+\DoxyCodeLine{412 \}}
+\DoxyCodeLine{413 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{misc_8h_ad9ee9d722afb0c9d7cf24d2b54f74a7a}{strExactMatch}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * keyStr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} ** strTable) \{}
+\DoxyCodeLine{414     \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a98bc2190f72358c51e09bf95ff100cc1}{strUniqueExactMatch}} (keyStr, strTable, \textcolor{keyword}{true});}
+\DoxyCodeLine{415 \}}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{418 \mbox{\hyperlink{misc_8h_acc5d2adae2ebd8a1b33d229a52b16055}{strContainsChar}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str, \textcolor{keywordtype}{char} ch)}
+\DoxyCodeLine{419 \{}
+\DoxyCodeLine{420     \textcolor{keywordflow}{while} (*str) \{}
+\DoxyCodeLine{421         \textcolor{keywordflow}{if} (*str == ch) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{422         str++;}
+\DoxyCodeLine{423     \}}
+\DoxyCodeLine{424     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{425 \}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427 \textcolor{comment}{// WARNING: Avoid this function!}}
+\DoxyCodeLine{428 \textcolor{comment}{// Considering that the sign of a char is implementation-\/defined [3.9.1], the}}
+\DoxyCodeLine{429 \textcolor{comment}{// int conversion ("{}[4.7.3] If the destination type is signed, the value is}}
+\DoxyCodeLine{430 \textcolor{comment}{// unchanged if it can be represented in the destination type"{}) can yield}}
+\DoxyCodeLine{431 \textcolor{comment}{// different results on different architectures or compilers.}}
+\DoxyCodeLine{432 \textcolor{comment}{// A better alternative is the standard function strcmp() that returns the}}
+\DoxyCodeLine{433 \textcolor{comment}{// difference between the values of the first pair of characters (both}}
+\DoxyCodeLine{434 \textcolor{comment}{// interpreted as unsigned char) that differ in the strings being compared.}}
+\DoxyCodeLine{435 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{misc_8h_addf3ada8a9efa3ca80652a06b309f613}{strCompare}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* s1, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* s2)}
+\DoxyCodeLine{436 \{}
+\DoxyCodeLine{437     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}} (s1 != NULL  \&\&  s2 != NULL);}
+\DoxyCodeLine{438     \textcolor{keywordflow}{while} (1) \{}
+\DoxyCodeLine{439         \textcolor{keywordflow}{if} (*s1 != *s2) \{}
+\DoxyCodeLine{440             \textcolor{keywordflow}{return} ((\textcolor{keywordtype}{int}) *s1) -\/ ((int) *s2);}
+\DoxyCodeLine{441         \}}
+\DoxyCodeLine{442         \textcolor{keywordflow}{if} (*s1 == 0)}
+\DoxyCodeLine{443             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{444         s1++; s2++;}
+\DoxyCodeLine{445     \}}
+\DoxyCodeLine{446     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{447 \}}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{450 \textcolor{comment}{// strCopy(): same as strcpy().}}
+\DoxyCodeLine{451 \textcolor{comment}{//}}
+\DoxyCodeLine{452 \textcolor{keyword}{inline} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{453 \mbox{\hyperlink{misc_8h_abb98beb15d753f46eb2d22ea6811ca38}{strCopy}} (\textcolor{keywordtype}{char} * target, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * original)}
+\DoxyCodeLine{454 \{}
+\DoxyCodeLine{455     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}} (target != NULL  \&\&  original != NULL);}
+\DoxyCodeLine{456     \textcolor{keywordflow}{while} (*original != 0) \{}
+\DoxyCodeLine{457         *target = *original;}
+\DoxyCodeLine{458         target++;}
+\DoxyCodeLine{459         original++;}
+\DoxyCodeLine{460     \}}
+\DoxyCodeLine{461     *target = 0;}
+\DoxyCodeLine{462 \}}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{465 \textcolor{comment}{// strPrefix():}}
+\DoxyCodeLine{466 \textcolor{comment}{//       Returns the length of the common prefix of two strings.}}
+\DoxyCodeLine{467 \textcolor{comment}{//}}
+\DoxyCodeLine{468 \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}
+\DoxyCodeLine{469 \mbox{\hyperlink{misc_8h_a03ad981365dfd11dc5ef44cf444dacc9}{strPrefix}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * s1, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * s2)}
+\DoxyCodeLine{470 \{}
+\DoxyCodeLine{471     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}} (s1 != NULL  \&\&  s2 != NULL);}
+\DoxyCodeLine{472     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} count = 0;}
+\DoxyCodeLine{473     \textcolor{keywordflow}{while} (*s1 == *s2) \{}
+\DoxyCodeLine{474         \textcolor{keywordflow}{if} (*s1 == 0) \{ \textcolor{comment}{// seen end of string, strings are identical}}
+\DoxyCodeLine{475             \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{476         \}}
+\DoxyCodeLine{477         count++; s1++; s2++;}
+\DoxyCodeLine{478     \}}
+\DoxyCodeLine{479     \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{480 \}}
+\DoxyCodeLine{481 }
+\DoxyCodeLine{482 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{483 \textcolor{comment}{// strIsPrefix():}}
+\DoxyCodeLine{484 \textcolor{comment}{//      Returns true if the prefix string is a prefix of longStr.}}
+\DoxyCodeLine{485 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{486 \mbox{\hyperlink{misc_8h_ab513ed0edf6cc7a8b57614d79da30639}{strIsPrefix}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * prefix, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * longStr)}
+\DoxyCodeLine{487 \{}
+\DoxyCodeLine{488     \textcolor{keywordflow}{while} (*prefix) \{}
+\DoxyCodeLine{489         \textcolor{keywordflow}{if} (*longStr == 0) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{490         \textcolor{keywordflow}{if} (*prefix != *longStr) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{491         prefix++;}
+\DoxyCodeLine{492         longStr++;}
+\DoxyCodeLine{493     \}}
+\DoxyCodeLine{494     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{495 \}}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{498 \textcolor{comment}{// strIsCasePrefix():}}
+\DoxyCodeLine{499 \textcolor{comment}{//      Returns true if the prefix string is a case-\/insensitive}}
+\DoxyCodeLine{500 \textcolor{comment}{//      prefix of longStr.}}
+\DoxyCodeLine{501 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{502 \mbox{\hyperlink{misc_8h_a6224aeeaee2a49b4069dc8f594363235}{strIsCasePrefix}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * prefix, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * longStr)}
+\DoxyCodeLine{503 \{}
+\DoxyCodeLine{504     \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} U;}
+\DoxyCodeLine{505     \textcolor{keywordflow}{while} (*prefix) \{}
+\DoxyCodeLine{506         \textcolor{keywordflow}{if} (*longStr == 0) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{507         \textcolor{keywordflow}{if} (tolower(U(*prefix)) != tolower(U(*longStr))) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{508         prefix++;}
+\DoxyCodeLine{509         longStr++;}
+\DoxyCodeLine{510     \}}
+\DoxyCodeLine{511     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{512 \}}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{515 \textcolor{comment}{// strIsAlphaPrefix():}}
+\DoxyCodeLine{516 \textcolor{comment}{//      Returns true if the prefix string is a prefix of longStr.}}
+\DoxyCodeLine{517 \textcolor{comment}{//      Unlike strIsPrexix(), this version is case-\/insensitive and}}
+\DoxyCodeLine{518 \textcolor{comment}{//      spaces are ignored.}}
+\DoxyCodeLine{519 \textcolor{comment}{//      Example: strIsAlphaPrefix ("{}smith,j"{}, "{}Smith, John"{}) == true.}}
+\DoxyCodeLine{520 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{521 \mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * prefix, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * longStr)}
+\DoxyCodeLine{522 \{}
+\DoxyCodeLine{523     \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} U;}
+\DoxyCodeLine{524     \textcolor{keywordflow}{while} (*prefix) \{}
+\DoxyCodeLine{525         \textcolor{keywordflow}{while} (*prefix == \textcolor{charliteral}{' '}) \{ prefix++; \}}
+\DoxyCodeLine{526         \textcolor{keywordflow}{while} (*longStr == \textcolor{charliteral}{' '}) \{ longStr++; \}}
+\DoxyCodeLine{527         \textcolor{keywordflow}{if} (*longStr == 0) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{528         \textcolor{keywordflow}{if} (tolower(U(*prefix)) != tolower(U(*longStr))) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{529         prefix++;}
+\DoxyCodeLine{530         longStr++;}
+\DoxyCodeLine{531     \}}
+\DoxyCodeLine{532     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{533 \}}
+\DoxyCodeLine{534 }
+\DoxyCodeLine{535 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{536 \textcolor{comment}{// strContains():}}
+\DoxyCodeLine{537 \textcolor{comment}{//      Returns true if longStr contains an occurrence of keyStr,}}
+\DoxyCodeLine{538 \textcolor{comment}{//      case-\/sensitive and NOT ignoring any characters such as spaces.}}
+\DoxyCodeLine{539 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{540 \mbox{\hyperlink{misc_8h_a30066b669a826f4060864c59ba57d0e1}{strContains}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * longStr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * keyStr)}
+\DoxyCodeLine{541 \{}
+\DoxyCodeLine{542     \textcolor{keywordflow}{while} (*longStr) \{}
+\DoxyCodeLine{543         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_ab513ed0edf6cc7a8b57614d79da30639}{strIsPrefix}} (keyStr, longStr)) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{544         longStr++;}
+\DoxyCodeLine{545     \}}
+\DoxyCodeLine{546     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{547 \}}
+\DoxyCodeLine{548 }
+\DoxyCodeLine{549 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{550 \textcolor{comment}{// strAlphaContains():}}
+\DoxyCodeLine{551 \textcolor{comment}{//      Returns true if longStr contains an occurrence of keyStr,}}
+\DoxyCodeLine{552 \textcolor{comment}{//      case-\/insensitive and ignoring spaces.}}
+\DoxyCodeLine{553 \textcolor{comment}{//      Example: strAlphaContains ("{}Smith, John"{}, "{}th,j"{}) == true.}}
+\DoxyCodeLine{554 \textcolor{comment}{//}}
+\DoxyCodeLine{555 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{556 \mbox{\hyperlink{misc_8h_a39163bd6d018ee58fa5c692d10930cfa}{strAlphaContains}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * longStr, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * keyStr)}
+\DoxyCodeLine{557 \{}
+\DoxyCodeLine{558     \textcolor{keywordflow}{while} (*longStr) \{}
+\DoxyCodeLine{559         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}} (keyStr, longStr)) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{560         longStr++;}
+\DoxyCodeLine{561     \}}
+\DoxyCodeLine{562     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{563 \}}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565 \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}
+\DoxyCodeLine{566 \mbox{\hyperlink{misc_8h_a5b572f4187157d00fa2dd07e477e5054}{strLength}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str)}
+\DoxyCodeLine{567 \{}
+\DoxyCodeLine{568     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(str != NULL);}
+\DoxyCodeLine{569     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} len = 0;}
+\DoxyCodeLine{570     \textcolor{keywordflow}{while} (*str != 0) \{ len++; str++; \}}
+\DoxyCodeLine{571     \textcolor{keywordflow}{return} len;}
+\DoxyCodeLine{572 \}}
+\DoxyCodeLine{573 }
+\DoxyCodeLine{574 }
+\DoxyCodeLine{575 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{576 \textcolor{comment}{// strTrimRight():}}
+\DoxyCodeLine{577 \textcolor{comment}{//      Trims the provided string in-\/place, removing the}}
+\DoxyCodeLine{578 \textcolor{comment}{//      end characters that match the trimChars.}}
+\DoxyCodeLine{579 \textcolor{comment}{//      Returns the number of characters trimmed.}}
+\DoxyCodeLine{580 \textcolor{comment}{//      E.g., strTrimRight("{}abcyzyz"{}, "{}yz"{}) would leave the string}}
+\DoxyCodeLine{581 \textcolor{comment}{//      as "{}abc"{}.}}
+\DoxyCodeLine{582 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{misc_8h_a4c3a52f3ce6922e8e1a6319dd46317b8}{strTrimRight}}(\textcolor{keywordtype}{char}* target, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* trimChars, \textcolor{keywordtype}{size\_t} nTrimCh) \{}
+\DoxyCodeLine{583     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* endTrim = trimChars + nTrimCh;}
+\DoxyCodeLine{584     \textcolor{keywordtype}{size\_t} iCh = strlen(target);}
+\DoxyCodeLine{585     \textcolor{keywordflow}{for} (; iCh > 0; -\/-\/iCh) \{}
+\DoxyCodeLine{586         \textcolor{keywordflow}{if} (\mbox{\hyperlink{namespace_d_base_pool_a9a065be391726006f9973ec733803167}{std::find}}(trimChars, endTrim, target[iCh -\/ 1]) == endTrim)}
+\DoxyCodeLine{587             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{588     \}}
+\DoxyCodeLine{589     target[iCh] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{590 \}}
+\DoxyCodeLine{591 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{misc_8h_a4c3a52f3ce6922e8e1a6319dd46317b8}{strTrimRight}}(\textcolor{keywordtype}{char}* target) \{}
+\DoxyCodeLine{592     \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_a4c3a52f3ce6922e8e1a6319dd46317b8}{strTrimRight}}(target, \textcolor{stringliteral}{"{} \(\backslash\)t\(\backslash\)r\(\backslash\)n"{}}, 4);}
+\DoxyCodeLine{593 \}}
+\DoxyCodeLine{594 }
+\DoxyCodeLine{595 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// \#ifdef SCID\_MISC\_H}}
+\DoxyCodeLine{596 }
+\DoxyCodeLine{598 \textcolor{comment}{//  EOF: misc.h}}
+\DoxyCodeLine{600 \textcolor{comment}{}}
+
+\end{DoxyCode}

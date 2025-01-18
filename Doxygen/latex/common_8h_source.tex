@@ -1,0 +1,428 @@
+\hypertarget{common_8h_source}{}\doxysection{common.\+h}
+\mbox{\hyperlink{common_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  FILE:       common.h}}
+\DoxyCodeLine{4 \textcolor{comment}{//              Common macros, structures and constants.}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{//  Part of:    Scid (Shane's Chess Information Database)}}
+\DoxyCodeLine{7 \textcolor{comment}{//  Version:    3.6.6}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Notice:     Copyright (c) 2000-\/2004  Shane Hudson.  All rights reserved.}}
+\DoxyCodeLine{10 \textcolor{comment}{//}}
+\DoxyCodeLine{11 \textcolor{comment}{//  Author:     Shane Hudson (sgh@users.sourceforge.net)}}
+\DoxyCodeLine{12 \textcolor{comment}{//              Copyright (c) 2006-\/2007 Pascal Georges}}
+\DoxyCodeLine{13 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef SCID\_COMMON\_H}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define SCID\_COMMON\_H}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{board__def_8h}{board\_def.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{error_8h}{error.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <assert.h>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define ASSERT(f) assert(f)}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{// Version: div by 100 for major number, modulo 100 for minor number}}
+\DoxyCodeLine{28 \textcolor{comment}{// so 109 = 1.9, 110 = 1.10, etc.}}
+\DoxyCodeLine{29 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{common_8h_afa8ecd70a47637f2c9e862e97dac0f16}{versionT}};}
+\DoxyCodeLine{30 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_afa8ecd70a47637f2c9e862e97dac0f16}{versionT}} \mbox{\hyperlink{common_8h_ac0289567f1e5258f80b298f7e9da632a}{SCID\_VERSION}} = 400;     \textcolor{comment}{// Current file format version = 4.0}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{common_8h_a44064aeac9cae01afd195e538b27580e}{SCID\_VERSION\_STRING}}[] = \textcolor{stringliteral}{"{}5.1.0"{}};     \textcolor{comment}{// Current Scid version}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{37 \textcolor{comment}{// TYPE DEFINITIONS}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{comment}{//  General types}}
+\DoxyCodeLine{40 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}};      \textcolor{comment}{//  8 bit unsigned}}
+\DoxyCodeLine{41 \textcolor{keyword}{typedef} uint16\_t \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}};         \textcolor{comment}{// 16 bit unsigned}}
+\DoxyCodeLine{42 \textcolor{keyword}{typedef} uint32\_t \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}};           \textcolor{comment}{// 32 bit unsigned}}
+\DoxyCodeLine{43 \textcolor{keyword}{typedef} int32\_t  \mbox{\hyperlink{common_8h_ab9731c2b2f199bcb03ed94acd840b93d}{sint}};           \textcolor{comment}{// 32 bit signed}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{//  Chess Types}}
+\DoxyCodeLine{46 \textcolor{keyword}{typedef} \textcolor{keywordtype}{byte}                    \mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}};  \textcolor{comment}{// e.g. UP\_LEFT}}
+\DoxyCodeLine{47 \textcolor{keyword}{typedef} \textcolor{keywordtype}{byte}                    \mbox{\hyperlink{common_8h_a08cf5104815dba0b082d917ac5f9e315}{leftDiagT}};   \textcolor{comment}{// Up-\/left diagonals}}
+\DoxyCodeLine{48 \textcolor{keyword}{typedef} \textcolor{keywordtype}{byte}                    \mbox{\hyperlink{common_8h_a7357981b308ff3c409f058170c23a3f0}{rightDiagT}};  \textcolor{comment}{// Up-\/right diagonals}}
+\DoxyCodeLine{49 \textcolor{keyword}{typedef} \textcolor{keywordtype}{byte}                    \mbox{\hyperlink{common_8h_af19b44bc34d5ff7271c0707c34c44176}{castleDirT}};  \textcolor{comment}{// LEFT or RIGHT}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{keyword}{typedef} \textcolor{keywordtype}{char}    \mbox{\hyperlink{common_8h_a9faa0b0023370af3d511f4b72a053bb9}{sanStringT}} [ 10];   \textcolor{comment}{// SAN Move Notation}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{keyword}{enum} \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} \{}
+\DoxyCodeLine{54     \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1a9e983555abf9a734cdc93158f6ea343f}{FMODE\_None}} = 0,}
+\DoxyCodeLine{55     \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1a250dac90cf2b4769b5a917c55cae8788}{FMODE\_ReadOnly}},}
+\DoxyCodeLine{56     \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1af6c5155cf88504f8758d3c5ebdfe17aa}{FMODE\_WriteOnly}},}
+\DoxyCodeLine{57     \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1a976d2cfdaf957bbde8ce832ae3bd2b58}{FMODE\_Both}},}
+\DoxyCodeLine{58     \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1a0e2d884279c8f8d4bc987e8d6e9f20ba}{FMODE\_Create}}}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{comment}{//  Game Information types}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{typedef} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}            \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}};}
+\DoxyCodeLine{65 \textcolor{keyword}{typedef} \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}}          \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}};}
+\DoxyCodeLine{66 \textcolor{keyword}{typedef} \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}}          \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}};}
+\DoxyCodeLine{67 \textcolor{keyword}{typedef} \textcolor{keywordtype}{char}            \mbox{\hyperlink{common_8h_ac2a4de17444bf8ed95094b14b8c8ae86}{ecoStringT}} [6];   \textcolor{comment}{/* "{}A00j1"{} */}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{common_8h_a10892da7867df89bb3912c101edcb512}{ECO\_None}} = 0;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{comment}{// Rating types:}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{common_8h_a2986a22f7312ee228305d968a0dfa457}{RATING\_Elo}} = 0;}
+\DoxyCodeLine{74 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{common_8h_a5a0a8bb8c3d92d73a4324504e024c543}{RATING\_Rating}} = 1;}
+\DoxyCodeLine{75 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{common_8h_a67f61322acdeb361eb85f9329aa87299}{RATING\_Rapid}} = 2;}
+\DoxyCodeLine{76 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{common_8h_a1d02b8be1085e80950dd7b10eb19cbfb}{RATING\_ICCF}} = 3;}
+\DoxyCodeLine{77 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{common_8h_a3d34f5beeca2a68ad988d459fb93c0d1}{RATING\_USCF}} = 4;}
+\DoxyCodeLine{78 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{common_8h_a2410d6410c26103aab752da24b802dec}{RATING\_DWZ}} = 5;}
+\DoxyCodeLine{79 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{common_8h_a84f841f05653d61779861da3c85dac98}{RATING\_BCF}} = 6;}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{common_8h_a943be3d0c8920c5afeb2f8845d28d61c}{ratingTypeNames}} [8];   \textcolor{comment}{// Defined in game.cpp}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{comment}{// Result Type}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{common_8h_a0db83bfcec887261c0320bc2fc5769a6}{NUM\_RESULT\_TYPES}} = 4;}
+\DoxyCodeLine{88 \textcolor{keyword}{typedef} \textcolor{keywordtype}{byte}    \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}};}
+\DoxyCodeLine{89 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}}}
+\DoxyCodeLine{90     \mbox{\hyperlink{common_8h_aaa03fe46f271ad4574f8110cbce44b03}{RESULT\_None}}  = 0,}
+\DoxyCodeLine{91     \mbox{\hyperlink{common_8h_a2203d77b39536657b0a7d765a990ef71}{RESULT\_White}} = 1,}
+\DoxyCodeLine{92     \mbox{\hyperlink{common_8h_a9dd5d23bba9930f8ece6be3e7c18d0ad}{RESULT\_Black}} = 2,}
+\DoxyCodeLine{93     \mbox{\hyperlink{common_8h_a4946769bd12af555df43f7df4a071761}{RESULT\_Draw}}  = 3;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{common_8h_abdd06fcd579e3c31eeeb7aa3109ce518}{RESULT\_SCORE}}[4] = \{ 1, 2, 0, 1 \};}
+\DoxyCodeLine{96 \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{common_8h_a38753ff3707007c97daa935949292eaf}{RESULT\_CHAR}} [4]       = \{ \textcolor{charliteral}{'*'},  \textcolor{charliteral}{'1'},    \textcolor{charliteral}{'0'},    \textcolor{charliteral}{'='}       \};}
+\DoxyCodeLine{97 \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{common_8h_a0eeb58909fba1bfebf422b680a4ebb6b}{RESULT\_STR}} [4][4]     = \{ \textcolor{stringliteral}{"{}*"{}},  \textcolor{stringliteral}{"{}1-\/0"{}},  \textcolor{stringliteral}{"{}0-\/1"{}},  \textcolor{stringliteral}{"{}=-\/="{}}     \};}
+\DoxyCodeLine{98 \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{common_8h_a1a68d609fefd29546dcd1de3181708d1}{RESULT\_LONGSTR}} [4][8] = \{ \textcolor{stringliteral}{"{}*"{}},  \textcolor{stringliteral}{"{}1-\/0"{}},  \textcolor{stringliteral}{"{}0-\/1"{}},  \textcolor{stringliteral}{"{}1/2-\/1/2"{}} \};}
+\DoxyCodeLine{99 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} \mbox{\hyperlink{common_8h_a0aa3e71ea164d650c3bea108a9cd2bf9}{RESULT\_OPPOSITE}} [4] = \{}
+\DoxyCodeLine{100     \mbox{\hyperlink{common_8h_aaa03fe46f271ad4574f8110cbce44b03}{RESULT\_None}}, \mbox{\hyperlink{common_8h_a9dd5d23bba9930f8ece6be3e7c18d0ad}{RESULT\_Black}}, \mbox{\hyperlink{common_8h_a2203d77b39536657b0a7d765a990ef71}{RESULT\_White}}, \mbox{\hyperlink{common_8h_a4946769bd12af555df43f7df4a071761}{RESULT\_Draw}}}
+\DoxyCodeLine{101 \};}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_af19b44bc34d5ff7271c0707c34c44176}{castleDirT}}  \mbox{\hyperlink{common_8h_a2580d008bb3b8c3fbe64e9a73577e1a9}{QSIDE}} = 0,  \mbox{\hyperlink{common_8h_a1bc7b057508e2c3b346efeb573980dc0}{KSIDE}} = 1;}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{comment}{// Minor piece definitions, used for searching by material only:}}
+\DoxyCodeLine{108 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}  \mbox{\hyperlink{common_8h_ad87fb14ba40e370e0ac2f461dfb60875}{WM}} = 16, \mbox{\hyperlink{common_8h_aac8839961490cf13ce73bb53da5b8f1d}{BM}} = 17;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{common_8h_ab55121ce722a521a9b00410ea857de4f}{MAX\_PIECE\_TYPES}} = 18;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{comment}{// PIECE\_FLIP[]: array of pieces, with colors reversed.}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{common_8h_a5b888ccc59d1891a6f02f74ff6cddd97}{PIECE\_FLIP}} [\mbox{\hyperlink{common_8h_ab55121ce722a521a9b00410ea857de4f}{MAX\_PIECE\_TYPES}}] = \{}
+\DoxyCodeLine{116     \mbox{\hyperlink{board__def_8h_a9d13f5cbab49748d5f2cda815caaff64}{END\_OF\_BOARD}},}
+\DoxyCodeLine{117     \mbox{\hyperlink{board__def_8h_aeeb76222aa901b0ad6f0c4971dc73627}{BK}}, \mbox{\hyperlink{board__def_8h_a66e36a051216e05e14ce562dd3438809}{BQ}}, \mbox{\hyperlink{board__def_8h_ab2aa81e436a9bfcce5ae577714a9d465}{BR}}, \mbox{\hyperlink{board__def_8h_a8779bc5a380e6bb7f3221dd0e3e7190a}{BB}}, \mbox{\hyperlink{board__def_8h_a45729871ae31fd5175aba7ee50d2c600}{BN}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},}
+\DoxyCodeLine{118     \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}},}
+\DoxyCodeLine{119     \mbox{\hyperlink{board__def_8h_a6741904a9bc89c5d6f6ff9d9258f8078}{WK}}, \mbox{\hyperlink{board__def_8h_a6fcd496bb2acee064bb07b93258e21cb}{WQ}}, \mbox{\hyperlink{board__def_8h_af4aa2ab334837d64386e2b18356a5417}{WR}}, \mbox{\hyperlink{board__def_8h_afd45947348b8b22184cb5c605a2464e4}{WB}}, \mbox{\hyperlink{board__def_8h_a1f3338eaf38ab7db8fc38e8e0f65c080}{WN}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},}
+\DoxyCodeLine{120     \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{common_8h_aac8839961490cf13ce73bb53da5b8f1d}{BM}}, \mbox{\hyperlink{common_8h_ad87fb14ba40e370e0ac2f461dfb60875}{WM}}}
+\DoxyCodeLine{121 \};}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \textcolor{keyword}{const} \textcolor{keywordtype}{bool} \mbox{\hyperlink{common_8h_aa0d5e4c060e541cd1236eea43c239275}{PIECE\_IS\_SLIDER}} [8] = \{}
+\DoxyCodeLine{124     \textcolor{keyword}{false},}
+\DoxyCodeLine{125     \textcolor{keyword}{false}, \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{false}, \textcolor{keyword}{false},}
+\DoxyCodeLine{126     \textcolor{keyword}{false},}
+\DoxyCodeLine{127 \};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129   \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{130 \mbox{\hyperlink{common_8h_a1a9b38eb988a5b61f25a05174c511248}{piece\_IsKing}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p)  \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{board__def_8h_ae9ad95a6fa0d30a7bec5f55cf41b9f25}{piece\_Type}}(p) == \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}}); \}}
+\DoxyCodeLine{131   \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{132 \mbox{\hyperlink{common_8h_ad3f67b96bb99baa0a6e942044f3586cc}{piece\_IsSlider}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{common_8h_aa0d5e4c060e541cd1236eea43c239275}{PIECE\_IS\_SLIDER}}[\mbox{\hyperlink{board__def_8h_ae9ad95a6fa0d30a7bec5f55cf41b9f25}{piece\_Type}}(p)]; \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135   \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}
+\DoxyCodeLine{136 \mbox{\hyperlink{common_8h_a730817645c393816c9551f06c4b0dbfd}{piece\_FromChar}}(\textcolor{keywordtype}{int} x)}
+\DoxyCodeLine{137 \{}
+\DoxyCodeLine{138     \textcolor{keywordflow}{switch} (x) \{}
+\DoxyCodeLine{139     \textcolor{keywordflow}{case} \textcolor{charliteral}{'K'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}};}
+\DoxyCodeLine{140     \textcolor{keywordflow}{case} \textcolor{charliteral}{'Q'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}};}
+\DoxyCodeLine{141     \textcolor{keywordflow}{case} \textcolor{charliteral}{'R'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}};}
+\DoxyCodeLine{142     \textcolor{keywordflow}{case} \textcolor{charliteral}{'N'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}};}
+\DoxyCodeLine{143     \textcolor{keywordflow}{case} \textcolor{charliteral}{'B'}: \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}};}
+\DoxyCodeLine{144     \textcolor{keywordflow}{default}:  \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}};}
+\DoxyCodeLine{145     \}}
+\DoxyCodeLine{146 \}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{150 \textcolor{comment}{// SQUARES AND SQUARE MACROS}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152   \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a08cf5104815dba0b082d917ac5f9e315}{leftDiagT}}}
+\DoxyCodeLine{153 \mbox{\hyperlink{common_8h_a38d3bb785eb10df5075ea587c0c58c23}{square\_LeftDiag}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{154 \{}
+\DoxyCodeLine{155     \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq) + \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq);}
+\DoxyCodeLine{156 \}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158   \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a7357981b308ff3c409f058170c23a3f0}{rightDiagT}}}
+\DoxyCodeLine{159 \mbox{\hyperlink{common_8h_aa4c2f37edc0d074505843aa66f3e8210}{square\_RightDiag}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{160 \{}
+\DoxyCodeLine{161     \textcolor{keywordflow}{return} (7 + \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq) -\/ \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq));}
+\DoxyCodeLine{162 \}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{comment}{// square\_Color:}}
+\DoxyCodeLine{165 \textcolor{comment}{//   Return WHITE for a light square, BLACK for a dark square.}}
+\DoxyCodeLine{166   \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}
+\DoxyCodeLine{167 \mbox{\hyperlink{common_8h_a85ede85b43674d9494ff1824c0a8bf8f}{square\_Color}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{168 \{}
+\DoxyCodeLine{169     \textcolor{keywordflow}{return} 1 -\/ (\mbox{\hyperlink{common_8h_a38d3bb785eb10df5075ea587c0c58c23}{square\_LeftDiag}}(sq) \& 1);}
+\DoxyCodeLine{170 \}}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{comment}{// square\_FlipFyle:}}
+\DoxyCodeLine{173 \textcolor{comment}{//   Return the square with its file flipped: a1 <-\/> h1, b1 <-\/> g1, etc.}}
+\DoxyCodeLine{174   \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}
+\DoxyCodeLine{175 \mbox{\hyperlink{common_8h_a02395b758df2d4949ae9fbe70bc0c8a6}{square\_FlipFyle}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{176 \{}
+\DoxyCodeLine{177     \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_abff1d5d06a0592c559e363423d19cf3e}{square\_Make}} (\mbox{\hyperlink{board__def_8h_a45395b0dd3d62df05a3820b762cb79a7}{A\_FYLE}} + \mbox{\hyperlink{board__def_8h_a082bbe4d9b377816d7371d6133dce91a}{H\_FYLE}} -\/ \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq), \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq));}
+\DoxyCodeLine{178 \}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 \textcolor{comment}{// square\_FlipRank:}}
+\DoxyCodeLine{181 \textcolor{comment}{//   Return the square with its rank flipped: a1 <-\/> a8, a2 <-\/> a7, etc.}}
+\DoxyCodeLine{182   \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}
+\DoxyCodeLine{183 \mbox{\hyperlink{common_8h_a6121c1cb7978c8011f757bc9bcbb04f3}{square\_FlipRank}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{184 \{}
+\DoxyCodeLine{185     \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_abff1d5d06a0592c559e363423d19cf3e}{square\_Make}} (\mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq), \mbox{\hyperlink{board__def_8h_aa49c98ee469a857896aa33edd9970fc8}{RANK\_1}} + \mbox{\hyperlink{board__def_8h_a1df35a83989c3bc043110cdad78e2e31}{RANK\_8}} -\/ \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq));}
+\DoxyCodeLine{186 \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{comment}{// square\_FlipDiag:}}
+\DoxyCodeLine{189 \textcolor{comment}{//   Return the square flipped along the a1-\/h8 diagonal.}}
+\DoxyCodeLine{190   \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}
+\DoxyCodeLine{191 \mbox{\hyperlink{common_8h_ad565310f4cf47dfa15d6c722a990c793}{square\_FlipDiag}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{192 \{}
+\DoxyCodeLine{193     \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_abff1d5d06a0592c559e363423d19cf3e}{square\_Make}} (\mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq), \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq));}
+\DoxyCodeLine{194 \}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}
+\DoxyCodeLine{197 \mbox{\hyperlink{common_8h_a0d6380d08e6eaa7ab6435b9f9947c1e4}{rankFyleDist}}[64] = \{}
+\DoxyCodeLine{198     0, 1, 2, 3, 4, 5, 6, 7,}
+\DoxyCodeLine{199     1, 0, 1, 2, 3, 4, 5, 6,}
+\DoxyCodeLine{200     2, 1, 0, 1, 2, 3, 4, 5,}
+\DoxyCodeLine{201     3, 2, 1, 0, 1, 2, 3, 4,}
+\DoxyCodeLine{202     4, 3, 2, 1, 0, 1, 2, 3,}
+\DoxyCodeLine{203     5, 4, 3, 2, 1, 0, 1, 2,}
+\DoxyCodeLine{204     6, 5, 4, 3, 2, 1, 0, 1,}
+\DoxyCodeLine{205     7, 6, 5, 4, 3, 2, 1, 0}
+\DoxyCodeLine{206 \};}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208 \textcolor{comment}{// square\_Distance:}}
+\DoxyCodeLine{209 \textcolor{comment}{//   Return the distance in king moves between two squares.}}
+\DoxyCodeLine{210   \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}
+\DoxyCodeLine{211 \mbox{\hyperlink{common_8h_a3d8c2ff2e1c81dedfa4320000c1f3df8}{square\_Distance}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to)}
+\DoxyCodeLine{212 \{}
+\DoxyCodeLine{213     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}} (from <= \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}}  \&\&  to <= \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}});}
+\DoxyCodeLine{214     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} rankd = \mbox{\hyperlink{common_8h_a0d6380d08e6eaa7ab6435b9f9947c1e4}{rankFyleDist}}[(\mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(from) << 3) | \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(to)];}
+\DoxyCodeLine{215     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} fyled = \mbox{\hyperlink{common_8h_a0d6380d08e6eaa7ab6435b9f9947c1e4}{rankFyleDist}}[(\mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(from) << 3) | \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(to)];}
+\DoxyCodeLine{216     \textcolor{keywordflow}{return} (rankd > fyled) ? rankd : fyled;}
+\DoxyCodeLine{217 \}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{comment}{// square\_NearestCorner:}}
+\DoxyCodeLine{220 \textcolor{comment}{//   Return the corner (A1/H1/A8/H8) closest to the specified square.}}
+\DoxyCodeLine{221   \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}
+\DoxyCodeLine{222 \mbox{\hyperlink{common_8h_a6fde3b489376ce47663951fd8b048be4}{square\_NearestCorner}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{223 \{}
+\DoxyCodeLine{224     \textcolor{keywordflow}{if} (\mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq) <= \mbox{\hyperlink{board__def_8h_a1d4f489b4c30cef8f8b98606d0b8c7ee}{RANK\_4}}) \{}
+\DoxyCodeLine{225         \textcolor{keywordflow}{return} (\mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq) <= \mbox{\hyperlink{board__def_8h_a9e7d830686ccbda16a4e10fce3cd987d}{D\_FYLE}})? \mbox{\hyperlink{board__def_8h_a065708667a22073299416bcb2d07ec49}{A1}} : \mbox{\hyperlink{board__def_8h_aa38c7fec44b4f2cbaf1b7aef5dac7f2d}{H1}};}
+\DoxyCodeLine{226     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{227         \textcolor{keywordflow}{return} (\mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq) <= \mbox{\hyperlink{board__def_8h_a9e7d830686ccbda16a4e10fce3cd987d}{D\_FYLE}})? \mbox{\hyperlink{board__def_8h_afa0f51ebb5c7bc99f144c75a3296ca5a}{A8}} : \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}};}
+\DoxyCodeLine{228     \}}
+\DoxyCodeLine{229 \}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231   \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{232 \mbox{\hyperlink{common_8h_ab10500b5af1257cabd16b98fb68007de}{square\_IsCornerSquare}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{233 \{}
+\DoxyCodeLine{234     \textcolor{keywordflow}{return} (sq == \mbox{\hyperlink{board__def_8h_a065708667a22073299416bcb2d07ec49}{A1}}  ||  sq == \mbox{\hyperlink{board__def_8h_aa38c7fec44b4f2cbaf1b7aef5dac7f2d}{H1}}  ||  sq == \mbox{\hyperlink{board__def_8h_afa0f51ebb5c7bc99f144c75a3296ca5a}{A8}}  ||  sq == \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}});}
+\DoxyCodeLine{235 \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237   \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{238 \mbox{\hyperlink{common_8h_ad289ddaac8b56389a397347aeddd55e2}{square\_IsEdgeSquare}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{239 \{}
+\DoxyCodeLine{240     \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} rank = \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq);}
+\DoxyCodeLine{241     \textcolor{keywordflow}{if} (rank == \mbox{\hyperlink{board__def_8h_aa49c98ee469a857896aa33edd9970fc8}{RANK\_1}}  ||  rank == \mbox{\hyperlink{board__def_8h_a1df35a83989c3bc043110cdad78e2e31}{RANK\_8}}) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{242     \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} fyle = \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq);}
+\DoxyCodeLine{243     \textcolor{keywordflow}{if} (fyle == \mbox{\hyperlink{board__def_8h_a45395b0dd3d62df05a3820b762cb79a7}{A\_FYLE}}  ||  fyle == \mbox{\hyperlink{board__def_8h_a082bbe4d9b377816d7371d6133dce91a}{H\_FYLE}}) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{244     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{245 \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247 \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{common_8h_a9cc723ccf70bcd21d957f0cb22031327}{edgeDist}}[66] = \{}
+\DoxyCodeLine{248     0, 0, 0, 0, 0, 0, 0, 0,}
+\DoxyCodeLine{249     0, 1, 1, 1, 1, 1, 1, 0,}
+\DoxyCodeLine{250     0, 1, 2, 2, 2, 2, 1, 0,}
+\DoxyCodeLine{251     0, 1, 2, 3, 3, 2, 1, 0,}
+\DoxyCodeLine{252     0, 1, 2, 3, 3, 2, 1, 0,}
+\DoxyCodeLine{253     0, 1, 2, 2, 2, 2, 1, 0,}
+\DoxyCodeLine{254     0, 1, 1, 1, 1, 1, 1, 0,}
+\DoxyCodeLine{255     0, 0, 0, 0, 0, 0, 0, 0,}
+\DoxyCodeLine{256     -\/1, -\/1}
+\DoxyCodeLine{257 \};}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259   \textcolor{keyword}{inline} \textcolor{keywordtype}{int}}
+\DoxyCodeLine{260 \mbox{\hyperlink{common_8h_ab4359738d8e4cb9ba11635d13553e8a4}{square\_EdgeDistance}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{261 \{}
+\DoxyCodeLine{262     \textcolor{keywordflow}{return} \mbox{\hyperlink{common_8h_a9cc723ccf70bcd21d957f0cb22031327}{edgeDist}}[sq];}
+\DoxyCodeLine{263 \}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265   \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{266 \mbox{\hyperlink{common_8h_aa2c157e67f515b21216706e26abc6e6b}{square\_IsKnightHop}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to)}
+\DoxyCodeLine{267 \{}
+\DoxyCodeLine{268     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}} (from <= \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}}  \&\&  to <= \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}});}
+\DoxyCodeLine{269     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} rdist = \mbox{\hyperlink{common_8h_a0d6380d08e6eaa7ab6435b9f9947c1e4}{rankFyleDist}} [(\mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(from) << 3) | \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(to)];}
+\DoxyCodeLine{270     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} fdist = \mbox{\hyperlink{common_8h_a0d6380d08e6eaa7ab6435b9f9947c1e4}{rankFyleDist}} [(\mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(from) << 3) | \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(to)];}
+\DoxyCodeLine{271     \textcolor{comment}{// It is a knight hop only if one distance is two squares and the}}
+\DoxyCodeLine{272     \textcolor{comment}{// other is one square -\/-\/ that is, only if their product equals two.}}
+\DoxyCodeLine{273     \textcolor{keywordflow}{return} ((rdist * fdist) == 2);}
+\DoxyCodeLine{274 \}}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276   \textcolor{keyword}{inline} \textcolor{keywordtype}{char}}
+\DoxyCodeLine{277 \mbox{\hyperlink{common_8h_a5fda94844034dddd89a21a7595977e29}{square\_FyleChar}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{278 \{}
+\DoxyCodeLine{279     \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq) + \textcolor{charliteral}{'a'};}
+\DoxyCodeLine{280 \}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282   \textcolor{keyword}{inline} \textcolor{keywordtype}{char}}
+\DoxyCodeLine{283 \mbox{\hyperlink{common_8h_afae30e87e8e9d81be7ab99a035307a1f}{square\_RankChar}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)}
+\DoxyCodeLine{284 \{}
+\DoxyCodeLine{285     \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq) + \textcolor{charliteral}{'1'};}
+\DoxyCodeLine{286 \}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288 \textcolor{comment}{// Directions:}}
+\DoxyCodeLine{289 \textcolor{comment}{// Up = 1, Down = 2, Left = 4, Right = 8, UpLeft = 5, UpRight = 9,}}
+\DoxyCodeLine{290 \textcolor{comment}{// DownLeft = 6, DownRight = 10}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}}}
+\DoxyCodeLine{293     \mbox{\hyperlink{common_8h_ae73c74d02543a36c8605a54ede67c2be}{NULL\_DIR}} = 0,}
+\DoxyCodeLine{294     \mbox{\hyperlink{common_8h_a9305fefa21685694e20dae644a34123b}{UP}} = 1,}
+\DoxyCodeLine{295     \mbox{\hyperlink{common_8h_a5f6df0ca34313e6d20b3b498db9f7d22}{DOWN}} = 2,}
+\DoxyCodeLine{296     \mbox{\hyperlink{common_8h_abb7db6b761b271e4ff1c88edd47e708f}{LEFT}} = 4,}
+\DoxyCodeLine{297     \mbox{\hyperlink{common_8h_aeabefd506e456ab7a0999ba6d5e15ae1}{RIGHT}} = 8,}
+\DoxyCodeLine{298     \mbox{\hyperlink{common_8h_ae1387f3998993cf0a9771b3e42a7a0c9}{UP\_LEFT}} = (\mbox{\hyperlink{common_8h_a9305fefa21685694e20dae644a34123b}{UP}} | \mbox{\hyperlink{common_8h_abb7db6b761b271e4ff1c88edd47e708f}{LEFT}}),}
+\DoxyCodeLine{299     \mbox{\hyperlink{common_8h_a4f4e64c68e999b9e874304af75114221}{UP\_RIGHT}} = (\mbox{\hyperlink{common_8h_a9305fefa21685694e20dae644a34123b}{UP}} | \mbox{\hyperlink{common_8h_aeabefd506e456ab7a0999ba6d5e15ae1}{RIGHT}}),}
+\DoxyCodeLine{300     \mbox{\hyperlink{common_8h_a3fd562632abbcd86a955faf9723accf9}{DOWN\_LEFT}} = (\mbox{\hyperlink{common_8h_a5f6df0ca34313e6d20b3b498db9f7d22}{DOWN}} | \mbox{\hyperlink{common_8h_abb7db6b761b271e4ff1c88edd47e708f}{LEFT}}),}
+\DoxyCodeLine{301     \mbox{\hyperlink{common_8h_a42f36aa22cbe236b9868825d037ac058}{DOWN\_RIGHT}} = (\mbox{\hyperlink{common_8h_a5f6df0ca34313e6d20b3b498db9f7d22}{DOWN}} | \mbox{\hyperlink{common_8h_aeabefd506e456ab7a0999ba6d5e15ae1}{RIGHT}});}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303 \textcolor{keyword}{const} \mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}} \mbox{\hyperlink{common_8h_a60153ad2f70f5ee6609030faabf4f5ca}{dirOpposite}}[11] = \{}
+\DoxyCodeLine{304     \mbox{\hyperlink{common_8h_ae73c74d02543a36c8605a54ede67c2be}{NULL\_DIR}},}
+\DoxyCodeLine{305     \mbox{\hyperlink{common_8h_a5f6df0ca34313e6d20b3b498db9f7d22}{DOWN}},       \textcolor{comment}{// opposite of UP (1)}}
+\DoxyCodeLine{306     \mbox{\hyperlink{common_8h_a9305fefa21685694e20dae644a34123b}{UP}},         \textcolor{comment}{// opposite of DOWN (2)}}
+\DoxyCodeLine{307     \mbox{\hyperlink{common_8h_ae73c74d02543a36c8605a54ede67c2be}{NULL\_DIR}},}
+\DoxyCodeLine{308     \mbox{\hyperlink{common_8h_aeabefd506e456ab7a0999ba6d5e15ae1}{RIGHT}},      \textcolor{comment}{// opposite of LEFT (4)}}
+\DoxyCodeLine{309     \mbox{\hyperlink{common_8h_a42f36aa22cbe236b9868825d037ac058}{DOWN\_RIGHT}}, \textcolor{comment}{// opposite of UP\_LEFT (5)}}
+\DoxyCodeLine{310     \mbox{\hyperlink{common_8h_a4f4e64c68e999b9e874304af75114221}{UP\_RIGHT}},   \textcolor{comment}{// opposite of DOWN\_LEFT (6)}}
+\DoxyCodeLine{311     \mbox{\hyperlink{common_8h_ae73c74d02543a36c8605a54ede67c2be}{NULL\_DIR}},}
+\DoxyCodeLine{312     \mbox{\hyperlink{common_8h_abb7db6b761b271e4ff1c88edd47e708f}{LEFT}},       \textcolor{comment}{// opposite of RIGHT (8)}}
+\DoxyCodeLine{313     \mbox{\hyperlink{common_8h_a3fd562632abbcd86a955faf9723accf9}{DOWN\_LEFT}},  \textcolor{comment}{// opposite of UP\_RIGHT (9)}}
+\DoxyCodeLine{314     \mbox{\hyperlink{common_8h_ae1387f3998993cf0a9771b3e42a7a0c9}{UP\_LEFT}}     \textcolor{comment}{// opposite of DOWN\_RIGHT (10)}}
+\DoxyCodeLine{315 \};}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317 \textcolor{comment}{// direction\_Opposite(): return the opposite direction to d}}
+\DoxyCodeLine{318   \textcolor{keyword}{inline} \mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}}}
+\DoxyCodeLine{319 \mbox{\hyperlink{common_8h_ae8557109dd59f1f2f8eeb3648ec9f0f8}{direction\_Opposite}} (\mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}} d)}
+\DoxyCodeLine{320 \{}
+\DoxyCodeLine{321     \textcolor{keywordflow}{return} \mbox{\hyperlink{common_8h_a60153ad2f70f5ee6609030faabf4f5ca}{dirOpposite}}[d];}
+\DoxyCodeLine{322 \}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324 \textcolor{comment}{// dirIsDiagonal[]: array listing the diagonal directions, for fast}}
+\DoxyCodeLine{325 \textcolor{comment}{//      lookup of whether a direction is a diagonal.}}
+\DoxyCodeLine{326   \textcolor{keyword}{const} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{327 \mbox{\hyperlink{common_8h_a59aae82a88707e372558a9d28802d7b1}{dirIsDiagonal}} [11] = \{}
+\DoxyCodeLine{328     \textcolor{keyword}{false},   \textcolor{comment}{//  0 = NULL\_DIR}}
+\DoxyCodeLine{329     \textcolor{keyword}{false},   \textcolor{comment}{//  1 = UP}}
+\DoxyCodeLine{330     \textcolor{keyword}{false},   \textcolor{comment}{//  2 = DOWN}}
+\DoxyCodeLine{331     \textcolor{keyword}{false},   \textcolor{comment}{//  3 = Invalid}}
+\DoxyCodeLine{332     \textcolor{keyword}{false},   \textcolor{comment}{//  4 = LEFT}}
+\DoxyCodeLine{333     \textcolor{keyword}{true},    \textcolor{comment}{//  5 = UP\_LEFT}}
+\DoxyCodeLine{334     \textcolor{keyword}{true},    \textcolor{comment}{//  6 = DOWN\_LEFT}}
+\DoxyCodeLine{335     \textcolor{keyword}{false},   \textcolor{comment}{//  7 = Invalid}}
+\DoxyCodeLine{336     \textcolor{keyword}{false},   \textcolor{comment}{//  8 = RIGHT}}
+\DoxyCodeLine{337     \textcolor{keyword}{true},    \textcolor{comment}{//  9 = UP\_RIGHT}}
+\DoxyCodeLine{338     \textcolor{keyword}{true}     \textcolor{comment}{// 10 = DOWN\_RIGHT}}
+\DoxyCodeLine{339 \};}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{341   \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{342 \mbox{\hyperlink{common_8h_acd2cea0e77d38f353acef42d7d04882e}{direction\_IsDiagonal}} (\mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}} dir)}
+\DoxyCodeLine{343 \{}
+\DoxyCodeLine{344     \textcolor{keywordflow}{return} \mbox{\hyperlink{common_8h_a59aae82a88707e372558a9d28802d7b1}{dirIsDiagonal}}[dir];}
+\DoxyCodeLine{345 \}}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{347 \textcolor{comment}{// dirDelta:}}
+\DoxyCodeLine{348 \textcolor{comment}{//   Array giving the board delta of moving to the next square}}
+\DoxyCodeLine{349 \textcolor{comment}{//   in that direction.}}
+\DoxyCodeLine{350   \textcolor{keyword}{const} \textcolor{keywordtype}{int}}
+\DoxyCodeLine{351 \mbox{\hyperlink{common_8h_a9421716f189f7564303c8f31b99990e8}{dirDelta}}[11] = \{}
+\DoxyCodeLine{352     0,    \textcolor{comment}{// NULL\_DIR}}
+\DoxyCodeLine{353     8,    \textcolor{comment}{// UP}}
+\DoxyCodeLine{354    -\/8,    \textcolor{comment}{// DOWN}}
+\DoxyCodeLine{355     0,    \textcolor{comment}{// Invalid}}
+\DoxyCodeLine{356    -\/1,    \textcolor{comment}{// LEFT}}
+\DoxyCodeLine{357     7,    \textcolor{comment}{// UP\_LEFT}}
+\DoxyCodeLine{358    -\/9,    \textcolor{comment}{// DOWN\_LEFT}}
+\DoxyCodeLine{359     0,    \textcolor{comment}{// Invalid}}
+\DoxyCodeLine{360     1,    \textcolor{comment}{// RIGHT}}
+\DoxyCodeLine{361     9,    \textcolor{comment}{// UP\_RIGHT}}
+\DoxyCodeLine{362    -\/7     \textcolor{comment}{// DOWN\_RIGHT}}
+\DoxyCodeLine{363 \};}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365   \textcolor{keyword}{inline} \textcolor{keywordtype}{int}}
+\DoxyCodeLine{366 \mbox{\hyperlink{common_8h_acd24c0d70d2ba19dc33cff54d892d3d0}{direction\_Delta}} (\mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}} dir)}
+\DoxyCodeLine{367 \{}
+\DoxyCodeLine{368     \textcolor{keywordflow}{return} \mbox{\hyperlink{common_8h_a9421716f189f7564303c8f31b99990e8}{dirDelta}}[dir];}
+\DoxyCodeLine{369 \}}
+\DoxyCodeLine{370 }
+\DoxyCodeLine{371 \textcolor{comment}{// The starting Board}}
+\DoxyCodeLine{372 \textcolor{comment}{//}}
+\DoxyCodeLine{373   \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}
+\DoxyCodeLine{374 \mbox{\hyperlink{common_8h_ac840f476b4572b3da5fb268cdfbfa227}{START\_BOARD}}[66] =}
+\DoxyCodeLine{375 \{}
+\DoxyCodeLine{376     \mbox{\hyperlink{board__def_8h_af4aa2ab334837d64386e2b18356a5417}{WR}}, \mbox{\hyperlink{board__def_8h_a1f3338eaf38ab7db8fc38e8e0f65c080}{WN}}, \mbox{\hyperlink{board__def_8h_afd45947348b8b22184cb5c605a2464e4}{WB}}, \mbox{\hyperlink{board__def_8h_a6fcd496bb2acee064bb07b93258e21cb}{WQ}}, \mbox{\hyperlink{board__def_8h_a6741904a9bc89c5d6f6ff9d9258f8078}{WK}}, \mbox{\hyperlink{board__def_8h_afd45947348b8b22184cb5c605a2464e4}{WB}}, \mbox{\hyperlink{board__def_8h_a1f3338eaf38ab7db8fc38e8e0f65c080}{WN}}, \mbox{\hyperlink{board__def_8h_af4aa2ab334837d64386e2b18356a5417}{WR}},    \textcolor{comment}{// A1-\/-\/H1}}
+\DoxyCodeLine{377     \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}}, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}},    \textcolor{comment}{// A2-\/-\/H2}}
+\DoxyCodeLine{378     \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}},}
+\DoxyCodeLine{379     \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}},}
+\DoxyCodeLine{380     \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}},}
+\DoxyCodeLine{381     \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}},}
+\DoxyCodeLine{382     \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}}, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}},}
+\DoxyCodeLine{383     \mbox{\hyperlink{board__def_8h_ab2aa81e436a9bfcce5ae577714a9d465}{BR}}, \mbox{\hyperlink{board__def_8h_a45729871ae31fd5175aba7ee50d2c600}{BN}}, \mbox{\hyperlink{board__def_8h_a8779bc5a380e6bb7f3221dd0e3e7190a}{BB}}, \mbox{\hyperlink{board__def_8h_a66e36a051216e05e14ce562dd3438809}{BQ}}, \mbox{\hyperlink{board__def_8h_aeeb76222aa901b0ad6f0c4971dc73627}{BK}}, \mbox{\hyperlink{board__def_8h_a8779bc5a380e6bb7f3221dd0e3e7190a}{BB}}, \mbox{\hyperlink{board__def_8h_a45729871ae31fd5175aba7ee50d2c600}{BN}}, \mbox{\hyperlink{board__def_8h_ab2aa81e436a9bfcce5ae577714a9d465}{BR}},}
+\DoxyCodeLine{384     \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}, \textcolor{comment}{// COLOR\_SQUARE}}
+\DoxyCodeLine{385     \mbox{\hyperlink{board__def_8h_a9d13f5cbab49748d5f2cda815caaff64}{END\_OF\_BOARD}}  \textcolor{comment}{// NULL\_SQUARE}}
+\DoxyCodeLine{386 \};}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388 \textcolor{comment}{// Square colors for the standard chess board:}}
+\DoxyCodeLine{389 \textcolor{comment}{//}}
+\DoxyCodeLine{390   \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}
+\DoxyCodeLine{391 \mbox{\hyperlink{common_8h_a24b42bf730f7ad8e8f7c16f477187b51}{BOARD\_SQUARECOLOR}}[66] = \{}
+\DoxyCodeLine{392     \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}},  \textcolor{comment}{// a1-\/h1}}
+\DoxyCodeLine{393     \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}},  \textcolor{comment}{// a2-\/h2}}
+\DoxyCodeLine{394     \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}},  \textcolor{comment}{// a3-\/h3}}
+\DoxyCodeLine{395     \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}},  \textcolor{comment}{// a4-\/h4}}
+\DoxyCodeLine{396     \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}},  \textcolor{comment}{// a5-\/h5}}
+\DoxyCodeLine{397     \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}},  \textcolor{comment}{// a6-\/h6}}
+\DoxyCodeLine{398     \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}},  \textcolor{comment}{// a7-\/h7}}
+\DoxyCodeLine{399     \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}},  \textcolor{comment}{// a8-\/h8}}
+\DoxyCodeLine{400     \mbox{\hyperlink{board__def_8h_aacc384967c36c0e4b83aff995347bf3b}{NOCOLOR}}, \mbox{\hyperlink{board__def_8h_aacc384967c36c0e4b83aff995347bf3b}{NOCOLOR}}  \textcolor{comment}{// Color square and Null square}}
+\DoxyCodeLine{401 \};}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 \textcolor{comment}{// square\_Adjacent: returns 1 if the two squares are adjacent. Note that}}
+\DoxyCodeLine{404 \textcolor{comment}{//    diagonal adjacency is included: a1 and b2 are adjacent.}}
+\DoxyCodeLine{405 \textcolor{comment}{//    Also note that a square is adjacent to itself.}}
+\DoxyCodeLine{406   \textcolor{keyword}{inline} \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{407 \mbox{\hyperlink{common_8h_a43aa121d3facfa8c281c3ae6fafb7b48}{square\_Adjacent}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to)}
+\DoxyCodeLine{408 \{}
+\DoxyCodeLine{409     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}} (from <= \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}}  \&\&  to <= \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}});}
+\DoxyCodeLine{410     \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} fromRank = \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(from);}
+\DoxyCodeLine{411     \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} toRank = \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(to);}
+\DoxyCodeLine{412     \textcolor{keywordtype}{int} rdist = (int)fromRank -\/ (\textcolor{keywordtype}{int})toRank;}
+\DoxyCodeLine{413     \textcolor{keywordflow}{if} (rdist < -\/1  ||  rdist > 1) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{414     \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} fromFyle = \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(from);}
+\DoxyCodeLine{415     \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} toFyle = \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(to);}
+\DoxyCodeLine{416     \textcolor{keywordtype}{int} fdist = (int)fromFyle -\/ (\textcolor{keywordtype}{int})toFyle;}
+\DoxyCodeLine{417     \textcolor{keywordflow}{if} (fdist < -\/1  ||  fdist > 1) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{418     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{419 \}}
+\DoxyCodeLine{420 }
+\DoxyCodeLine{421 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// \#ifdef SCID\_COMMON\_H}}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{424 \textcolor{comment}{//  EOF:  common.h}}
+\DoxyCodeLine{426 \textcolor{comment}{}}
+
+\end{DoxyCode}

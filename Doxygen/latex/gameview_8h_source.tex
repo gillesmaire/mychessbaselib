@@ -1,0 +1,541 @@
+\hypertarget{gameview_8h_source}{}\doxysection{gameview.\+h}
+\mbox{\hyperlink{gameview_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{* Copyright (C) 2013-\/2015  Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{* This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{* Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{* it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{* the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{* Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{* but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{* GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{*}}
+\DoxyCodeLine{15 \textcolor{comment}{* You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{* along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{*/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{bytebuf_8h}{bytebuf.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{fullmove_8h}{fullmove.h}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{movegen_8h}{movegen.h}}"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{position_8h}{position.h}}"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <cstring>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{class_material_count}{MaterialCount}} \{}
+\DoxyCodeLine{34     int8\_t n\_[2][8] = \{\};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{public}:}
+\DoxyCodeLine{38     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_material_count_afbe2bad0fae464dd4060678f63fdd1d8}{incr}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\_type) \{}
+\DoxyCodeLine{39         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{40         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(piece\_type > 0 \&\& piece\_type < 8);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42         ++n\_[color][0];}
+\DoxyCodeLine{43         ++n\_[color][piece\_type];}
+\DoxyCodeLine{44     \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_material_count_a1471c02da0993a3ba1fee8402a3df95e}{decr}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\_type) \{}
+\DoxyCodeLine{48         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{49         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(piece\_type > 0 \&\& piece\_type < 8);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51         -\/-\/n\_[color][0];}
+\DoxyCodeLine{52         -\/-\/n\_[color][piece\_type];}
+\DoxyCodeLine{53     \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{56     int8\_t \mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{57         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59         \textcolor{keywordflow}{return} n\_[color][0];}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63     int8\_t \mbox{\hyperlink{class_material_count_a946c14e96b7b3098b68f93fa65f4536d}{count}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\_type)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{64         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{65         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(piece\_type > 0 \&\& piece\_type < 8);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67         \textcolor{keywordflow}{return} n\_[color][piece\_type];}
+\DoxyCodeLine{68     \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_material_count_a94267ad599bdbe04dcf313e8cd518df1}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_material_count}{MaterialCount}}\& b)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{71         \textcolor{keyword}{const} int8\_t* a = n\_[0];}
+\DoxyCodeLine{72         \textcolor{keyword}{const} int8\_t* b\_ptr = b.n\_[0];}
+\DoxyCodeLine{73         \textcolor{keywordflow}{return} std::equal(a, a + 16, b\_ptr);}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_material_count_a022082c196edf9cd9a1b05e102f0cc3d}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_material_count}{MaterialCount}}\& b)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} !\mbox{\hyperlink{class_material_count_a94267ad599bdbe04dcf313e8cd518df1}{operator==}}(b); \}}
+\DoxyCodeLine{77 \};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{80 \textcolor{keyword}{class }\mbox{\hyperlink{class_piece_list}{PieceList}} \{}
+\DoxyCodeLine{81     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{82         \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_piece_list_a5177938eb07a8b56336d4105ef762e0e}{sq}};}
+\DoxyCodeLine{83         \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_piece_list_ab10c71701554145a8eda39e3a6bbc645}{piece\_type}};}
+\DoxyCodeLine{84     \} pieces\_[2][16];}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{keyword}{public}:}
+\DoxyCodeLine{88     int8\_t \mbox{\hyperlink{class_piece_list_a2a28902869a3f84bd465688a0d66df35}{getKingIdx}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0; \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{91     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_piece_list_afe6029890587337259577a777afa0111}{getPieceType}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} idx)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{92         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{93         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(idx >= 0 \&\& idx < 16);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95         \textcolor{keywordflow}{return} pieces\_[color][idx].piece\_type;}
+\DoxyCodeLine{96     \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{99     \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} idx)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{100         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{101         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(idx >= 0 \&\& idx < 16);}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103         \textcolor{keywordflow}{return} pieces\_[color][idx].sq;}
+\DoxyCodeLine{104     \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_piece_list_aa92e84fd1dbfd19efe2d735f022c5098}{changeSq}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} idx, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to) \{}
+\DoxyCodeLine{108         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{109         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(idx >= 0 \&\& idx < 16);}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111         pieces\_[color][idx].sq = to;}
+\DoxyCodeLine{112     \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{115     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_piece_list_aef0f7cc2f7647e37731f2d81a365f9d9}{promote}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} idx, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_piece_list_ab10c71701554145a8eda39e3a6bbc645}{piece\_type}}) \{}
+\DoxyCodeLine{116         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{117         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(idx >= 0 \&\& idx < 16);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119         pieces\_[color][idx].piece\_type = \mbox{\hyperlink{class_piece_list_ab10c71701554145a8eda39e3a6bbc645}{piece\_type}};}
+\DoxyCodeLine{120     \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{126     \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_piece_list_ab6fa67a2cf9a4148291ea60376ea2063}{remove}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} removed\_idx, \textcolor{keywordtype}{int} lastvalid\_idx) \{}
+\DoxyCodeLine{127         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{128         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(removed\_idx >= 0 \&\& removed\_idx < 16);}
+\DoxyCodeLine{129         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(lastvalid\_idx >= 0 \&\& lastvalid\_idx < 16);}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131         pieces\_[color][removed\_idx] = pieces\_[color][lastvalid\_idx];}
+\DoxyCodeLine{132         \textcolor{keywordflow}{return} pieces\_[color][lastvalid\_idx].sq;}
+\DoxyCodeLine{133     \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{136     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_piece_list_ab10342fdce03a69d1b6c145f940ab4d0}{set}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} idx, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_piece_list_a5177938eb07a8b56336d4105ef762e0e}{sq}}, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_piece_list_ab10c71701554145a8eda39e3a6bbc645}{piece\_type}}) \{}
+\DoxyCodeLine{137         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(color == 0 || color == 1);}
+\DoxyCodeLine{138         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(idx >= 0 \&\& idx < 16);}
+\DoxyCodeLine{139         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_piece_list_ab10c71701554145a8eda39e3a6bbc645}{piece\_type}} != \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}} || idx == \mbox{\hyperlink{class_piece_list_a2a28902869a3f84bd465688a0d66df35}{getKingIdx}}());}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141         pieces\_[color][idx].sq = \mbox{\hyperlink{class_piece_list_a5177938eb07a8b56336d4105ef762e0e}{sq}};}
+\DoxyCodeLine{142         pieces\_[color][idx].piece\_type = \mbox{\hyperlink{class_piece_list_ab10c71701554145a8eda39e3a6bbc645}{piece\_type}};}
+\DoxyCodeLine{143     \}}
+\DoxyCodeLine{144 \};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{keyword}{class }\mbox{\hyperlink{class_fast_board}{FastBoard}} \{}
+\DoxyCodeLine{147     uint8\_t board\_[64];}
+\DoxyCodeLine{148     \mbox{\hyperlink{class_material_count}{MaterialCount}} mt\_;}
+\DoxyCodeLine{149     \mbox{\hyperlink{class_piece_list}{PieceList}} pieces\_;}
+\DoxyCodeLine{150     uint8\_t castlingRook\_[2][2]; \textcolor{comment}{// [WHITE|BLACK][long|short] the idx of the}}
+\DoxyCodeLine{151                                  \textcolor{comment}{// rooks that can castle. 0 if none}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \textcolor{keyword}{enum} \{ EMPTY\_SQ\_ = 0xFF \};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{keyword}{public}:}
+\DoxyCodeLine{156     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_fast_board_a8f7649ff7680adff6390c1ae190902eb}{FastBoard}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_position}{Position}}\& pos) \{ \mbox{\hyperlink{class_fast_board_abccd0de5d8d6bcfafcacf948f226ef63}{Init}}(pos); \}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158     \textcolor{keyword}{static} \mbox{\hyperlink{class_fast_board}{FastBoard}} \mbox{\hyperlink{class_fast_board_a5b5c120607df3bf8fe817f1ded01b326}{stdStart}}() \{}
+\DoxyCodeLine{159         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{auto} std\_start = \mbox{\hyperlink{class_fast_board_a8f7649ff7680adff6390c1ae190902eb}{FastBoard}}(\mbox{\hyperlink{class_position_a06a12cb658451122ee09820004bbb3ab}{Position::getStdStart}}());}
+\DoxyCodeLine{160         \textcolor{keywordflow}{return} std\_start;}
+\DoxyCodeLine{161     \}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_board_abccd0de5d8d6bcfafcacf948f226ef63}{Init}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_position}{Position}}\& pos) \{}
+\DoxyCodeLine{164         std::fill\_n(board\_, 64, EMPTY\_SQ\_);}
+\DoxyCodeLine{165         std::fill\_n(*castlingRook\_, 4, 0);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} color : \{\mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}\}) \{}
+\DoxyCodeLine{168             \textcolor{keyword}{const} \textcolor{keyword}{auto} pos\_count = pos.\mbox{\hyperlink{class_position_a669e0a6ac4ec281b6695029ae6b8de87}{GetCount}}(color);}
+\DoxyCodeLine{169             \textcolor{keyword}{const} \textcolor{keyword}{auto} pos\_list = pos.\mbox{\hyperlink{class_position_a5ef93f6d4d4036f55718526453c551dc}{GetList}}(color);}
+\DoxyCodeLine{170             \textcolor{keywordflow}{for} (uint8\_t idx = 0; idx < 16; ++idx) \{}
+\DoxyCodeLine{171                 \textcolor{keywordflow}{if} (idx < pos\_count) \{}
+\DoxyCodeLine{172                     \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq = pos\_list[idx];}
+\DoxyCodeLine{173                     \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece\_type = \mbox{\hyperlink{board__def_8h_ae9ad95a6fa0d30a7bec5f55cf41b9f25}{piece\_Type}}(pos.\mbox{\hyperlink{class_position_a13f4018dcdca8447eee53f7b5d174e73}{GetPiece}}(sq));}
+\DoxyCodeLine{174                     pieces\_.\mbox{\hyperlink{class_piece_list_ab10342fdce03a69d1b6c145f940ab4d0}{set}}(color, idx, sq, piece\_type);}
+\DoxyCodeLine{175                     board\_[sq] = idx;}
+\DoxyCodeLine{176                     mt\_.\mbox{\hyperlink{class_material_count_afbe2bad0fae464dd4060678f63fdd1d8}{incr}}(color, piece\_type);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178                     \textcolor{keywordflow}{if} (piece\_type == \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}} \&\&}
+\DoxyCodeLine{179                         \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq) == \mbox{\hyperlink{board__def_8h_af19b952becd3c628d6cdd1be4f170a24}{rank\_Relative}}(color, \mbox{\hyperlink{board__def_8h_aa49c98ee469a857896aa33edd9970fc8}{RANK\_1}})) \{}
+\DoxyCodeLine{180                         \textcolor{keyword}{auto} oldIdx = castlingRook\_[color][0];}
+\DoxyCodeLine{181                         \textcolor{keywordflow}{if} (!oldIdx || sq < pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(color, oldIdx))}
+\DoxyCodeLine{182                             castlingRook\_[color][0] = idx;}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184                         oldIdx = castlingRook\_[color][1];}
+\DoxyCodeLine{185                         \textcolor{keywordflow}{if} (!oldIdx || sq > pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(color, oldIdx))}
+\DoxyCodeLine{186                             castlingRook\_[color][1] = idx;}
+\DoxyCodeLine{187                     \}}
+\DoxyCodeLine{188                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{189                     pieces\_.\mbox{\hyperlink{class_piece_list_ab10342fdce03a69d1b6c145f940ab4d0}{set}}(color, idx, 0, \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}});}
+\DoxyCodeLine{190                 \}}
+\DoxyCodeLine{191             \}}
+\DoxyCodeLine{192         \}}
+\DoxyCodeLine{193     \}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_fast_board_a309c2d84383247d9dbce1930fa99ee23}{isEqual}}(\textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}* board, \textcolor{keyword}{const} \mbox{\hyperlink{class_material_count}{MaterialCount}}\& mt\_count)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{196         \textcolor{keywordflow}{if} (mt\_ != mt\_count)}
+\DoxyCodeLine{197             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} idx = 0, n = mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(\mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}); idx < n; ++idx) \{}
+\DoxyCodeLine{200             \textcolor{keyword}{const} \textcolor{keyword}{auto} sq = pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(\mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, idx);}
+\DoxyCodeLine{201             \textcolor{keyword}{const} \textcolor{keyword}{auto} pt = pieces\_.\mbox{\hyperlink{class_piece_list_afe6029890587337259577a777afa0111}{getPieceType}}(\mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, idx);}
+\DoxyCodeLine{202             \textcolor{keywordflow}{if} (board[sq] != \mbox{\hyperlink{board__def_8h_aafb1ee43474dc5f2f83353425039e160}{piece\_Make}}(\mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}, pt))}
+\DoxyCodeLine{203                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{204         \}}
+\DoxyCodeLine{205         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} idx = 0, n = mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(\mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}); idx < n; ++idx) \{}
+\DoxyCodeLine{206             \textcolor{keyword}{const} \textcolor{keyword}{auto} sq = pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(\mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, idx);}
+\DoxyCodeLine{207             \textcolor{keyword}{const} \textcolor{keyword}{auto} pt = pieces\_.\mbox{\hyperlink{class_piece_list_afe6029890587337259577a777afa0111}{getPieceType}}(\mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, idx);}
+\DoxyCodeLine{208             \textcolor{keywordflow}{if} (board[sq] != \mbox{\hyperlink{board__def_8h_aafb1ee43474dc5f2f83353425039e160}{piece\_Make}}(\mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}, pt))}
+\DoxyCodeLine{209                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{210         \}}
+\DoxyCodeLine{211         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{212     \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214     \textcolor{keyword}{const} \mbox{\hyperlink{class_material_count}{MaterialCount}}\& \mbox{\hyperlink{class_fast_board_a56359db730c365b3083bd63634e083dc}{materialCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mt\_; \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}{getSquare}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} idx)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{217         \textcolor{keywordflow}{return} pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(color, idx);}
+\DoxyCodeLine{218     \}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}{getPiece}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keywordtype}{int} idx)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{221         \textcolor{keywordflow}{return} pieces\_.\mbox{\hyperlink{class_piece_list_afe6029890587337259577a777afa0111}{getPieceType}}(color, idx);}
+\DoxyCodeLine{222     \}}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{228     \textcolor{keyword}{template} <colorT color> \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_fast_board_a03bb9dff1cd4321ca3f821b35c1bb348}{castle}}(\textcolor{keywordtype}{bool} king\_side) \{}
+\DoxyCodeLine{229         \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} king\_to = king\_side ? \mbox{\hyperlink{board__def_8h_a720d45d16863fe24387c7c597c523fa0}{square\_Relative}}(color, \mbox{\hyperlink{board__def_8h_ab2f9d37a4f9d8f68498d9ba1762bf1cc}{G1}})}
+\DoxyCodeLine{230                                           : \mbox{\hyperlink{board__def_8h_a720d45d16863fe24387c7c597c523fa0}{square\_Relative}}(color, \mbox{\hyperlink{board__def_8h_a7c7f317a89a312dc646081e3dffee1ed}{C1}});}
+\DoxyCodeLine{231         \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} rook\_to = king\_side ? \mbox{\hyperlink{board__def_8h_a720d45d16863fe24387c7c597c523fa0}{square\_Relative}}(color, \mbox{\hyperlink{board__def_8h_ab9643d3117b1fb90114cd8eb8691ba93}{F1}})}
+\DoxyCodeLine{232                                           : \mbox{\hyperlink{board__def_8h_a720d45d16863fe24387c7c597c523fa0}{square\_Relative}}(color, \mbox{\hyperlink{board__def_8h_a33533c162e16bd58175763f1a3a3214e}{D1}});}
+\DoxyCodeLine{233         \textcolor{keyword}{const} \textcolor{keyword}{auto} king\_idx = pieces\_.\mbox{\hyperlink{class_piece_list_a2a28902869a3f84bd465688a0d66df35}{getKingIdx}}();}
+\DoxyCodeLine{234         \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} king\_from = pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(color, king\_idx);}
+\DoxyCodeLine{235         \textcolor{keyword}{const} \textcolor{keyword}{auto} rook\_idx = castlingRook\_[color][king\_side ? 1 : 0];}
+\DoxyCodeLine{236         \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} rook\_from = pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(color, rook\_idx);}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238         \textcolor{keywordflow}{if} (pieces\_.\mbox{\hyperlink{class_piece_list_afe6029890587337259577a777afa0111}{getPieceType}}(color, rook\_idx) != \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}})}
+\DoxyCodeLine{239             \textcolor{keywordflow}{return} king\_from; \textcolor{comment}{// No rook or captured}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241         pieces\_.\mbox{\hyperlink{class_piece_list_aa92e84fd1dbfd19efe2d735f022c5098}{changeSq}}(color, rook\_idx, rook\_to);}
+\DoxyCodeLine{242         pieces\_.\mbox{\hyperlink{class_piece_list_aa92e84fd1dbfd19efe2d735f022c5098}{changeSq}}(color, king\_idx, king\_to);}
+\DoxyCodeLine{243         board\_[rook\_from] = EMPTY\_SQ\_;}
+\DoxyCodeLine{244         board\_[king\_from] = EMPTY\_SQ\_;}
+\DoxyCodeLine{245         board\_[rook\_to] = rook\_idx;}
+\DoxyCodeLine{246         board\_[king\_to] = king\_idx;}
+\DoxyCodeLine{247         \textcolor{keywordflow}{return} rook\_from;}
+\DoxyCodeLine{248     \}}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250     \textcolor{keyword}{template} <colorT color> \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_fast_board_a87590bd1f301c1de7183db116b61e356}{move}}(\textcolor{keywordtype}{int} idx, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} promo) \{}
+\DoxyCodeLine{251         \textcolor{keywordflow}{if} (promo != \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}) \{}
+\DoxyCodeLine{252             pieces\_.\mbox{\hyperlink{class_piece_list_aef0f7cc2f7647e37731f2d81a365f9d9}{promote}}(color, idx, promo);}
+\DoxyCodeLine{253             mt\_.\mbox{\hyperlink{class_material_count_afbe2bad0fae464dd4060678f63fdd1d8}{incr}}(color, promo);}
+\DoxyCodeLine{254             mt\_.\mbox{\hyperlink{class_material_count_a1471c02da0993a3ba1fee8402a3df95e}{decr}}(color, \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}});}
+\DoxyCodeLine{255         \}}
+\DoxyCodeLine{256         \textcolor{keyword}{const} \textcolor{keyword}{auto} from = pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(color, idx);}
+\DoxyCodeLine{257         board\_[from] = EMPTY\_SQ\_;}
+\DoxyCodeLine{258         pieces\_.\mbox{\hyperlink{class_piece_list_aa92e84fd1dbfd19efe2d735f022c5098}{changeSq}}(color, idx, to);}
+\DoxyCodeLine{259         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_fast_board_acb3f4b1d55407d9606ccaaa3b94bcf80}{remove}}<1 -\/ color>(to, idx);}
+\DoxyCodeLine{260     \}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262     \textcolor{keyword}{template} <colorT color> \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_fast_board_acb3f4b1d55407d9606ccaaa3b94bcf80}{remove}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq, \textcolor{keywordtype}{int} newIdx = EMPTY\_SQ\_) \{}
+\DoxyCodeLine{263         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(newIdx) == newIdx);}
+\DoxyCodeLine{264         \textcolor{keyword}{const} \textcolor{keyword}{auto} oldIdx = board\_[sq];}
+\DoxyCodeLine{265         board\_[sq] = \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(newIdx);}
+\DoxyCodeLine{266         \textcolor{keywordflow}{if} (oldIdx == EMPTY\_SQ\_)}
+\DoxyCodeLine{267             \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}};}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269         \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} removed\_pt = pieces\_.\mbox{\hyperlink{class_piece_list_afe6029890587337259577a777afa0111}{getPieceType}}(color, oldIdx);}
+\DoxyCodeLine{270         mt\_.\mbox{\hyperlink{class_material_count_a1471c02da0993a3ba1fee8402a3df95e}{decr}}(color, removed\_pt);}
+\DoxyCodeLine{271         \textcolor{keywordtype}{int} lastvalid\_idx = mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(color);}
+\DoxyCodeLine{272         \textcolor{keywordflow}{if} (oldIdx != lastvalid\_idx) \{}
+\DoxyCodeLine{273             \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} moved\_sq = pieces\_.\mbox{\hyperlink{class_piece_list_ab6fa67a2cf9a4148291ea60376ea2063}{remove}}(color, oldIdx, lastvalid\_idx);}
+\DoxyCodeLine{274             board\_[moved\_sq] = oldIdx;}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& cRook : castlingRook\_[color]) \{}
+\DoxyCodeLine{277                 \textcolor{keywordflow}{if} (cRook == lastvalid\_idx)}
+\DoxyCodeLine{278                     cRook = oldIdx;}
+\DoxyCodeLine{279             \}}
+\DoxyCodeLine{280         \}}
+\DoxyCodeLine{281         \textcolor{keywordflow}{return} removed\_pt;}
+\DoxyCodeLine{282     \}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{290     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_fast_board_ab957dae924d26648559009246a103245}{fillSANInfo}}(\mbox{\hyperlink{class_full_move}{FullMove}}\& lastmove)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{291         \textcolor{keyword}{const} \textcolor{keyword}{auto} lastFrom = lastmove.\mbox{\hyperlink{class_full_move_ac202fc11b822d791e31bbe024c920693}{getFrom}}();}
+\DoxyCodeLine{292         \textcolor{keyword}{const} \textcolor{keyword}{auto} lastTo = lastmove.\mbox{\hyperlink{class_full_move_aba4e00634f8fd78e41680523d3ff54ce}{getTo}}();}
+\DoxyCodeLine{293         \textcolor{keyword}{const} \textcolor{keyword}{auto} lastCol = lastmove.\mbox{\hyperlink{class_full_move_a1b5c20d0fb533521d677868fd2823ee1}{getColor}}();}
+\DoxyCodeLine{294         \textcolor{keyword}{auto} lastPt = lastmove.\mbox{\hyperlink{class_full_move_af0ccbd845375365154f5acfecae9a993}{getPiece}}();}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296         \textcolor{keywordflow}{if} (lastPt == \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}}) \{}
+\DoxyCodeLine{297             \textcolor{keywordflow}{if} (lastmove.\mbox{\hyperlink{class_full_move_afb6098c93f9bb863c7699a927565561a}{isPromo}}())}
+\DoxyCodeLine{298                 lastPt = lastmove.\mbox{\hyperlink{class_full_move_a55b197af141b649c6570d7b7d608ee01}{getPromo}}();}
+\DoxyCodeLine{299         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(lastCol, lastPt) > 1) \{}
+\DoxyCodeLine{300             \textcolor{keywordtype}{int} ambiguity = ambiguousMove(lastFrom, lastTo, lastCol, lastPt);}
+\DoxyCodeLine{301             \textcolor{keywordflow}{if} (ambiguity)}
+\DoxyCodeLine{302                 lastmove.\mbox{\hyperlink{class_full_move_adfe4f0a132c04743cc531e4d8d07ebf0}{setAmbiguity}}(ambiguity != 5, ambiguity >= 5);}
+\DoxyCodeLine{303         \}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{305         \textcolor{comment}{// Look for checks}}
+\DoxyCodeLine{306         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(\mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}) >= 1 \&\& mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(\mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}}) >= 1);}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{308         \textcolor{keyword}{auto} isOccupied = [\textcolor{keyword}{this}](\textcolor{keyword}{auto} sq) \{ \textcolor{keywordflow}{return} board\_[sq] != EMPTY\_SQ\_; \};}
+\DoxyCodeLine{309         \textcolor{keyword}{const} \textcolor{keyword}{auto} enemyKingSq = getKingSquare(\mbox{\hyperlink{board__def_8h_ac971357d1c624a25a36c96e47cc7c724}{color\_Flip}}(lastCol));}
+\DoxyCodeLine{310         \textcolor{keywordtype}{bool} direct\_check = (lastPt != \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}}) \&\&}
+\DoxyCodeLine{311                             \mbox{\hyperlink{namespacemovegen_aba25d288da9b9d4a5871d159c74403fe}{movegen::attack}}(lastTo, enemyKingSq, lastCol,}
+\DoxyCodeLine{312                                             lastPt, isOccupied);}
+\DoxyCodeLine{313         \textcolor{keywordflow}{if} (direct\_check || \textcolor{comment}{// Look for a discovered check}}
+\DoxyCodeLine{314             find\_attacker\_slider(enemyKingSq, lastCol) >= 0) \{}
+\DoxyCodeLine{315             lastmove.\mbox{\hyperlink{class_full_move_aa1df2021dd86681d58e37d286fb139b5}{setCheck}}();}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317             \textcolor{comment}{// TODO: Find if it's mate:}}
+\DoxyCodeLine{318             \textcolor{comment}{// -\/ it's not mate if the king can move to a safe square}}
+\DoxyCodeLine{319             \textcolor{comment}{// -\/ it's mate if it's double check or the attacker cannot be}}
+\DoxyCodeLine{320             \textcolor{comment}{//   captured or blocked.}}
+\DoxyCodeLine{321         \}}
+\DoxyCodeLine{322     \}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324 \textcolor{keyword}{private}:}
+\DoxyCodeLine{325     \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} getKingSquare(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{326         \textcolor{keywordflow}{return} pieces\_.\mbox{\hyperlink{class_piece_list_abad1ebe12694deae769410b60eb28047}{getSquare}}(color, pieces\_.\mbox{\hyperlink{class_piece_list_a2a28902869a3f84bd465688a0d66df35}{getKingIdx}}());}
+\DoxyCodeLine{327     \}}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329     \textcolor{keywordtype}{int} ambiguousMove(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} lastFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} lastTo, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} lastCol,}
+\DoxyCodeLine{330                       \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} lastPt)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{331         \textcolor{keywordtype}{int} ambiguity = 0;}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333         \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} kingSq = getKingSquare(lastCol);}
+\DoxyCodeLine{334         \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} enemyCol = \mbox{\hyperlink{board__def_8h_ac971357d1c624a25a36c96e47cc7c724}{color\_Flip}}(lastCol);}
+\DoxyCodeLine{335         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1, n = mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(lastCol); i < n; i++) \{}
+\DoxyCodeLine{336             \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}{getPiece}}(lastCol, i) != lastPt)}
+\DoxyCodeLine{337                 \textcolor{keywordflow}{continue}; \textcolor{comment}{// Skip: different type}}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339             \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq = \mbox{\hyperlink{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}{getSquare}}(lastCol, i);}
+\DoxyCodeLine{340             \textcolor{keywordflow}{if} (sq == lastTo)}
+\DoxyCodeLine{341                 \textcolor{keywordflow}{continue}; \textcolor{comment}{// Skip: this is the analyzed piece}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343             \textcolor{keyword}{auto} isOccupied = [sq, lastFrom, \textcolor{keyword}{this}](\textcolor{keyword}{auto} square) \{}
+\DoxyCodeLine{344                 \textcolor{keywordflow}{if} (square == sq)}
+\DoxyCodeLine{345                     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{346                 \textcolor{keywordflow}{if} (square == lastFrom)}
+\DoxyCodeLine{347                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{348                 \textcolor{keywordflow}{return} board\_[square] != EMPTY\_SQ\_;}
+\DoxyCodeLine{349             \};}
+\DoxyCodeLine{350             \textcolor{keywordflow}{if} (!\mbox{\hyperlink{namespacemovegen_a6fe28fb54e64dea8b1129e5a264fa3ce}{movegen::pseudo}}(sq, lastTo, lastCol, lastPt, isOccupied))}
+\DoxyCodeLine{351                 \textcolor{keywordflow}{continue}; \textcolor{comment}{// Skip: illegal move}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353             \textcolor{keyword}{const} \textcolor{keyword}{auto} pin = \mbox{\hyperlink{namespacemovegen_a0fe1902db984e0b659321558265c50c2}{movegen::opens\_ray}}(sq, lastTo, kingSq, isOccupied);}
+\DoxyCodeLine{354             \textcolor{keywordflow}{if} (pin.first != \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}) \{}
+\DoxyCodeLine{355                 uint8\_t idx = board\_[pin.second];}
+\DoxyCodeLine{356                 \textcolor{keywordflow}{if} (idx != EMPTY\_SQ\_ \&\& idx < mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(enemyCol) \&\&}
+\DoxyCodeLine{357                     \mbox{\hyperlink{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}{getSquare}}(enemyCol, idx) == pin.second) \{}
+\DoxyCodeLine{358                     \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pt = \mbox{\hyperlink{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}{getPiece}}(enemyCol, idx);}
+\DoxyCodeLine{359                     \textcolor{keywordflow}{if} (pt == \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}} || pt == pin.first)}
+\DoxyCodeLine{360                         \textcolor{keywordflow}{continue}; \textcolor{comment}{// Skip: pinned piece}}
+\DoxyCodeLine{361                 \}}
+\DoxyCodeLine{362             \}}
+\DoxyCodeLine{363 }
+\DoxyCodeLine{364             \textcolor{comment}{// Ambiguity:}}
+\DoxyCodeLine{365             \textcolor{comment}{// 1 (0001) -\/-\/> need from-\/file (preferred) or from-\/rank}}
+\DoxyCodeLine{366             \textcolor{comment}{// 3 (0011) -\/-\/> need from-\/file}}
+\DoxyCodeLine{367             \textcolor{comment}{// 5 (0101) -\/-\/> need from-\/rank}}
+\DoxyCodeLine{368             \textcolor{comment}{// 7 (0111) -\/-\/> need both from-\/file and from-\/rank}}
+\DoxyCodeLine{369             ambiguity |= 1;}
+\DoxyCodeLine{370             \textcolor{keywordflow}{if} (\mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(lastFrom) == \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(sq)) \{}
+\DoxyCodeLine{371                 ambiguity |= 2; \textcolor{comment}{// 0b0010}}
+\DoxyCodeLine{372             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(lastFrom) == \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(sq)) \{}
+\DoxyCodeLine{373                 ambiguity |= 4; \textcolor{comment}{// 0b0100}}
+\DoxyCodeLine{374             \}}
+\DoxyCodeLine{375         \}}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377         \textcolor{keywordflow}{return} ambiguity;}
+\DoxyCodeLine{378     \}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{380     \textcolor{keywordtype}{int} find\_attacker\_slider(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} destSq, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{381         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} idx = 0, n = mt\_.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(color); idx < n; ++idx) \{}
+\DoxyCodeLine{382             \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pt = \mbox{\hyperlink{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}{getPiece}}(color, idx);}
+\DoxyCodeLine{383             \textcolor{keywordflow}{if} (pt != \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}} \&\& pt != \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}} \&\& pt != \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}})}
+\DoxyCodeLine{384                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{386             \textcolor{keyword}{auto} isOccupied = [\textcolor{keyword}{this}](\textcolor{keyword}{auto} square) \{}
+\DoxyCodeLine{387                 \textcolor{keywordflow}{return} board\_[square] != EMPTY\_SQ\_;}
+\DoxyCodeLine{388             \};}
+\DoxyCodeLine{389             \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq = \mbox{\hyperlink{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}{getSquare}}(color, idx);}
+\DoxyCodeLine{390             \textcolor{keywordflow}{if} (\mbox{\hyperlink{namespacemovegen_a73a7570f460acad0aec543423626cbb2}{movegen::attack\_slider}}(sq, destSq, pt, isOccupied)) \{}
+\DoxyCodeLine{391                 \textcolor{keywordflow}{return} idx;}
+\DoxyCodeLine{392             \}}
+\DoxyCodeLine{393         \}}
+\DoxyCodeLine{394         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{395     \}}
+\DoxyCodeLine{396 \};}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398 \textcolor{keyword}{class }\mbox{\hyperlink{class_game_view}{GameView}} \{}
+\DoxyCodeLine{399     \mbox{\hyperlink{class_fast_board}{FastBoard}} board\_;}
+\DoxyCodeLine{400     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} bbuf\_;}
+\DoxyCodeLine{401     \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} cToMove\_;}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403 \textcolor{keyword}{public}:}
+\DoxyCodeLine{404     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_game_view_aead926d10cf599b8fa7f0dbaad72608e}{GameView}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}}\& bbuf)}
+\DoxyCodeLine{405         : board\_(\mbox{\hyperlink{class_fast_board}{FastBoard}}::stdStart()), bbuf\_(bbuf), cToMove\_(\mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}) \{\}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407     \mbox{\hyperlink{class_game_view_a92bd959bc49c7eeb2aac268cac8a710e}{GameView}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}}\& bbuf, \textcolor{keyword}{const} \mbox{\hyperlink{class_position}{Position}}\& startPos)}
+\DoxyCodeLine{408         : board\_(startPos), bbuf\_(bbuf), cToMove\_(startPos.GetToMove()) \{\}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410     \textcolor{keyword}{template} <\textcolor{keyword}{typename} FuncT> \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_view_a8b9da84affd46e1503e7fb8b7e83e4ea}{mainLine}}(FuncT fn) \{}
+\DoxyCodeLine{411         \textcolor{keywordflow}{while} (\textcolor{keyword}{const} \textcolor{keyword}{auto} move = (cToMove\_ == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}})}
+\DoxyCodeLine{412                                      ? DecodeNextMove<FullMove, WHITE>()}
+\DoxyCodeLine{413                                      : DecodeNextMove<FullMove, BLACK>()) \{}
+\DoxyCodeLine{414             cToMove\_ = 1 -\/ cToMove\_;}
+\DoxyCodeLine{415             \textcolor{keywordflow}{if} (!fn(move))}
+\DoxyCodeLine{416                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{417         \}}
+\DoxyCodeLine{418     \}}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420     \mbox{\hyperlink{class_full_move}{FullMove}} \mbox{\hyperlink{class_game_view_ae02ca97dced8c6390db1796b15bc32f3}{getMove}}(\textcolor{keywordtype}{int} ply\_to\_skip) \{}
+\DoxyCodeLine{421         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} ply = 0; ply <= ply\_to\_skip; ply++, cToMove\_ = 1 -\/ cToMove\_) \{}
+\DoxyCodeLine{422             \textcolor{keyword}{auto} move = (cToMove\_ == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}) ? DecodeNextMove<FullMove, WHITE>()}
+\DoxyCodeLine{423                                             : DecodeNextMove<FullMove, BLACK>();}
+\DoxyCodeLine{424             \textcolor{keywordflow}{if} (!move)}
+\DoxyCodeLine{425                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427             \textcolor{keywordflow}{if} (ply == ply\_to\_skip) \{}
+\DoxyCodeLine{428                 board\_.\mbox{\hyperlink{class_fast_board_ab957dae924d26648559009246a103245}{fillSANInfo}}(move);}
+\DoxyCodeLine{429                 cToMove\_ = 1 -\/ cToMove\_;}
+\DoxyCodeLine{430                 \textcolor{keywordflow}{return} move;}
+\DoxyCodeLine{431             \}}
+\DoxyCodeLine{432         \}}
+\DoxyCodeLine{433         \textcolor{keywordflow}{return} \{\};}
+\DoxyCodeLine{434     \}}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436     std::string \mbox{\hyperlink{class_game_view_a1fdf3728335136666eed59fe0cc84f66}{getMoveSAN}}(\textcolor{keywordtype}{int} ply\_to\_skip, \textcolor{keywordtype}{int} count) \{}
+\DoxyCodeLine{437         std::stringstream res;}
+\DoxyCodeLine{438         \textcolor{keyword}{const} \textcolor{keyword}{auto} ply\_num = (cToMove\_ == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}) ? 2 : 3;}
+\DoxyCodeLine{439         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} ply = 0; ply < ply\_to\_skip + count;}
+\DoxyCodeLine{440              ply++, cToMove\_ = 1 -\/ cToMove\_) \{}
+\DoxyCodeLine{441             \mbox{\hyperlink{class_full_move}{FullMove}} move;}
+\DoxyCodeLine{442             \textcolor{keywordflow}{if} (cToMove\_ == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}) \{}
+\DoxyCodeLine{443                 move = DecodeNextMove<FullMove, WHITE>();}
+\DoxyCodeLine{444                 \textcolor{keywordflow}{if} (!move)}
+\DoxyCodeLine{445                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{446                 \textcolor{keywordflow}{if} (ply < ply\_to\_skip)}
+\DoxyCodeLine{447                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{448                 \textcolor{keywordflow}{if} (ply > ply\_to\_skip)}
+\DoxyCodeLine{449                     res << \textcolor{stringliteral}{"{}  "{}};}
+\DoxyCodeLine{450                 res << (ply\_num + ply) / 2 << \textcolor{stringliteral}{"{}."{}};}
+\DoxyCodeLine{451             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{452                 move = DecodeNextMove<FullMove, BLACK>();}
+\DoxyCodeLine{453                 \textcolor{keywordflow}{if} (!move)}
+\DoxyCodeLine{454                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{455                 \textcolor{keywordflow}{if} (ply < ply\_to\_skip)}
+\DoxyCodeLine{456                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{457                 \textcolor{keywordflow}{if} (ply == ply\_to\_skip)}
+\DoxyCodeLine{458                     res << (ply\_num + ply) / 2 << \textcolor{stringliteral}{"{}..."{}};}
+\DoxyCodeLine{459                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{460                     res << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{461             \}}
+\DoxyCodeLine{462             board\_.\mbox{\hyperlink{class_fast_board_ab957dae924d26648559009246a103245}{fillSANInfo}}(move);}
+\DoxyCodeLine{463             res << move.\mbox{\hyperlink{class_full_move_a1982b80d0ccf5a24cf9d358ed550eb41}{getSAN}}();}
+\DoxyCodeLine{464         \}}
+\DoxyCodeLine{465         \textcolor{keywordflow}{return} res.str();}
+\DoxyCodeLine{466     \}}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468     \textcolor{keyword}{template} <colorT toMove>}
+\DoxyCodeLine{469     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_game_view_ab7c651cd7ffdc437f90c1250a09d517a}{search}}(\textcolor{keyword}{const} \textcolor{keywordtype}{byte}* board, \textcolor{keyword}{const} \mbox{\hyperlink{class_material_count}{MaterialCount}}\& mt\_count) \{}
+\DoxyCodeLine{470         \textcolor{keywordtype}{int} ply = 1;}
+\DoxyCodeLine{471         \textcolor{keyword}{auto} less\_material = [](\textcolor{keyword}{const} \mbox{\hyperlink{class_material_count}{MaterialCount}}\& a, \textcolor{keyword}{const} \mbox{\hyperlink{class_material_count}{MaterialCount}}\& b,}
+\DoxyCodeLine{472                                 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \textcolor{keyword}{const} \textcolor{keyword}{auto} move) \{}
+\DoxyCodeLine{473             \textcolor{keywordflow}{if} (!move)}
+\DoxyCodeLine{474                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{475 }
+\DoxyCodeLine{476             \textcolor{keyword}{const} \textcolor{keyword}{auto} captured\_pt = move.getCaptured();}
+\DoxyCodeLine{477             \textcolor{keywordflow}{if} (captured\_pt == \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}})}
+\DoxyCodeLine{478                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480             \textcolor{keywordflow}{if} (a.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(color) < b.count(color))}
+\DoxyCodeLine{481                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{482 }
+\DoxyCodeLine{483             \textcolor{keywordflow}{return} a.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(color, \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}}) + a.\mbox{\hyperlink{class_material_count_a10cb34537e55404ee06e7a065866ebe3}{count}}(color, captured\_pt) <}
+\DoxyCodeLine{484                    b.count(color, \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}}) + b.count(color, captured\_pt);}
+\DoxyCodeLine{485         \};}
+\DoxyCodeLine{486 }
+\DoxyCodeLine{487         \textcolor{keywordflow}{if} (cToMove\_ != toMove) \{}
+\DoxyCodeLine{488             \textcolor{keyword}{const} \textcolor{keyword}{auto} move = DecodeNextMove<\mbox{\hyperlink{class_full_move}{FullMove}}, 1 -\/ toMove>();}
+\DoxyCodeLine{489             \textcolor{keywordflow}{if} (!move)}
+\DoxyCodeLine{490                 \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{491             ply += 1;}
+\DoxyCodeLine{492         \}}
+\DoxyCodeLine{493         \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{494             \textcolor{keywordflow}{if} (board\_.\mbox{\hyperlink{class_fast_board_a309c2d84383247d9dbce1930fa99ee23}{isEqual}}(board, mt\_count))}
+\DoxyCodeLine{495                 \textcolor{keywordflow}{return} ply;}
+\DoxyCodeLine{496 }
+\DoxyCodeLine{497             \{}
+\DoxyCodeLine{498                 \textcolor{keyword}{const} \textcolor{keyword}{auto} move = DecodeNextMove<FullMove, toMove>();}
+\DoxyCodeLine{499                 \textcolor{keywordflow}{if} (less\_material(board\_.\mbox{\hyperlink{class_fast_board_a56359db730c365b3083bd63634e083dc}{materialCount}}(), mt\_count, 1 -\/ toMove,}
+\DoxyCodeLine{500                                   move))}
+\DoxyCodeLine{501                     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{502             \}}
+\DoxyCodeLine{503             \{}
+\DoxyCodeLine{504                 \textcolor{keyword}{const} \textcolor{keyword}{auto} move = DecodeNextMove<\mbox{\hyperlink{class_full_move}{FullMove}}, 1 -\/ toMove>();}
+\DoxyCodeLine{505                 \textcolor{keywordflow}{if} (less\_material(board\_.\mbox{\hyperlink{class_fast_board_a56359db730c365b3083bd63634e083dc}{materialCount}}(), mt\_count, toMove,}
+\DoxyCodeLine{506                                   move))}
+\DoxyCodeLine{507                     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{508             \}}
+\DoxyCodeLine{509 }
+\DoxyCodeLine{510             ply += 2;}
+\DoxyCodeLine{511         \}}
+\DoxyCodeLine{512         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{513     \}}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515 \textcolor{keyword}{private}:}
+\DoxyCodeLine{516     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TResult, colorT toMove> TResult DecodeNextMove() \{}
+\DoxyCodeLine{517         \textcolor{keyword}{auto} [err, val] = bbuf\_.\mbox{\hyperlink{class_byte_buffer_a3477a7848c188a11eeac81ebf30b2977}{nextLineMove}}();}
+\DoxyCodeLine{518         \textcolor{keywordflow}{if} (err)}
+\DoxyCodeLine{519             \textcolor{keywordflow}{return} \{\};}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521         \textcolor{keywordflow}{return} doPly<TResult, toMove>(val);}
+\DoxyCodeLine{522     \}}
+\DoxyCodeLine{523 }
+\DoxyCodeLine{524     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TResult, colorT toMove> TResult doPly(\textcolor{keywordtype}{byte} v) \{}
+\DoxyCodeLine{525         \textcolor{keyword}{const} \textcolor{keyword}{auto} idx\_piece\_moving = v >> 4;}
+\DoxyCodeLine{526         \textcolor{keyword}{const} \textcolor{keyword}{auto} moving\_piece = board\_.\mbox{\hyperlink{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}{getPiece}}(toMove, idx\_piece\_moving);}
+\DoxyCodeLine{527         \textcolor{keyword}{const} \textcolor{keyword}{auto} from = board\_.\mbox{\hyperlink{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}{getSquare}}(toMove, idx\_piece\_moving);}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{529         \textcolor{keyword}{auto} [destSq, promo] = bbuf\_.\mbox{\hyperlink{class_byte_buffer_a1780a25facc93a069b26ecbf6f42e054}{decodeMove}}(toMove, moving\_piece, from, v);}
+\DoxyCodeLine{530         \textcolor{keywordflow}{if} (destSq < 0 || destSq > 63)}
+\DoxyCodeLine{531             \textcolor{keywordflow}{return} \{\}; \textcolor{comment}{// decode error}}
+\DoxyCodeLine{532 }
+\DoxyCodeLine{533         \textcolor{keyword}{const} \textcolor{keyword}{auto} to = \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}\textcolor{keyword}{>}(destSq);}
+\DoxyCodeLine{534         \textcolor{keywordflow}{if} (to == from) \{}
+\DoxyCodeLine{535             \textcolor{keywordflow}{if} (promo == \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}})}
+\DoxyCodeLine{536                 \textcolor{keywordflow}{return} \{\}; \textcolor{comment}{// decode error}}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538             \textcolor{keywordflow}{if} (promo == \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}}) \textcolor{comment}{// NULL MOVE}}
+\DoxyCodeLine{539                 \textcolor{keywordflow}{return} TResult(toMove, 0, 0, \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}});}
+\DoxyCodeLine{540 }
+\DoxyCodeLine{541             \textcolor{comment}{// CASTLE}}
+\DoxyCodeLine{542             \textcolor{keyword}{const} \textcolor{keyword}{auto} rook\_from = board\_.\mbox{\hyperlink{class_fast_board_a03bb9dff1cd4321ca3f821b35c1bb348}{castle}}<toMove>(promo == \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}});}
+\DoxyCodeLine{543             \textcolor{keywordflow}{return} (rook\_from == from) ? TResult() \textcolor{comment}{// decode error}}
+\DoxyCodeLine{544                                        : TResult(toMove, from, rook\_from);}
+\DoxyCodeLine{545         \}}
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547         \textcolor{keywordtype}{bool} enPassant = moving\_piece == \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}} \&\&}
+\DoxyCodeLine{548                          \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(from) != \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(to);}
+\DoxyCodeLine{549         \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} captured = board\_.\mbox{\hyperlink{class_fast_board_a87590bd1f301c1de7183db116b61e356}{move}}<toMove>(idx\_piece\_moving, to, promo);}
+\DoxyCodeLine{550         TResult res(toMove, from, to, moving\_piece);}
+\DoxyCodeLine{551         \textcolor{keywordflow}{if} (promo != \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}})}
+\DoxyCodeLine{552             res.setPromo(promo);}
+\DoxyCodeLine{553         \textcolor{keywordflow}{if} (captured != \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}) \{}
+\DoxyCodeLine{554             res.setCapture(captured, \textcolor{keyword}{false});}
+\DoxyCodeLine{555         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (enPassant) \{}
+\DoxyCodeLine{556             \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq = (toMove == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}) ? to -\/ 8 : to + 8;}
+\DoxyCodeLine{557             captured = board\_.\mbox{\hyperlink{class_fast_board_acb3f4b1d55407d9606ccaaa3b94bcf80}{remove}}<1 -\/ toMove>(0x3F \& sq);}
+\DoxyCodeLine{558             res.setCapture(captured, \textcolor{keyword}{true});}
+\DoxyCodeLine{559         \}}
+\DoxyCodeLine{560         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{561     \}}
+\DoxyCodeLine{562 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,57 @@
+\hypertarget{pgn__lexer_8h}{}\doxysection{pgn\+\_\+lexer.\+h File Reference}
+\label{pgn__lexer_8h}\index{pgn\_lexer.h@{pgn\_lexer.h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+Include dependency graph for pgn\+\_\+lexer.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{pgn__lexer_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{pgn__lexer_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classpgn__impl_1_1_input_memory}{pgn\+\_\+impl\+::\+Input\+Memory}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacepgn__impl}{pgn\+\_\+impl}}
+\item 
+namespace \mbox{\hyperlink{namespacepgn}{pgn}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr unsigned long long \mbox{\hyperlink{namespacepgn__impl_abbbc7b53ce12501f3641406e013af873}{pgn\+\_\+impl\+::init\+\_\+symbol\+\_\+map}} (unsigned elem)
+\item 
+bool \mbox{\hyperlink{namespacepgn__impl_a256a08976dac501ca9453124d8cedec1}{pgn\+\_\+impl\+::is\+\_\+\+PGNsymbol}} (unsigned char ch)
+\item 
+bool \mbox{\hyperlink{namespacepgn__impl_af173bdc1942df0cb0595fed31cce5f92}{pgn\+\_\+impl\+::is\+\_\+\+PGNdigit}} (unsigned char ch)
+\item 
+bool \mbox{\hyperlink{namespacepgn__impl_a5ecc45ec87d4aa8bc4a00e488591d9ab}{pgn\+\_\+impl\+::is\+\_\+\+PGNwhitespace}} (unsigned char ch)
+\item 
+{\footnotesize template$<$typename TView $>$ }\\char \mbox{\hyperlink{namespacepgn__impl_a45c4145fe058036514c11c8520641fb5}{pgn\+\_\+impl\+::is\+\_\+\+PGNtermination}} (TView tok)
+\item 
+{\footnotesize template$<$typename TInput , typename TVisitor $>$ }\\bool \mbox{\hyperlink{namespacepgn__impl_a7e328c869aeda69e2fad07d812136278}{pgn\+\_\+impl\+::parse\+\_\+token}} (char ch, TInput \&input, TVisitor \&parser, int \&section)
+\item 
+{\footnotesize template$<$typename TVisitor $>$ }\\std\+::pair$<$ std\+::size\+\_\+t, bool $>$ \mbox{\hyperlink{namespacepgn_a98ee346a4a45c134c03aca8e18027a10}{pgn\+::parse\+\_\+game}} (\mbox{\hyperlink{classpgn__impl_1_1_input_memory}{pgn\+\_\+impl\+::\+Input\+Memory}} input, TVisitor \&\&parser)
+\item 
+{\footnotesize template$<$bool unescape = false, typename TString $>$ }\\std\+::size\+\_\+t \mbox{\hyperlink{namespacepgn_a1e07b2abbe22fe845078799e17be260c}{pgn\+::normalize}} (TString \&str, std\+::size\+\_\+t pos)
+\item 
+{\footnotesize template$<$typename TView $>$ }\\std\+::size\+\_\+t \mbox{\hyperlink{namespacepgn_a4e6ca25094bbef4e4cf3239de1500616}{pgn\+::trim}} (TView \&str)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Split input into PGN tokens and dispatch them to a \char`\"{}visiting\char`\"{} parser. 

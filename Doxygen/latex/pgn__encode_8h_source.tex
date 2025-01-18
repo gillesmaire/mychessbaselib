@@ -1,0 +1,276 @@
+\hypertarget{pgn__encode_8h_source}{}\doxysection{pgn\+\_\+encode.\+h}
+\mbox{\hyperlink{pgn__encode_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2022  Fulvio Benini.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Permission is hereby granted, free of charge, to any person obtaining a}}
+\DoxyCodeLine{5 \textcolor{comment}{ * copy of this software and associated documentation files (the "{}Software"{}),}}
+\DoxyCodeLine{6 \textcolor{comment}{ * to deal in the Software without restriction, including without limitation}}
+\DoxyCodeLine{7 \textcolor{comment}{ * the rights to use, copy, modify, merge, publish, distribute, sublicense,}}
+\DoxyCodeLine{8 \textcolor{comment}{ * and/or sell copies of the Software, and to permit persons to whom the}}
+\DoxyCodeLine{9 \textcolor{comment}{ * Software is furnished to do so, subject to the following conditions:}}
+\DoxyCodeLine{10 \textcolor{comment}{ *}}
+\DoxyCodeLine{11 \textcolor{comment}{ * The above copyright notice and this permission notice shall be included}}
+\DoxyCodeLine{12 \textcolor{comment}{ * in all copies or substantial portions of the Software.}}
+\DoxyCodeLine{13 \textcolor{comment}{ *}}
+\DoxyCodeLine{14 \textcolor{comment}{ * THE SOFTWARE IS PROVIDED "{}AS IS"{}, WITHOUT WARRANTY OF ANY KIND,}}
+\DoxyCodeLine{15 \textcolor{comment}{ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF}}
+\DoxyCodeLine{16 \textcolor{comment}{ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.}}
+\DoxyCodeLine{17 \textcolor{comment}{ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY}}
+\DoxyCodeLine{18 \textcolor{comment}{ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,}}
+\DoxyCodeLine{19 \textcolor{comment}{ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH}}
+\DoxyCodeLine{20 \textcolor{comment}{ * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{21 \textcolor{comment}{ */}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacepgn}{pgn}} \{}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{comment}{// We want to split the PGN text in lines to make it more readable, but we do}}
+\DoxyCodeLine{36 \textcolor{comment}{// not want to insert extra newline chars inside comments or tag values.}}
+\DoxyCodeLine{37 \textcolor{comment}{// This implies that even very long comment would stay on a single line if the}}
+\DoxyCodeLine{38 \textcolor{comment}{// user didn't insert newline chars himself.}}
+\DoxyCodeLine{39 \textcolor{comment}{// However it is possible to set @e hard\_len (i.e to 1024) to allow converting}}
+\DoxyCodeLine{40 \textcolor{comment}{// spaces to newline chars in lines longer than @e hard\_len.}}
+\DoxyCodeLine{41 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} desired\_len = 80, \textcolor{keywordtype}{char} breakpoint\_char = \textcolor{charliteral}{'\(\backslash\)0'}, \textcolor{keywordtype}{int} hard\_len = 0,}
+\DoxyCodeLine{42           \textcolor{keyword}{typename} Iter>}
+\DoxyCodeLine{43 Iter \mbox{\hyperlink{namespacepgn_a421eaa432c5a43293f955fd91f4779e2}{break\_lines}}(Iter begin, Iter end) \{}
+\DoxyCodeLine{44     \textcolor{keyword}{auto} line\_first\_char = begin;}
+\DoxyCodeLine{45     \textcolor{keyword}{auto} last\_breakpoint = begin;}
+\DoxyCodeLine{46     \textcolor{keyword}{auto} it = begin;}
+\DoxyCodeLine{47     \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{48         it = find\_if(it, end, [\&](\textcolor{keywordtype}{char} ch) \{}
+\DoxyCodeLine{49             \textcolor{keywordflow}{return} ch == \textcolor{charliteral}{'\(\backslash\)n'} || ch == breakpoint\_char;}
+\DoxyCodeLine{50         \});}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52         \textcolor{comment}{// Change the last breakpoint to newline char if the line would exceed}}
+\DoxyCodeLine{53         \textcolor{comment}{// the desired length and there weren't newline chars (for example in}}
+\DoxyCodeLine{54         \textcolor{comment}{// comments) beetween this and the last breakpoint.}}
+\DoxyCodeLine{55         \textcolor{keywordflow}{if} (std::distance(line\_first\_char, it) > desired\_len \&\&}
+\DoxyCodeLine{56             last\_breakpoint > line\_first\_char) \{}
+\DoxyCodeLine{57             *last\_breakpoint = \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{58             line\_first\_char = last\_breakpoint + 1;}
+\DoxyCodeLine{59         \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61         \textcolor{comment}{// If a secondary line length was requested, try to convert spaces to}}
+\DoxyCodeLine{62         \textcolor{comment}{// newline chars (this is not desiderable, but old software may use}}
+\DoxyCodeLine{63         \textcolor{comment}{// limited fixed size buffer when reading PGNs).}}
+\DoxyCodeLine{64         \textcolor{keywordflow}{if} (hard\_len != 0 \&\& std::distance(line\_first\_char, it) > hard\_len) \{}
+\DoxyCodeLine{65             line\_first\_char = break\_lines<hard\_len, ' '>(line\_first\_char, it);}
+\DoxyCodeLine{66         \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68         \textcolor{keywordflow}{if} (it == end)}
+\DoxyCodeLine{69             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71         \textcolor{keywordflow}{if} (*it == \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{72             line\_first\_char = ++it;}
+\DoxyCodeLine{73         \} \textcolor{keywordflow}{else} \textcolor{comment}{/*  *it == breakpoint\_char  */} \{}
+\DoxyCodeLine{74             last\_breakpoint = it;}
+\DoxyCodeLine{75             *it++ = \textcolor{charliteral}{' '};}
+\DoxyCodeLine{76         \}}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78     \textcolor{keywordflow}{return} line\_first\_char;}
+\DoxyCodeLine{79 \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{comment}{// Escape quote and backslash chars according to the PGN standard:}}
+\DoxyCodeLine{82 \textcolor{comment}{// "{}A quote inside a string is represented by the backslash immediately followed}}
+\DoxyCodeLine{83 \textcolor{comment}{// by a quote. A backslash inside a string is represented by two adjacent}}
+\DoxyCodeLine{84 \textcolor{comment}{// backslashes."{}}}
+\DoxyCodeLine{85 \textcolor{comment}{// @param str: the string containing the chars to be escaped.}}
+\DoxyCodeLine{86 \textcolor{comment}{// @param pos: start of the substring of @e str to be processed.}}
+\DoxyCodeLine{87 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{88 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacepgn_abfbea9864c3f463aa012fb69baa6b48d}{escape\_string}}(TCont\& str, \textcolor{keyword}{typename} TCont::size\_type pos) \{}
+\DoxyCodeLine{89     \textcolor{keyword}{auto} it = str.begin() + pos;}
+\DoxyCodeLine{90     \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{91         it = std::find\_if(it, str.end(),}
+\DoxyCodeLine{92                           [](\textcolor{keywordtype}{char} ch) \{ return ch == \textcolor{stringliteral}{'\(\backslash\)\(\backslash\)'} || ch == \textcolor{stringliteral}{'\(\backslash\)"{}'}; \});}
+\DoxyCodeLine{93         \textcolor{keywordflow}{if} (it != str.end())}
+\DoxyCodeLine{94             it = str.insert(it, \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}) + 2;}
+\DoxyCodeLine{95         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{96             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{97     \}}
+\DoxyCodeLine{98 \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{comment}{// Encode a tag pair according to the PGN standard.}}
+\DoxyCodeLine{101 \textcolor{comment}{// "{}A tag pair is composed of four consecutive tokens: a left bracket token, a}}
+\DoxyCodeLine{102 \textcolor{comment}{// symbol token, a string token, and a right bracket token. The symbol token is}}
+\DoxyCodeLine{103 \textcolor{comment}{// the tag name and the string token is the tag value associated with the tag}}
+\DoxyCodeLine{104 \textcolor{comment}{// name. There are no white space characters between the left bracket and the}}
+\DoxyCodeLine{105 \textcolor{comment}{// tag name, there are no white space characters between the tag value and the}}
+\DoxyCodeLine{106 \textcolor{comment}{// right bracket, and there is a single space character between the tag name and}}
+\DoxyCodeLine{107 \textcolor{comment}{// the tag value."{}}}
+\DoxyCodeLine{108 \textcolor{comment}{// @param unknown\_to\_question\_mark: if true, and a Seven Tag Roster is unknown,}}
+\DoxyCodeLine{109 \textcolor{comment}{// its tag value is changed to a single question mark.}}
+\DoxyCodeLine{110 \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} unknown\_to\_question\_mark = false, \textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{111 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacepgn_abf007fba42026776fd1fe2bf5a53bd40}{encode\_tag\_pair}}(std::string\_view tag, std::string\_view value,}
+\DoxyCodeLine{112                      TCont\& dest) \{}
+\DoxyCodeLine{113     dest.push\_back(\textcolor{charliteral}{'['});}
+\DoxyCodeLine{114     dest.insert(dest.end(), tag.begin(), tag.end());}
+\DoxyCodeLine{115     dest.push\_back(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117     dest.push\_back(\textcolor{charliteral}{'"{}'});}
+\DoxyCodeLine{118     \textcolor{keywordflow}{if} (unknown\_to\_question\_mark \&\& value.empty() \&\&}
+\DoxyCodeLine{119         (tag == \textcolor{stringliteral}{"{}Event"{}} || tag == \textcolor{stringliteral}{"{}Site"{}} || tag == \textcolor{stringliteral}{"{}Round"{}} || tag == \textcolor{stringliteral}{"{}White"{}} ||}
+\DoxyCodeLine{120          tag == \textcolor{stringliteral}{"{}Black"{}})) \{}
+\DoxyCodeLine{121         dest.push\_back(\textcolor{charliteral}{'?'});}
+\DoxyCodeLine{122     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{123         \textcolor{keyword}{auto} value\_begin = dest.size();}
+\DoxyCodeLine{124         dest.insert(dest.end(), value.begin(), value.end());}
+\DoxyCodeLine{125         \mbox{\hyperlink{namespacepgn_abfbea9864c3f463aa012fb69baa6b48d}{escape\_string}}(dest, value\_begin);}
+\DoxyCodeLine{126     \}}
+\DoxyCodeLine{127     dest.push\_back(\textcolor{charliteral}{'"{}'});}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     dest.push\_back(\textcolor{charliteral}{']'});}
+\DoxyCodeLine{130     \textcolor{comment}{// "{}Each tag pair should appear left justified on a line by itself"{}}}
+\DoxyCodeLine{131     dest.push\_back(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{132 \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{comment}{// Encode a comment as "{}rest of the line"{}: this comment type starts with a}}
+\DoxyCodeLine{135 \textcolor{comment}{// semicolon character and continues to the end of the line.}}
+\DoxyCodeLine{136 \textcolor{comment}{// If @e comment include any newline or line break char the comment cannot be}}
+\DoxyCodeLine{137 \textcolor{comment}{// encoded in this way: it return false and does not modify @e dest.}}
+\DoxyCodeLine{138 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} hard\_len = 0, \textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{139 [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacepgn_ad1015f3210ba8b30d3d4e9de8a2e2140}{encode\_comment\_rest\_of\_line}}(std::string\_view comment,}
+\DoxyCodeLine{140                                                TCont\& dest) \{}
+\DoxyCodeLine{141     \textcolor{keywordflow}{if} ((hard\_len != 0 \&\& comment.size() >= hard\_len) ||}
+\DoxyCodeLine{142         std::any\_of(comment.begin(), comment.end(),}
+\DoxyCodeLine{143                     [](\textcolor{keywordtype}{char} ch) \{ return ch == \textcolor{stringliteral}{'\(\backslash\)n'} || ch == \textcolor{stringliteral}{'\(\backslash\)0'}; \}))}
+\DoxyCodeLine{144         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     \textcolor{keywordflow}{if} (!dest.empty() \&\& dest.back() != \textcolor{charliteral}{'\(\backslash\)0'} \&\& dest.back() != \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{147         dest.push\_back(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{148     \}}
+\DoxyCodeLine{149     dest.push\_back(\textcolor{charliteral}{';'});}
+\DoxyCodeLine{150     dest.insert(dest.end(), comment.begin(), comment.end());}
+\DoxyCodeLine{151     dest.push\_back(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{152     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{153 \}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{comment}{// Encode a comment in one of the two kinds specified by PGN standard.}}
+\DoxyCodeLine{156 \textcolor{comment}{// The kind that "{}starts with a left brace character and continues to the next}}
+\DoxyCodeLine{157 \textcolor{comment}{// right brace character"{} is preferred and used if the comment do not contains}}
+\DoxyCodeLine{158 \textcolor{comment}{// curly braces itself. If the comments contains both curly braces and newline}}
+\DoxyCodeLine{159 \textcolor{comment}{// or line break chars the curly braces inside the comment are replaced with}}
+\DoxyCodeLine{160 \textcolor{comment}{// UTF-\/8 fullwidth curly braces.}}
+\DoxyCodeLine{161 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} hard\_len = 0, \textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{162 \textcolor{keyword}{static} \textcolor{keywordtype}{void} encode\_comment(std::string\_view comment, TCont\& dest) \{}
+\DoxyCodeLine{163     \textcolor{keyword}{auto} is\_curly = [](\textcolor{keywordtype}{char} ch) \{ \textcolor{keywordflow}{return} ch == \textcolor{charliteral}{'\{'} || ch == \textcolor{charliteral}{'\}'}; \};}
+\DoxyCodeLine{164     \textcolor{keyword}{auto} it\_curly = std::find\_if(comment.begin(), comment.end(), is\_curly);}
+\DoxyCodeLine{165     \textcolor{keywordflow}{if} (it\_curly != comment.end() \&\&}
+\DoxyCodeLine{166         encode\_comment\_rest\_of\_line<hard\_len>(comment, dest))}
+\DoxyCodeLine{167         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     dest.push\_back(\textcolor{charliteral}{'\{'});}
+\DoxyCodeLine{170     dest.insert(dest.end(), comment.begin(), comment.end());}
+\DoxyCodeLine{171     \textcolor{keywordflow}{if} (it\_curly != comment.end()) \{}
+\DoxyCodeLine{172         \textcolor{comment}{// Replace curly braces with UTF-\/8 fullwidth curly braces U+FF5B}}
+\DoxyCodeLine{173         \textcolor{comment}{// (ef bd 9b) or U+FF5D (ef bd 9d).}}
+\DoxyCodeLine{174         \textcolor{keyword}{auto} it = dest.end() -\/ std::distance(it\_curly, comment.end());}
+\DoxyCodeLine{175         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{176             \textcolor{keyword}{auto} replace\_char = (*it == \textcolor{charliteral}{'\{'}) ? u8\textcolor{stringliteral}{"{}\(\backslash\)uFF5B"{}} : u8\textcolor{stringliteral}{"{}\(\backslash\)uFF5D"{}};}
+\DoxyCodeLine{177             \textcolor{keyword}{static\_assert}(std::u8string\_view(u8\textcolor{stringliteral}{"{}\(\backslash\)uFF5D"{}}).size() == 3);}
+\DoxyCodeLine{178             it = dest.insert(it, 2, \textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{179             it = std::copy\_n(replace\_char, 3, it);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181             it = std::find\_if(it, dest.end(), is\_curly);}
+\DoxyCodeLine{182         \} \textcolor{keywordflow}{while} (it != dest.end());}
+\DoxyCodeLine{183     \}}
+\DoxyCodeLine{184     dest.push\_back(\textcolor{charliteral}{'\}'});}
+\DoxyCodeLine{185     dest.push\_back(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{186 \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{comment}{// Encode the movetext section according to the PGN standard.}}
+\DoxyCodeLine{189 \textcolor{comment}{// @param m: iterator to the list of moves.}}
+\DoxyCodeLine{190 \textcolor{comment}{// @param initial\_ply: the ply of the initial position.}}
+\DoxyCodeLine{191 \textcolor{comment}{//                     Should be even if it is white turn to move.}}
+\DoxyCodeLine{192 \textcolor{comment}{// @param dest: the container where movetext section will be appended.}}
+\DoxyCodeLine{193 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} hard\_len = 0, \textcolor{keyword}{typename} Iter, \textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{194 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacepgn_a7901631c083762077569252314719eb1}{encode\_movetext}}(Iter m, \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} initial\_ply, TCont\& dest) \{}
+\DoxyCodeLine{195     std::vector<long long> ply = \{initial\_ply\};}
+\DoxyCodeLine{196     \textcolor{keyword}{auto} move\_end = dest.size();}
+\DoxyCodeLine{197     dest.push\_back(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199     \textcolor{comment}{// Check if there is a pre-\/game comment}}
+\DoxyCodeLine{200     \textcolor{keywordflow}{if} (!m-\/>comment.empty())}
+\DoxyCodeLine{201         encode\_comment<hard\_len>(m-\/>comment, dest);}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203     \textcolor{keywordflow}{while} ((m = m-\/>nextMoveInPGN())) \{}
+\DoxyCodeLine{204         \textcolor{keywordflow}{if} (m-\/>startMarker()) \{}
+\DoxyCodeLine{205             ply.push\_back(ply.back() -\/ 1);}
+\DoxyCodeLine{206             dest.push\_back(\textcolor{charliteral}{'('});}
+\DoxyCodeLine{207             \textcolor{keywordflow}{if} (!m-\/>comment.empty())}
+\DoxyCodeLine{208                 encode\_comment<hard\_len>(m-\/>comment, dest);}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m-\/>endMarker()) \{}
+\DoxyCodeLine{211             \textcolor{keywordflow}{if} (m-\/>nextMoveInPGN()) \{}
+\DoxyCodeLine{212                 ply.pop\_back();}
+\DoxyCodeLine{213                 \textcolor{keywordflow}{if} (dest.back() == \textcolor{charliteral}{'\(\backslash\)0'}) \{}
+\DoxyCodeLine{214                     dest.back() = \textcolor{charliteral}{')'};}
+\DoxyCodeLine{215                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{216                     dest.push\_back(\textcolor{charliteral}{')'});}
+\DoxyCodeLine{217                 \}}
+\DoxyCodeLine{218                 dest.push\_back(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{219             \}}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{222             \textcolor{keyword}{auto} white\_to\_move = (ply.back() \% 2) == 0;}
+\DoxyCodeLine{223             \textcolor{keywordflow}{if} (white\_to\_move || move\_end != dest.size()) \{}
+\DoxyCodeLine{224                 \textcolor{keyword}{auto} move\_number = std::to\_string(ply.back() / 2 + 1);}
+\DoxyCodeLine{225                 move\_number.append(white\_to\_move ? 1 : 3, \textcolor{charliteral}{'.'});}
+\DoxyCodeLine{226                 dest.insert(dest.end(), move\_number.begin(), move\_number.end());}
+\DoxyCodeLine{227             \}}
+\DoxyCodeLine{228             std::string\_view san = m-\/>san;}
+\DoxyCodeLine{229             dest.insert(dest.end(), san.begin(), san.end());}
+\DoxyCodeLine{230             dest.push\_back(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{231             move\_end = dest.size();}
+\DoxyCodeLine{232             ply.back()++;}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0, n = m-\/>nagCount; i < n; ++i) \{}
+\DoxyCodeLine{235                 dest.push\_back(\textcolor{charliteral}{'\$'});}
+\DoxyCodeLine{236                 \textcolor{keyword}{auto} nag\_str = std::to\_string(m-\/>nags[i]);}
+\DoxyCodeLine{237                 dest.insert(dest.end(), nag\_str.begin(), nag\_str.end());}
+\DoxyCodeLine{238                 dest.push\_back(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{239             \}}
+\DoxyCodeLine{240             \textcolor{keywordflow}{if} (!m-\/>comment.empty())}
+\DoxyCodeLine{241                 encode\_comment<hard\_len>(m-\/>comment, dest);}
+\DoxyCodeLine{242         \}}
+\DoxyCodeLine{243     \}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245     \textcolor{keywordflow}{if} (dest.back() == \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{246         dest.back() = \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{247 \}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249 \textcolor{comment}{// Encode a game according to the PGN standard.}}
+\DoxyCodeLine{250 \textcolor{comment}{// @param game: the game to be encoded.}}
+\DoxyCodeLine{251 \textcolor{comment}{// @param dest: the container where the PGN Game will be appended.}}
+\DoxyCodeLine{252 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} hard\_len = 0, \textcolor{keyword}{typename} TGame, \textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{253 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacepgn_af0bb2e6755ee28e5ff16056100a548c5}{encode\_game}}(TGame \textcolor{keyword}{const}\& game, TCont\& dest) \{}
+\DoxyCodeLine{254     game.viewTagPairs(}
+\DoxyCodeLine{255         [\&](\textcolor{keyword}{auto} tag, \textcolor{keyword}{auto} value) \{ \mbox{\hyperlink{namespacepgn_abf007fba42026776fd1fe2bf5a53bd40}{encode\_tag\_pair}}(tag, value, dest); \});}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257     encode\_movetext<hard\_len>(game.movetree(), game.initialPlyCounter(), dest);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259     \textcolor{keyword}{auto} result = game.GetResultStr();}
+\DoxyCodeLine{260     dest.insert(dest.end(), result.begin(), result.end());}
+\DoxyCodeLine{261     dest.push\_back(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{262 \}}
+\DoxyCodeLine{263 }
+\DoxyCodeLine{264 \textcolor{comment}{// Encode a game according to the PGN standard, adding newline chars to make it}}
+\DoxyCodeLine{265 \textcolor{comment}{// more readable.}}
+\DoxyCodeLine{266 \textcolor{comment}{// @param game: the game to be encoded.}}
+\DoxyCodeLine{267 \textcolor{comment}{// @param dest: the container where the PGN Game will be appended.}}
+\DoxyCodeLine{268 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} desired\_len = 80, \textcolor{keyword}{typename} TGame, \textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{269 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacepgn_ac8f928591f55f5cfd64a27f901bcdf09}{encode}}(TGame \textcolor{keyword}{const}\& game, TCont\& dest) \{}
+\DoxyCodeLine{270     \textcolor{keyword}{auto} begin = dest.size();}
+\DoxyCodeLine{271     \mbox{\hyperlink{namespacepgn_af0bb2e6755ee28e5ff16056100a548c5}{encode\_game}}(game, dest);}
+\DoxyCodeLine{272     break\_lines<desired\_len>(dest.begin() + begin, dest.end());}
+\DoxyCodeLine{273 \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \} \textcolor{comment}{// namespace pgn}}
+
+\end{DoxyCode}

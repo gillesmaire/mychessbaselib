@@ -1,0 +1,103 @@
+\hypertarget{class_tourney}{}\doxysection{Tourney Class Reference}
+\label{class_tourney}\index{Tourney@{Tourney}}
+
+
+{\ttfamily \#include $<$searchtournaments.\+h$>$}
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_tourney_1_1_player}{Player}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Iter $>$ }\\\mbox{\hyperlink{class_tourney_a902219dd4c01e3ea7ddbe87d6c8c138c}{Tourney}} (Iter begin, Iter end)
+\item 
+\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} \mbox{\hyperlink{class_tourney_a2240c683c32ee7195d6c12b4f5074ffd}{get\+Event\+Id}} () const
+\item 
+\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} \mbox{\hyperlink{class_tourney_a35b5a620b5bc318170413de069edbedb}{get\+Site\+Id}} () const
+\item 
+\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} \mbox{\hyperlink{class_tourney_ae2f34b1f80da21f6fb70d7aba06dab1e}{get\+Start\+Date}} () const
+\item 
+\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} \mbox{\hyperlink{class_tourney_a636f748ba19a11a0369d3a6f1f1d7c39}{get\+Start\+Game\+Num}} () const
+\item 
+unsigned \mbox{\hyperlink{class_tourney_a1f9981dc0433bd0d112363d13443dfe7}{get\+Avg\+Elo}} () const
+\item 
+\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} \mbox{\hyperlink{class_tourney_a2caf873651f8dc14a2e9f18feb8c327e}{n\+Games}} () const
+\item 
+unsigned \mbox{\hyperlink{class_tourney_a6ed7dd61c6c1645bd59421260abf6b2d}{n\+Players}} () const
+\item 
+const \mbox{\hyperlink{struct_tourney_1_1_player}{Player}} \& \mbox{\hyperlink{class_tourney_ad54deba372326d1ace818685ae2c7313}{get\+Player}} (size\+\_\+t position) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{class_tourney}{Tourney}} -\/ Calculate information about a tournament
+
+This class takes a range of \mbox{\hyperlink{struct_tourney_game}{Tourney\+Game}} references and calculate some basic information (number of Players, average elo, scores, etc.). Invariants\+: the range of \mbox{\hyperlink{struct_tourney_game}{Tourney\+Game}} refs should not be empty 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_tourney_a902219dd4c01e3ea7ddbe87d6c8c138c}\label{class_tourney_a902219dd4c01e3ea7ddbe87d6c8c138c}} 
+\index{Tourney@{Tourney}!Tourney@{Tourney}}
+\index{Tourney@{Tourney}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{Tourney()}{Tourney()}}
+{\footnotesize\ttfamily template$<$typename Iter $>$ \\
+Tourney\+::\+Tourney (\begin{DoxyParamCaption}\item[{Iter}]{begin,  }\item[{Iter}]{end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tourney_a1f9981dc0433bd0d112363d13443dfe7}\label{class_tourney_a1f9981dc0433bd0d112363d13443dfe7}} 
+\index{Tourney@{Tourney}!getAvgElo@{getAvgElo}}
+\index{getAvgElo@{getAvgElo}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{getAvgElo()}{getAvgElo()}}
+{\footnotesize\ttfamily unsigned Tourney\+::get\+Avg\+Elo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tourney_a2240c683c32ee7195d6c12b4f5074ffd}\label{class_tourney_a2240c683c32ee7195d6c12b4f5074ffd}} 
+\index{Tourney@{Tourney}!getEventId@{getEventId}}
+\index{getEventId@{getEventId}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{getEventId()}{getEventId()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} Tourney\+::get\+Event\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tourney_ad54deba372326d1ace818685ae2c7313}\label{class_tourney_ad54deba372326d1ace818685ae2c7313}} 
+\index{Tourney@{Tourney}!getPlayer@{getPlayer}}
+\index{getPlayer@{getPlayer}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{getPlayer()}{getPlayer()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct_tourney_1_1_player}{Player}} \& Tourney\+::get\+Player (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tourney_a35b5a620b5bc318170413de069edbedb}\label{class_tourney_a35b5a620b5bc318170413de069edbedb}} 
+\index{Tourney@{Tourney}!getSiteId@{getSiteId}}
+\index{getSiteId@{getSiteId}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{getSiteId()}{getSiteId()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} Tourney\+::get\+Site\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tourney_ae2f34b1f80da21f6fb70d7aba06dab1e}\label{class_tourney_ae2f34b1f80da21f6fb70d7aba06dab1e}} 
+\index{Tourney@{Tourney}!getStartDate@{getStartDate}}
+\index{getStartDate@{getStartDate}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{getStartDate()}{getStartDate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} Tourney\+::get\+Start\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tourney_a636f748ba19a11a0369d3a6f1f1d7c39}\label{class_tourney_a636f748ba19a11a0369d3a6f1f1d7c39}} 
+\index{Tourney@{Tourney}!getStartGameNum@{getStartGameNum}}
+\index{getStartGameNum@{getStartGameNum}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{getStartGameNum()}{getStartGameNum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} Tourney\+::get\+Start\+Game\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tourney_a2caf873651f8dc14a2e9f18feb8c327e}\label{class_tourney_a2caf873651f8dc14a2e9f18feb8c327e}} 
+\index{Tourney@{Tourney}!nGames@{nGames}}
+\index{nGames@{nGames}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{nGames()}{nGames()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} Tourney\+::n\+Games (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_tourney_a6ed7dd61c6c1645bd59421260abf6b2d}\label{class_tourney_a6ed7dd61c6c1645bd59421260abf6b2d}} 
+\index{Tourney@{Tourney}!nPlayers@{nPlayers}}
+\index{nPlayers@{nPlayers}!Tourney@{Tourney}}
+\doxysubsubsection{\texorpdfstring{nPlayers()}{nPlayers()}}
+{\footnotesize\ttfamily unsigned Tourney\+::n\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{searchtournaments_8h}{searchtournaments.\+h}}\end{DoxyCompactItemize}

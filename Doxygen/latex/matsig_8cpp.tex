@@ -1,0 +1,57 @@
+\hypertarget{matsig_8cpp}{}\doxysection{matsig.\+cpp File Reference}
+\label{matsig_8cpp}\index{matsig.cpp@{matsig.cpp}}
+{\ttfamily \#include \char`\"{}matsig.\+h\char`\"{}}\newline
+Include dependency graph for matsig.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{matsig_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{matsig_8cpp_a6865cd7ac9d36f12b0fbd51e0c766fed}{matsig\+\_\+make\+String}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m)
+\item 
+bool \mbox{\hyperlink{matsig_8cpp_a2b4cb89e477024de874c437e9f9f5bda}{matsig\+\_\+is\+Reachable}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m\+Start, \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} m\+Target, bool promos, bool upromo)
+\item 
+bool \mbox{\hyperlink{matsig_8cpp_ac6b2c7221d5f43b48cffadb40f116398}{hp\+Sig\+\_\+\+Possible\+Match}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig, const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+List)
+\item 
+bool \mbox{\hyperlink{matsig_8cpp_a9937e7670b254f377f248d9c4dbdde27}{hp\+Sig\+\_\+\+Prefix}} (const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+ListA, const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+ListB)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{matsig_8cpp_ac851e6bd93af9220764588ff8b461531}{hp\+Sig\+\_\+\+Final}} (const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$change\+List)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{matsig_8cpp_ac851e6bd93af9220764588ff8b461531}\label{matsig_8cpp_ac851e6bd93af9220764588ff8b461531}} 
+\index{matsig.cpp@{matsig.cpp}!hpSig\_Final@{hpSig\_Final}}
+\index{hpSig\_Final@{hpSig\_Final}!matsig.cpp@{matsig.cpp}}
+\doxysubsubsection{\texorpdfstring{hpSig\_Final()}{hpSig\_Final()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} hp\+Sig\+\_\+\+Final (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+List }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8cpp_ac6b2c7221d5f43b48cffadb40f116398}\label{matsig_8cpp_ac6b2c7221d5f43b48cffadb40f116398}} 
+\index{matsig.cpp@{matsig.cpp}!hpSig\_PossibleMatch@{hpSig\_PossibleMatch}}
+\index{hpSig\_PossibleMatch@{hpSig\_PossibleMatch}!matsig.cpp@{matsig.cpp}}
+\doxysubsubsection{\texorpdfstring{hpSig\_PossibleMatch()}{hpSig\_PossibleMatch()}}
+{\footnotesize\ttfamily bool hp\+Sig\+\_\+\+Possible\+Match (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{hp\+Sig,  }\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+List }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8cpp_a9937e7670b254f377f248d9c4dbdde27}\label{matsig_8cpp_a9937e7670b254f377f248d9c4dbdde27}} 
+\index{matsig.cpp@{matsig.cpp}!hpSig\_Prefix@{hpSig\_Prefix}}
+\index{hpSig\_Prefix@{hpSig\_Prefix}!matsig.cpp@{matsig.cpp}}
+\doxysubsubsection{\texorpdfstring{hpSig\_Prefix()}{hpSig\_Prefix()}}
+{\footnotesize\ttfamily bool hp\+Sig\+\_\+\+Prefix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+ListA,  }\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$}]{change\+ListB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8cpp_a2b4cb89e477024de874c437e9f9f5bda}\label{matsig_8cpp_a2b4cb89e477024de874c437e9f9f5bda}} 
+\index{matsig.cpp@{matsig.cpp}!matsig\_isReachable@{matsig\_isReachable}}
+\index{matsig\_isReachable@{matsig\_isReachable}!matsig.cpp@{matsig.cpp}}
+\doxysubsubsection{\texorpdfstring{matsig\_isReachable()}{matsig\_isReachable()}}
+{\footnotesize\ttfamily bool matsig\+\_\+is\+Reachable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m\+Start,  }\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m\+Target,  }\item[{bool}]{promos,  }\item[{bool}]{upromo }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{matsig_8cpp_a6865cd7ac9d36f12b0fbd51e0c766fed}\label{matsig_8cpp_a6865cd7ac9d36f12b0fbd51e0c766fed}} 
+\index{matsig.cpp@{matsig.cpp}!matsig\_makeString@{matsig\_makeString}}
+\index{matsig\_makeString@{matsig\_makeString}!matsig.cpp@{matsig.cpp}}
+\doxysubsubsection{\texorpdfstring{matsig\_makeString()}{matsig\_makeString()}}
+{\footnotesize\ttfamily std\+::string matsig\+\_\+make\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{m }\end{DoxyParamCaption})}
+

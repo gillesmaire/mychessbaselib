@@ -1,0 +1,270 @@
+\hypertarget{class_codec_s_c_i_d5}{}\doxysection{Codec\+SCID5 Class Reference}
+\label{class_codec_s_c_i_d5}\index{CodecSCID5@{CodecSCID5}}
+
+
+{\ttfamily \#include $<$codec\+\_\+scid5.\+h$>$}
+
+
+
+Inheritance diagram for Codec\+SCID5\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{class_codec_s_c_i_d5__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Codec\+SCID5\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{class_codec_s_c_i_d5__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{Codec}} \mbox{\hyperlink{class_codec_s_c_i_d5_a8f7435091536a1db0b7c820ed1f61a10}{get\+Type}} () const final
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_codec_s_c_i_d5_a5fd523429ef843d4a6a21498f284ba6c}{get\+Filenames}} () const final
+\item 
+std\+::vector$<$ std\+::pair$<$ const char $\ast$, std\+::string $>$ $>$ \mbox{\hyperlink{class_codec_s_c_i_d5_ac26c0eee164b2f4cebc4d4f3273008b4}{get\+Extra\+Info}} () const final
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a952acc034a02c68e31eaebf0487175b8}{set\+Extra\+Info}} (const char $\ast$name, const char $\ast$new\+\_\+value) final
+\item 
+\mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} \mbox{\hyperlink{class_codec_s_c_i_d5_a4adb9d13ded7e684d4f123bfd72e0106}{get\+Game\+Data}} (uint64\+\_\+t offset, uint32\+\_\+t length) final
+\item 
+\mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} \mbox{\hyperlink{class_codec_s_c_i_d5_a686fef629cd82fb010de35b4718c69f8}{get\+Game\+Moves}} (\mbox{\hyperlink{class_index_entry}{Index\+Entry}} const \&ie) final
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_af8aacaecd6a71c7f4581bfb6cbf5d477}{add\+Game}} (\mbox{\hyperlink{class_index_entry}{Index\+Entry}} const \&ie\+\_\+src, \mbox{\hyperlink{struct_tag_roster}{Tag\+Roster}} const \&tags, \mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} const \&data) final
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a3a96823d46c218fe458f50a7719d78ae}{save\+Game}} (\mbox{\hyperlink{class_index_entry}{Index\+Entry}} const \&ie\+\_\+src, \mbox{\hyperlink{struct_tag_roster}{Tag\+Roster}} const \&tags, \mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} const \&data, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) final
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a1be4d8dfa2fa8c47406425ba9052b98a}{save\+Index\+Entry}} (const \mbox{\hyperlink{class_index_entry}{Index\+Entry}} \&ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) final
+\item 
+std\+::pair$<$ \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}, \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} $>$ \mbox{\hyperlink{class_codec_s_c_i_d5_aba7b1c9b4a37a6d96ea25d41c2c245ad}{add\+Name}} (\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, const char $\ast$name) final
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_a2765d7f28e780f363c6655886d30f5e9}{flush}} () final
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_s_c_i_d5_ab750ced98d20c742aae6bcbc0104e3a9}{dyn\+\_\+open}} (\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{file\+ModeT}} fmode, const char $\ast$dbname, const \mbox{\hyperlink{class_progress}{Progress}} \&progress, \mbox{\hyperlink{class_index}{Index}} $\ast$idx, \mbox{\hyperlink{class_name_base}{Name\+Base}} $\ast$nb) final
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_codec_s_c_i_d5_af8aacaecd6a71c7f4581bfb6cbf5d477}\label{class_codec_s_c_i_d5_af8aacaecd6a71c7f4581bfb6cbf5d477}} 
+\index{CodecSCID5@{CodecSCID5}!addGame@{addGame}}
+\index{addGame@{addGame}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{addGame()}{addGame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Codec\+SCID5\+::add\+Game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_index_entry}{Index\+Entry}} const \&}]{ie,  }\item[{\mbox{\hyperlink{struct_tag_roster}{Tag\+Roster}} const \&}]{tags,  }\item[{\mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} const \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Add a game to the database. 
+\begin{DoxyParams}{Parameters}
+{\em ie} & the header data of the source game. \\
+\hline
+{\em tags} & contains 5 of the Seven Tag Roster. \\
+\hline
+{\em data} & the data (encoded in native format) of the game. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if successful or an error code. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_codec_database_af1a78ff967f0c202d792a9d7cd07c8b5}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_aba7b1c9b4a37a6d96ea25d41c2c245ad}\label{class_codec_s_c_i_d5_aba7b1c9b4a37a6d96ea25d41c2c245ad}} 
+\index{CodecSCID5@{CodecSCID5}!addName@{addName}}
+\index{addName@{addName}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{addName()}{addName()}}
+{\footnotesize\ttfamily std\+::pair$<$ \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}, \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} $>$ Codec\+SCID5\+::add\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}}}]{nt,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Adds a name (player, event, site or round) to the database. 
+\begin{DoxyParams}{Parameters}
+{\em nt} & nameT type of the name to add. \\
+\hline
+{\em name} & the name to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item on success, a {\itshape std\+::pair} containing OK and the corresponding ID.
+\item on failure, a {\itshape std\+::pair} containing an error code and 0. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_codec_database_ad3334a1fd20c255f81e56f30bc4baecf}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_ab750ced98d20c742aae6bcbc0104e3a9}\label{class_codec_s_c_i_d5_ab750ced98d20c742aae6bcbc0104e3a9}} 
+\index{CodecSCID5@{CodecSCID5}!dyn\_open@{dyn\_open}}
+\index{dyn\_open@{dyn\_open}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{dyn\_open()}{dyn\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Codec\+SCID5\+::dyn\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{file\+ModeT}}}]{f\+Mode,  }\item[{const char $\ast$}]{filename,  }\item[{const \mbox{\hyperlink{class_progress}{Progress}} \&}]{progress,  }\item[{\mbox{\hyperlink{class_index}{Index}} $\ast$}]{idx,  }\item[{\mbox{\hyperlink{class_name_base}{Name\+Base}} $\ast$}]{nb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Opens/\+Creates a database. This virtual function is called only once immediately after the class constructor. 
+\begin{DoxyParams}{Parameters}
+{\em f\+Mode} & a valid file mode. \\
+\hline
+{\em filename} & the full path of the database to open. \\
+\hline
+{\em progress} & a \mbox{\hyperlink{class_progress}{Progress}} object used for GUI communications. \\
+\hline
+{\em idx} & valid pointer to the \mbox{\hyperlink{class_index}{Index}} object for this database. \\
+\hline
+{\em nb} & valid pointer to the \mbox{\hyperlink{class_name_base}{Name\+Base}} object for this database. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item OK\+: the object is ready to be used.
+\item ERROR\+\_\+\+Name\+Data\+Loss\+: some names are corrupted and cannot be recovered, however the object can still be used.
+\item Other error codes\+: the operation failed (the object must be destroyed). 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_codec_database}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a2765d7f28e780f363c6655886d30f5e9}\label{class_codec_s_c_i_d5_a2765d7f28e780f363c6655886d30f5e9}} 
+\index{CodecSCID5@{CodecSCID5}!flush@{flush}}
+\index{flush@{flush}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Codec\+SCID5\+::flush (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Writes all pending output to the files. \begin{DoxyReturn}{Returns}
+OK if successful or an error code. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_codec_database_a40add3b94fa2f4d48dbcea91ea07b319}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_ac26c0eee164b2f4cebc4d4f3273008b4}\label{class_codec_s_c_i_d5_ac26c0eee164b2f4cebc4d4f3273008b4}} 
+\index{CodecSCID5@{CodecSCID5}!getExtraInfo@{getExtraInfo}}
+\index{getExtraInfo@{getExtraInfo}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{getExtraInfo()}{getExtraInfo()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ const char $\ast$, std\+::string $>$ $>$ Codec\+SCID5\+::get\+Extra\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Returns a vector of tag pairs containing extra information about the database (type, description, autoload, etc..) 
+
+Implements \mbox{\hyperlink{class_i_codec_database_a7c8b6eee78d921a3eae4732553ba4d45}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a5fd523429ef843d4a6a21498f284ba6c}\label{class_codec_s_c_i_d5_a5fd523429ef843d4a6a21498f284ba6c}} 
+\index{CodecSCID5@{CodecSCID5}!getFilenames@{getFilenames}}
+\index{getFilenames@{getFilenames}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{getFilenames()}{getFilenames()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Codec\+SCID5\+::get\+Filenames (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Returns the full path of the files used by the database. The order of the filenames must be consistent for objects of the same Codec type. 
+
+Implements \mbox{\hyperlink{class_i_codec_database_afd3290f184713ba1319797d239219c5d}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a4adb9d13ded7e684d4f123bfd72e0106}\label{class_codec_s_c_i_d5_a4adb9d13ded7e684d4f123bfd72e0106}} 
+\index{CodecSCID5@{CodecSCID5}!getGameData@{getGameData}}
+\index{getGameData@{getGameData}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{getGameData()}{getGameData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} Codec\+SCID5\+::get\+Game\+Data (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{offset,  }\item[{uint32\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Fetches the data (encoded in native format) of a game. Invoking another function of the codec object invalidates the data. {\itshape get\+Games\+Moves()} returns only the moves\textquotesingle{} data, without extra tags and comments, and it might be faster with some codecs. 
+\begin{DoxyParams}{Parameters}
+{\em offset} & offset of the requested game. \\
+\hline
+{\em length} & length of the game data (in bytes). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item a pointer to the game data.
+\item 0 (nullptr) on error. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_codec_database_af845571b3006463ee6416ef77a7401fe}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a686fef629cd82fb010de35b4718c69f8}\label{class_codec_s_c_i_d5_a686fef629cd82fb010de35b4718c69f8}} 
+\index{CodecSCID5@{CodecSCID5}!getGameMoves@{getGameMoves}}
+\index{getGameMoves@{getGameMoves}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{getGameMoves()}{getGameMoves()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} Codec\+SCID5\+::get\+Game\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_index_entry}{Index\+Entry}} const \&}]{ie }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_i_codec_database_ab269e452c366684cf359632c7c97f71d}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a8f7435091536a1db0b7c820ed1f61a10}\label{class_codec_s_c_i_d5_a8f7435091536a1db0b7c820ed1f61a10}} 
+\index{CodecSCID5@{CodecSCID5}!getType@{getType}}
+\index{getType@{getType}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{Codec}} Codec\+SCID5\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Returns the Codec type. 
+
+Implements \mbox{\hyperlink{class_i_codec_database_afdd62580c381493d4de9dffbafa19658}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a3a96823d46c218fe458f50a7719d78ae}\label{class_codec_s_c_i_d5_a3a96823d46c218fe458f50a7719d78ae}} 
+\index{CodecSCID5@{CodecSCID5}!saveGame@{saveGame}}
+\index{saveGame@{saveGame}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{saveGame()}{saveGame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Codec\+SCID5\+::save\+Game (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_index_entry}{Index\+Entry}} const \&}]{ie,  }\item[{\mbox{\hyperlink{struct_tag_roster}{Tag\+Roster}} const \&}]{tags,  }\item[{\mbox{\hyperlink{class_byte_buffer}{Byte\+Buffer}} const \&}]{data,  }\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{replaced }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Replaces a game in the database. 
+\begin{DoxyParams}{Parameters}
+{\em ie} & the header data of the source game. \\
+\hline
+{\em tags} & contains 5 of the Seven Tag Roster. \\
+\hline
+{\em data} & the data (encoded in native format) of the game. \\
+\hline
+{\em replaced} & valid gamenumT of the game to be replaced \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if successful or an error code. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_codec_database_ad48fd96a924937ca508bc7e38a3514f3}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a1be4d8dfa2fa8c47406425ba9052b98a}\label{class_codec_s_c_i_d5_a1be4d8dfa2fa8c47406425ba9052b98a}} 
+\index{CodecSCID5@{CodecSCID5}!saveIndexEntry@{saveIndexEntry}}
+\index{saveIndexEntry@{saveIndexEntry}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{saveIndexEntry()}{saveIndexEntry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Codec\+SCID5\+::save\+Index\+Entry (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_index_entry}{Index\+Entry}} \&}]{ie,  }\item[{\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}}}]{replaced }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Replaces a game\textquotesingle{}s \mbox{\hyperlink{class_index_entry}{Index\+Entry}} (which contains the header data of a game). 
+\begin{DoxyParams}{Parameters}
+{\em ie} & reference to the \mbox{\hyperlink{class_index_entry}{Index\+Entry}} with the new data. \\
+\hline
+{\em replaced} & valid gamenumT of the game to be replaced \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OK if successful or an error code. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_codec_database_a76609d8931862e8bcb5c38a1e0fb57b0}{ICodec\+Database}}.
+
+\mbox{\Hypertarget{class_codec_s_c_i_d5_a952acc034a02c68e31eaebf0487175b8}\label{class_codec_s_c_i_d5_a952acc034a02c68e31eaebf0487175b8}} 
+\index{CodecSCID5@{CodecSCID5}!setExtraInfo@{setExtraInfo}}
+\index{setExtraInfo@{setExtraInfo}!CodecSCID5@{CodecSCID5}}
+\doxysubsubsection{\texorpdfstring{setExtraInfo()}{setExtraInfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Codec\+SCID5\+::set\+Extra\+Info (\begin{DoxyParamCaption}\item[{const char $\ast$}]{tagname,  }\item[{const char $\ast$}]{new\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+Store an extra information about the database (type, description, etc..) 
+
+Implements \mbox{\hyperlink{class_i_codec_database_ae94caf1242ad33a75bf729ac82acb505}{ICodec\+Database}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{codec__scid5_8h}{codec\+\_\+scid5.\+h}}\end{DoxyCompactItemize}

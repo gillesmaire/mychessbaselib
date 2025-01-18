@@ -1,0 +1,242 @@
+\hypertarget{misc_8cpp}{}\doxysection{misc.\+cpp File Reference}
+\label{misc_8cpp}\index{misc.cpp@{misc.cpp}}
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for misc.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{misc_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8cpp_a4babf7ee1b4b32490a857ab2af374916}{eco\+\_\+\+From\+String}} (const char $\ast$eco\+Str)
+\item 
+void \mbox{\hyperlink{misc_8cpp_a7f83811d2f431406b233d2355071be0f}{eco\+\_\+\+To\+String}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco\+Code, char $\ast$eco\+Str, bool extensions)
+\item 
+\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8cpp_a1a1e2c80759376ef0ab0f68817469d58}{eco\+\_\+\+Basic\+Code}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco)
+\item 
+\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8cpp_a16f623343717a95b851b97ed26937a10}{eco\+\_\+\+Reduce}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco)
+\item 
+\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{misc_8cpp_a4a2bbd9c417c97e8aebd0ef8665cf258}{eco\+\_\+\+Last\+Sub\+Code}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco)
+\item 
+char $\ast$ \mbox{\hyperlink{misc_8cpp_a95f9a397bdb0dad78edc547cf02524de}{str\+Append}} (char $\ast$target, const char $\ast$extra)
+\item 
+char $\ast$ \mbox{\hyperlink{misc_8cpp_af9b9ee5df385800a8fef17b317add458}{str\+Duplicate}} (const char $\ast$original)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{misc_8cpp_aa213803e5cb75a7ad68c7da405681fea}{str\+Pad}} (char $\ast$target, const char $\ast$original, int width, char padding)
+\item 
+const char $\ast$ \mbox{\hyperlink{misc_8cpp_a37571bdb54602243085773142b13cb75}{str\+First\+Char}} (const char $\ast$target, char match\+Char)
+\item 
+const char $\ast$ \mbox{\hyperlink{misc_8cpp_a3e09a504888a3e040b2cc7731592f6fe}{str\+Last\+Char}} (const char $\ast$target, char match\+Char)
+\item 
+void \mbox{\hyperlink{misc_8cpp_abb646edb91c2c99f0165da1536b31427}{str\+Strip}} (char $\ast$str, char ch)
+\item 
+const char $\ast$ \mbox{\hyperlink{misc_8cpp_a855dd6f4d950ff6489a0db6439a09c1c}{str\+Trim\+Left}} (const char $\ast$target, const char $\ast$trim\+Chars)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{misc_8cpp_a8ceb54aafdea7d470a941c7e0255f190}{str\+Trim\+Suffix}} (char $\ast$target, char suffix\+Char)
+\item 
+void \mbox{\hyperlink{misc_8cpp_a625c9899b2acdcde9287a6cca9890015}{str\+Trim\+Date}} (char $\ast$str)
+\item 
+void \mbox{\hyperlink{misc_8cpp_aa7b0d2d338a37d8617e18705782f4639}{str\+Trim\+Mark\+Codes}} (char $\ast$str)
+\item 
+void \mbox{\hyperlink{misc_8cpp_a4ce2847c465656471b320b92c9bbb0fe}{str\+Trim\+Markup}} (char $\ast$str)
+\item 
+const char $\ast$ \mbox{\hyperlink{misc_8cpp_a1165cfbc2223760504221101b8c320cb}{str\+First\+Word}} (const char $\ast$str)
+\item 
+const char $\ast$ \mbox{\hyperlink{misc_8cpp_abebeb434b42d2fe55112e18a847c0a2a}{str\+Next\+Word}} (const char $\ast$str)
+\item 
+bool \mbox{\hyperlink{misc_8cpp_a30bc94c4eae9bd6e54ff2b4790bb186b}{str\+Is\+Unknown\+Name}} (const char $\ast$str)
+\item 
+bool \mbox{\hyperlink{misc_8cpp_a915fe19dadd1057629ca0cee75f1807d}{str\+Is\+Surname\+Only}} (const char $\ast$name)
+\item 
+bool \mbox{\hyperlink{misc_8cpp_a908c998a993b6b25dd2cf964c372cbe3}{str\+Get\+Boolean}} (const char $\ast$str)
+\item 
+void \mbox{\hyperlink{misc_8cpp_ae2deabe7968c35a5483294867efde56b}{str\+Get\+Integers}} (const char $\ast$str, int $\ast$results, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} n\+Results)
+\item 
+void \mbox{\hyperlink{misc_8cpp_a4942397a095bf8010ff508542e56ba72}{str\+Get\+Unsigneds}} (const char $\ast$str, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} $\ast$results, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} n\+Results)
+\item 
+\mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} \mbox{\hyperlink{misc_8cpp_a8e72eb58069304f345f5e3662c43bfeb}{str\+Get\+Result}} (const char $\ast$str)
+\item 
+\mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} \mbox{\hyperlink{misc_8cpp_a3151a72b95cde698b767b2a25e3b9a3d}{str\+Get\+Flag}} (const char $\ast$str)
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{misc_8cpp_a9880e6d4b26e052eeba8843d44c1e062}{str\+Get\+Square}} (const char $\ast$str)
+\item 
+int \mbox{\hyperlink{misc_8cpp_a98bc2190f72358c51e09bf95ff100cc1}{str\+Unique\+Exact\+Match}} (const char $\ast$key\+Str, const char $\ast$$\ast$str\+Table, bool exact)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{misc_8cpp_a1a1e2c80759376ef0ab0f68817469d58}\label{misc_8cpp_a1a1e2c80759376ef0ab0f68817469d58}} 
+\index{misc.cpp@{misc.cpp}!eco\_BasicCode@{eco\_BasicCode}}
+\index{eco\_BasicCode@{eco\_BasicCode}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{eco\_BasicCode()}{eco\_BasicCode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco\+\_\+\+Basic\+Code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}}]{eco }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a4babf7ee1b4b32490a857ab2af374916}\label{misc_8cpp_a4babf7ee1b4b32490a857ab2af374916}} 
+\index{misc.cpp@{misc.cpp}!eco\_FromString@{eco\_FromString}}
+\index{eco\_FromString@{eco\_FromString}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{eco\_FromString()}{eco\_FromString()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco\+\_\+\+From\+String (\begin{DoxyParamCaption}\item[{const char $\ast$}]{eco\+Str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a4a2bbd9c417c97e8aebd0ef8665cf258}\label{misc_8cpp_a4a2bbd9c417c97e8aebd0ef8665cf258}} 
+\index{misc.cpp@{misc.cpp}!eco\_LastSubCode@{eco\_LastSubCode}}
+\index{eco\_LastSubCode@{eco\_LastSubCode}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{eco\_LastSubCode()}{eco\_LastSubCode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco\+\_\+\+Last\+Sub\+Code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}}]{eco }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a16f623343717a95b851b97ed26937a10}\label{misc_8cpp_a16f623343717a95b851b97ed26937a10}} 
+\index{misc.cpp@{misc.cpp}!eco\_Reduce@{eco\_Reduce}}
+\index{eco\_Reduce@{eco\_Reduce}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{eco\_Reduce()}{eco\_Reduce()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco\+\_\+\+Reduce (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}}]{eco }\end{DoxyParamCaption})}
+
+eco\+Reduce() -\/ maps eco to a smaller set 
+\begin{DoxyParams}{Parameters}
+{\em eco} & the eco value to convert (must be != 0)\\
+\hline
+\end{DoxyParams}
+Scid ECO subcodes use 131 values for each canonical ECO. For example A00 is divided in A00,A00a,A00a1,A00a2,A00a3,A00a4,A00b...A00z4 corresponding to eco values 1,2,3,4,5,6,7...131 (value 0 means no ECO). This functions will map sub\+ECOs like A00a1...A00a4 into A00a, reducing the 131 values to 27. The previous sequence will became 0,1,1,1,1,1,2...26 \mbox{\Hypertarget{misc_8cpp_a7f83811d2f431406b233d2355071be0f}\label{misc_8cpp_a7f83811d2f431406b233d2355071be0f}} 
+\index{misc.cpp@{misc.cpp}!eco\_ToString@{eco\_ToString}}
+\index{eco\_ToString@{eco\_ToString}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{eco\_ToString()}{eco\_ToString()}}
+{\footnotesize\ttfamily void eco\+\_\+\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}}]{eco\+Code,  }\item[{char $\ast$}]{eco\+Str,  }\item[{bool}]{extensions }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a95f9a397bdb0dad78edc547cf02524de}\label{misc_8cpp_a95f9a397bdb0dad78edc547cf02524de}} 
+\index{misc.cpp@{misc.cpp}!strAppend@{strAppend}}
+\index{strAppend@{strAppend}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strAppend()}{strAppend()}}
+{\footnotesize\ttfamily char $\ast$ str\+Append (\begin{DoxyParamCaption}\item[{char $\ast$}]{target,  }\item[{const char $\ast$}]{extra }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_af9b9ee5df385800a8fef17b317add458}\label{misc_8cpp_af9b9ee5df385800a8fef17b317add458}} 
+\index{misc.cpp@{misc.cpp}!strDuplicate@{strDuplicate}}
+\index{strDuplicate@{strDuplicate}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strDuplicate()}{strDuplicate()}}
+{\footnotesize\ttfamily char $\ast$ str\+Duplicate (\begin{DoxyParamCaption}\item[{const char $\ast$}]{original }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a37571bdb54602243085773142b13cb75}\label{misc_8cpp_a37571bdb54602243085773142b13cb75}} 
+\index{misc.cpp@{misc.cpp}!strFirstChar@{strFirstChar}}
+\index{strFirstChar@{strFirstChar}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strFirstChar()}{strFirstChar()}}
+{\footnotesize\ttfamily const char $\ast$ str\+First\+Char (\begin{DoxyParamCaption}\item[{const char $\ast$}]{target,  }\item[{char}]{match\+Char }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a1165cfbc2223760504221101b8c320cb}\label{misc_8cpp_a1165cfbc2223760504221101b8c320cb}} 
+\index{misc.cpp@{misc.cpp}!strFirstWord@{strFirstWord}}
+\index{strFirstWord@{strFirstWord}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strFirstWord()}{strFirstWord()}}
+{\footnotesize\ttfamily const char $\ast$ str\+First\+Word (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a908c998a993b6b25dd2cf964c372cbe3}\label{misc_8cpp_a908c998a993b6b25dd2cf964c372cbe3}} 
+\index{misc.cpp@{misc.cpp}!strGetBoolean@{strGetBoolean}}
+\index{strGetBoolean@{strGetBoolean}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strGetBoolean()}{strGetBoolean()}}
+{\footnotesize\ttfamily bool str\+Get\+Boolean (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a3151a72b95cde698b767b2a25e3b9a3d}\label{misc_8cpp_a3151a72b95cde698b767b2a25e3b9a3d}} 
+\index{misc.cpp@{misc.cpp}!strGetFlag@{strGetFlag}}
+\index{strGetFlag@{strGetFlag}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strGetFlag()}{strGetFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{misc_8h_a208c949eac80b652b3e40f6c1285e2db}{flagT}} str\+Get\+Flag (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_ae2deabe7968c35a5483294867efde56b}\label{misc_8cpp_ae2deabe7968c35a5483294867efde56b}} 
+\index{misc.cpp@{misc.cpp}!strGetIntegers@{strGetIntegers}}
+\index{strGetIntegers@{strGetIntegers}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strGetIntegers()}{strGetIntegers()}}
+{\footnotesize\ttfamily void str\+Get\+Integers (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{int $\ast$}]{results,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{n\+Results }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a8e72eb58069304f345f5e3662c43bfeb}\label{misc_8cpp_a8e72eb58069304f345f5e3662c43bfeb}} 
+\index{misc.cpp@{misc.cpp}!strGetResult@{strGetResult}}
+\index{strGetResult@{strGetResult}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strGetResult()}{strGetResult()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} str\+Get\+Result (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a9880e6d4b26e052eeba8843d44c1e062}\label{misc_8cpp_a9880e6d4b26e052eeba8843d44c1e062}} 
+\index{misc.cpp@{misc.cpp}!strGetSquare@{strGetSquare}}
+\index{strGetSquare@{strGetSquare}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strGetSquare()}{strGetSquare()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} str\+Get\+Square (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a4942397a095bf8010ff508542e56ba72}\label{misc_8cpp_a4942397a095bf8010ff508542e56ba72}} 
+\index{misc.cpp@{misc.cpp}!strGetUnsigneds@{strGetUnsigneds}}
+\index{strGetUnsigneds@{strGetUnsigneds}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strGetUnsigneds()}{strGetUnsigneds()}}
+{\footnotesize\ttfamily void str\+Get\+Unsigneds (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} $\ast$}]{results,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{n\+Results }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a915fe19dadd1057629ca0cee75f1807d}\label{misc_8cpp_a915fe19dadd1057629ca0cee75f1807d}} 
+\index{misc.cpp@{misc.cpp}!strIsSurnameOnly@{strIsSurnameOnly}}
+\index{strIsSurnameOnly@{strIsSurnameOnly}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strIsSurnameOnly()}{strIsSurnameOnly()}}
+{\footnotesize\ttfamily bool str\+Is\+Surname\+Only (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a30bc94c4eae9bd6e54ff2b4790bb186b}\label{misc_8cpp_a30bc94c4eae9bd6e54ff2b4790bb186b}} 
+\index{misc.cpp@{misc.cpp}!strIsUnknownName@{strIsUnknownName}}
+\index{strIsUnknownName@{strIsUnknownName}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strIsUnknownName()}{strIsUnknownName()}}
+{\footnotesize\ttfamily bool str\+Is\+Unknown\+Name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a3e09a504888a3e040b2cc7731592f6fe}\label{misc_8cpp_a3e09a504888a3e040b2cc7731592f6fe}} 
+\index{misc.cpp@{misc.cpp}!strLastChar@{strLastChar}}
+\index{strLastChar@{strLastChar}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strLastChar()}{strLastChar()}}
+{\footnotesize\ttfamily const char $\ast$ str\+Last\+Char (\begin{DoxyParamCaption}\item[{const char $\ast$}]{target,  }\item[{char}]{match\+Char }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_abebeb434b42d2fe55112e18a847c0a2a}\label{misc_8cpp_abebeb434b42d2fe55112e18a847c0a2a}} 
+\index{misc.cpp@{misc.cpp}!strNextWord@{strNextWord}}
+\index{strNextWord@{strNextWord}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strNextWord()}{strNextWord()}}
+{\footnotesize\ttfamily const char $\ast$ str\+Next\+Word (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_aa213803e5cb75a7ad68c7da405681fea}\label{misc_8cpp_aa213803e5cb75a7ad68c7da405681fea}} 
+\index{misc.cpp@{misc.cpp}!strPad@{strPad}}
+\index{strPad@{strPad}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strPad()}{strPad()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} str\+Pad (\begin{DoxyParamCaption}\item[{char $\ast$}]{target,  }\item[{const char $\ast$}]{original,  }\item[{int}]{width,  }\item[{char}]{padding }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_abb646edb91c2c99f0165da1536b31427}\label{misc_8cpp_abb646edb91c2c99f0165da1536b31427}} 
+\index{misc.cpp@{misc.cpp}!strStrip@{strStrip}}
+\index{strStrip@{strStrip}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strStrip()}{strStrip()}}
+{\footnotesize\ttfamily void str\+Strip (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char}]{ch }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a625c9899b2acdcde9287a6cca9890015}\label{misc_8cpp_a625c9899b2acdcde9287a6cca9890015}} 
+\index{misc.cpp@{misc.cpp}!strTrimDate@{strTrimDate}}
+\index{strTrimDate@{strTrimDate}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strTrimDate()}{strTrimDate()}}
+{\footnotesize\ttfamily void str\+Trim\+Date (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a855dd6f4d950ff6489a0db6439a09c1c}\label{misc_8cpp_a855dd6f4d950ff6489a0db6439a09c1c}} 
+\index{misc.cpp@{misc.cpp}!strTrimLeft@{strTrimLeft}}
+\index{strTrimLeft@{strTrimLeft}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strTrimLeft()}{strTrimLeft()}}
+{\footnotesize\ttfamily const char $\ast$ str\+Trim\+Left (\begin{DoxyParamCaption}\item[{const char $\ast$}]{target,  }\item[{const char $\ast$}]{trim\+Chars }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_aa7b0d2d338a37d8617e18705782f4639}\label{misc_8cpp_aa7b0d2d338a37d8617e18705782f4639}} 
+\index{misc.cpp@{misc.cpp}!strTrimMarkCodes@{strTrimMarkCodes}}
+\index{strTrimMarkCodes@{strTrimMarkCodes}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strTrimMarkCodes()}{strTrimMarkCodes()}}
+{\footnotesize\ttfamily void str\+Trim\+Mark\+Codes (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a4ce2847c465656471b320b92c9bbb0fe}\label{misc_8cpp_a4ce2847c465656471b320b92c9bbb0fe}} 
+\index{misc.cpp@{misc.cpp}!strTrimMarkup@{strTrimMarkup}}
+\index{strTrimMarkup@{strTrimMarkup}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strTrimMarkup()}{strTrimMarkup()}}
+{\footnotesize\ttfamily void str\+Trim\+Markup (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a8ceb54aafdea7d470a941c7e0255f190}\label{misc_8cpp_a8ceb54aafdea7d470a941c7e0255f190}} 
+\index{misc.cpp@{misc.cpp}!strTrimSuffix@{strTrimSuffix}}
+\index{strTrimSuffix@{strTrimSuffix}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strTrimSuffix()}{strTrimSuffix()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} str\+Trim\+Suffix (\begin{DoxyParamCaption}\item[{char $\ast$}]{target,  }\item[{char}]{suffix\+Char }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{misc_8cpp_a98bc2190f72358c51e09bf95ff100cc1}\label{misc_8cpp_a98bc2190f72358c51e09bf95ff100cc1}} 
+\index{misc.cpp@{misc.cpp}!strUniqueExactMatch@{strUniqueExactMatch}}
+\index{strUniqueExactMatch@{strUniqueExactMatch}!misc.cpp@{misc.cpp}}
+\doxysubsubsection{\texorpdfstring{strUniqueExactMatch()}{strUniqueExactMatch()}}
+{\footnotesize\ttfamily int str\+Unique\+Exact\+Match (\begin{DoxyParamCaption}\item[{const char $\ast$}]{key\+Str,  }\item[{const char $\ast$$\ast$}]{str\+Table,  }\item[{bool}]{exact }\end{DoxyParamCaption})}
+

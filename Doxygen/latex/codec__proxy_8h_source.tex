@@ -1,0 +1,214 @@
+\hypertarget{codec__proxy_8h_source}{}\doxysection{codec\+\_\+proxy.\+h}
+\mbox{\hyperlink{codec__proxy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2016-\/2018  Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{ * it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{ * the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{ * GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{ * along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{ *}}
+\DoxyCodeLine{18 \textcolor{comment}{ */}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef CODEC\_PROXY\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define CODEC\_PROXY\_H}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{codec_8h}{codec.h}}"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{codec__memory_8h}{codec\_memory.h}}"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{game_8h}{game.h}}"{}}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <atomic>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <thread>}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{45 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived> \textcolor{keyword}{class }\mbox{\hyperlink{class_codec_proxy}{CodecProxy}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_codec_memory}{CodecMemory}} \{}
+\DoxyCodeLine{46     Derived* getDerived() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}Derived*\textcolor{keyword}{>}(\textcolor{keyword}{this}); \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* special\_replace\_tag = \textcolor{stringliteral}{"{}\_\_replace\_game\_\_"{}};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{public}:}
+\DoxyCodeLine{57     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a5d92c758ce2711cbe7d0731b92d09a2e}{open}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* filename, \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} fMode);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{68     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_ab2032c2b6d3d1e8b838cbe47fdb83864}{parseNext}}(\mbox{\hyperlink{class_game}{Game}}\&) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a7caa9aaca2599ee28498ccfd03c97a8d}{ERROR\_NotFound}}; \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{75     std::pair<size\_t, size\_t> \mbox{\hyperlink{class_codec_proxy_a070ed4d573c4802dfcc7cabf70499954}{parseProgress}}() \{}
+\DoxyCodeLine{76         \textcolor{keywordflow}{return} std::pair<size\_t, size\_t>(1, 1);}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{82     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_codec_proxy_a48efadee1245403553ff80c9d0d3009b}{parseErrors}}() \{ \textcolor{keywordflow}{return} NULL; \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{89     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a986ff371ef66c8348a0b9cc9f9a0bf5f}{gameAdd}}(\mbox{\hyperlink{class_game}{Game}}*) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_aa10fd36251076e0f163b06c291118bcc}{ERROR\_CodecUnsupFeat}}; \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{98     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a1d82f4107b726db40746494cc4ec1eee}{gameSave}}(\mbox{\hyperlink{class_game}{Game}}* game, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \{}
+\DoxyCodeLine{99         game-\/>\mbox{\hyperlink{class_game_a9553795cc55f0de7226dd7b921ea1bc9}{assignTagValue}}(special\_replace\_tag, std::to\_string(replaced));}
+\DoxyCodeLine{100         \textcolor{keywordflow}{return} getDerived()-\/>gameAdd(game);}
+\DoxyCodeLine{101     \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{keyword}{private}:}
+\DoxyCodeLine{104     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} saveGame(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{105                     \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \textcolor{keyword}{const}\& data, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{106         \mbox{\hyperlink{class_game}{Game}} game;}
+\DoxyCodeLine{107         \textcolor{keywordflow}{if} (\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = game.\mbox{\hyperlink{class_game_a1c6c94eb3c25ecc3145d54e70fd5a90a}{Decode}}(ie, tags, data))}
+\DoxyCodeLine{108             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110         \textcolor{keywordflow}{if} (\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = getDerived()-\/>\mbox{\hyperlink{class_codec_proxy_a1d82f4107b726db40746494cc4ec1eee}{gameSave}}(\&game, replaced))}
+\DoxyCodeLine{111             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_codec_memory_ae6df74940270155b1db3313d6bc9f39d}{CodecMemory::saveGame}}(ie, tags, data, replaced);}
+\DoxyCodeLine{114     \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} addGame(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags,}
+\DoxyCodeLine{117                    \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} \textcolor{keyword}{const}\& data) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{118         \mbox{\hyperlink{class_game}{Game}} game;}
+\DoxyCodeLine{119         \textcolor{keywordflow}{if} (\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = game.\mbox{\hyperlink{class_game_a1c6c94eb3c25ecc3145d54e70fd5a90a}{Decode}}(ie, tags, data))}
+\DoxyCodeLine{120             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122         \textcolor{keywordflow}{if} (\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = getDerived()-\/>\mbox{\hyperlink{class_codec_proxy_a986ff371ef66c8348a0b9cc9f9a0bf5f}{gameAdd}}(\&game))}
+\DoxyCodeLine{123             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_codec_memory_ab000e85b02ed004fc7e640604d35c4d9}{CodecMemory::addGame}}(ie, tags, data);}
+\DoxyCodeLine{126     \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} saveIndexEntry(\textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}\& ie, \mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} replaced) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{129         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_codec_memory_a6f42b4e70ab977ae69e97237df5e78fa}{CodecMemory::equalExceptFlags}}(ie, replaced))}
+\DoxyCodeLine{130             \textcolor{keywordflow}{return} \mbox{\hyperlink{class_codec_memory_ab03d622ac9ef0c78a7b1078d4d9a9c11}{CodecMemory::saveIndexEntry}}(ie, replaced);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_aa10fd36251076e0f163b06c291118bcc}{ERROR\_CodecUnsupFeat}};}
+\DoxyCodeLine{133     \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     std::pair<errorT, idNumberT> addName(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}}, \textcolor{keyword}{const} \textcolor{keywordtype}{char}*) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{136         \textcolor{keywordflow}{return} std::pair<errorT, idNumberT>(\mbox{\hyperlink{error_8h_aa10fd36251076e0f163b06c291118bcc}{ERROR\_CodecUnsupFeat}}, 0);}
+\DoxyCodeLine{137     \}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{comment}{/*}}
+\DoxyCodeLine{140 \textcolor{comment}{     * Create a memory database, open the non-\/native database @p filename and}}
+\DoxyCodeLine{141 \textcolor{comment}{     * copy all the games into the memory database.}}
+\DoxyCodeLine{142 \textcolor{comment}{     */}}
+\DoxyCodeLine{143     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} dyn\_open(\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} fMode, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* filename,}
+\DoxyCodeLine{144                     \textcolor{keyword}{const} \mbox{\hyperlink{class_progress}{Progress}}\& progress, \mbox{\hyperlink{class_index}{Index}}* idx, \mbox{\hyperlink{class_name_base}{NameBase}}* nb) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{145         \textcolor{keywordflow}{if} (filename == 0)}
+\DoxyCodeLine{146             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a87eb2338247db0507ee425f0732e0ae6}{ERROR}};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = \mbox{\hyperlink{class_codec_memory_a7e7821b3c1abd5ca256fab0ae39091d8}{CodecMemory::dyn\_open}}(\mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1a0e2d884279c8f8d4bc987e8d6e9f20ba}{FMODE\_Create}}, filename, progress,}
+\DoxyCodeLine{149                                            idx, nb);}
+\DoxyCodeLine{150         \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}})}
+\DoxyCodeLine{151             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153         err = getDerived()-\/>open(filename, fMode);}
+\DoxyCodeLine{154         \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}})}
+\DoxyCodeLine{155             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157         std::vector<byte> buf;}
+\DoxyCodeLine{158         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_codec_proxy_a46ebed2e39efa04fe559cfdfeb6423fe}{parseGames}}(progress, *getDerived(), [\&](\mbox{\hyperlink{class_game}{Game}}\& game) \{}
+\DoxyCodeLine{159             buf.clear();}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161             \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} replace\_game = game.\mbox{\hyperlink{class_game_ac06e2ec00bf14db01cbb7b4dce00104e}{FindExtraTag}}(special\_replace\_tag)) \{}
+\DoxyCodeLine{162                 auto gnum = std::strtoul(replace\_game, NULL, 10);}
+\DoxyCodeLine{163                 if (gnum < CodecMemory::numGames()) \{}
+\DoxyCodeLine{164                     game.RemoveExtraTag(special\_replace\_tag);}
+\DoxyCodeLine{165                     auto [ie, tags] = game.Encode(buf);}
+\DoxyCodeLine{166                     return CodecMemory::saveGame(}
+\DoxyCodeLine{167                         ie, tags, \{buf.data(), buf.size()\}, gnum);}
+\DoxyCodeLine{168                 \}}
+\DoxyCodeLine{169             \}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171             \textcolor{keyword}{auto} [ie, tags] = game.\mbox{\hyperlink{class_game_adcfcc7ef1ca0778379982174a04d7dd2}{Encode}}(buf);}
+\DoxyCodeLine{172             \textcolor{keywordflow}{return} \mbox{\hyperlink{class_codec_memory_ab000e85b02ed004fc7e640604d35c4d9}{CodecMemory::addGame}}(ie, tags, \{buf.data(), buf.size()\});}
+\DoxyCodeLine{173         \});}
+\DoxyCodeLine{174     \}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 \textcolor{keyword}{public}:}
+\DoxyCodeLine{177     \textcolor{comment}{/*}}
+\DoxyCodeLine{178 \textcolor{comment}{     * Given a source database of type CodecProxy<T>, for each game a}}
+\DoxyCodeLine{179 \textcolor{comment}{     * corresponding Game object is created and dispatched to @e destFn.}}
+\DoxyCodeLine{180 \textcolor{comment}{     */}}
+\DoxyCodeLine{181     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TProgress, \textcolor{keyword}{typename} TSource, \textcolor{keyword}{typename} TDestFn>}
+\DoxyCodeLine{182     \textcolor{keyword}{static} \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_proxy_a46ebed2e39efa04fe559cfdfeb6423fe}{parseGames}}(\textcolor{keyword}{const} TProgress\& progress, TSource\& src,}
+\DoxyCodeLine{183                              TDestFn destFn) \{}
+\DoxyCodeLine{184         \textcolor{keyword}{auto} workTotal = src.parseProgress().second;}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186         \mbox{\hyperlink{class_game}{Game}} game[4];}
+\DoxyCodeLine{187         std::atomic<size\_t> workDone\{\};}
+\DoxyCodeLine{188         std::atomic<int8\_t> sync[4] = \{\};}
+\DoxyCodeLine{189         \textcolor{keyword}{enum} \{ sy\_free, sy\_used, sy\_stop \};}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191         std::thread producer([\&]() \{}
+\DoxyCodeLine{192             uint64\_t slot;}
+\DoxyCodeLine{193             uint64\_t nProduced = 0;}
+\DoxyCodeLine{194             \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{195                 slot = nProduced \% 4;}
+\DoxyCodeLine{196                 \textcolor{keywordtype}{int} sy;}
+\DoxyCodeLine{197                 \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{ \textcolor{comment}{// spinlock if the slot is in use}}
+\DoxyCodeLine{198                     sy = sync[slot].load(std::memory\_order\_acquire);}
+\DoxyCodeLine{199                     \textcolor{keywordflow}{if} (sy == sy\_used)}
+\DoxyCodeLine{200                         std::this\_thread::yield();}
+\DoxyCodeLine{201                     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{202                         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{203                 \};}
+\DoxyCodeLine{204                 \textcolor{keywordflow}{if} (sy == sy\_stop)}
+\DoxyCodeLine{205                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207                 \textcolor{keywordflow}{if} (src.parseNext(game[slot]) == \mbox{\hyperlink{error_8h_a7caa9aaca2599ee28498ccfd03c97a8d}{ERROR\_NotFound}})}
+\DoxyCodeLine{208                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210                 if (++nProduced \% 1024 == 0) \{}
+\DoxyCodeLine{211                     workDone.store(src.parseProgress().first,}
+\DoxyCodeLine{212                                    std::memory\_order\_release);}
+\DoxyCodeLine{213                 \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215                 sync[slot].store(sy\_used, std::memory\_order\_release);}
+\DoxyCodeLine{216             \}}
+\DoxyCodeLine{217             sync[slot].store(sy\_stop, std::memory\_order\_release);}
+\DoxyCodeLine{218         \});}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220         \textcolor{comment}{// Consumer}}
+\DoxyCodeLine{221         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} err = \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{222         uint64\_t slot;}
+\DoxyCodeLine{223         uint64\_t nImported = 0;}
+\DoxyCodeLine{224         \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{225             slot = nImported \% 4;}
+\DoxyCodeLine{226             \textcolor{keywordtype}{int} sy;}
+\DoxyCodeLine{227             \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{ \textcolor{comment}{// spinlock if the slot is empty}}
+\DoxyCodeLine{228                 sy = sync[slot].load(std::memory\_order\_acquire);}
+\DoxyCodeLine{229                 \textcolor{keywordflow}{if} (sy == sy\_free)}
+\DoxyCodeLine{230                     std::this\_thread::yield();}
+\DoxyCodeLine{231                 \textcolor{keywordflow}{else}}
+\DoxyCodeLine{232                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{233             \};}
+\DoxyCodeLine{234             \textcolor{keywordflow}{if} (sy == sy\_stop)}
+\DoxyCodeLine{235                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237             \textcolor{keywordflow}{if} (++nImported \% 1024 == 0) \{}
+\DoxyCodeLine{238                 \textcolor{keywordflow}{if} (!progress.report(workDone.load(std::memory\_order\_acquire),}
+\DoxyCodeLine{239                                      workTotal)) \{}
+\DoxyCodeLine{240                     err = \mbox{\hyperlink{error_8h_a0a27e2c5de262a3ef4ba9de640dd0b4d}{ERROR\_UserCancel}};}
+\DoxyCodeLine{241                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{242                 \}}
+\DoxyCodeLine{243             \}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245             err = destFn(game[slot]);}
+\DoxyCodeLine{246             \textcolor{keywordflow}{if} (err != \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}})}
+\DoxyCodeLine{247                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249             sync[slot].store(sy\_free, std::memory\_order\_release);}
+\DoxyCodeLine{250         \}}
+\DoxyCodeLine{251         sync[slot].store(sy\_stop, std::memory\_order\_release);}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253         producer.join();}
+\DoxyCodeLine{254         progress(1, 1, src.parseErrors());}
+\DoxyCodeLine{255         \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{256     \}}
+\DoxyCodeLine{257 \};}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

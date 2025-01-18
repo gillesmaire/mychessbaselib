@@ -1,0 +1,19 @@
+<map id="namebase.h" name="namebase.h">
+<area shape="rect" id="node1" title=" " alt="" coords="347,5,449,32"/>
+<area shape="rect" id="node2" href="$codec_8h.html" title=" " alt="" coords="275,80,347,107"/>
+<area shape="rect" id="node3" href="$codec__memory_8h.html" title=" " alt="" coords="332,155,464,181"/>
+<area shape="rect" id="node7" href="$codec__scid4_8h.html" title=" " alt="" coords="143,155,256,181"/>
+<area shape="rect" id="node9" href="$codec__scid5_8h.html" title=" " alt="" coords="5,155,119,181"/>
+<area shape="rect" id="node10" href="$scidbase_8h.html" title=" " alt="" coords="590,155,681,181"/>
+<area shape="rect" id="node14" href="$game_8h.html" title=" " alt="" coords="492,80,563,107"/>
+<area shape="rect" id="node17" href="$sortcache_8cpp.html" title=" " alt="" coords="638,80,750,107"/>
+<area shape="rect" id="node4" href="$codec__proxy_8h.html" title=" " alt="" coords="347,229,462,256"/>
+<area shape="rect" id="node6" href="$scidbase_8cpp.html" title=" " alt="" coords="257,379,363,405"/>
+<area shape="rect" id="node5" href="$codec__pgn_8h.html" title=" " alt="" coords="353,304,456,331"/>
+<area shape="rect" id="node8" href="$codec__scid4_8cpp.html" title=" " alt="" coords="145,229,273,256"/>
+<area shape="rect" id="node11" href="$chessbase_8cpp.html" title=" " alt="" coords="602,304,719,331"/>
+<area shape="rect" id="node12" href="$chessbase_8h.html" title=" " alt="" coords="657,229,760,256"/>
+<area shape="rect" id="node13" href="$dbasepool_8cpp.html" title=" " alt="" coords="836,229,952,256"/>
+<area shape="rect" id="node15" href="$game_8cpp.html" title=" " alt="" coords="705,155,792,181"/>
+<area shape="rect" id="node16" href="$pgnparse_8h.html" title=" " alt="" coords="487,229,581,256"/>
+</map>

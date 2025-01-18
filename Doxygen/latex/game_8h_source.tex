@@ -1,0 +1,602 @@
+\hypertarget{game_8h_source}{}\doxysection{game.\+h}
+\mbox{\hyperlink{game_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  FILE:       game.h}}
+\DoxyCodeLine{4 \textcolor{comment}{//              Game class for Scid.}}
+\DoxyCodeLine{5 \textcolor{comment}{//}}
+\DoxyCodeLine{6 \textcolor{comment}{//  Part of:    Scid (Shane's Chess Information Database)}}
+\DoxyCodeLine{7 \textcolor{comment}{//  Version:    3.5}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Notice:     Copyright (c) 2000-\/2003 Shane Hudson.  All rights reserved.}}
+\DoxyCodeLine{10 \textcolor{comment}{//}}
+\DoxyCodeLine{11 \textcolor{comment}{//  Author:     Shane Hudson (sgh@users.sourceforge.net)}}
+\DoxyCodeLine{12 \textcolor{comment}{//}}
+\DoxyCodeLine{14 \textcolor{comment}{}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef SCID\_GAME\_H}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define SCID\_GAME\_H}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{date_8h}{date.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{indexentry_8h}{indexentry.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{matsig_8h}{matsig.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{movetree_8h}{movetree.h}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{namebase_8h}{namebase.h}}"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{position_8h}{position.h}}"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <forward\_list>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{31 \textcolor{keyword}{class }\mbox{\hyperlink{class_byte_buffer}{ByteBuffer}};}
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{class_text_buffer}{TextBuffer}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keywordtype}{void} \mbox{\hyperlink{game_8h_a40f6ce5b8d42b7bb98d15270429c8eae}{transPieces}}(\textcolor{keywordtype}{char} *s);}
+\DoxyCodeLine{35 \textcolor{keywordtype}{char} \mbox{\hyperlink{game_8h_a4db16f82f73243824c9e974b4b246287}{transPiecesChar}}(\textcolor{keywordtype}{char} c);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// Piece letters translation}}
+\DoxyCodeLine{38 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{game_8h_aecc5fe43efa9721b6f23e6edf975638a}{language}}; \textcolor{comment}{// default to english}}
+\DoxyCodeLine{39 \textcolor{comment}{//  0 = en, 1 = fr, 2 = es, 3 = de}}
+\DoxyCodeLine{40 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{game_8h_ac186b9655ca1a7d9ed462f7ead4cb6f2}{langPieces}}[];}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{43 \textcolor{comment}{//  Game: Constants}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{// Common NAG Annotation symbol values:}}
+\DoxyCodeLine{46 \textcolor{keyword}{const} \textcolor{keywordtype}{byte}}
+\DoxyCodeLine{47     \mbox{\hyperlink{game_8h_a14facd67ec55b2716bfb14fed5b886a4}{NAG\_GoodMove}} = 1,}
+\DoxyCodeLine{48     \mbox{\hyperlink{game_8h_a802b783e7236e457d0b6b3983f07f6bc}{NAG\_PoorMove}} = 2,}
+\DoxyCodeLine{49     \mbox{\hyperlink{game_8h_a1daf621422b965069a61c1bb40cea760}{NAG\_ExcellentMove}} = 3,}
+\DoxyCodeLine{50     \mbox{\hyperlink{game_8h_a9f851ac34b57eb062f8bd361af290c52}{NAG\_Blunder}} = 4,}
+\DoxyCodeLine{51     \mbox{\hyperlink{game_8h_a33cab3afe46091048fb444ab3001f9dc}{NAG\_InterestingMove}} = 5,}
+\DoxyCodeLine{52     \mbox{\hyperlink{game_8h_a95a739e40917383014586de793700451}{NAG\_DubiousMove}} = 6,}
+\DoxyCodeLine{53     \mbox{\hyperlink{game_8h_a816fe5d3392f370a316544ddbe87c537}{NAG\_OnlyMove}} = 8, \textcolor{comment}{// new}}
+\DoxyCodeLine{54     \mbox{\hyperlink{game_8h_a0a8094f885ee284198422421223dddf8}{NAG\_Equal}} = 10,}
+\DoxyCodeLine{55     \mbox{\hyperlink{game_8h_a105c7273226a8d0a34861976c567c214}{NAG\_Unclear}} = 13,}
+\DoxyCodeLine{56     \mbox{\hyperlink{game_8h_a686bd6303ddd3af9cbadbee398e5712e}{NAG\_WhiteSlight}} = 14,}
+\DoxyCodeLine{57     \mbox{\hyperlink{game_8h_a3290195c8f5e3a639e66440ab122cd65}{NAG\_BlackSlight}} = 15,}
+\DoxyCodeLine{58     \mbox{\hyperlink{game_8h_a6662312e531e8f5e7b90075bd323c090}{NAG\_WhiteClear}} = 16,}
+\DoxyCodeLine{59     \mbox{\hyperlink{game_8h_a650a6bacaba56eaec39ad35b67454120}{NAG\_BlackClear}} = 17,}
+\DoxyCodeLine{60     \mbox{\hyperlink{game_8h_a7120b289edd462238a5880b42dc22219}{NAG\_WhiteDecisive}} = 18,}
+\DoxyCodeLine{61     \mbox{\hyperlink{game_8h_ae03725f3a38d06b5ac076865b0a5f423}{NAG\_BlackDecisive}} = 19,}
+\DoxyCodeLine{62     \mbox{\hyperlink{game_8h_af2569566b242b068d7145c8643183571}{NAG\_WhiteCrushing}} = 20,}
+\DoxyCodeLine{63     \mbox{\hyperlink{game_8h_a872745f00663c0c52e5a1d1c8b69395c}{NAG\_BlackCrushing}} = 21,}
+\DoxyCodeLine{64     \mbox{\hyperlink{game_8h_a34db0fcaefd687caf5f120ee2dd5e5a8}{NAG\_ZugZwang}} = 22, \textcolor{comment}{// new}}
+\DoxyCodeLine{65     \mbox{\hyperlink{game_8h_a593d59acd20a658b12f3dc8567c6b079}{NAG\_BlackZugZwang}} = 23, \textcolor{comment}{// new}}
+\DoxyCodeLine{66     \mbox{\hyperlink{game_8h_ada28dd6a138a156d664f71d28da6c2ab}{NAG\_MoreRoom}} = 26, \textcolor{comment}{// new}}
+\DoxyCodeLine{67     \mbox{\hyperlink{game_8h_a0747025680a144f16a3aabe6ddb51814}{NAG\_DevelopmentAdvantage}} = 35,  \textcolor{comment}{// new}}
+\DoxyCodeLine{68     \mbox{\hyperlink{game_8h_a36fa568d63a902ef41fbf42ad1727fa2}{NAG\_WithInitiative}} = 36, \textcolor{comment}{//new}}
+\DoxyCodeLine{69     \mbox{\hyperlink{game_8h_ac9f2fa0711f325916fbad6753ca92759}{NAG\_WithAttack}} = 40, \textcolor{comment}{// new}}
+\DoxyCodeLine{70     \mbox{\hyperlink{game_8h_ac6372f7ae9cb63a5377558fa28da8cf5}{NAG\_WithBlackAttack}} = 41, \textcolor{comment}{// new}}
+\DoxyCodeLine{71     \mbox{\hyperlink{game_8h_aa82f72f3c334f449d8fa71751bb1b984}{NAG\_Compensation}} = 44,      \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{72     \mbox{\hyperlink{game_8h_a3f212cb475c594b443fd09c741255abf}{NAG\_SlightCentre}} = 48,      \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{73     \mbox{\hyperlink{game_8h_aa0032455c3fd3f95e6a89aaa007493f5}{NAG\_Centre}} = 50,            \textcolor{comment}{// new}}
+\DoxyCodeLine{74     \mbox{\hyperlink{game_8h_af2db5b4e84bcdace4477408b362d14ea}{NAG\_SlightKingSide}} = 54,    \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{75     \mbox{\hyperlink{game_8h_aa01b937555d248692b6995955d68b014}{NAG\_ModerateKingSide}} = 56,  \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{76     \mbox{\hyperlink{game_8h_a77193627757d7f3664cef34d75aa13b7}{NAG\_KingSide}} = 58,          \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{77     \mbox{\hyperlink{game_8h_ab48c441be65985e11d79b27507e7a9ab}{NAG\_SlightQueenSide}} = 60,   \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{78     \mbox{\hyperlink{game_8h_ad520e31c52f9fda246b8c8d98787ab83}{NAG\_ModerateQueenSide}} = 62, \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{79     \mbox{\hyperlink{game_8h_af857a973fc388cfdeaf7011a7db312a4}{NAG\_QueenSide}} = 64,         \textcolor{comment}{// from Whites perspective}}
+\DoxyCodeLine{80     \mbox{\hyperlink{game_8h_afec22eb36a3d82a7741dacfebe20853b}{NAG\_SlightCounterPlay}} = 130, \textcolor{comment}{// new}}
+\DoxyCodeLine{81     \mbox{\hyperlink{game_8h_a03b0d785a0ee3d143adf0e974ec56d8d}{NAG\_CounterPlay}} = 132, \textcolor{comment}{// new}}
+\DoxyCodeLine{82     \mbox{\hyperlink{game_8h_ac9dd2fb46864591587b01a134efbb77e}{NAG\_DecisiveCounterPlay}} = 134, \textcolor{comment}{// new}}
+\DoxyCodeLine{83     \mbox{\hyperlink{game_8h_a70a723bbbfdccec0b3abbf5a6625ffe4}{NAG\_BlackSlightCounterPlay}} = 131, \textcolor{comment}{// new}}
+\DoxyCodeLine{84     \mbox{\hyperlink{game_8h_a07aa35ddaf979e25fc3ac82b8f39d001}{NAG\_BlackCounterPlay}} = 133, \textcolor{comment}{// new}}
+\DoxyCodeLine{85     \mbox{\hyperlink{game_8h_a8d4d9f77ebec4caa6ce58858a03e6a50}{NAG\_BlackDecisiveCounterPlay}} = 135, \textcolor{comment}{// new}}
+\DoxyCodeLine{86     \mbox{\hyperlink{game_8h_afa3e9675e68b5def1b081ada6589113f}{NAG\_TimeLimit}} = 136, \textcolor{comment}{// new}}
+\DoxyCodeLine{87     \mbox{\hyperlink{game_8h_a144c82529664f679262221f34c3289b7}{NAG\_WithIdea}} = 140, \textcolor{comment}{// new}}
+\DoxyCodeLine{88     \mbox{\hyperlink{game_8h_a569bb7c3b5c21a39d2c38a3802c8f3ca}{NAG\_BetterIs}} = 142, \textcolor{comment}{// new}}
+\DoxyCodeLine{89     \mbox{\hyperlink{game_8h_a8f40cef026eeefaf13967389674a1df7}{NAG\_VariousMoves}} = 144, \textcolor{comment}{// new}}
+\DoxyCodeLine{90     \mbox{\hyperlink{game_8h_a0f00eafbc7adce21bb08116f22bc970a}{NAG\_Comment}} = 145, \textcolor{comment}{// new}}
+\DoxyCodeLine{91     \mbox{\hyperlink{game_8h_a56ca08620d4fb5b2c2f7bb78b6009005}{NAG\_Novelty}} = 146,}
+\DoxyCodeLine{92     \mbox{\hyperlink{game_8h_a342c30890313cec8a4a60ef8aee208ba}{NAG\_WeakPoint}} = 147, \textcolor{comment}{// new}}
+\DoxyCodeLine{93     \mbox{\hyperlink{game_8h_aa37de12ab18609f5e1de47a6ed753bc4}{NAG\_Ending}} = 148, \textcolor{comment}{// new}}
+\DoxyCodeLine{94     \mbox{\hyperlink{game_8h_a0109f9ed1b277bd90d2224d7ac649c8c}{NAG\_File}} = 149, \textcolor{comment}{// new}}
+\DoxyCodeLine{95     \mbox{\hyperlink{game_8h_aa469e6e2047d808818b8dfcbc2f4f9be}{NAG\_Diagonal}} = 150, \textcolor{comment}{// new}}
+\DoxyCodeLine{96     \mbox{\hyperlink{game_8h_a41f58ddcfb978bd192d0194b7891ad62}{NAG\_BishopPair}} = 151, \textcolor{comment}{// new}}
+\DoxyCodeLine{97     \mbox{\hyperlink{game_8h_a14474a6af592db117175ccff13a82154}{NAG\_OppositeBishops}} = 153, \textcolor{comment}{// new}}
+\DoxyCodeLine{98     \mbox{\hyperlink{game_8h_a608a5f8f2fc7d1ca88882ef786d77cdd}{NAG\_SameBishops}} = 154, \textcolor{comment}{// new}}
+\DoxyCodeLine{99     \mbox{\hyperlink{game_8h_aa76fee452ea552fb0a7c07f004d9646d}{NAG\_Etc}} = 190, \textcolor{comment}{// new}}
+\DoxyCodeLine{100     \mbox{\hyperlink{game_8h_aa8db2d0859fbdeacf9b311ba4ef95dd0}{NAG\_DoublePawns}} = 191, \textcolor{comment}{// new}}
+\DoxyCodeLine{101     \mbox{\hyperlink{game_8h_a932e3002cbe2d3b4144811553c4a88db}{NAG\_SeparatedPawns}} = 192, \textcolor{comment}{// new}}
+\DoxyCodeLine{102     \mbox{\hyperlink{game_8h_ad4f300baedcae0e183a946b7c30f1620}{NAG\_UnitedPawns}} = 193, \textcolor{comment}{// new}}
+\DoxyCodeLine{103     \mbox{\hyperlink{game_8h_a4328ef794a214b4daca295edf0c07087}{NAG\_Diagram}} = 201,  \textcolor{comment}{// Scid-\/specific NAGs start at 201.}}
+\DoxyCodeLine{104     \mbox{\hyperlink{game_8h_a93c655f4fdf9371bedba21aa2f3bc8e5}{NAG\_See}} = 210,  \textcolor{comment}{// new}}
+\DoxyCodeLine{105     \mbox{\hyperlink{game_8h_a545b78f6ca564131bd2f8e62f8492968}{NAG\_Mate}} = 211, \textcolor{comment}{// new}}
+\DoxyCodeLine{106     \mbox{\hyperlink{game_8h_ac10ef2ff8d93183e40d21b801bc1409d}{NAG\_PassedPawn}} = 212, \textcolor{comment}{// new}}
+\DoxyCodeLine{107     \mbox{\hyperlink{game_8h_ae2885d75bccbab44bf8818c2b88a37b1}{NAG\_MorePawns}} = 213, \textcolor{comment}{//new}}
+\DoxyCodeLine{108     \mbox{\hyperlink{game_8h_ab2f40109349e55c1e3401b18467e8706}{NAG\_With}} = 214, \textcolor{comment}{// new}}
+\DoxyCodeLine{109     \mbox{\hyperlink{game_8h_ae45fc76ea3d81ad5365c14ec78617cb8}{NAG\_Without}} = 215;}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{comment}{// MAX\_NAGS: Maximum id of NAG codes}}
+\DoxyCodeLine{112 \textcolor{keyword}{const} \textcolor{keywordtype}{byte} \mbox{\hyperlink{game_8h_a2e4266460b40d334e391d97c947d5d05}{MAX\_NAGS\_ARRAY}} = 215;}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{// patternT structure: a pattern filter for material searches.}}
+\DoxyCodeLine{115 \textcolor{comment}{//    It can specify, for example, a white Pawn on the f-\/fyle, or}}
+\DoxyCodeLine{116 \textcolor{comment}{//    a black Bishop on f2 and white King on e1.}}
+\DoxyCodeLine{117 \textcolor{keyword}{struct }\mbox{\hyperlink{structpattern_t}{patternT}}}
+\DoxyCodeLine{118 \{}
+\DoxyCodeLine{119     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}     \mbox{\hyperlink{structpattern_t_a0ac5eaca11bb5a288c6f1820514d0d47}{pieceMatch}};  \textcolor{comment}{// EMPTY, WK, BK, etc...}}
+\DoxyCodeLine{120     \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}}      \mbox{\hyperlink{structpattern_t_a4b364f3e634875afe6ec201ed1d4bbc3}{rankMatch}};   \textcolor{comment}{// RANK\_1 .. RANK\_8 or NO\_RANK}}
+\DoxyCodeLine{121     \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}}      \mbox{\hyperlink{structpattern_t_aa33928d718af071f40345ab1c0eb7bb9}{fyleMatch}};   \textcolor{comment}{// A\_FYLE .. H\_FYLE or NO\_FYLE}}
+\DoxyCodeLine{122     \textcolor{keywordtype}{byte}       \mbox{\hyperlink{structpattern_t_aa3dff6979c649bf8019f5b5a12d6d161}{flag}};        \textcolor{comment}{// 0 means this pattern must NOT occur.}}
+\DoxyCodeLine{123 \};}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{keyword}{enum} \mbox{\hyperlink{game_8h_a8d9316184e9e7b4c9eb71d36609b1419}{gameExactMatchT}} \{}
+\DoxyCodeLine{126     \mbox{\hyperlink{game_8h_a8d9316184e9e7b4c9eb71d36609b1419a9d1a49b7d3da92ac2048844a0c349c10}{GAME\_EXACT\_MATCH\_Exact}} = 0,}
+\DoxyCodeLine{127     \mbox{\hyperlink{game_8h_a8d9316184e9e7b4c9eb71d36609b1419ae5fa5707db2ce2d0232009750b24f3ed}{GAME\_EXACT\_MATCH\_Pawns}},}
+\DoxyCodeLine{128     \mbox{\hyperlink{game_8h_a8d9316184e9e7b4c9eb71d36609b1419a9dd3d5f416c0e3973df4574a4a6c9814}{GAME\_EXACT\_MATCH\_Fyles}},}
+\DoxyCodeLine{129     \mbox{\hyperlink{game_8h_a8d9316184e9e7b4c9eb71d36609b1419a6a30c2da4852020b22b950b8224b2fbe}{GAME\_EXACT\_MATCH\_Material}}}
+\DoxyCodeLine{130 \};}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{keyword}{enum} \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{gameFormatT}} \{}
+\DoxyCodeLine{133     \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca3ea2ffff345fd05d511b890a992b0129}{PGN\_FORMAT\_Plain}} = 0,   \textcolor{comment}{// Plain regular PGN output}}
+\DoxyCodeLine{134     \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca099d846a106bae46ed01148a0393e8d5}{PGN\_FORMAT\_HTML}} = 1,    \textcolor{comment}{// HTML format}}
+\DoxyCodeLine{135     \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca896d43d566d3e43dc35d6b383f24b3d3}{PGN\_FORMAT\_LaTeX}} = 2,   \textcolor{comment}{// LaTeX (with chess12 package) format}}
+\DoxyCodeLine{136     \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca3e8e437d24b2fe04653dd1e93274261e}{PGN\_FORMAT\_Color}} = 3    \textcolor{comment}{// PGN, with color tags <red> etc}}
+\DoxyCodeLine{137 \};}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#define PGN\_STYLE\_TAGS             1}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define PGN\_STYLE\_COMMENTS         2}}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#define PGN\_STYLE\_VARS             4}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define PGN\_STYLE\_INDENT\_COMMENTS  8}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define PGN\_STYLE\_INDENT\_VARS     16}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{\#define PGN\_STYLE\_SYMBOLS         32   }\textcolor{comment}{// e.g. "{}! +-\/"{} instead of "{}\$2 \$14"{}}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#define PGN\_STYLE\_SHORT\_HEADER    64}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#define PGN\_STYLE\_MOVENUM\_SPACE  128   }\textcolor{comment}{// Space after move numbers.}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#define PGN\_STYLE\_COLUMN         256   }\textcolor{comment}{// Column style: one move per line.}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{\#define PGN\_STYLE\_SCIDFLAGS      512}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{\#define PGN\_STYLE\_STRIP\_MARKS   1024   }\textcolor{comment}{// Strip [\%mark] and [\%arrow] codes.}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define PGN\_STYLE\_NO\_NULL\_MOVES 2048   }\textcolor{comment}{// Convert null moves to comments.}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{\#define PGN\_STYLE\_UNICODE       4096   }\textcolor{comment}{// Use U+2654..U+2659 for figurine}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{keywordtype}{void}  \mbox{\hyperlink{game_8h_af3aaeb6e37a8b2f1572fda4344c80bf3}{game\_printNag}} (\textcolor{keywordtype}{byte} nag, \textcolor{keywordtype}{char} * str, \textcolor{keywordtype}{bool} asSymbol, \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{gameFormatT}} format);}
+\DoxyCodeLine{155 \textcolor{keywordtype}{byte} \mbox{\hyperlink{game_8h_a534c67a00d26cb1a55e666d5464d0dd9}{game\_parseNag}}(std::pair<const char*, const char*> strview);}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{158 \textcolor{comment}{//  Game:  Class Definition}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{keyword}{class }\mbox{\hyperlink{class_game}{Game}} \{}
+\DoxyCodeLine{161     \textcolor{comment}{// Header data: tag pairs}}
+\DoxyCodeLine{162     std::vector<std::pair<std::string, std::string> > extraTags\_;}
+\DoxyCodeLine{163     std::string WhiteStr;}
+\DoxyCodeLine{164     std::string BlackStr;}
+\DoxyCodeLine{165     std::string EventStr;}
+\DoxyCodeLine{166     std::string SiteStr;}
+\DoxyCodeLine{167     std::string RoundStr;}
+\DoxyCodeLine{168     \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}       Date;}
+\DoxyCodeLine{169     \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}       EventDate;}
+\DoxyCodeLine{170     \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}        EcoCode;}
+\DoxyCodeLine{171     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}        WhiteElo;}
+\DoxyCodeLine{172     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}        BlackElo;}
+\DoxyCodeLine{173     \textcolor{keywordtype}{byte}        WhiteRatingType;}
+\DoxyCodeLine{174     \textcolor{keywordtype}{byte}        BlackRatingType;}
+\DoxyCodeLine{175     \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}}     Result;}
+\DoxyCodeLine{176     \textcolor{keywordtype}{char}        ScidFlags[22];}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178     \textcolor{comment}{// Position and moves}}
+\DoxyCodeLine{179     \textcolor{keywordtype}{byte}        moveChunkUsed\_;}
+\DoxyCodeLine{180     std::forward\_list<std::unique\_ptr<moveT[]> > moveChunks\_;}
+\DoxyCodeLine{181     std::unique\_ptr<Position> StartPos;}
+\DoxyCodeLine{182     std::unique\_ptr<Position> CurrentPos\{\textcolor{keyword}{new} \mbox{\hyperlink{class_position}{Position}}\};}
+\DoxyCodeLine{183     \mbox{\hyperlink{structmove_t}{moveT}}*      FirstMove;}
+\DoxyCodeLine{184     \mbox{\hyperlink{structmove_t}{moveT}}*      CurrentMove;}
+\DoxyCodeLine{185     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}        VarDepth;     \textcolor{comment}{// Current variation depth.}}
+\DoxyCodeLine{186     \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}}      NumHalfMoves; \textcolor{comment}{// Total half moves in the main line.}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188     \textcolor{comment}{// TODO: The following variables should not be part of this class.}}
+\DoxyCodeLine{189     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}        NumMovesPrinted; \textcolor{comment}{// Used in recursive WriteMoveList method.}}
+\DoxyCodeLine{190     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}        PgnStyle;        \textcolor{comment}{// see PGN\_STYLE macros above.}}
+\DoxyCodeLine{191     \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{gameFormatT}} PgnFormat;       \textcolor{comment}{// see PGN\_FORMAT macros above.}}
+\DoxyCodeLine{192     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}        HtmlStyle;       \textcolor{comment}{// HTML diagram style, see DumpHtmlBoard method in position.cpp.}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 \textcolor{keyword}{private}:}
+\DoxyCodeLine{195     \mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_game}{Game}}\&);}
+\DoxyCodeLine{196     \mbox{\hyperlink{structmove_t}{moveT}}* allocMove();}
+\DoxyCodeLine{197     \mbox{\hyperlink{structmove_t}{moveT}}* NewMove(\mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481c}{markerT}} marker);}
+\DoxyCodeLine{198     \textcolor{keywordtype}{void} ClearMoves();}
+\DoxyCodeLine{199     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} DecodeVariation(\mbox{\hyperlink{class_byte_buffer}{ByteBuffer}}\& buf, std::vector<moveT*>\& comment\_marks);}
+\DoxyCodeLine{200     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} WritePGN(\mbox{\hyperlink{class_text_buffer}{TextBuffer}}* tb);}
+\DoxyCodeLine{201     std::string* find\_std\_tag(std::string\_view tag) \{}
+\DoxyCodeLine{202         \textcolor{keywordflow}{if} (tag.size() == 5) \{}
+\DoxyCodeLine{203             \textcolor{keywordflow}{if} (tag == \textcolor{stringliteral}{"{}Event"{}})}
+\DoxyCodeLine{204                 \textcolor{keywordflow}{return} \&EventStr;}
+\DoxyCodeLine{205             \textcolor{keywordflow}{if} (tag == \textcolor{stringliteral}{"{}Round"{}})}
+\DoxyCodeLine{206                 \textcolor{keywordflow}{return} \&RoundStr;}
+\DoxyCodeLine{207             \textcolor{keywordflow}{if} (tag == \textcolor{stringliteral}{"{}White"{}})}
+\DoxyCodeLine{208                 \textcolor{keywordflow}{return} \&WhiteStr;}
+\DoxyCodeLine{209             \textcolor{keywordflow}{if} (tag == \textcolor{stringliteral}{"{}Black"{}})}
+\DoxyCodeLine{210                 \textcolor{keywordflow}{return} \&BlackStr;}
+\DoxyCodeLine{211         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tag.size() == 4) \{}
+\DoxyCodeLine{212             \textcolor{keywordflow}{if} (tag == \textcolor{stringliteral}{"{}Site"{}})}
+\DoxyCodeLine{213                 \textcolor{keywordflow}{return} \&SiteStr;}
+\DoxyCodeLine{214         \}}
+\DoxyCodeLine{215         \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{216     \}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{222     \textcolor{keyword}{struct }GameSavedPos \{}
+\DoxyCodeLine{223         \mbox{\hyperlink{class_position}{Position}} pos;}
+\DoxyCodeLine{224         \mbox{\hyperlink{structmove_t}{moveT}}* move;}
+\DoxyCodeLine{225         \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} varDepth;}
+\DoxyCodeLine{226     \};}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 \textcolor{keyword}{public}:}
+\DoxyCodeLine{229     \mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}}() \{ \mbox{\hyperlink{class_game_a550e6ba9715ae3c39af958641070bf48}{Clear}}(); \}}
+\DoxyCodeLine{230     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a550e6ba9715ae3c39af958641070bf48}{Clear}}();}
+\DoxyCodeLine{231     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a95a8c47e1a5f2b89a82497ed808fae84}{strip}}(\textcolor{keywordtype}{bool} variations, \textcolor{keywordtype}{bool} comments, \textcolor{keywordtype}{bool} NAGs);}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_aa7425a0a96cf156dee0814f297e025aa}{HasNonStandardStart}}(\textcolor{keywordtype}{char}* outFEN = \textcolor{keyword}{nullptr})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{234         \textcolor{keywordflow}{if} (!StartPos)}
+\DoxyCodeLine{235             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{236         \textcolor{keywordflow}{if} (outFEN)}
+\DoxyCodeLine{237             StartPos-\/>PrintFEN(outFEN);}
+\DoxyCodeLine{238         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{239     \}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241     \textcolor{comment}{// The last field of the initial FEN is the number of the full moves.}}
+\DoxyCodeLine{242     \textcolor{comment}{// @return  2 * full move -\/ 2; +1 if it is black to move.}}
+\DoxyCodeLine{243     \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{class_game_a5613dec002248595ecd355568fe4275a}{initialPlyCounter}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{244         \textcolor{keywordflow}{return} StartPos ? StartPos-\/>GetPlyCounter() : 0;}
+\DoxyCodeLine{245     \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{249     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a2bea4b77cc33866b26b5e435d6459733}{SetStartFen}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* fenStr) \{}
+\DoxyCodeLine{250         \textcolor{keyword}{auto} pos = std::make\_unique<Position>();}
+\DoxyCodeLine{251         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = pos-\/>ReadFromFEN(fenStr))}
+\DoxyCodeLine{252             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254         \mbox{\hyperlink{class_game_ad9d9b47ca9ddeafc9d5f2d7f98cd0bea}{SetStartPos}}(std::move(pos));}
+\DoxyCodeLine{255         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{256     \}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{259     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ad9d9b47ca9ddeafc9d5f2d7f98cd0bea}{SetStartPos}}(\mbox{\hyperlink{class_position}{Position}} \textcolor{keyword}{const}\& pos) \{}
+\DoxyCodeLine{260         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_game_ad9d9b47ca9ddeafc9d5f2d7f98cd0bea}{SetStartPos}}(std::make\_unique<Position>(pos));}
+\DoxyCodeLine{261     \}}
+\DoxyCodeLine{262     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a2d6e924283dd73b8d6bd78be85324c31}{SetStartPos}}(std::unique\_ptr<Position> pos) \{}
+\DoxyCodeLine{263         ClearMoves();}
+\DoxyCodeLine{264         StartPos = std::move(pos);}
+\DoxyCodeLine{265         *CurrentPos = *StartPos;}
+\DoxyCodeLine{266     \}}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a2f066547b3489d022bed58318adf6a10}{SetScidFlags}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* s, \textcolor{keywordtype}{size\_t} len) \{}
+\DoxyCodeLine{269         \textcolor{keyword}{constexpr} \textcolor{keywordtype}{size\_t} size = \textcolor{keyword}{sizeof}(ScidFlags) / \textcolor{keyword}{sizeof}(*ScidFlags);}
+\DoxyCodeLine{270         std::fill\_n(ScidFlags, size, 0);}
+\DoxyCodeLine{271         std::copy\_n(s, std::min(size -\/ 1, len), ScidFlags);}
+\DoxyCodeLine{272     \}}
+\DoxyCodeLine{273     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a2fd2612eeed3fd192e9130fc4ac799db}{SetScidFlags}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* s) \{ \mbox{\hyperlink{class_game_a2fd2612eeed3fd192e9130fc4ac799db}{SetScidFlags}}(s, std::strlen(s)); \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275     \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} \mbox{\hyperlink{class_game_a4734d1674f24441f02f01acc1845bee7}{GetNumHalfMoves}}() \{ \textcolor{keywordflow}{return} NumHalfMoves; \}}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{278     \textcolor{comment}{// Functions to add or delete moves:}}
+\DoxyCodeLine{279     \textcolor{comment}{//}}
+\DoxyCodeLine{280     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a841f5222632c5dc9955404585183e526}{AddMove}}(\mbox{\hyperlink{structsimple_move_t}{simpleMoveT}} \textcolor{keyword}{const}\& sm);}
+\DoxyCodeLine{281     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a0e436b84436ed2b919dc11820f6ded86}{AddVariation}}();}
+\DoxyCodeLine{282     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a645f5ff09e43d11a5b86835ecb5f3464}{DeleteVariation}}();}
+\DoxyCodeLine{283     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_ae9b25a4eed1b4e40f15d5788fae42762}{FirstVariation}}();}
+\DoxyCodeLine{284     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a7a46a90f9f85dd7530a5f4e0bfc3ba53}{MainVariation}}();}
+\DoxyCodeLine{285     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ad48d1c83f91d9eb15a29f2eecf101ea7}{Truncate}}();}
+\DoxyCodeLine{286     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_adb9654e7b47fe05b69df446981c87d34}{TruncateStart}}();}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{289     \textcolor{comment}{// Functions that move the current location (only CurrentPos,}}
+\DoxyCodeLine{290     \textcolor{comment}{// CurrentMove and VarDepth are modified by these functions):}}
+\DoxyCodeLine{291     \textcolor{comment}{//}}
+\DoxyCodeLine{292     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a52dccd9ad98ffa40c523768840b14a87}{MoveForward}}();}
+\DoxyCodeLine{293     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_abcddeda91c4f3a2bdf318477011653e0}{MoveBackup}}();}
+\DoxyCodeLine{294     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a34ce512bd12ae2ef55f2e0bba8c1b869}{MoveIntoVariation}}(\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} varNumber);}
+\DoxyCodeLine{295     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a6ee576646ff11f2ab0e227c68bf97ed8}{MoveExitVariation}}();}
+\DoxyCodeLine{296     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_aa5414239fc6ad823c58d57376249b678}{MoveForwardInPGN}}();}
+\DoxyCodeLine{297     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_ac377e186b583c460f5a31f194d5b3fd4}{MoveToLocationInPGN}}(\textcolor{keywordtype}{unsigned} stopLocation);}
+\DoxyCodeLine{298     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_aad5f00cf5043b7e7236fd0f05747f1e2}{MoveToStart}}();}
+\DoxyCodeLine{300     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ac1d077d2d02852ebb052f50b47a39d6a}{MoveToEnd}}();}
+\DoxyCodeLine{301     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a26b32d441bc4519cd690a54e3245ca38}{MoveToPly}}(\textcolor{keywordtype}{int} hmNumber) \{ \textcolor{comment}{// Move to a specified}}
+\DoxyCodeLine{302         \mbox{\hyperlink{class_game_aad5f00cf5043b7e7236fd0f05747f1e2}{MoveToStart}}();             \textcolor{comment}{// mainline ply in the game.}}
+\DoxyCodeLine{303         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < hmNumber; ++i)}
+\DoxyCodeLine{304             \mbox{\hyperlink{class_game_a52dccd9ad98ffa40c523768840b14a87}{MoveForward}}();}
+\DoxyCodeLine{305     \}}
+\DoxyCodeLine{306     GameSavedPos \mbox{\hyperlink{class_game_a148ccbb2e0c836d029ef43d1e600451c}{currentLocation}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{307         \textcolor{keywordflow}{return} GameSavedPos\{*CurrentPos, CurrentMove, VarDepth\};}
+\DoxyCodeLine{308     \}}
+\DoxyCodeLine{309     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a3adc5dae318a01744d004d7e64cfcb7c}{restoreLocation}}(\textcolor{keyword}{const} GameSavedPos\& savedPos) \{}
+\DoxyCodeLine{310         *CurrentPos = savedPos.pos;}
+\DoxyCodeLine{311         CurrentMove = savedPos.move;}
+\DoxyCodeLine{312         VarDepth = savedPos.varDepth;}
+\DoxyCodeLine{313     \}}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{316     \textcolor{comment}{// Functions that get information about the current location.}}
+\DoxyCodeLine{317     \textcolor{comment}{//}}
+\DoxyCodeLine{318     \textcolor{keyword}{const} \mbox{\hyperlink{class_position}{Position}}* \mbox{\hyperlink{class_game_a57ebf0346a9f947ede59c94f876b525c}{currentPos}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} CurrentPos.get(); \}}
+\DoxyCodeLine{319     \mbox{\hyperlink{class_position}{Position}}* \mbox{\hyperlink{class_game_ac2e435ef0edddf8878b710e6b160dc3a}{GetCurrentPos}}() \{ \textcolor{comment}{// Deprecated, use the const version}}
+\DoxyCodeLine{320         \textcolor{keywordflow}{return} CurrentPos.get();}
+\DoxyCodeLine{321     \}}
+\DoxyCodeLine{323     std::string \mbox{\hyperlink{class_game_a502bd9195659059a63ad8f869d746b69}{currentPosUCI}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{324     \mbox{\hyperlink{structsimple_move_t}{simpleMoveT}}* \mbox{\hyperlink{class_game_a4c44802216c4d33c1bcca3018a3963b4}{GetCurrentMove}}() \{ \textcolor{comment}{// Deprecated}}
+\DoxyCodeLine{325         \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}{endMarker}}() ? nullptr : \&CurrentMove-\/>\mbox{\hyperlink{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}{moveData}};}
+\DoxyCodeLine{326     \}}
+\DoxyCodeLine{327     \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} \mbox{\hyperlink{class_game_a882542918fd89c4ce6f86bb41d2b421e}{GetCurrentPly}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{328         \textcolor{keyword}{auto} ply = CurrentPos-\/>GetPlyCounter();}
+\DoxyCodeLine{329         \textcolor{keywordflow}{return} StartPos ? ply -\/ StartPos-\/>GetPlyCounter() : ply;}
+\DoxyCodeLine{330     \}}
+\DoxyCodeLine{331     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_game_a147c7da8e8353cdf6c266b74ecdf2a46}{GetNumVariations}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_a3b1d71470188bb30eb064bfab6011cab}{numVariations}}; \}}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333     \textcolor{comment}{// Each variation has a "{}level"{} and a "{}number"{}.}}
+\DoxyCodeLine{334     \textcolor{comment}{// -\/ "{}level"{} is the number of times that is necessary to call}}
+\DoxyCodeLine{335     \textcolor{comment}{//   MoveExitVariation() to reach the main line.}}
+\DoxyCodeLine{336     \textcolor{comment}{// -\/ "{}number"{} is the ordered position in the list of variations for the}}
+\DoxyCodeLine{337     \textcolor{comment}{// current root position (first variation is number 0).}}
+\DoxyCodeLine{338     \textcolor{comment}{// The main line is 0,0.}}
+\DoxyCodeLine{339     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_game_ab8a500983b875ede59e09b223c544a56}{GetVarLevel}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} VarDepth; \}}
+\DoxyCodeLine{340     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_game_a3365eab39cdf39ee65b96e838ba87ee0}{GetVarNumber}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{341         \textcolor{keywordflow}{if} (VarDepth != 0) \{}
+\DoxyCodeLine{342             \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} varNumber = 0;}
+\DoxyCodeLine{343             \textcolor{keyword}{auto} moves = CurrentMove-\/>\mbox{\hyperlink{structmove_t_a747d4c95c57329834fbbc9964dbdc3af}{getParent}}();}
+\DoxyCodeLine{344             \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} parent = moves.first; parent; varNumber++) \{}
+\DoxyCodeLine{345                 parent = parent-\/>varChild;}
+\DoxyCodeLine{346                 \textcolor{keywordflow}{if} (parent == moves.second)}
+\DoxyCodeLine{347                     \textcolor{keywordflow}{return} varNumber;}
+\DoxyCodeLine{348             \}}
+\DoxyCodeLine{349         \}}
+\DoxyCodeLine{350         \textcolor{keywordflow}{return} 0; \textcolor{comment}{// returns 0 if in main line}}
+\DoxyCodeLine{351     \}}
+\DoxyCodeLine{352 }
+\DoxyCodeLine{353     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_game_a711b77c5682178c660ae50ca8e104786}{GetLocationInPGN}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{354     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{class_game_a5cefd54f128e4d435ef3c5ef5c071270}{GetPgnOffset}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_a3d1389abdf3a198fb5ad33a758dd1db9}{AtVarStart}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{startMarker}}(); \}}
+\DoxyCodeLine{357     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_a6f67dabd5431a95e1a967f5d01176726}{AtVarEnd}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}{endMarker}}(); \}}
+\DoxyCodeLine{358     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_a3cd0110ea36cff90c7b168f723ca5256}{AtStart}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (VarDepth == 0 \&\& \mbox{\hyperlink{class_game_a3d1389abdf3a198fb5ad33a758dd1db9}{AtVarStart}}()); \}}
+\DoxyCodeLine{359     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_a026cf5bc7c39b8ff28fc5dbcccebe18f}{AtEnd}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (VarDepth == 0 \&\& \mbox{\hyperlink{class_game_a6f67dabd5431a95e1a967f5d01176726}{AtVarEnd}}()); \}}
+\DoxyCodeLine{360     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_a70d2af5cd2cb0abc6f5129355fd234dc}{AtEmptyVar}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} VarDepth != 0 \&\& \mbox{\hyperlink{class_game_a3d1389abdf3a198fb5ad33a758dd1db9}{AtVarStart}}() \&\& \mbox{\hyperlink{class_game_a6f67dabd5431a95e1a967f5d01176726}{AtVarEnd}}(); \}}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{363     \textcolor{comment}{// Functions that get/set information about the last/next move.}}
+\DoxyCodeLine{364     \textcolor{comment}{// Notice: when location is at the start of the game or a variation,}}
+\DoxyCodeLine{365     \textcolor{comment}{// infomation are stored into the START\_MARKER.}}
+\DoxyCodeLine{366     \textcolor{comment}{//}}
+\DoxyCodeLine{367     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_ad13bd27017142596d0458464ffd9f528}{AddNag}}(\textcolor{keywordtype}{byte} nag);}
+\DoxyCodeLine{368     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_game_a1638787e89e485931053ce7028c03549}{RemoveNag}}(\textcolor{keywordtype}{bool} isMoveNag);}
+\DoxyCodeLine{369     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_aaf719eaf01c62396fc79993a0682115a}{ClearNags}}() \{}
+\DoxyCodeLine{370         CurrentMove-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_a28d943e80ef544c31f93bb34f585b2b2}{nagCount}} = 0;}
+\DoxyCodeLine{371         CurrentMove-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}{nags}}[0] = 0;}
+\DoxyCodeLine{372     \}}
+\DoxyCodeLine{373     \textcolor{keywordtype}{byte}* \mbox{\hyperlink{class_game_aa788c0c46fe0dba3c631ef76d62b7b4e}{GetNags}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}{nags}}; \}}
+\DoxyCodeLine{374     \textcolor{keywordtype}{byte}* \mbox{\hyperlink{class_game_ae1892ad2f58a19284d44336fedffb21d}{GetNextNags}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}{nags}}; \}}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{378     std::pair<const char*, const char*> \mbox{\hyperlink{class_game_a7fb9275e68e910ec7b71d48a59d6a7d9}{previousComments}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{379         std::pair<const char*, const char*> res = \{\textcolor{stringliteral}{"{}"{}}, \textcolor{stringliteral}{"{}"{}}\};}
+\DoxyCodeLine{380         \textcolor{keyword}{auto} move = CurrentMove-\/>\mbox{\hyperlink{structmove_t_a9179ac049dc54edc3855e1f862f309fb}{getPrevMove}}();}
+\DoxyCodeLine{381         \textcolor{keywordflow}{if} (move)}
+\DoxyCodeLine{382             move = move-\/>\mbox{\hyperlink{structmove_t_a9179ac049dc54edc3855e1f862f309fb}{getPrevMove}}();}
+\DoxyCodeLine{383         \textcolor{keywordflow}{if} (move) \{}
+\DoxyCodeLine{384             res.first = move-\/>\mbox{\hyperlink{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}{comment}}.c\_str();}
+\DoxyCodeLine{385             move = move-\/>getPrevMove();}
+\DoxyCodeLine{386         \}}
+\DoxyCodeLine{387         \textcolor{keywordflow}{if} (move)}
+\DoxyCodeLine{388             res.second = move-\/>comment.c\_str();}
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{391     \}}
+\DoxyCodeLine{392     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_a9205ae9a0a505e635ca347b409ecc5bf}{GetMoveComment}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{393         \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}{comment}}.c\_str();}
+\DoxyCodeLine{394     \}}
+\DoxyCodeLine{395     std::string\& \mbox{\hyperlink{class_game_aec54f242bf305b359c4bdbbb9c0f1c87}{accessMoveComment}}() \{ \textcolor{keywordflow}{return} CurrentMove-\/>\mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}-\/>\mbox{\hyperlink{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}{comment}}; \}}
+\DoxyCodeLine{396     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a674f7e2bfdfe1294f66460b739a209ed}{SetMoveComment}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* comment);}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_a2d8766e23ec07502cc1ef73b633d4c4c}{GetNextSAN}}();}
+\DoxyCodeLine{399     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ae377aaa1201c506804fed14169795952}{GetSAN}}(\textcolor{keywordtype}{char}* str);}
+\DoxyCodeLine{400     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_aa0729e25060d117fa7c2f197ea5f758a}{GetPrevSAN}}(\textcolor{keywordtype}{char}* str);}
+\DoxyCodeLine{401     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_abe8d1dafd33e5c21c02c5c4dcb728505}{GetPrevMoveUCI}}(\textcolor{keywordtype}{char}* str) \textcolor{keyword}{const};}
+\DoxyCodeLine{402     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ab3b3c601ddcb55ea6d3ea09f7a60630c}{GetNextMoveUCI}}(\textcolor{keywordtype}{char}* str);}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{404     \textcolor{keyword}{const} \mbox{\hyperlink{structmove_t}{moveT}}* \mbox{\hyperlink{class_game_a795ee5b9aa6e6fd7121f9c1fef292638}{movetree}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} FirstMove; \}}
+\DoxyCodeLine{405 }
+\DoxyCodeLine{407     \textcolor{comment}{// Functions that get/set the tag pairs:}}
+\DoxyCodeLine{408     \textcolor{comment}{//}}
+\DoxyCodeLine{409 }
+\DoxyCodeLine{410     \textcolor{comment}{// Invoke @e visitor for each existing tag pair}}
+\DoxyCodeLine{411     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TFunc> \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a38f3ff0dac3aec0fe6f8d72029796e0c}{viewTagPairs}}(TFunc visitor) \textcolor{keyword}{const};}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{413     \textcolor{comment}{// Add a tag.}}
+\DoxyCodeLine{414     \textcolor{comment}{// For the tags that cannot be duplicated (like Event or White), the}}
+\DoxyCodeLine{415     \textcolor{comment}{// previous value will be overwritten.}}
+\DoxyCodeLine{416     std::string\& \mbox{\hyperlink{class_game_ab01af8ef1ce6d49f2f9be15a9b3c8335}{addTag}}(std::string\_view tag, std::string\_view value) \{}
+\DoxyCodeLine{417         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} overwrite = find\_std\_tag(tag))}
+\DoxyCodeLine{418             \textcolor{keywordflow}{return} overwrite-\/>assign(value);}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420         \textcolor{keywordflow}{return} extraTags\_.emplace\_back(tag, value).second;}
+\DoxyCodeLine{421     \}}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423     \textcolor{comment}{// Change the value of a tag (add the tag if it wasn't present).}}
+\DoxyCodeLine{424     \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{425     std::string\& \mbox{\hyperlink{class_game_a9553795cc55f0de7226dd7b921ea1bc9}{assignTagValue}}(std::string\_view tag, Args\&\&... args) \{}
+\DoxyCodeLine{426         \textcolor{keyword}{auto} value = find\_std\_tag(tag);}
+\DoxyCodeLine{427         \textcolor{keywordflow}{if} (!value) \{}
+\DoxyCodeLine{428             \textcolor{keyword}{auto} it = std::find\_if(}
+\DoxyCodeLine{429                 extraTags\_.begin(), extraTags\_.end(),}
+\DoxyCodeLine{430                 [\&](\textcolor{keyword}{auto} \textcolor{keyword}{const}\& elem) \{ return elem.first == tag; \});}
+\DoxyCodeLine{431             \textcolor{keywordflow}{if} (it != extraTags\_.end()) \{}
+\DoxyCodeLine{432                 value = \&it-\/>second;}
+\DoxyCodeLine{433             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{434                 value = \&extraTags\_.emplace\_back(tag, std::string()).second;}
+\DoxyCodeLine{435             \}}
+\DoxyCodeLine{436         \}}
+\DoxyCodeLine{437         \textcolor{keywordflow}{return} value-\/>assign(std::forward<Args>(args)...);}
+\DoxyCodeLine{438     \}}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440     \textcolor{keyword}{const} \textcolor{keyword}{decltype}(extraTags\_)\& \mbox{\hyperlink{class_game_a50304a936b0746c0f9a647c30a4b2742}{GetExtraTags}}() \textcolor{keyword}{const} \{ \textcolor{keywordflow}{return} extraTags\_; \}}
+\DoxyCodeLine{441     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_ac06e2ec00bf14db01cbb7b4dce00104e}{FindExtraTag}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* tag) \textcolor{keyword}{const};}
+\DoxyCodeLine{442     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a46098a951a8bdc0ec7d456676590872c}{ClearExtraTags}}() \{ extraTags\_.clear(); \}}
+\DoxyCodeLine{443     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ab1148b82845e506b78c0c62ec45757ad}{RemoveExtraTag}}(std::string\_view tag) \{}
+\DoxyCodeLine{444         std::erase\_if(extraTags\_, [\&](\textcolor{keyword}{auto} elem) \{ \textcolor{keywordflow}{return} elem.first == tag; \});}
+\DoxyCodeLine{445     \}}
+\DoxyCodeLine{446 }
+\DoxyCodeLine{447     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a4ed2db3f67adec402cbd638166d8c815}{LoadStandardTags}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags);}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a7c5c5ac4904fc0ab01d8d511236bb9f1}{SetEventStr}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str) \{ EventStr = str; \}}
+\DoxyCodeLine{450     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a0b8a03372fb0eeeffaef30e287436c7e}{SetSiteStr}}  (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str) \{ SiteStr  = str; \}}
+\DoxyCodeLine{451     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_ac3abc12ecca0e30b94f9eaa7a909349a}{SetWhiteStr}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str) \{ WhiteStr = str; \}}
+\DoxyCodeLine{452     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_aae310ed1b4828cf5a0d47c7b7fa12749}{SetBlackStr}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str) \{ BlackStr = str; \}}
+\DoxyCodeLine{453     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_aa291c657b3aa3ed59f959492bf03adc2}{SetRoundStr}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str) \{ RoundStr = str; \}}
+\DoxyCodeLine{454     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a6d52ec74f229fd81500a4789b050008b}{SetDate}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date)    \{ Date = date; \}}
+\DoxyCodeLine{455     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a64d903eb991c7d6df944fe69d1f5fb3f}{SetEventDate}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date)  \{ EventDate = date; \}}
+\DoxyCodeLine{456     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a47b11225a3ddee558e8437159bd14d5d}{SetResult}} (\mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} res) \{ Result = res; \}}
+\DoxyCodeLine{457     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a8c28074d71698bee0aa52cdd24eff345}{SetWhiteElo}} (\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} elo)  \{ WhiteElo = elo; \}}
+\DoxyCodeLine{458     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a273ac745fff2966af464a2ba2d153a3d}{SetBlackElo}} (\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} elo)  \{ BlackElo = elo; \}}
+\DoxyCodeLine{459     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a3d73030222ca3372745185cb29b305cd}{SetWhiteRatingType}} (\textcolor{keywordtype}{byte} b) \{ WhiteRatingType = b > 7 ? 0 : b; \}}
+\DoxyCodeLine{460     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a8787d3e419f2e1874a7d149a67e107b7}{SetBlackRatingType}} (\textcolor{keywordtype}{byte} b) \{ BlackRatingType = b > 7 ? 0 : b; \}}
+\DoxyCodeLine{461     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_game_ac047a1e84c3cfd72fb13c6ca4e715ab0}{setRating}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} col, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* ratingType, \textcolor{keywordtype}{size\_t} ratingTypeLen,}
+\DoxyCodeLine{462                   std::pair<const char*, const char*> rating);}
+\DoxyCodeLine{463     \textcolor{keywordtype}{void}     \mbox{\hyperlink{class_game_a8e24253996747cd5c60e0e0644cd7ac0}{SetEco}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco)       \{ EcoCode = eco; \}}
+\DoxyCodeLine{464     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_a9cb354ca5db71dde135b16dc8886d19d}{GetEventStr}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} EventStr.c\_str(); \}}
+\DoxyCodeLine{465     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_ae908330110dbecd5a5547d2394843abe}{GetSiteStr}} ()\textcolor{keyword}{  const }\{ \textcolor{keywordflow}{return} SiteStr.c\_str();  \}}
+\DoxyCodeLine{466     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_a0346454e3280ac7dfafed30727e8177e}{GetWhiteStr}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} WhiteStr.c\_str(); \}}
+\DoxyCodeLine{467     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_aa97121c69e94d7eeba8a28855481b1b0}{GetBlackStr}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} BlackStr.c\_str(); \}}
+\DoxyCodeLine{468     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_game_a60cfb6e10b59e270e5405de4efb60471}{GetRoundStr}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} RoundStr.c\_str(); \}}
+\DoxyCodeLine{469     \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}    \mbox{\hyperlink{class_game_a49af503593042b44d5b58625a90862b1}{GetDate}} ()\textcolor{keyword}{        const }\{ \textcolor{keywordflow}{return} Date; \}}
+\DoxyCodeLine{470     \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}    \mbox{\hyperlink{class_game_aae4e2c49447a3b50951577e175ab4bb7}{GetEventDate}} ()\textcolor{keyword}{   const }\{ \textcolor{keywordflow}{return} EventDate; \}}
+\DoxyCodeLine{471     \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}}  \mbox{\hyperlink{class_game_a1a9be841cbf4753af1bba1425cbb6621}{GetResult}} ()\textcolor{keyword}{      const }\{ \textcolor{keywordflow}{return} Result; \}}
+\DoxyCodeLine{472     std::string\_view \mbox{\hyperlink{class_game_abfd4562007139384076ccaeed74e0963}{GetResultStr}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{473     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}     \mbox{\hyperlink{class_game_a579d8da19debf86c1f17043f1af926ce}{GetWhiteElo}} ()\textcolor{keyword}{    const }\{ \textcolor{keywordflow}{return} WhiteElo; \}}
+\DoxyCodeLine{474     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}     \mbox{\hyperlink{class_game_a87b4111f2435376b380177cc401fb97a}{GetBlackElo}} ()\textcolor{keyword}{    const }\{ \textcolor{keywordflow}{return} BlackElo; \}}
+\DoxyCodeLine{475     \textcolor{keywordtype}{byte}     \mbox{\hyperlink{class_game_ac2476becd6d4e7547f68e5668bd486e6}{GetWhiteRatingType}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} WhiteRatingType; \}}
+\DoxyCodeLine{476     \textcolor{keywordtype}{byte}     \mbox{\hyperlink{class_game_a8176b7b65f6ccc8f5bdbcb035959df56}{GetBlackRatingType}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} BlackRatingType; \}}
+\DoxyCodeLine{477     \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}     \mbox{\hyperlink{class_game_aa25b5de2d7f451958be8b6aae6d68fa5}{GetEco}} ()\textcolor{keyword}{         const }\{ \textcolor{keywordflow}{return} EcoCode; \}}
+\DoxyCodeLine{478     \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}     \mbox{\hyperlink{class_game_ac62e80eb971d4d8e0c4f57fe4c5a33f2}{GetAverageElo}} ();}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480     \textcolor{comment}{// PGN conversion}}
+\DoxyCodeLine{481     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_ad7b93c901e1c21d59a63373f942ceb65}{WriteComment}} (\mbox{\hyperlink{class_text_buffer}{TextBuffer}} * tb, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * preStr,}
+\DoxyCodeLine{482                             \textcolor{keyword}{const} \textcolor{keywordtype}{char} * comment, \textcolor{keyword}{const} \textcolor{keywordtype}{char} * postStr);}
+\DoxyCodeLine{483     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}    \mbox{\hyperlink{class_game_aa1d34733891c84544a5e76aad0500c0f}{WriteMoveList}}(\mbox{\hyperlink{class_text_buffer}{TextBuffer}}* tb, \mbox{\hyperlink{structmove_t}{moveT}}* oldCurrentMove,}
+\DoxyCodeLine{484                             \textcolor{keywordtype}{bool} printMoveNum, \textcolor{keywordtype}{bool} inComment);}
+\DoxyCodeLine{485     std::pair<const char*, unsigned> \mbox{\hyperlink{class_game_ad69405c66a842ffa25b03a8f7f3b8981}{WriteToPGN}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} lineWidth = 0,}
+\DoxyCodeLine{486                                                  \textcolor{keywordtype}{bool} NewLineAtEnd = \textcolor{keyword}{false},}
+\DoxyCodeLine{487                                                  \textcolor{keywordtype}{bool} newLineToSpaces = \textcolor{keyword}{true});}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_a13e6f5b7ffbe1d9c06879428b03afb69}{ResetPgnStyle}} (\textcolor{keywordtype}{void}) \{ PgnStyle = 0; \}}
+\DoxyCodeLine{490     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_ad4e62c11334ce176ea446404c007a2cc}{ResetPgnStyle}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} flag) \{ PgnStyle = flag; \}}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}      \mbox{\hyperlink{class_game_ab7b0ff6446ce0a6c575b93099d08eef4}{GetPgnStyle}} () \{ \textcolor{keywordflow}{return} PgnStyle; \}}
+\DoxyCodeLine{493     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_a2019c893989651317a64e6f53b6711be}{SetPgnStyle}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} mask, \textcolor{keywordtype}{bool} setting) \{}
+\DoxyCodeLine{494         \textcolor{keywordflow}{if} (setting) \{ \mbox{\hyperlink{class_game_aeb246d46bd2003b3ab1a9ef45d8011ee}{AddPgnStyle}} (mask); \} \textcolor{keywordflow}{else} \{ \mbox{\hyperlink{class_game_aefb8d52a2e5ada2460114870ff16a22c}{RemovePgnStyle}} (mask); \}}
+\DoxyCodeLine{495     \}}
+\DoxyCodeLine{496     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_aeb246d46bd2003b3ab1a9ef45d8011ee}{AddPgnStyle}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} mask) \{ PgnStyle |= mask; \}}
+\DoxyCodeLine{497     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_aefb8d52a2e5ada2460114870ff16a22c}{RemovePgnStyle}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} mask) \{ PgnStyle \&= \string~mask; \}}
+\DoxyCodeLine{498 }
+\DoxyCodeLine{499     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_addb95734a9d17b7e30cd44a8a2635cd3}{SetPgnFormat}} (\mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{gameFormatT}} gf) \{ PgnFormat = gf; \}}
+\DoxyCodeLine{500     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_game_a405cf78e47bbc1ac6172a03e70bed855}{SetPgnFormatFromString}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str);}
+\DoxyCodeLine{501     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_ad6afa1b3a90e72939866c6385cead60a}{PgnFormatFromString}} (\textcolor{keyword}{const} \textcolor{keywordtype}{char} * str, \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{gameFormatT}} * fmt);}
+\DoxyCodeLine{502     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_game_adc49c453cc9847475f3a69e84c53a4b5}{IsPlainFormat}} () \{ \textcolor{keywordflow}{return} (PgnFormat == \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca3ea2ffff345fd05d511b890a992b0129}{PGN\_FORMAT\_Plain}}); \}}
+\DoxyCodeLine{503     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_game_a0b9f49819853bd005bd1ac12958eb632}{IsHtmlFormat}}  () \{ \textcolor{keywordflow}{return} (PgnFormat == \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca099d846a106bae46ed01148a0393e8d5}{PGN\_FORMAT\_HTML}}); \}}
+\DoxyCodeLine{504     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_game_ade80c4a16144815b6d514cedd41f843e}{IsLatexFormat}} () \{ \textcolor{keywordflow}{return} (PgnFormat == \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca896d43d566d3e43dc35d6b383f24b3d3}{PGN\_FORMAT\_LaTeX}}); \}}
+\DoxyCodeLine{505     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_game_a24146648322fdd996902732112ed2800}{IsColorFormat}} () \{ \textcolor{keywordflow}{return} (PgnFormat == \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500ca3e8e437d24b2fe04653dd1e93274261e}{PGN\_FORMAT\_Color}}); \}}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{507     \textcolor{keywordtype}{void}      \mbox{\hyperlink{class_game_a1eedb763cc83217ac02c55c878f25af1}{SetHtmlStyle}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} style) \{ HtmlStyle = style; \}}
+\DoxyCodeLine{508     \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}      \mbox{\hyperlink{class_game_a2be6b588053916b9ee9d5cc771731992}{GetHtmlStyle}} () \{ \textcolor{keywordflow}{return} HtmlStyle; \}}
+\DoxyCodeLine{509 }
+\DoxyCodeLine{510     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}    \mbox{\hyperlink{class_game_ab0b54d0d69c454afe68c2e6cf492e73e}{GetPartialMoveList}} (\mbox{\hyperlink{class_d_string}{DString}} * str, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} plyCount);}
+\DoxyCodeLine{511 }
+\DoxyCodeLine{512     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_abae7d69bc107966a40ca370be40f99e2}{MaterialMatch}}(\textcolor{keywordtype}{bool} PromotionsFlag, \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}}\& buf, \textcolor{keywordtype}{byte}* min,}
+\DoxyCodeLine{513                        \textcolor{keywordtype}{byte}* max, \mbox{\hyperlink{structpattern_t}{patternT}}* ptn, \textcolor{keywordtype}{size\_t} ptn\_size, \textcolor{keywordtype}{int} minPly,}
+\DoxyCodeLine{514                        \textcolor{keywordtype}{int} maxPly, \textcolor{keywordtype}{int} matchLength, \textcolor{keywordtype}{bool} oppBishops,}
+\DoxyCodeLine{515                        \textcolor{keywordtype}{bool} sameBishops, \textcolor{keywordtype}{int} minDiff, \textcolor{keywordtype}{int} maxDiff);}
+\DoxyCodeLine{516     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_game_afce914d5be4ad20882afc33f1075144a}{ExactMatch}} (\mbox{\hyperlink{class_position}{Position}} * pos, \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} * buf,}
+\DoxyCodeLine{517                           \mbox{\hyperlink{game_8h_a8d9316184e9e7b4c9eb71d36609b1419}{gameExactMatchT}} searchType);}
+\DoxyCodeLine{518     \textcolor{keywordtype}{bool}      \mbox{\hyperlink{class_game_aee0dee1f89a169012dd65de60aa9184a}{VarExactMatch}} (\mbox{\hyperlink{class_position}{Position}} * searchPos, \mbox{\hyperlink{game_8h_a8d9316184e9e7b4c9eb71d36609b1419}{gameExactMatchT}} searchType);}
+\DoxyCodeLine{519 }
+\DoxyCodeLine{520     std::pair<IndexEntry, TagRoster> \mbox{\hyperlink{class_game_adcfcc7ef1ca0778379982174a04d7dd2}{Encode}}(std::vector<byte>\& dest) \textcolor{keyword}{const};}
+\DoxyCodeLine{521     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}    \mbox{\hyperlink{class_game_a023ca7f78ac06a644e3f33e97dc82c96}{DecodeSkipTags}}(\mbox{\hyperlink{class_byte_buffer}{ByteBuffer}}* buf);}
+\DoxyCodeLine{522     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}    \mbox{\hyperlink{class_game_a6730a7646a6391388f6b3249d03e16ca}{DecodeNextMove}} (\mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} * buf, \mbox{\hyperlink{structsimple_move_t}{simpleMoveT}}\& sm);}
+\DoxyCodeLine{523     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}    \mbox{\hyperlink{class_game_a1c6c94eb3c25ecc3145d54e70fd5a90a}{Decode}}(\mbox{\hyperlink{class_index_entry}{IndexEntry}} \textcolor{keyword}{const}\& ie, \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \textcolor{keyword}{const}\& tags, \mbox{\hyperlink{class_byte_buffer}{ByteBuffer}} buf);}
+\DoxyCodeLine{524     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}}    \mbox{\hyperlink{class_game_a18ee9067ab63e7b546e056f3db785437}{DecodeMovesOnly}}(\mbox{\hyperlink{class_byte_buffer}{ByteBuffer}}\& buf);}
+\DoxyCodeLine{525 }
+\DoxyCodeLine{526     \mbox{\hyperlink{class_game}{Game}}* \mbox{\hyperlink{class_game_aa58ebd95f116f25ebcfc4426ee5e834b}{clone}}();}
+\DoxyCodeLine{527 \};}
+\DoxyCodeLine{528 }
+\DoxyCodeLine{529 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TFunc> \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a38f3ff0dac3aec0fe6f8d72029796e0c}{Game::viewTagPairs}}(TFunc visitor)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{530     \textcolor{keywordtype}{char} strBuf[256];}
+\DoxyCodeLine{531     visitor(\textcolor{stringliteral}{"{}Event"{}}, \mbox{\hyperlink{class_game_a9cb354ca5db71dde135b16dc8886d19d}{GetEventStr}}());}
+\DoxyCodeLine{532     visitor(\textcolor{stringliteral}{"{}Site"{}}, \mbox{\hyperlink{class_game_ae908330110dbecd5a5547d2394843abe}{GetSiteStr}}());}
+\DoxyCodeLine{533     \mbox{\hyperlink{date_8h_a7c4f37fa199cf628143ebcbf5f2f9b77}{date\_DecodeToString}}(\mbox{\hyperlink{class_game_a49af503593042b44d5b58625a90862b1}{GetDate}}(), strBuf);}
+\DoxyCodeLine{534     visitor(\textcolor{stringliteral}{"{}Date"{}}, strBuf);}
+\DoxyCodeLine{535     visitor(\textcolor{stringliteral}{"{}Round"{}}, \mbox{\hyperlink{class_game_a60cfb6e10b59e270e5405de4efb60471}{GetRoundStr}}());}
+\DoxyCodeLine{536     visitor(\textcolor{stringliteral}{"{}White"{}}, \mbox{\hyperlink{class_game_a0346454e3280ac7dfafed30727e8177e}{GetWhiteStr}}());}
+\DoxyCodeLine{537     visitor(\textcolor{stringliteral}{"{}Black"{}}, \mbox{\hyperlink{class_game_aa97121c69e94d7eeba8a28855481b1b0}{GetBlackStr}}());}
+\DoxyCodeLine{538     visitor(\textcolor{stringliteral}{"{}Result"{}}, \mbox{\hyperlink{common_8h_a1a68d609fefd29546dcd1de3181708d1}{RESULT\_LONGSTR}}[\mbox{\hyperlink{class_game_a1a9be841cbf4753af1bba1425cbb6621}{GetResult}}()]);}
+\DoxyCodeLine{539 }
+\DoxyCodeLine{540     \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} elo = \mbox{\hyperlink{class_game_a579d8da19debf86c1f17043f1af926ce}{GetWhiteElo}}()) \{}
+\DoxyCodeLine{541         std::string rType = \textcolor{stringliteral}{"{}White"{}};}
+\DoxyCodeLine{542         rType.append(\mbox{\hyperlink{common_8h_a943be3d0c8920c5afeb2f8845d28d61c}{ratingTypeNames}}[\mbox{\hyperlink{class_game_ac2476becd6d4e7547f68e5668bd486e6}{GetWhiteRatingType}}()]);}
+\DoxyCodeLine{543         visitor(rType.c\_str(), std::to\_string(elo).c\_str());}
+\DoxyCodeLine{544     \}}
+\DoxyCodeLine{545     \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} elo = \mbox{\hyperlink{class_game_a87b4111f2435376b380177cc401fb97a}{GetBlackElo}}()) \{}
+\DoxyCodeLine{546         std::string rType = \textcolor{stringliteral}{"{}Black"{}};}
+\DoxyCodeLine{547         rType.append(\mbox{\hyperlink{common_8h_a943be3d0c8920c5afeb2f8845d28d61c}{ratingTypeNames}}[\mbox{\hyperlink{class_game_a8176b7b65f6ccc8f5bdbcb035959df56}{GetBlackRatingType}}()]);}
+\DoxyCodeLine{548         visitor(rType.c\_str(), std::to\_string(elo).c\_str());}
+\DoxyCodeLine{549     \}}
+\DoxyCodeLine{550     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_game_aa25b5de2d7f451958be8b6aae6d68fa5}{GetEco}}() != \mbox{\hyperlink{common_8h_a10892da7867df89bb3912c101edcb512}{ECO\_None}}) \{}
+\DoxyCodeLine{551         \mbox{\hyperlink{misc_8h_a7c75658f7385b2d09285416ca1c393ee}{eco\_ToExtendedString}}(\mbox{\hyperlink{class_game_aa25b5de2d7f451958be8b6aae6d68fa5}{GetEco}}(), strBuf);}
+\DoxyCodeLine{552         visitor(\textcolor{stringliteral}{"{}ECO"{}}, strBuf);}
+\DoxyCodeLine{553     \}}
+\DoxyCodeLine{554     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_game_aae4e2c49447a3b50951577e175ab4bb7}{GetEventDate}}() != \mbox{\hyperlink{date_8h_a595f5d8135194ea54a673ed64c126f9c}{ZERO\_DATE}}) \{}
+\DoxyCodeLine{555         \mbox{\hyperlink{date_8h_a7c4f37fa199cf628143ebcbf5f2f9b77}{date\_DecodeToString}}(\mbox{\hyperlink{class_game_aae4e2c49447a3b50951577e175ab4bb7}{GetEventDate}}(), strBuf);}
+\DoxyCodeLine{556         visitor(\textcolor{stringliteral}{"{}EventDate"{}}, strBuf);}
+\DoxyCodeLine{557     \}}
+\DoxyCodeLine{558     \textcolor{comment}{// TODO?}}
+\DoxyCodeLine{559     \textcolor{comment}{// if (*ScidFlags)}}
+\DoxyCodeLine{560     \textcolor{comment}{//     visitor("{}ScidFlags"{}, ScidFlags);}}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& e : \mbox{\hyperlink{class_game_a50304a936b0746c0f9a647c30a4b2742}{GetExtraTags}}()) \{}
+\DoxyCodeLine{563         visitor(e.first.c\_str(), e.second.c\_str());}
+\DoxyCodeLine{564     \}}
+\DoxyCodeLine{565     \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_game_aa7425a0a96cf156dee0814f297e025aa}{HasNonStandardStart}}(strBuf)) \{}
+\DoxyCodeLine{566         visitor(\textcolor{stringliteral}{"{}FEN"{}}, strBuf);}
+\DoxyCodeLine{567     \}}
+\DoxyCodeLine{568 \}}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacegamepos}{gamepos}} \{}
+\DoxyCodeLine{571 }
+\DoxyCodeLine{572 \textcolor{keyword}{struct }\mbox{\hyperlink{structgamepos_1_1_game_pos}{GamePos}} \{}
+\DoxyCodeLine{573     uint32\_t \mbox{\hyperlink{structgamepos_1_1_game_pos_ab2df6e6ff6f51aae1cc36b468895e783}{RAVdepth}};}
+\DoxyCodeLine{574     uint32\_t \mbox{\hyperlink{structgamepos_1_1_game_pos_a0ff381cbde82f6ec259814c552e49e03}{RAVnum}};}
+\DoxyCodeLine{575     std::string \mbox{\hyperlink{structgamepos_1_1_game_pos_a567b43f937729705c31fc423d28094b6}{FEN}}; \textcolor{comment}{// "{}Forsyth-\/Edwards Notation"{} describing the position.}}
+\DoxyCodeLine{576     std::vector<int> \mbox{\hyperlink{structgamepos_1_1_game_pos_a08e4c3d5938dbe4975c2f6be4c7d53f8}{NAGs}};   \textcolor{comment}{// "{}Numeric Annotation Glyph"{}}}
+\DoxyCodeLine{577     std::string \mbox{\hyperlink{structgamepos_1_1_game_pos_ae49c587a4bc93e4ff341da31ca08f234}{comment}};     \textcolor{comment}{// text annotation of the position.}}
+\DoxyCodeLine{578     std::string \mbox{\hyperlink{structgamepos_1_1_game_pos_a8b8bf82208df9ffc8a02a211a4389ed0}{lastMoveSAN}}; \textcolor{comment}{// move that was played to reach the position.}}
+\DoxyCodeLine{579 \};}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{599 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TCont>}
+\DoxyCodeLine{600 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacegamepos_acd500427cde233db0e16134155674e47}{collectPositions}}(\mbox{\hyperlink{class_game}{Game}}\& game, TCont\& dest) \{}
+\DoxyCodeLine{601     \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{602         \textcolor{keywordflow}{if} (game.\mbox{\hyperlink{class_game_a3d1389abdf3a198fb5ad33a758dd1db9}{AtVarStart}}() \&\& !game.\mbox{\hyperlink{class_game_a3cd0110ea36cff90c7b168f723ca5256}{AtStart}}())}
+\DoxyCodeLine{603             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{604 }
+\DoxyCodeLine{605         dest.emplace\_back();}
+\DoxyCodeLine{606         \textcolor{keyword}{auto}\& \mbox{\hyperlink{namespacegamepos}{gamepos}} = dest.back();}
+\DoxyCodeLine{607         \mbox{\hyperlink{namespacegamepos}{gamepos}}.RAVdepth = game.\mbox{\hyperlink{class_game_ab8a500983b875ede59e09b223c544a56}{GetVarLevel}}();}
+\DoxyCodeLine{608         \mbox{\hyperlink{namespacegamepos}{gamepos}}.RAVnum = game.\mbox{\hyperlink{class_game_a3365eab39cdf39ee65b96e838ba87ee0}{GetVarNumber}}();}
+\DoxyCodeLine{609         \textcolor{keywordtype}{char} strBuf[256];}
+\DoxyCodeLine{610         game.\mbox{\hyperlink{class_game_a57ebf0346a9f947ede59c94f876b525c}{currentPos}}()-\/>\mbox{\hyperlink{class_position_ab8bca5b200359bb67019594bafec5b3b}{PrintFEN}}(strBuf);}
+\DoxyCodeLine{611         \mbox{\hyperlink{namespacegamepos}{gamepos}}.FEN = strBuf;}
+\DoxyCodeLine{612         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{byte}* nag = game.\mbox{\hyperlink{class_game_aa788c0c46fe0dba3c631ef76d62b7b4e}{GetNags}}(); *nag; nag++) \{}
+\DoxyCodeLine{613             \mbox{\hyperlink{namespacegamepos}{gamepos}}.NAGs.push\_back(*nag);}
+\DoxyCodeLine{614         \}}
+\DoxyCodeLine{615         \mbox{\hyperlink{namespacegamepos}{gamepos}}.comment = game.\mbox{\hyperlink{class_game_a9205ae9a0a505e635ca347b409ecc5bf}{GetMoveComment}}();}
+\DoxyCodeLine{616         game.\mbox{\hyperlink{class_game_aa0729e25060d117fa7c2f197ea5f758a}{GetPrevSAN}}(strBuf);}
+\DoxyCodeLine{617         \mbox{\hyperlink{namespacegamepos}{gamepos}}.lastMoveSAN = strBuf;}
+\DoxyCodeLine{618 }
+\DoxyCodeLine{619     \} \textcolor{keywordflow}{while} (game.\mbox{\hyperlink{class_game_aa5414239fc6ad823c58d57376249b678}{MoveForwardInPGN}}() == \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}});}
+\DoxyCodeLine{620 \}}
+\DoxyCodeLine{621 }
+\DoxyCodeLine{628 \textcolor{keyword}{inline} std::vector<GamePos> \mbox{\hyperlink{namespacegamepos_acd500427cde233db0e16134155674e47}{collectPositions}}(\mbox{\hyperlink{class_game}{Game}}\& game) \{}
+\DoxyCodeLine{629     std::vector<GamePos> res;}
+\DoxyCodeLine{630     game.\mbox{\hyperlink{class_game_aad5f00cf5043b7e7236fd0f05747f1e2}{MoveToStart}}();}
+\DoxyCodeLine{631     \mbox{\hyperlink{namespacegamepos_acd500427cde233db0e16134155674e47}{collectPositions}}(game, res);}
+\DoxyCodeLine{632     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{633 \}}
+\DoxyCodeLine{634 }
+\DoxyCodeLine{635 \} \textcolor{comment}{// namespace gamepos}}
+\DoxyCodeLine{636 }
+\DoxyCodeLine{637 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// \#ifndef SCID\_GAME\_H}}
+\DoxyCodeLine{638 }
+\DoxyCodeLine{640 \textcolor{comment}{//  EOF:    game.h}}
+
+\end{DoxyCode}

@@ -1,0 +1,150 @@
+\hypertarget{fullmove_8h_source}{}\doxysection{fullmove.\+h}
+\mbox{\hyperlink{fullmove_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{* Copyright (C) 2014  Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{* This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{*}}
+\DoxyCodeLine{6 \textcolor{comment}{* Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{* it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{* the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{* Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{* but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{* GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{*}}
+\DoxyCodeLine{15 \textcolor{comment}{* You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{* along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{*/}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef FULLMOVE\_H}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define FULLMOVE\_H}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{class }\mbox{\hyperlink{class_full_move}{FullMove}} \{}
+\DoxyCodeLine{26     \textcolor{comment}{// ** Lower 16 bits are compatible with Stockfish's Move **}}
+\DoxyCodeLine{27     \textcolor{comment}{// bits  0-\/ 5: destination square (from 0 to 63)}}
+\DoxyCodeLine{28     \textcolor{comment}{// bits  6-\/11: origin square (from 0 to 63)}}
+\DoxyCodeLine{29     \textcolor{comment}{// bits 12-\/13: promotion piece type -\/2 (from QUEEN-\/2 to KNIGHT-\/2)}}
+\DoxyCodeLine{30     \textcolor{comment}{// bits 14-\/15: special move flag: promotion (1), en passant (2), castling (3)}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{comment}{// ** Info for undoing the move **}}
+\DoxyCodeLine{33     \textcolor{comment}{// bits 16-\/17: castling flags -\/ TODO}}
+\DoxyCodeLine{34     \textcolor{comment}{// bits 18-\/20: enpassant file -\/ TODO}}
+\DoxyCodeLine{35     \textcolor{comment}{// bits 21-\/23: captured pieceT}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{// ** Info for direct SAN conversion **}}
+\DoxyCodeLine{38     \textcolor{comment}{// bits 24-\/26: moving pieceT}}
+\DoxyCodeLine{39     \textcolor{comment}{// bit     27: black to move}}
+\DoxyCodeLine{40     \textcolor{comment}{// bit     28: ambiguous move, insert from fyle}}
+\DoxyCodeLine{41     \textcolor{comment}{// bit     29: ambiguous move, insert from rank}}
+\DoxyCodeLine{42     \textcolor{comment}{// bit     30: check}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{// ** TODO: Use this flag to embed tags, variations, etc.. in a move stream}}
+\DoxyCodeLine{45     \textcolor{comment}{// bit     31: special flag}}
+\DoxyCodeLine{46     uint32\_t m\_;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{public}:}
+\DoxyCodeLine{49     \textcolor{keyword}{constexpr} \mbox{\hyperlink{class_full_move_ac7af8bd0be75ef0412504aa80078e90b}{FullMove}}(uint32\_t m = 0) : m\_(m)\{\};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \mbox{\hyperlink{class_full_move_a894c63ccd647761a96c57bf2a04ebf46}{FullMove}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} kingSq, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} rookSq)}
+\DoxyCodeLine{52         \textcolor{comment}{// Castle: encoding as king to rook allows the undoing of chess360 moves}}
+\DoxyCodeLine{53         : \mbox{\hyperlink{class_full_move}{FullMove}}(c, kingSq, rookSq, \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}}) \{}
+\DoxyCodeLine{54         m\_ |= (3 << 14);}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \mbox{\hyperlink{class_full_move_ac3044edf60a53fcc36f36cd4a39f62c3}{FullMove}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pt) \{}
+\DoxyCodeLine{58         m\_ = to | (from << 6) | (pt << 24) | (c << 27);}
+\DoxyCodeLine{59     \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_full_move_a90b8faaceb377292f816b335f5bf2d62}{operator==}}(\mbox{\hyperlink{class_full_move}{FullMove}} \textcolor{keyword}{const}\& f)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_ == f.m\_; \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{comment}{// Special moves:}}
+\DoxyCodeLine{64     \textcolor{comment}{// NONE: encoded as 0 (from 0 to 0);}}
+\DoxyCodeLine{65     \textcolor{comment}{// NULL: encoded as 65 (from 1 to 1);}}
+\DoxyCodeLine{66     \textcolor{comment}{// PROMO: encoded setting the special move flag to 1}}
+\DoxyCodeLine{67     \textcolor{comment}{// ENPASSANT: encoded setting the special move flag to 2}}
+\DoxyCodeLine{68     \textcolor{comment}{// CASTLING: encoded setting the special move flag to 3, from is the square}}
+\DoxyCodeLine{69     \textcolor{comment}{//           of the king and to is the square of the rook.}}
+\DoxyCodeLine{70     \textcolor{comment}{//           If from < to it is castling king side.}}
+\DoxyCodeLine{71     \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} m\_ != 0; \}}
+\DoxyCodeLine{72     \textcolor{keywordtype}{bool}    \mbox{\hyperlink{class_full_move_a6cd2b28455168c6170118f066e48afc1}{isNull}}()\textcolor{keyword}{      const }\{ \textcolor{keywordflow}{return} m\_ == 0b01000001; \}}
+\DoxyCodeLine{73     \textcolor{keywordtype}{bool}    \mbox{\hyperlink{class_full_move_afb6098c93f9bb863c7699a927565561a}{isPromo}}()\textcolor{keyword}{     const }\{ \textcolor{keywordflow}{return} (m\_ \& (3 << 14)) == (1 << 14); \}}
+\DoxyCodeLine{74     \textcolor{keywordtype}{bool}    \mbox{\hyperlink{class_full_move_a1fcd45b72e0491f81affc57c81efb64f}{isEnpassant}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (m\_ \& (3 << 14)) == (2 << 14); \}}
+\DoxyCodeLine{75     \textcolor{keywordtype}{bool}    \mbox{\hyperlink{class_full_move_ae68e31b0a832f27aaef40179e708abcd}{isCastle}}()\textcolor{keyword}{    const }\{ \textcolor{keywordflow}{return} (m\_ \& (3 << 14)) == (3 << 14); \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77     \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_full_move_aba4e00634f8fd78e41680523d3ff54ce}{getTo}}()\textcolor{keyword}{       const }\{ \textcolor{keywordflow}{return} m\_ \& 0x3F; \}}
+\DoxyCodeLine{78     \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_full_move_ac202fc11b822d791e31bbe024c920693}{getFrom}}()\textcolor{keyword}{     const }\{ \textcolor{keywordflow}{return} (m\_ >> 6) \& 0x3F; \}}
+\DoxyCodeLine{79     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}  \mbox{\hyperlink{class_full_move_af0ccbd845375365154f5acfecae9a993}{getPiece}}()\textcolor{keyword}{    const }\{ \textcolor{keywordflow}{return} (m\_ >> 24) \& 0x07; \}}
+\DoxyCodeLine{80     \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}  \mbox{\hyperlink{class_full_move_a1b5c20d0fb533521d677868fd2823ee1}{getColor}}()\textcolor{keyword}{    const }\{ \textcolor{keywordflow}{return} (m\_ >> 27 \& 1) ? \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}} : \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}}; \}}
+\DoxyCodeLine{81     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}  \mbox{\hyperlink{class_full_move_a55b197af141b649c6570d7b7d608ee01}{getPromo}}()\textcolor{keyword}{    const }\{ \textcolor{keywordflow}{return} ((m\_ >> 12) \& 0x03) +2; \}}
+\DoxyCodeLine{82     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}  \mbox{\hyperlink{class_full_move_a08ae3d4867a970e0fe73bf0781fff4aa}{getCaptured}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (m\_ >> 21) \& 0x07; \}}
+\DoxyCodeLine{83     std::string \mbox{\hyperlink{class_full_move_a1982b80d0ccf5a24cf9d358ed550eb41}{getSAN}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{84         std::string res;}
+\DoxyCodeLine{85         \textcolor{keyword}{const} \textcolor{keyword}{auto} to = \mbox{\hyperlink{class_full_move_aba4e00634f8fd78e41680523d3ff54ce}{getTo}}();}
+\DoxyCodeLine{86         \textcolor{keyword}{const} \textcolor{keyword}{auto} from = \mbox{\hyperlink{class_full_move_ac202fc11b822d791e31bbe024c920693}{getFrom}}();}
+\DoxyCodeLine{87         \textcolor{keywordflow}{if} (to == 0 \&\& from == 0) \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}-\/-\/"{}};}
+\DoxyCodeLine{88         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_full_move_ae68e31b0a832f27aaef40179e708abcd}{isCastle}}()) \{}
+\DoxyCodeLine{89             res = (to > from) ? \textcolor{stringliteral}{"{}O-\/O"{}} : \textcolor{stringliteral}{"{}O-\/O-\/O"{}};}
+\DoxyCodeLine{90             \textcolor{keywordtype}{bool} check = (m\_ >> 30) \& 1;}
+\DoxyCodeLine{91             \textcolor{keywordflow}{if} (check)}
+\DoxyCodeLine{92                 res += \textcolor{stringliteral}{"{}+"{}};}
+\DoxyCodeLine{93             \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{94         \}}
+\DoxyCodeLine{95         \textcolor{keywordtype}{bool} fromFyle = (m\_ >> 28) \& 1;}
+\DoxyCodeLine{96         \textcolor{keywordtype}{bool} fromRank = (m\_ >> 29) \& 1;}
+\DoxyCodeLine{97         \textcolor{keywordtype}{bool} check    = (m\_ >> 30) \& 1;}
+\DoxyCodeLine{98         \textcolor{keywordtype}{bool} capture  = (\mbox{\hyperlink{class_full_move_a08ae3d4867a970e0fe73bf0781fff4aa}{getCaptured}}() != 0);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100         \textcolor{keywordflow}{switch} (\mbox{\hyperlink{class_full_move_af0ccbd845375365154f5acfecae9a993}{getPiece}}()) \{}
+\DoxyCodeLine{101         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}}: res += \textcolor{stringliteral}{"{}B"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{102         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}}: res += \textcolor{stringliteral}{"{}N"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{103         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}}:   res += \textcolor{stringliteral}{"{}R"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{104         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}}:  res += \textcolor{stringliteral}{"{}Q"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{105         \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}}:   res += \textcolor{stringliteral}{"{}K"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{106         \textcolor{keywordflow}{default}: \textcolor{comment}{//PAWN}}
+\DoxyCodeLine{107             \textcolor{keywordflow}{if} (capture) res += \textcolor{charliteral}{'a'} + (from \% 8);}
+\DoxyCodeLine{108         \}}
+\DoxyCodeLine{109         \textcolor{keywordflow}{if} (fromFyle) res += \textcolor{charliteral}{'a'} + (from \% 8);}
+\DoxyCodeLine{110         \textcolor{keywordflow}{if} (fromRank) res += \textcolor{charliteral}{'1'} + (from / 8);}
+\DoxyCodeLine{111         \textcolor{keywordflow}{if} (capture)  res += \textcolor{stringliteral}{"{}x"{}};}
+\DoxyCodeLine{112         res += \textcolor{charliteral}{'a'} + (to \% 8);}
+\DoxyCodeLine{113         res += \textcolor{charliteral}{'1'} + (to / 8);}
+\DoxyCodeLine{114         \textcolor{keywordflow}{if} (\mbox{\hyperlink{class_full_move_afb6098c93f9bb863c7699a927565561a}{isPromo}}()) \{}
+\DoxyCodeLine{115             \textcolor{keywordflow}{switch} (\mbox{\hyperlink{class_full_move_a55b197af141b649c6570d7b7d608ee01}{getPromo}}()) \{}
+\DoxyCodeLine{116             \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}}: res += \textcolor{stringliteral}{"{}=B"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{117             \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}}: res += \textcolor{stringliteral}{"{}=N"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{118             \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}}:   res += \textcolor{stringliteral}{"{}=R"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{119             \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}}:  res += \textcolor{stringliteral}{"{}=Q"{}}; \textcolor{keywordflow}{break};}
+\DoxyCodeLine{120             \}}
+\DoxyCodeLine{121         \}}
+\DoxyCodeLine{122         \textcolor{keywordflow}{if} (check) res += \textcolor{stringliteral}{"{}+"{}};}
+\DoxyCodeLine{123         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{124     \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_full_move_a6bed5bc37ffa03a4f93c3b2bf7d22bd9}{setPromo}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} promo) \{}
+\DoxyCodeLine{127         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(promo == \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}} || promo == \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}} || promo == \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}} ||}
+\DoxyCodeLine{128                promo == \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}});}
+\DoxyCodeLine{129         m\_ |= ((promo -\/ 2) << 12) | (1 << 14);}
+\DoxyCodeLine{130     \}}
+\DoxyCodeLine{131     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_full_move_ae12576d0e521873f7760ef5b49386282}{setCapture}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} piece, \textcolor{keywordtype}{bool} enPassant) \{}
+\DoxyCodeLine{132         m\_ |= ((piece \& 0x07) << 21);}
+\DoxyCodeLine{133         \textcolor{keywordflow}{if} (enPassant) m\_ |= (2 << 14);}
+\DoxyCodeLine{134     \}}
+\DoxyCodeLine{135     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_full_move_adfe4f0a132c04743cc531e4d8d07ebf0}{setAmbiguity}}(\textcolor{keywordtype}{bool} fyle, \textcolor{keywordtype}{bool} rank) \{}
+\DoxyCodeLine{136         m\_ \&= \string~(3 << 28);}
+\DoxyCodeLine{137         \textcolor{keywordflow}{if} (fyle)}
+\DoxyCodeLine{138             m\_ |= (1 << 28);}
+\DoxyCodeLine{139         \textcolor{keywordflow}{if} (rank)}
+\DoxyCodeLine{140             m\_ |= (1 << 29);}
+\DoxyCodeLine{141     \}}
+\DoxyCodeLine{142     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_full_move_aa1df2021dd86681d58e37d286fb139b5}{setCheck}}() \{ m\_ |= (1 << 30); \}}
+\DoxyCodeLine{143 \};}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,86 @@
+\hypertarget{position_8cpp}{}\doxysection{position.\+cpp File Reference}
+\label{position_8cpp}\index{position.cpp@{position.cpp}}
+{\ttfamily \#include \char`\"{}position.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}attacks.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dstring.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}movegen.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sqmove.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for position.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{position_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsq_dir___init}{sq\+Dir\+\_\+\+Init}}
+\item 
+struct \mbox{\hyperlink{structhtml_style_t}{html\+StyleT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{position_8cpp_a0348f10c0f61ad015c675dc2dbecf29a}{POSSIBLE\+\_\+\+CAPTURE}}(d)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Add\+Piece $>$ }\\const char $\ast$ \mbox{\hyperlink{position_8cpp_acb52a24b03b355531ad0104d7e380d42}{FEN\+\_\+parse\+Pieces}} (const char $\ast$str, Add\+Piece add)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}} \mbox{\hyperlink{position_8cpp_a17e0838d898eba8d630f6b9379e0e940}{sq\+Dir}} \mbox{[}66\mbox{]}\mbox{[}66\mbox{]}
+\item 
+struct \mbox{\hyperlink{structsq_dir___init}{sq\+Dir\+\_\+\+Init}} \mbox{\hyperlink{position_8cpp_a829ee04bd254d63ef2130527f4657ca9}{sq\+Dir\+\_\+\+Init\+\_\+singleton}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{position_8cpp_a0348f10c0f61ad015c675dc2dbecf29a}\label{position_8cpp_a0348f10c0f61ad015c675dc2dbecf29a}} 
+\index{position.cpp@{position.cpp}!POSSIBLE\_CAPTURE@{POSSIBLE\_CAPTURE}}
+\index{POSSIBLE\_CAPTURE@{POSSIBLE\_CAPTURE}!position.cpp@{position.cpp}}
+\doxysubsubsection{\texorpdfstring{POSSIBLE\_CAPTURE}{POSSIBLE\_CAPTURE}}
+{\footnotesize\ttfamily \#define POSSIBLE\+\_\+\+CAPTURE(\begin{DoxyParamCaption}\item[{}]{d }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{            ((d != \mbox{\hyperlink{board__def_8h_a9ebc932c0c91e8ba6fe2335f1a6c7c83}{NULL\_SQUARE}})   \(\backslash\)}
+\DoxyCodeLine{            \&\&  ((\mbox{\hyperlink{board__def_8h_a0e1b80dd22053076ddaa947d6b0610c8}{piece\_Color}} (Board[d]) == (\mbox{\hyperlink{board__def_8h_ac971357d1c624a25a36c96e47cc7c724}{color\_Flip}}(ToMove)))  \(\backslash\)}
+\DoxyCodeLine{                    ||  (d == EPTarget  \&\&  IsValidEnPassant(from,d))))}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{position_8cpp_acb52a24b03b355531ad0104d7e380d42}\label{position_8cpp_acb52a24b03b355531ad0104d7e380d42}} 
+\index{position.cpp@{position.cpp}!FEN\_parsePieces@{FEN\_parsePieces}}
+\index{FEN\_parsePieces@{FEN\_parsePieces}!position.cpp@{position.cpp}}
+\doxysubsubsection{\texorpdfstring{FEN\_parsePieces()}{FEN\_parsePieces()}}
+{\footnotesize\ttfamily template$<$typename Add\+Piece $>$ \\
+const char $\ast$ FEN\+\_\+parse\+Pieces (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{Add\+Piece}]{add }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{position_8cpp_a17e0838d898eba8d630f6b9379e0e940}\label{position_8cpp_a17e0838d898eba8d630f6b9379e0e940}} 
+\index{position.cpp@{position.cpp}!sqDir@{sqDir}}
+\index{sqDir@{sqDir}!position.cpp@{position.cpp}}
+\doxysubsubsection{\texorpdfstring{sqDir}{sqDir}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_ad7c8819dd47b4b756087065825d6589f}{directionT}} sq\+Dir\mbox{[}66\mbox{]}\mbox{[}66\mbox{]}}
+
+\mbox{\Hypertarget{position_8cpp_a829ee04bd254d63ef2130527f4657ca9}\label{position_8cpp_a829ee04bd254d63ef2130527f4657ca9}} 
+\index{position.cpp@{position.cpp}!sqDir\_Init\_singleton@{sqDir\_Init\_singleton}}
+\index{sqDir\_Init\_singleton@{sqDir\_Init\_singleton}!position.cpp@{position.cpp}}
+\doxysubsubsection{\texorpdfstring{sqDir\_Init\_singleton}{sqDir\_Init\_singleton}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsq_dir___init}{sq\+Dir\+\_\+\+Init}} sq\+Dir\+\_\+\+Init\+\_\+singleton}
+

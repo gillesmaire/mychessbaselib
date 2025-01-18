@@ -1,0 +1,122 @@
+\hypertarget{class_fast_board}{}\doxysection{Fast\+Board Class Reference}
+\label{class_fast_board}\index{FastBoard@{FastBoard}}
+
+
+{\ttfamily \#include $<$gameview.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_fast_board_a8f7649ff7680adff6390c1ae190902eb}{Fast\+Board}} (const \mbox{\hyperlink{class_position}{Position}} \&pos)
+\item 
+void \mbox{\hyperlink{class_fast_board_abccd0de5d8d6bcfafcacf948f226ef63}{Init}} (const \mbox{\hyperlink{class_position}{Position}} \&pos)
+\item 
+bool \mbox{\hyperlink{class_fast_board_a309c2d84383247d9dbce1930fa99ee23}{is\+Equal}} (const \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} $\ast$board, const \mbox{\hyperlink{class_material_count}{Material\+Count}} \&mt\+\_\+count) const
+\item 
+const \mbox{\hyperlink{class_material_count}{Material\+Count}} \& \mbox{\hyperlink{class_fast_board_a56359db730c365b3083bd63634e083dc}{material\+Count}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}{get\+Square}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, int idx) const
+\item 
+\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}{get\+Piece}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, int idx) const
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color$>$ }\\\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_fast_board_a03bb9dff1cd4321ca3f821b35c1bb348}{castle}} (bool king\+\_\+side)
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color$>$ }\\\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_fast_board_a87590bd1f301c1de7183db116b61e356}{move}} (int idx, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} promo)
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color$>$ }\\\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_fast_board_acb3f4b1d55407d9606ccaaa3b94bcf80}{remove}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq, int new\+Idx=EMPTY\+\_\+\+SQ\+\_\+)
+\item 
+void \mbox{\hyperlink{class_fast_board_ab957dae924d26648559009246a103245}{fill\+SANInfo}} (\mbox{\hyperlink{class_full_move}{Full\+Move}} \&lastmove) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_fast_board}{Fast\+Board}} \mbox{\hyperlink{class_fast_board_a5b5c120607df3bf8fe817f1ded01b326}{std\+Start}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_fast_board_a8f7649ff7680adff6390c1ae190902eb}\label{class_fast_board_a8f7649ff7680adff6390c1ae190902eb}} 
+\index{FastBoard@{FastBoard}!FastBoard@{FastBoard}}
+\index{FastBoard@{FastBoard}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{FastBoard()}{FastBoard()}}
+{\footnotesize\ttfamily Fast\+Board\+::\+Fast\+Board (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_position}{Position}} \&}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_fast_board_a03bb9dff1cd4321ca3f821b35c1bb348}\label{class_fast_board_a03bb9dff1cd4321ca3f821b35c1bb348}} 
+\index{FastBoard@{FastBoard}!castle@{castle}}
+\index{castle@{castle}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{castle()}{castle()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color$>$ \\
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Fast\+Board\+::castle (\begin{DoxyParamCaption}\item[{bool}]{king\+\_\+side }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The king and the rook are moved to the castle squares (even if they were no longer in their starting squares). \begin{DoxyReturn}{Returns}
+the previous position of the rook on success. On error returns the king\textquotesingle{}s square (no piece is moved). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_fast_board_ab957dae924d26648559009246a103245}\label{class_fast_board_ab957dae924d26648559009246a103245}} 
+\index{FastBoard@{FastBoard}!fillSANInfo@{fillSANInfo}}
+\index{fillSANInfo@{fillSANInfo}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{fillSANInfo()}{fillSANInfo()}}
+{\footnotesize\ttfamily void Fast\+Board\+::fill\+SANInfo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_full_move}{Full\+Move}} \&}]{lastmove }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given the actual board position, find if the last move needs to be made unambiguous and if it gives check (or TODO mate), and then sets the appropriate bits in {\itshape lastmove}. 
+\begin{DoxyParams}{Parameters}
+{\em lastmove} & the last move played. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}\label{class_fast_board_afb1b93cb72cab1e587f338ac636447d4}} 
+\index{FastBoard@{FastBoard}!getPiece@{getPiece}}
+\index{getPiece@{getPiece}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{getPiece()}{getPiece()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} Fast\+Board\+::get\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{color,  }\item[{int}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}\label{class_fast_board_ab20a2c50a5c4e34407a682b88e5be3e2}} 
+\index{FastBoard@{FastBoard}!getSquare@{getSquare}}
+\index{getSquare@{getSquare}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{getSquare()}{getSquare()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Fast\+Board\+::get\+Square (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{color,  }\item[{int}]{idx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_fast_board_abccd0de5d8d6bcfafcacf948f226ef63}\label{class_fast_board_abccd0de5d8d6bcfafcacf948f226ef63}} 
+\index{FastBoard@{FastBoard}!Init@{Init}}
+\index{Init@{Init}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Fast\+Board\+::\+Init (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_position}{Position}} \&}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_fast_board_a309c2d84383247d9dbce1930fa99ee23}\label{class_fast_board_a309c2d84383247d9dbce1930fa99ee23}} 
+\index{FastBoard@{FastBoard}!isEqual@{isEqual}}
+\index{isEqual@{isEqual}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{isEqual()}{isEqual()}}
+{\footnotesize\ttfamily bool Fast\+Board\+::is\+Equal (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} $\ast$}]{board,  }\item[{const \mbox{\hyperlink{class_material_count}{Material\+Count}} \&}]{mt\+\_\+count }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_fast_board_a56359db730c365b3083bd63634e083dc}\label{class_fast_board_a56359db730c365b3083bd63634e083dc}} 
+\index{FastBoard@{FastBoard}!materialCount@{materialCount}}
+\index{materialCount@{materialCount}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{materialCount()}{materialCount()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_material_count}{Material\+Count}} \& Fast\+Board\+::material\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_fast_board_a87590bd1f301c1de7183db116b61e356}\label{class_fast_board_a87590bd1f301c1de7183db116b61e356}} 
+\index{FastBoard@{FastBoard}!move@{move}}
+\index{move@{move}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color$>$ \\
+\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} Fast\+Board\+::move (\begin{DoxyParamCaption}\item[{int}]{idx,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{to,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{promo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_fast_board_acb3f4b1d55407d9606ccaaa3b94bcf80}\label{class_fast_board_acb3f4b1d55407d9606ccaaa3b94bcf80}} 
+\index{FastBoard@{FastBoard}!remove@{remove}}
+\index{remove@{remove}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color$>$ \\
+\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} Fast\+Board\+::remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq,  }\item[{int}]{new\+Idx = {\ttfamily EMPTY\+\_\+SQ\+\_\+} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_fast_board_a5b5c120607df3bf8fe817f1ded01b326}\label{class_fast_board_a5b5c120607df3bf8fe817f1ded01b326}} 
+\index{FastBoard@{FastBoard}!stdStart@{stdStart}}
+\index{stdStart@{stdStart}!FastBoard@{FastBoard}}
+\doxysubsubsection{\texorpdfstring{stdStart()}{stdStart()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_fast_board}{Fast\+Board}} Fast\+Board\+::std\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{gameview_8h}{gameview.\+h}}\end{DoxyCompactItemize}

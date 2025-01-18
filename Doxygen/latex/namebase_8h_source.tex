@@ -1,0 +1,294 @@
+\hypertarget{namebase_8h_source}{}\doxysection{namebase.\+h}
+\mbox{\hyperlink{namebase_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2014-\/2017 Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{ * it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{ * the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{ * GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{ * along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{ */}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef SCID\_NAMEBASE\_H}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define SCID\_NAMEBASE\_H}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{index_8h}{index.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{indexentry_8h}{indexentry.h}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{misc_8h}{misc.h}}"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <array>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include <string\_view>}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{using }\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} = unsigned;}
+\DoxyCodeLine{34 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{35     \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}},}
+\DoxyCodeLine{36     \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}},}
+\DoxyCodeLine{37     \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}},}
+\DoxyCodeLine{38     \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}},}
+\DoxyCodeLine{39     \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}},}
+\DoxyCodeLine{40     \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daeec13ac7ccca44a688f9248a7256ada5}{NAME\_INVALID}} = 99}
+\DoxyCodeLine{41 \};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{47 \textcolor{keyword}{class }\mbox{\hyperlink{class_name_base}{NameBase}} \{}
+\DoxyCodeLine{48     std::vector<std::unique\_ptr<const char[]>> names\_[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}];}
+\DoxyCodeLine{49     \textcolor{keyword}{struct }idxCmp \{}
+\DoxyCodeLine{50         \textcolor{keywordtype}{bool} operator()(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str1, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str2)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{51             \textcolor{comment}{// *** Compatibility ***}}
+\DoxyCodeLine{52             \textcolor{comment}{// Older code used a custom StrTree class with a peculiar sorting:}}
+\DoxyCodeLine{53             \textcolor{comment}{// -\/ the first char was interpreted as an unsigned char;}}
+\DoxyCodeLine{54             \textcolor{comment}{// -\/ the remaining part was compared with the function}}
+\DoxyCodeLine{55             \textcolor{comment}{// strComapare(),}}
+\DoxyCodeLine{56             \textcolor{comment}{//   which converts the chars to ints, and is not consistent with}}
+\DoxyCodeLine{57             \textcolor{comment}{//   the standard function strcmp().}}
+\DoxyCodeLine{58             \textcolor{comment}{// The old StrTree class did also have unpredictable behaviors when}}
+\DoxyCodeLine{59             \textcolor{comment}{// fed with names not sorted according to that criteria, for example}}
+\DoxyCodeLine{60             \textcolor{comment}{// it could create Namebase objects with duplicate entries.}}
+\DoxyCodeLine{61             \textcolor{comment}{// ***}}
+\DoxyCodeLine{62             \textcolor{keywordflow}{if} (*str1 == *str2)}
+\DoxyCodeLine{63                 \textcolor{keywordflow}{return} \mbox{\hyperlink{misc_8h_addf3ada8a9efa3ca80652a06b309f613}{strCompare}}(str1, str2) < 0;}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65             \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(*str1) < \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(*str2);}
+\DoxyCodeLine{66         \}}
+\DoxyCodeLine{67     \};}
+\DoxyCodeLine{68     std::map<const char*, idNumberT, idxCmp> idx\_[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}];}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{public}:}
+\DoxyCodeLine{71     \textcolor{comment}{// Add a name (string) to the NameBase.}}
+\DoxyCodeLine{72     \textcolor{comment}{// @param nt:      @e nameT type of the name to add.}}
+\DoxyCodeLine{73     \textcolor{comment}{// @param name:    the name to add.}}
+\DoxyCodeLine{74     \textcolor{comment}{// @return the ID assigned to @e name.}}
+\DoxyCodeLine{75     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_name_base_aa2943febf5ac38488f66efa14b7a2f9c}{namebase\_add}}(}
+\DoxyCodeLine{76         \mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, std::string\_view name,}
+\DoxyCodeLine{77         std::map<const char*, idNumberT, idxCmp>::iterator* hint = \textcolor{keyword}{nullptr}) \{}
+\DoxyCodeLine{78         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(nt));}
+\DoxyCodeLine{79         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(names\_[nt].size() <= std::numeric\_limits<idNumberT>::max());}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81         \textcolor{keywordtype}{char}* alloc = \textcolor{keyword}{new} \textcolor{keywordtype}{char}[name.size() + 1];}
+\DoxyCodeLine{82         std::copy\_n(name.data(), name.size(), alloc);}
+\DoxyCodeLine{83         alloc[name.size()] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{84         \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} newID = \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}}\textcolor{keyword}{>}(names\_[nt].size());}
+\DoxyCodeLine{85         names\_[nt].emplace\_back(alloc);}
+\DoxyCodeLine{86         \textcolor{keywordflow}{if} (hint) \{}
+\DoxyCodeLine{87             idx\_[nt].emplace\_hint(*hint, alloc, newID);}
+\DoxyCodeLine{88         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{89             idx\_[nt].emplace(alloc, newID);}
+\DoxyCodeLine{90         \}}
+\DoxyCodeLine{91         \textcolor{keywordflow}{return} newID;}
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{comment}{// Return the ID corresponding to @e name.}}
+\DoxyCodeLine{95     \textcolor{comment}{// Add the name to the NameBase if it doesn't exists.}}
+\DoxyCodeLine{96     \textcolor{comment}{// @param nt:      @e nameT type of the name.}}
+\DoxyCodeLine{97     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_name_base_a03b16a5e05888c0350536a599eb9a353}{namebase\_find\_or\_add}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name) \{}
+\DoxyCodeLine{98         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(nt));}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100         \textcolor{keyword}{auto}\& nb = idx\_[nt];}
+\DoxyCodeLine{101         \textcolor{keyword}{auto} it = nb.lower\_bound(name);}
+\DoxyCodeLine{102         \textcolor{keywordflow}{if} (it != nb.end() \&\& !nb.key\_comp()(name, it-\/>first))}
+\DoxyCodeLine{103             \textcolor{keywordflow}{return} it-\/>second;}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105         \textcolor{keywordflow}{return} \mbox{\hyperlink{class_name_base_aa2943febf5ac38488f66efa14b7a2f9c}{namebase\_add}}(nt, name, \&it);}
+\DoxyCodeLine{106     \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108     \textcolor{comment}{// Return the number of names stored in the NameBase.}}
+\DoxyCodeLine{109     \textcolor{comment}{// @param nt: a valid @e nameT type.}}
+\DoxyCodeLine{110     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_name_base_aa7df9fc70f800c278ccf5b6dd01ab547}{namebase\_size}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{111         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(nt));}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113         \textcolor{keywordflow}{return} names\_[nt].size();}
+\DoxyCodeLine{114     \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{122     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_name_base_af060b226d4a885916e4bd173efdcf80c}{insert}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{size\_t} nameLen, \mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{123         \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id} >= names\_[nt].size())}
+\DoxyCodeLine{124             names\_[nt].resize(\textcolor{keywordtype}{id} + \textcolor{keywordtype}{size\_t}\{1\});}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126         \textcolor{keywordflow}{if} (names\_[nt][\textcolor{keywordtype}{id}]) \textcolor{comment}{// A name with the same ID already exists}}
+\DoxyCodeLine{127             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129         \textcolor{keywordtype}{char}* buf = \textcolor{keyword}{new} \textcolor{keywordtype}{char}[nameLen + 1];}
+\DoxyCodeLine{130         std::copy\_n(name, nameLen, buf);}
+\DoxyCodeLine{131         buf[nameLen] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{132         names\_[nt][id].reset(buf);}
+\DoxyCodeLine{133         \textcolor{keyword}{auto} it = idx\_[nt].emplace\_hint(idx\_[nt].end(), buf, \textcolor{keywordtype}{id});}
+\DoxyCodeLine{134         \textcolor{keywordflow}{return} it-\/>second == id; \textcolor{comment}{// Check that the name doesn't already exists}}
+\DoxyCodeLine{135     \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{140     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_name_base_abd6516d7825f1c00fb35975757d56327}{Clear}}() \{ *\textcolor{keyword}{this} = \mbox{\hyperlink{class_name_base}{NameBase}}(); \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{149     std::vector<idNumberT> \mbox{\hyperlink{class_name_base_a255d57cebcc54a4c550de781f89841c6}{getFirstMatches}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str,}
+\DoxyCodeLine{150                                            \textcolor{keywordtype}{size\_t} maxMatches)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{151         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(nt) \&\& str != NULL);}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153         std::vector<idNumberT> res;}
+\DoxyCodeLine{154         \textcolor{keywordtype}{size\_t} len = strlen(str);}
+\DoxyCodeLine{155         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} it = idx\_[nt].lower\_bound(str);}
+\DoxyCodeLine{156              it != idx\_[nt].end() \&\& res.size() < maxMatches; ++it) \{}
+\DoxyCodeLine{157             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* s = it-\/>first;}
+\DoxyCodeLine{158             \textcolor{keywordflow}{if} (strlen(s) < len || !std::equal(str, str + len, s))}
+\DoxyCodeLine{159                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{160             res.emplace\_back(it-\/>second);}
+\DoxyCodeLine{161         \}}
+\DoxyCodeLine{162         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{163     \}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{171     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_name_base_a1aae1470d9c6224b8b1b45b5c8f5a1e0}{GetName}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \textcolor{keywordtype}{id})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{172         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(nt) \&\& \textcolor{keywordtype}{id} < \mbox{\hyperlink{class_name_base_a40338fdf0634722e66b506bcdc905908}{GetNumNames}}(nt));}
+\DoxyCodeLine{173         \textcolor{keywordflow}{return} names\_[nt][id].get();}
+\DoxyCodeLine{174     \}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{180     \textcolor{keyword}{const} \textcolor{keyword}{decltype}(idx\_)\& \mbox{\hyperlink{class_name_base_a8e2488d896a82515e3e49d3d16b9314d}{getNames}}() \textcolor{keyword}{const} \{ \textcolor{keywordflow}{return} idx\_; \}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{187     \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}} \mbox{\hyperlink{class_name_base_a40338fdf0634722e66b506bcdc905908}{GetNumNames}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{188         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(nt));}
+\DoxyCodeLine{189         \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}}\textcolor{keyword}{>}(names\_[nt].size());}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{199     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_name_base_a2fa187d2180d33ecb24ba92dad55e0ce}{FindExactName}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{idNumberT}}* idPtr)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{200         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(\mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(nt) \&\& str != NULL \&\& idPtr != NULL);}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202         \textcolor{keyword}{auto} it = idx\_[nt].find(str);}
+\DoxyCodeLine{203         \textcolor{keywordflow}{if} (it != idx\_[nt].end()) \{}
+\DoxyCodeLine{204             *idPtr = (*it).second;}
+\DoxyCodeLine{205             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{206         \}}
+\DoxyCodeLine{207         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a3b5a919ebbf82784bd9955f6c57a3ea5}{ERROR\_NameNotFound}};}
+\DoxyCodeLine{208     \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{215     std::vector<uint32\_t> \mbox{\hyperlink{class_name_base_acc25ae943a3603b26b3d3e5707882b92}{generateHashMap}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{216         std::vector<uint32\_t> res(names\_[nt].size());}
+\DoxyCodeLine{217         std::transform(}
+\DoxyCodeLine{218             names\_[nt].begin(), names\_[nt].end(), res.begin(),}
+\DoxyCodeLine{219             [](\textcolor{keyword}{auto} \textcolor{keyword}{const}\& name) \{ return strStartHash(name.get()); \});}
+\DoxyCodeLine{220         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{221     \}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{227     std::array<std::vector<int>, \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}>}
+\DoxyCodeLine{228     \mbox{\hyperlink{class_name_base_a8ecd2401f557707056a3b42438fc4741}{calcNameFreq}}(\mbox{\hyperlink{class_index}{Index}} \textcolor{keyword}{const}\& idx)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{229         std::array<std::vector<int>, \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}> resVec;}
+\DoxyCodeLine{230         \textcolor{keywordflow}{for} (\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} n = \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}; n < \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}; n++) \{}
+\DoxyCodeLine{231             resVec[n].resize(\mbox{\hyperlink{class_name_base_a40338fdf0634722e66b506bcdc905908}{GetNumNames}}(n), 0);}
+\DoxyCodeLine{232         \}}
+\DoxyCodeLine{233         \textcolor{keywordflow}{for} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} i = 0, n = idx.\mbox{\hyperlink{class_index_a0365ae79ab3c02790431799ba630cbf0}{GetNumGames}}(); i < n; i++) \{}
+\DoxyCodeLine{234             \textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}* ie = idx.\mbox{\hyperlink{class_index_aa8ad6c94005a8c7e40e0cd9751058ca9}{GetEntry}}(i);}
+\DoxyCodeLine{235             resVec[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}][ie-\/>\mbox{\hyperlink{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}{GetWhite}}()] += 1;}
+\DoxyCodeLine{236             resVec[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}][ie-\/>\mbox{\hyperlink{class_index_entry_a812dafa8a43c269681d8a8171c13526e}{GetBlack}}()] += 1;}
+\DoxyCodeLine{237             resVec[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}}][ie-\/>\mbox{\hyperlink{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}{GetEvent}}()] += 1;}
+\DoxyCodeLine{238             resVec[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}}][ie-\/>\mbox{\hyperlink{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}{GetSite}}()] += 1;}
+\DoxyCodeLine{239             resVec[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}}][ie-\/>\mbox{\hyperlink{class_index_entry_a6799286fea8f9d004217d547f68add06}{GetRound}}()] += 1;}
+\DoxyCodeLine{240         \}}
+\DoxyCodeLine{241         \textcolor{keywordflow}{return} resVec;}
+\DoxyCodeLine{242     \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{248     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_name_base_ae0233cba43158dd5b8e56d1a1263eb45}{count\_invalid\_ids}}(\mbox{\hyperlink{class_index}{Index}} \textcolor{keyword}{const}\& idx)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{249         \textcolor{keywordtype}{size\_t} n\_invalid = 0;}
+\DoxyCodeLine{250         std::array<size\_t, NUM\_NAME\_TYPES> maxID;}
+\DoxyCodeLine{251         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} n = \mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}}\{\}; n < \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}; n++) \{}
+\DoxyCodeLine{252             maxID[n] = \mbox{\hyperlink{class_name_base_a40338fdf0634722e66b506bcdc905908}{GetNumNames}}(n);}
+\DoxyCodeLine{253         \}}
+\DoxyCodeLine{254         \textcolor{keywordflow}{for} (\mbox{\hyperlink{common_8h_a2c7f83aec3053cd8fc3ab9a70b7eace7}{gamenumT}} i = 0, n = idx.\mbox{\hyperlink{class_index_a0365ae79ab3c02790431799ba630cbf0}{GetNumGames}}(); i < n; i++) \{}
+\DoxyCodeLine{255             \textcolor{keyword}{const} \mbox{\hyperlink{class_index_entry}{IndexEntry}}* ie = idx.\mbox{\hyperlink{class_index_aa8ad6c94005a8c7e40e0cd9751058ca9}{GetEntry}}(i);}
+\DoxyCodeLine{256             n\_invalid += ie-\/>\mbox{\hyperlink{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}{GetWhite}}() < maxID[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}] ? 0 : 1;}
+\DoxyCodeLine{257             n\_invalid += ie-\/>\mbox{\hyperlink{class_index_entry_a812dafa8a43c269681d8a8171c13526e}{GetBlack}}() < maxID[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}] ? 0 : 1;}
+\DoxyCodeLine{258             n\_invalid += ie-\/>\mbox{\hyperlink{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}{GetEvent}}() < maxID[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}}] ? 0 : 1;}
+\DoxyCodeLine{259             n\_invalid += ie-\/>\mbox{\hyperlink{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}{GetSite}}() < maxID[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}}] ? 0 : 1;}
+\DoxyCodeLine{260             n\_invalid += ie-\/>\mbox{\hyperlink{class_index_entry_a6799286fea8f9d004217d547f68add06}{GetRound}}() < maxID[\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}}] ? 0 : 1;}
+\DoxyCodeLine{261         \}}
+\DoxyCodeLine{262         \textcolor{keywordflow}{return} n\_invalid;}
+\DoxyCodeLine{263     \}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{270     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_name_base_ad0624c7f35358188f52f6c2dbba6bedc}{IsValidNameType}}(\mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} nt) \{ \textcolor{keywordflow}{return} (nt < \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da6a704668373f2fd4b290251eb7f0f131}{NUM\_NAME\_TYPES}}); \}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{279     \textcolor{keyword}{static} \mbox{\hyperlink{namebase_8h_a88b186d9ac85de67f09ca208ccdcf505}{nameT}} \mbox{\hyperlink{class_name_base_a846e5b7dd2537f6c404c6d0f1cd240e1}{NameTypeFromString}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str) \{}
+\DoxyCodeLine{280         \textcolor{keywordflow}{if} (*str == \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{281             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daeec13ac7ccca44a688f9248a7256ada5}{NAME\_INVALID}};}
+\DoxyCodeLine{282         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(str, \textcolor{stringliteral}{"{}player"{}}))}
+\DoxyCodeLine{283             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}};}
+\DoxyCodeLine{284         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(str, \textcolor{stringliteral}{"{}event"{}}))}
+\DoxyCodeLine{285             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}};}
+\DoxyCodeLine{286         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(str, \textcolor{stringliteral}{"{}site"{}}))}
+\DoxyCodeLine{287             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}};}
+\DoxyCodeLine{288         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(str, \textcolor{stringliteral}{"{}round"{}}))}
+\DoxyCodeLine{289             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}};}
+\DoxyCodeLine{290         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(\textcolor{stringliteral}{"{}player"{}}, str))}
+\DoxyCodeLine{291             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}};}
+\DoxyCodeLine{292         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(\textcolor{stringliteral}{"{}event"{}}, str))}
+\DoxyCodeLine{293             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}};}
+\DoxyCodeLine{294         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(\textcolor{stringliteral}{"{}site"{}}, str))}
+\DoxyCodeLine{295             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}};}
+\DoxyCodeLine{296         \textcolor{keywordflow}{if} (\mbox{\hyperlink{misc_8h_a0387033834ec5d23311f5a31292d511c}{strIsAlphaPrefix}}(\textcolor{stringliteral}{"{}round"{}}, str))}
+\DoxyCodeLine{297             \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}};}
+\DoxyCodeLine{298         \textcolor{keywordflow}{return} \mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daeec13ac7ccca44a688f9248a7256ada5}{NAME\_INVALID}};}
+\DoxyCodeLine{299     \}}
+\DoxyCodeLine{300 \};}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{305 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_tag_roster}{TagRoster}} \{}
+\DoxyCodeLine{306     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{struct_tag_roster_aa56cdcad14c682822e7c7d7c9d3ce414}{event}};}
+\DoxyCodeLine{307     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{struct_tag_roster_a1b4593f658d58df0b679d963b8f16029}{site}};}
+\DoxyCodeLine{308     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{struct_tag_roster_a691acb38f526c0b5923e21e8409a8b9e}{round}};}
+\DoxyCodeLine{309     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{struct_tag_roster_a79fcb9f408abf57716a86624842392f0}{white}};}
+\DoxyCodeLine{310     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{struct_tag_roster_ae2ca607394fc91b1528ac795fa2af32a}{black}};}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{312     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TEntry>}
+\DoxyCodeLine{313     \textcolor{keyword}{static} \mbox{\hyperlink{struct_tag_roster}{TagRoster}} \mbox{\hyperlink{struct_tag_roster_a99c92896b99a585f796c04525c541a1e}{make}}(TEntry \textcolor{keyword}{const}\& ie, \mbox{\hyperlink{class_name_base}{NameBase}} \textcolor{keyword}{const}\& nb) \{}
+\DoxyCodeLine{314         \mbox{\hyperlink{struct_tag_roster}{TagRoster}} res;}
+\DoxyCodeLine{315         res.\mbox{\hyperlink{struct_tag_roster_aa56cdcad14c682822e7c7d7c9d3ce414}{event}} = nb.\mbox{\hyperlink{class_name_base_a1aae1470d9c6224b8b1b45b5c8f5a1e0}{GetName}}(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}}, ie.GetEvent());}
+\DoxyCodeLine{316         res.\mbox{\hyperlink{struct_tag_roster_a1b4593f658d58df0b679d963b8f16029}{site}} = nb.\mbox{\hyperlink{class_name_base_a1aae1470d9c6224b8b1b45b5c8f5a1e0}{GetName}}(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}}, ie.GetSite());}
+\DoxyCodeLine{317         res.\mbox{\hyperlink{struct_tag_roster_a79fcb9f408abf57716a86624842392f0}{white}} = nb.\mbox{\hyperlink{class_name_base_a1aae1470d9c6224b8b1b45b5c8f5a1e0}{GetName}}(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}, ie.GetWhite());}
+\DoxyCodeLine{318         res.\mbox{\hyperlink{struct_tag_roster_ae2ca607394fc91b1528ac795fa2af32a}{black}} = nb.\mbox{\hyperlink{class_name_base_a1aae1470d9c6224b8b1b45b5c8f5a1e0}{GetName}}(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}, ie.GetBlack());}
+\DoxyCodeLine{319         res.\mbox{\hyperlink{struct_tag_roster_a691acb38f526c0b5923e21e8409a8b9e}{round}} = nb.\mbox{\hyperlink{class_name_base_a1aae1470d9c6224b8b1b45b5c8f5a1e0}{GetName}}(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}}, ie.GetRound());}
+\DoxyCodeLine{320         \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{321     \}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323     \textcolor{keyword}{template} <\textcolor{keyword}{typename} TEntry, \textcolor{keyword}{typename} Fn>}
+\DoxyCodeLine{324     \textcolor{keyword}{auto} \mbox{\hyperlink{struct_tag_roster_a06f4707d65a7a76735e1f3f5d005d7b1}{map}}(TEntry\& dest, Fn getID)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{325         \{}
+\DoxyCodeLine{326             \textcolor{keyword}{auto} [err, id] = getID(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa7041e7cfb972cb2361348bd2a9eb259}{NAME\_EVENT}}, \mbox{\hyperlink{struct_tag_roster_aa56cdcad14c682822e7c7d7c9d3ce414}{event}});}
+\DoxyCodeLine{327             \textcolor{keywordflow}{if} (err)}
+\DoxyCodeLine{328                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{329             dest.SetEvent(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{330         \}}
+\DoxyCodeLine{331         \{}
+\DoxyCodeLine{332             \textcolor{keyword}{auto} [err, id] = getID(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da1f3cf41aced90406c7920fb21e660752}{NAME\_SITE}}, \mbox{\hyperlink{struct_tag_roster_a1b4593f658d58df0b679d963b8f16029}{site}});}
+\DoxyCodeLine{333             \textcolor{keywordflow}{if} (err)}
+\DoxyCodeLine{334                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{335             dest.SetSite(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{336         \}}
+\DoxyCodeLine{337         \{}
+\DoxyCodeLine{338             \textcolor{keyword}{auto} [err, id] = getID(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2da29360c3b6106fa642b11c065e7fb8d9a}{NAME\_ROUND}}, \mbox{\hyperlink{struct_tag_roster_a691acb38f526c0b5923e21e8409a8b9e}{round}});}
+\DoxyCodeLine{339             \textcolor{keywordflow}{if} (err)}
+\DoxyCodeLine{340                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{341             dest.SetRound(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{342         \}}
+\DoxyCodeLine{343         \{}
+\DoxyCodeLine{344             \textcolor{keyword}{auto} [err, id] = getID(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}, \mbox{\hyperlink{struct_tag_roster_a79fcb9f408abf57716a86624842392f0}{white}});}
+\DoxyCodeLine{345             \textcolor{keywordflow}{if} (err)}
+\DoxyCodeLine{346                 \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{347             dest.SetWhite(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{348         \}}
+\DoxyCodeLine{349         \{}
+\DoxyCodeLine{350             \textcolor{keyword}{auto} [err, id] = getID(\mbox{\hyperlink{namebase_8h_a0411cd49bb5b71852cecd93bcbf0ca2daa1bb83d38015b7a24f4a6afdb4f44a79}{NAME\_PLAYER}}, \mbox{\hyperlink{struct_tag_roster_ae2ca607394fc91b1528ac795fa2af32a}{black}});}
+\DoxyCodeLine{351             \textcolor{keywordflow}{if} (!err)}
+\DoxyCodeLine{352                 dest.SetBlack(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{355         \}}
+\DoxyCodeLine{356     \}}
+\DoxyCodeLine{357 \};}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SCID\_NAMEBASE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,233 @@
+\hypertarget{movegen_8h_source}{}\doxysection{movegen.\+h}
+\mbox{\hyperlink{movegen_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2011-\/2021  Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{ * it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{ * the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{ * GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{ * along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{ */}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{// These functions use the following move classification:}}
+\DoxyCodeLine{28 \textcolor{comment}{// -\/ a VALID move is a move that respects the basic rules for moving the pieces,}}
+\DoxyCodeLine{29 \textcolor{comment}{//   for example a bishop should move diagonally. Validating this type of moves}}
+\DoxyCodeLine{30 \textcolor{comment}{//   do not require any info about the current position.}}
+\DoxyCodeLine{31 \textcolor{comment}{// -\/ an ATTACK move is a valid move that can capture an enemy piece at the}}
+\DoxyCodeLine{32 \textcolor{comment}{//   destination square. It takes into account the special rule for pawns that}}
+\DoxyCodeLine{33 \textcolor{comment}{//   can capture only diagonally and the board position for obstacles, for}}
+\DoxyCodeLine{34 \textcolor{comment}{//   example a valid diagonal bishop move is an attack move only if the}}
+\DoxyCodeLine{35 \textcolor{comment}{//   in-\/between squares are empty. To validate this type of moves it is}}
+\DoxyCodeLine{36 \textcolor{comment}{//   necessary to know the location of empty squares in the current position.}}
+\DoxyCodeLine{37 \textcolor{comment}{// -\/ a PSEUDO-\/LEGAL move is an attack move, or a non-\/capture pawn move, or a}}
+\DoxyCodeLine{38 \textcolor{comment}{//   castle move.}}
+\DoxyCodeLine{39 \textcolor{comment}{// -\/ a LEGAL move is a pseudo-\/legal move where the destination square is not}}
+\DoxyCodeLine{40 \textcolor{comment}{//   occupied by a friendly piece and that do not leave the king in check.}}
+\DoxyCodeLine{41 \textcolor{comment}{//   To validate this type of moves it is necessary to know the type and}}
+\DoxyCodeLine{42 \textcolor{comment}{//   position of every piece.}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacemovegen}{movegen}} \{}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} = 8;}
+\DoxyCodeLine{47 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacemovegen_a7536cd1e35e44f0c04d224394630a110}{kWPHomeRank}} = 1;}
+\DoxyCodeLine{48 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacemovegen_a0ae4c04e0648594a8b5e20ff3976de42}{kBPHomeRank}} = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 2;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_a51c3bd822af7e3536a549a3a0ab03c24}{valid\_king}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo) \{}
+\DoxyCodeLine{51     \textcolor{keywordtype}{unsigned} distRank = 1 + (sqTo / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{52     \textcolor{keywordtype}{unsigned} distFyle = 1 + (sqTo \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{53     \textcolor{keywordflow}{return} distRank <= 2 \&\& distFyle <= 2;}
+\DoxyCodeLine{54 \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_abd587e0073db8b862ea89d3e310d9443}{valid\_knight}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo) \{}
+\DoxyCodeLine{57     \textcolor{keywordtype}{int} distRank = (sqTo / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{58     \textcolor{keywordtype}{int} distFyle = (sqTo \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{59     \textcolor{keywordtype}{int} distProduct = distRank * distFyle;}
+\DoxyCodeLine{60     \textcolor{keywordflow}{return} (distProduct == 2 || distProduct == -\/2);}
+\DoxyCodeLine{61 \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacemovegen_af7beb8bac7ba4a8b6b5bf57473b52647}{valid\_slider}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pieceType) \{}
+\DoxyCodeLine{64     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(pieceType == \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}} || pieceType == \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}} || pieceType == \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}});}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{int} distRank = (sqTo / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{67     \textcolor{keywordtype}{int} distFyle = (sqTo \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \textcolor{comment}{// Make sure the direction is valid:}}
+\DoxyCodeLine{70     \textcolor{keywordtype}{int} sqStep;}
+\DoxyCodeLine{71     \textcolor{keywordtype}{bool} isDiagonal = \textcolor{keyword}{false};}
+\DoxyCodeLine{72     \textcolor{keywordflow}{if} (distRank == 0) \{}
+\DoxyCodeLine{73         sqStep = 1; \textcolor{comment}{// horizontal}}
+\DoxyCodeLine{74     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (distFyle == 0) \{}
+\DoxyCodeLine{75         sqStep = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}; \textcolor{comment}{// vertical}}
+\DoxyCodeLine{76     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (distFyle == distRank) \{}
+\DoxyCodeLine{77         sqStep = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} + 1;}
+\DoxyCodeLine{78         isDiagonal = \textcolor{keyword}{true};}
+\DoxyCodeLine{79     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (distFyle == -\/distRank) \{}
+\DoxyCodeLine{80         sqStep = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 1;}
+\DoxyCodeLine{81         isDiagonal = \textcolor{keyword}{true};}
+\DoxyCodeLine{82     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{83         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{84     \}}
+\DoxyCodeLine{85     \textcolor{keywordflow}{if} (pieceType == \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}} \&\& isDiagonal)}
+\DoxyCodeLine{86         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{87     \textcolor{keywordflow}{if} (pieceType == \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}} \&\& !isDiagonal)}
+\DoxyCodeLine{88         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{keywordflow}{return} sqStep;}
+\DoxyCodeLine{91 \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_a905091dbd7646571a1f52e6fe0dd853a}{attack\_pawn}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} pieceCol) \{}
+\DoxyCodeLine{94     \textcolor{keywordtype}{int} distRank = (sqTo / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{95     \textcolor{keywordtype}{int} distFyle = (sqTo \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{96     \textcolor{keywordflow}{if} (pieceCol == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}} \&\& distRank != 1)}
+\DoxyCodeLine{97         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{98     \textcolor{keywordflow}{if} (pieceCol == \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}} \&\& distRank != -\/1)}
+\DoxyCodeLine{99         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101     \textcolor{keywordflow}{return} (distFyle == 1 || distFyle == -\/1);}
+\DoxyCodeLine{102 \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TFunc>}
+\DoxyCodeLine{105 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_a73a7570f460acad0aec543423626cbb2}{attack\_slider}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pieceType,}
+\DoxyCodeLine{106                    TFunc isOccupied) \{}
+\DoxyCodeLine{107     \textcolor{keywordtype}{int} sqStep = \mbox{\hyperlink{namespacemovegen_af7beb8bac7ba4a8b6b5bf57473b52647}{valid\_slider}}(sqFrom, sqTo, pieceType);}
+\DoxyCodeLine{108     \textcolor{keywordflow}{if} (sqStep == 0)}
+\DoxyCodeLine{109         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111     \textcolor{comment}{// Make sure all the in-\/between squares are empty:}}
+\DoxyCodeLine{112     \textcolor{keywordflow}{if} (sqFrom > sqTo)}
+\DoxyCodeLine{113         sqStep = -\/sqStep;}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} sq = sqFrom + sqStep; sq != sqTo; sq += sqStep) \{}
+\DoxyCodeLine{116         \textcolor{keywordflow}{if} (isOccupied(sq))}
+\DoxyCodeLine{117             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{118     \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{121 \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{136 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TFunc>}
+\DoxyCodeLine{137 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_aba25d288da9b9d4a5871d159c74403fe}{attack}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pieceCol, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pieceType,}
+\DoxyCodeLine{138             TFunc isOccupied) \{}
+\DoxyCodeLine{139     \textcolor{keywordflow}{switch} (pieceType) \{}
+\DoxyCodeLine{140     \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}}:}
+\DoxyCodeLine{141         \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacemovegen_a51c3bd822af7e3536a549a3a0ab03c24}{valid\_king}}(sqFrom, sqTo);}
+\DoxyCodeLine{142     \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}}:}
+\DoxyCodeLine{143         \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacemovegen_abd587e0073db8b862ea89d3e310d9443}{valid\_knight}}(sqFrom, sqTo);}
+\DoxyCodeLine{144     \textcolor{keywordflow}{case} \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}}:}
+\DoxyCodeLine{145         \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacemovegen_a905091dbd7646571a1f52e6fe0dd853a}{attack\_pawn}}(sqFrom, sqTo, pieceCol);}
+\DoxyCodeLine{146     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{147         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{148     \}}
+\DoxyCodeLine{149     \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacemovegen_a73a7570f460acad0aec543423626cbb2}{attack\_slider}}(sqFrom, sqTo, pieceType, isOccupied);}
+\DoxyCodeLine{150 \}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TFunc>}
+\DoxyCodeLine{153 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_a4dd2e169ba7b2bd3f2cb0a5540954de6}{pseudo\_advance\_pawn}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} pieceCol,}
+\DoxyCodeLine{154                                 TFunc isOccupied) \{}
+\DoxyCodeLine{155     \textcolor{keywordflow}{if} ((sqTo \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) != (sqFrom \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) \textcolor{comment}{// Different file}}
+\DoxyCodeLine{156         || isOccupied(sqTo)) \textcolor{comment}{// Pawns can only capture diagonally}}
+\DoxyCodeLine{157         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159     \textcolor{keywordtype}{int} fromRank = sqFrom / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}};}
+\DoxyCodeLine{160     \textcolor{keywordtype}{int} distRank = (sqTo / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ fromRank;}
+\DoxyCodeLine{161     \textcolor{keywordflow}{if} (pieceCol == \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}})}
+\DoxyCodeLine{162         \textcolor{keywordflow}{return} distRank == 1 || (distRank == 2 \&\& fromRank == \mbox{\hyperlink{namespacemovegen_a7536cd1e35e44f0c04d224394630a110}{kWPHomeRank}} \&\&}
+\DoxyCodeLine{163                                  !isOccupied(sqFrom + \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}));}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165     \textcolor{keywordflow}{return} distRank == -\/1 || (distRank == -\/2 \&\& fromRank == \mbox{\hyperlink{namespacemovegen_a0ae4c04e0648594a8b5e20ff3976de42}{kBPHomeRank}} \&\&}
+\DoxyCodeLine{166                               !isOccupied(sqFrom -\/ \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}));}
+\DoxyCodeLine{167 \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TFunc>}
+\DoxyCodeLine{170 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_a6fe28fb54e64dea8b1129e5a264fa3ce}{pseudo}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} pieceCol, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pieceType,}
+\DoxyCodeLine{171             TFunc isOccupied) \{}
+\DoxyCodeLine{172     \textcolor{comment}{// TODO: castle moves}}
+\DoxyCodeLine{173     \textcolor{keywordflow}{if} (pieceType == \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}} \&\&}
+\DoxyCodeLine{174         \mbox{\hyperlink{namespacemovegen_a4dd2e169ba7b2bd3f2cb0a5540954de6}{pseudo\_advance\_pawn}}(sqFrom, sqTo, pieceCol, isOccupied))}
+\DoxyCodeLine{175         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacemovegen_aba25d288da9b9d4a5871d159c74403fe}{attack}}(sqFrom, sqTo, pieceCol, pieceType, isOccupied);}
+\DoxyCodeLine{178 \}}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{195 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TFunc>}
+\DoxyCodeLine{196 \textcolor{keyword}{inline} std::pair<pieceT, squareT> \mbox{\hyperlink{namespacemovegen_a0fe1902db984e0b659321558265c50c2}{opens\_ray}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo,}
+\DoxyCodeLine{197                                             \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqRay, TFunc isOccupied) \{}
+\DoxyCodeLine{198     \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(sqRay != sqFrom);}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200     \textcolor{keywordtype}{int} fyleFrom = sqFrom \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}};}
+\DoxyCodeLine{201     \textcolor{keywordtype}{int} distFyle = (sqRay \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ fyleFrom;}
+\DoxyCodeLine{202     \textcolor{keywordtype}{int} distRank = (sqRay / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) -\/ (sqFrom / \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}});}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204     \textcolor{comment}{// Make sure the direction is valid:}}
+\DoxyCodeLine{205     \textcolor{keywordtype}{int} fyleEdge;}
+\DoxyCodeLine{206     \textcolor{keywordtype}{int} sqStep;}
+\DoxyCodeLine{207     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pt;}
+\DoxyCodeLine{208     \textcolor{keywordflow}{if} (distFyle == 0) \{}
+\DoxyCodeLine{209         sqStep = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}; \textcolor{comment}{// vertical}}
+\DoxyCodeLine{210         fyleEdge = -\/1;}
+\DoxyCodeLine{211         pt = \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}};}
+\DoxyCodeLine{212     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{213         \textcolor{keywordflow}{if} (fyleFrom == 0 || fyleFrom == (\mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 1))}
+\DoxyCodeLine{214             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}, 0\};}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216         \textcolor{keywordflow}{if} (distRank == 0) \{}
+\DoxyCodeLine{217             sqStep = 1; \textcolor{comment}{// horizontal}}
+\DoxyCodeLine{218             fyleEdge = 0;}
+\DoxyCodeLine{219             pt = \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}};}
+\DoxyCodeLine{220         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (distFyle == distRank) \{}
+\DoxyCodeLine{221             sqStep = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} + 1;}
+\DoxyCodeLine{222             fyleEdge = 0;}
+\DoxyCodeLine{223             pt = \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}};}
+\DoxyCodeLine{224         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (distFyle == -\/distRank) \{}
+\DoxyCodeLine{225             sqStep = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 1;}
+\DoxyCodeLine{226             fyleEdge = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 1;}
+\DoxyCodeLine{227             pt = \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}};}
+\DoxyCodeLine{228         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{229             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}, 0\};}
+\DoxyCodeLine{230         \}}
+\DoxyCodeLine{231     \}}
+\DoxyCodeLine{232     \textcolor{keywordflow}{if} (sqFrom > sqRay) \{}
+\DoxyCodeLine{233         sqStep = -\/sqStep;}
+\DoxyCodeLine{234         fyleEdge = \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} -\/ 1 -\/ fyleEdge;}
+\DoxyCodeLine{235     \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} sq = sqFrom + sqStep; sq != sqRay; sq += sqStep) \{}
+\DoxyCodeLine{238         \textcolor{keywordflow}{if} (sq == sqTo || isOccupied(sq))}
+\DoxyCodeLine{239             \textcolor{keywordflow}{return} \{\mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}, 0\};}
+\DoxyCodeLine{240     \}}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} sq = sqFrom -\/ sqStep; sq < \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}} * \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}; sq -\/= sqStep) \{}
+\DoxyCodeLine{243         \textcolor{keywordflow}{if} (sq < 0 || sq == sqTo)}
+\DoxyCodeLine{244             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246         \textcolor{keywordflow}{if} (isOccupied(sq))}
+\DoxyCodeLine{247             \textcolor{keywordflow}{return} \{pt, \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}\textcolor{keyword}{>}(sq)\};}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249         \textcolor{keywordflow}{if} ((sq \% \mbox{\hyperlink{namespacemovegen_a032a82007765c062e2a55820fba39b79}{NSQUARES}}) == fyleEdge)}
+\DoxyCodeLine{250             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{251     \}}
+\DoxyCodeLine{252     \textcolor{keywordflow}{return} \{\mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}}, 0\};}
+\DoxyCodeLine{253 \}}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{261 \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacemovegen_afea29a60c3447c14fde18156960c2943}{blocks\_ray}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqFrom, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqTo, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sqBlock) \{}
+\DoxyCodeLine{262     \textcolor{keywordflow}{return} !\mbox{\hyperlink{namespacemovegen_a73a7570f460acad0aec543423626cbb2}{movegen::attack\_slider}}(sqFrom, sqTo, \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}},}
+\DoxyCodeLine{263                                    [\&](\textcolor{keyword}{auto} sq) \{ \textcolor{keywordflow}{return} sq == sqBlock; \});}
+\DoxyCodeLine{264 \}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 \} \textcolor{comment}{// end of namespace movegen}}
+
+\end{DoxyCode}

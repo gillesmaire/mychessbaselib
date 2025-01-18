@@ -1,0 +1,146 @@
+\hypertarget{board__def_8h_source}{}\doxysection{board\+\_\+def.\+h}
+\mbox{\hyperlink{board__def_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2000-\/2004  Shane Hudson..}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{ * it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{ * the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{ * GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{ * along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{ */}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}};  \textcolor{comment}{// e.g ROOK or WK}}
+\DoxyCodeLine{26 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}};  \textcolor{comment}{// WHITE or BLACK}}
+\DoxyCodeLine{27 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}; \textcolor{comment}{// e.g. A3}}
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}};   \textcolor{comment}{// Chess board rank}}
+\DoxyCodeLine{29 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}};   \textcolor{comment}{// Chess board file}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{32 \textcolor{comment}{// PIECES COLORS}}
+\DoxyCodeLine{33 \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{board__def_8h_a9fed37ef198382c0053ee13dba2dac7c}{NUM\_COLOR\_TYPES}} = 2;}
+\DoxyCodeLine{34 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} \mbox{\hyperlink{board__def_8h_a4bd880125e6b5752a709bfa88f07e378}{WHITE}} = 0, \mbox{\hyperlink{board__def_8h_addf5ded2624a6c91f0e0509a3ccb3ea7}{BLACK}} = 1, \mbox{\hyperlink{board__def_8h_aacc384967c36c0e4b83aff995347bf3b}{NOCOLOR}} = 2;}
+\DoxyCodeLine{35 \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_a30fd5ac128483dbd24b5fe2647800e13}{COLOR\_CHAR}}[3] = \{\textcolor{charliteral}{'W'}, \textcolor{charliteral}{'B'}, \textcolor{charliteral}{'\_'}\};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} \mbox{\hyperlink{board__def_8h_ac971357d1c624a25a36c96e47cc7c724}{color\_Flip}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c) \{ \textcolor{keywordflow}{return} 1 -\/ c; \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{inline} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_a01179d6892c03e73268e9e0ffeeb0fb3}{color\_Char}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a30fd5ac128483dbd24b5fe2647800e13}{COLOR\_CHAR}}[c]; \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{comment}{// PIECE TYPES (without color; same value as a white piece)}}
+\DoxyCodeLine{42 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{board__def_8h_a620cf4a7d939424104142f94ed2543da}{INVALID\_PIECE}} = 0, \mbox{\hyperlink{board__def_8h_a7a1a7457fc3085d873328ee746e3de5b}{KING}} = 1, \mbox{\hyperlink{board__def_8h_a5936f0bc1416d084e85d4040a1c266b9}{QUEEN}} = 2, \mbox{\hyperlink{board__def_8h_a3e7b99b10cc34338a7efb755158ed149}{ROOK}} = 3, \mbox{\hyperlink{board__def_8h_aacdb2d2482eb0c15f127161da5bf692f}{BISHOP}} = 4,}
+\DoxyCodeLine{43              \mbox{\hyperlink{board__def_8h_aeb718b0c90fd74b9649d1b4ecbec9119}{KNIGHT}} = 5, \mbox{\hyperlink{board__def_8h_abe9034c4a92831132960c3c793a3e4fd}{PAWN}} = 6;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{// PIECES:}}
+\DoxyCodeLine{46 \textcolor{comment}{//   Note that color(x) == ((x \& 0x8) >> 3)  and  type(x) == (x \& 0x7)}}
+\DoxyCodeLine{47 \textcolor{comment}{//   EMPTY is deliberately nonzero, and END\_OF\_BOARD is zero, so that}}
+\DoxyCodeLine{48 \textcolor{comment}{//   a board can be used as a regular 0-\/terminated string, provided}}
+\DoxyCodeLine{49 \textcolor{comment}{//   that board[NULL\_SQUARE] == END\_OF\_BOARD, as it always should be.}}
+\DoxyCodeLine{50 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}} = 7;}
+\DoxyCodeLine{51 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{board__def_8h_a9d13f5cbab49748d5f2cda815caaff64}{END\_OF\_BOARD}} = 0;}
+\DoxyCodeLine{52 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{board__def_8h_a6741904a9bc89c5d6f6ff9d9258f8078}{WK}} = 1, \mbox{\hyperlink{board__def_8h_a6fcd496bb2acee064bb07b93258e21cb}{WQ}} = 2, \mbox{\hyperlink{board__def_8h_af4aa2ab334837d64386e2b18356a5417}{WR}} = 3, \mbox{\hyperlink{board__def_8h_afd45947348b8b22184cb5c605a2464e4}{WB}} = 4, \mbox{\hyperlink{board__def_8h_a1f3338eaf38ab7db8fc38e8e0f65c080}{WN}} = 5, \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}} = 6;}
+\DoxyCodeLine{53 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{board__def_8h_aeeb76222aa901b0ad6f0c4971dc73627}{BK}} = 9, \mbox{\hyperlink{board__def_8h_a66e36a051216e05e14ce562dd3438809}{BQ}} = 10, \mbox{\hyperlink{board__def_8h_ab2aa81e436a9bfcce5ae577714a9d465}{BR}} = 11, \mbox{\hyperlink{board__def_8h_a8779bc5a380e6bb7f3221dd0e3e7190a}{BB}} = 12, \mbox{\hyperlink{board__def_8h_a45729871ae31fd5175aba7ee50d2c600}{BN}} = 13, \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}} = 14;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} \mbox{\hyperlink{board__def_8h_a0e1b80dd22053076ddaa947d6b0610c8}{piece\_Color}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p) \{}
+\DoxyCodeLine{56     \textcolor{keywordflow}{return} (p == \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}}) ? \mbox{\hyperlink{board__def_8h_aacc384967c36c0e4b83aff995347bf3b}{NOCOLOR}} : ((p \& 8) >> 3);}
+\DoxyCodeLine{57 \}}
+\DoxyCodeLine{58 \textcolor{comment}{// Slightly faster piece\_Color when we are sure the piece is not empty:}}
+\DoxyCodeLine{59 \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} \mbox{\hyperlink{board__def_8h_ae201d0276bdc74d7dc7c7d72757f8b99}{piece\_Color\_NotEmpty}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p) \{ \textcolor{keywordflow}{return} (p \& 8) >> 3; \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{board__def_8h_ae9ad95a6fa0d30a7bec5f55cf41b9f25}{piece\_Type}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p) \{ \textcolor{keywordflow}{return} (p \& 7); \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{board__def_8h_aafb1ee43474dc5f2f83353425039e160}{piece\_Make}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p) \{ \textcolor{keywordflow}{return} ((c << 3) | (p \& 7)); \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{comment}{// PIECE\_CHAR[]: array of piece characters, capitals for White pieces.}}
+\DoxyCodeLine{66 \textcolor{keyword}{const} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_aa1f16a5e3bd252afe9513a5d01592a69}{PIECE\_CHAR}}[] = \textcolor{stringliteral}{"{}xKQRBNP.xkqrbnpxMm"{}};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keyword}{inline} \textcolor{keywordtype}{char} \mbox{\hyperlink{board__def_8h_a09e03c1c8d376f26d2d8f0c921e5f45b}{piece\_Char}}(\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_aa1f16a5e3bd252afe9513a5d01592a69}{PIECE\_CHAR}}[\mbox{\hyperlink{board__def_8h_ae9ad95a6fa0d30a7bec5f55cf41b9f25}{piece\_Type}}(p)]; \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{class }\mbox{\hyperlink{class_piece_from_byte}{PieceFromByte}} \{}
+\DoxyCodeLine{71     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} pieceFromByte\_[256] = \{\};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{keyword}{public}:}
+\DoxyCodeLine{74     \textcolor{keyword}{constexpr} \mbox{\hyperlink{class_piece_from_byte_af7723ddd7a8f843da8bc888649cc52f5}{PieceFromByte}}() \{}
+\DoxyCodeLine{75         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& e : pieceFromByte\_) \{}
+\DoxyCodeLine{76             e = \mbox{\hyperlink{board__def_8h_a96f37dadd16fc9b94a236663df708852}{EMPTY}};}
+\DoxyCodeLine{77         \}}
+\DoxyCodeLine{78         pieceFromByte\_[(int)\textcolor{charliteral}{'K'}] = \mbox{\hyperlink{board__def_8h_a6741904a9bc89c5d6f6ff9d9258f8078}{WK}};}
+\DoxyCodeLine{79         pieceFromByte\_[(int)\textcolor{charliteral}{'k'}] = \mbox{\hyperlink{board__def_8h_aeeb76222aa901b0ad6f0c4971dc73627}{BK}};}
+\DoxyCodeLine{80         pieceFromByte\_[(int)\textcolor{charliteral}{'Q'}] = \mbox{\hyperlink{board__def_8h_a6fcd496bb2acee064bb07b93258e21cb}{WQ}};}
+\DoxyCodeLine{81         pieceFromByte\_[(int)\textcolor{charliteral}{'q'}] = \mbox{\hyperlink{board__def_8h_a66e36a051216e05e14ce562dd3438809}{BQ}};}
+\DoxyCodeLine{82         pieceFromByte\_[(int)\textcolor{charliteral}{'R'}] = \mbox{\hyperlink{board__def_8h_af4aa2ab334837d64386e2b18356a5417}{WR}};}
+\DoxyCodeLine{83         pieceFromByte\_[(int)\textcolor{charliteral}{'r'}] = \mbox{\hyperlink{board__def_8h_ab2aa81e436a9bfcce5ae577714a9d465}{BR}};}
+\DoxyCodeLine{84         pieceFromByte\_[(int)\textcolor{charliteral}{'B'}] = \mbox{\hyperlink{board__def_8h_afd45947348b8b22184cb5c605a2464e4}{WB}};}
+\DoxyCodeLine{85         pieceFromByte\_[(int)\textcolor{charliteral}{'b'}] = \mbox{\hyperlink{board__def_8h_a8779bc5a380e6bb7f3221dd0e3e7190a}{BB}};}
+\DoxyCodeLine{86         pieceFromByte\_[(int)\textcolor{charliteral}{'N'}] = \mbox{\hyperlink{board__def_8h_a1f3338eaf38ab7db8fc38e8e0f65c080}{WN}};}
+\DoxyCodeLine{87         pieceFromByte\_[(int)\textcolor{charliteral}{'n'}] = \mbox{\hyperlink{board__def_8h_a45729871ae31fd5175aba7ee50d2c600}{BN}};}
+\DoxyCodeLine{88         pieceFromByte\_[(int)\textcolor{charliteral}{'P'}] = \mbox{\hyperlink{board__def_8h_a2799b5cb7821f1d0b6c265e8de0e33d4}{WP}};}
+\DoxyCodeLine{89         pieceFromByte\_[(int)\textcolor{charliteral}{'p'}] = \mbox{\hyperlink{board__def_8h_aa017c0b2ca6209db3ecb8db79d40cd9c}{BP}};}
+\DoxyCodeLine{90     \};}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_piece_from_byte_a68b4bce46a6cd19f9678a1ac65506f13}{operator[]}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} idx)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} pieceFromByte\_[idx]; \}}
+\DoxyCodeLine{93 \};}
+\DoxyCodeLine{94 \textcolor{keyword}{constexpr} \textcolor{keyword}{inline} \textcolor{keyword}{auto} \mbox{\hyperlink{board__def_8h_a6bb9f112d20091a0f128288343f37961}{pieceFromByte}} = \mbox{\hyperlink{class_piece_from_byte}{PieceFromByte}}();}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{comment}{//\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~\string~}}
+\DoxyCodeLine{97 \textcolor{comment}{// SQUARES}}
+\DoxyCodeLine{98 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{board__def_8h_a065708667a22073299416bcb2d07ec49}{A1}} = 0, \mbox{\hyperlink{board__def_8h_a18379ead0c4e7f1e5aa7168dbe770c65}{B1}} = 1, \mbox{\hyperlink{board__def_8h_a7c7f317a89a312dc646081e3dffee1ed}{C1}} = 2, \mbox{\hyperlink{board__def_8h_a33533c162e16bd58175763f1a3a3214e}{D1}} = 3, \mbox{\hyperlink{board__def_8h_a25d4363b024d1b259d5eeeae46b981ce}{E1}} = 4, \mbox{\hyperlink{board__def_8h_ab9643d3117b1fb90114cd8eb8691ba93}{F1}} = 5, \mbox{\hyperlink{board__def_8h_ab2f9d37a4f9d8f68498d9ba1762bf1cc}{G1}} = 6, \mbox{\hyperlink{board__def_8h_aa38c7fec44b4f2cbaf1b7aef5dac7f2d}{H1}} = 7,}
+\DoxyCodeLine{99               \mbox{\hyperlink{board__def_8h_aefb8a7275c4f54fd30fd2afa58693dc7}{A2}} = 8, \mbox{\hyperlink{board__def_8h_ad0760750f684de4bab1d71889b18ed40}{B2}} = 9, \mbox{\hyperlink{board__def_8h_aaf6290ecfc1ecd2707f03c595f087516}{C2}} = 10, \mbox{\hyperlink{board__def_8h_a91f4dc48b456d2bc41d7b84925d3d440}{D2}} = 11, \mbox{\hyperlink{board__def_8h_ad5dc4c9d82ff342cc59a307162e4b719}{E2}} = 12, \mbox{\hyperlink{board__def_8h_a7e34282453c7659c611ebc27646b2644}{F2}} = 13, \mbox{\hyperlink{board__def_8h_a4eb4443b82f6ab1947c782f3f5bcc83e}{G2}} = 14,}
+\DoxyCodeLine{100               \mbox{\hyperlink{board__def_8h_a55354257acd6dfa0f48b269d2550fabd}{H2}} = 15, \mbox{\hyperlink{board__def_8h_a739cc135f18bea59e2d9c085510dc0e7}{A3}} = 16, \mbox{\hyperlink{board__def_8h_aa2076ddd350a393c218ba765def523ff}{B3}} = 17, \mbox{\hyperlink{board__def_8h_a6f44d5b90dfd47131ac59c4568e25bf0}{C3}} = 18, \mbox{\hyperlink{board__def_8h_a9372c9bf0d3187a674a40a08c0439782}{D3}} = 19, \mbox{\hyperlink{board__def_8h_a27e7bcfad44ceaba25ef98be8432660b}{E3}} = 20, \mbox{\hyperlink{board__def_8h_ac7161d94f3890ec65f31b3663eba70c7}{F3}} = 21,}
+\DoxyCodeLine{101               \mbox{\hyperlink{board__def_8h_a9495c65b73609455385974d895400487}{G3}} = 22, \mbox{\hyperlink{board__def_8h_a1b4bc3607f7a05582ef3ba6fffb3459e}{H3}} = 23, \mbox{\hyperlink{board__def_8h_a8fbb067479793178d252333e4546e5a5}{A4}} = 24, \mbox{\hyperlink{board__def_8h_aa62b20ee0189696c4694ccacb49d64d4}{B4}} = 25, \mbox{\hyperlink{board__def_8h_a44d299be3a611bb4157bda0dfe482045}{C4}} = 26, \mbox{\hyperlink{board__def_8h_a026e4fbf5834c17cfd50a8c6bdd78dc6}{D4}} = 27, \mbox{\hyperlink{board__def_8h_a8ba7c53534fa3e83a5f505c570377a8a}{E4}} = 28,}
+\DoxyCodeLine{102               \mbox{\hyperlink{board__def_8h_a9c163841f49b6cb84aabe2febe45dc2e}{F4}} = 29, \mbox{\hyperlink{board__def_8h_ab5895c23505fc4c61c75a3e470adbc05}{G4}} = 30, \mbox{\hyperlink{board__def_8h_ad99bf001d7112ad76c07670abc6bae52}{H4}} = 31, \mbox{\hyperlink{board__def_8h_afe2ef6836eaec993473ace5b346395f3}{A5}} = 32, \mbox{\hyperlink{board__def_8h_ac34bf895958267305eafdd0b07586ec3}{B5}} = 33, \mbox{\hyperlink{board__def_8h_a944a3d0a1378ebdd30bb4d64140e5247}{C5}} = 34, \mbox{\hyperlink{board__def_8h_a967f9a68b811a2ecb0cb2181634952c7}{D5}} = 35,}
+\DoxyCodeLine{103               \mbox{\hyperlink{board__def_8h_a9dfa8bce3aa3f56cfe25ce23c3b4156b}{E5}} = 36, \mbox{\hyperlink{board__def_8h_ab99aa92bbd8b40481826047310b036b0}{F5}} = 37, \mbox{\hyperlink{board__def_8h_a60eb24443242c57c820cdda3f1eaad96}{G5}} = 38, \mbox{\hyperlink{board__def_8h_a9142e60bef478fa1f2537716ec043676}{H5}} = 39, \mbox{\hyperlink{board__def_8h_a6cc3c76cdefa93039ae6ad6fecf7ce17}{A6}} = 40, \mbox{\hyperlink{board__def_8h_ad21d757250aeefc10db712d31516930c}{B6}} = 41, \mbox{\hyperlink{board__def_8h_ad6487513a6c89f4fc3e13bf76a6ef4ea}{C6}} = 42,}
+\DoxyCodeLine{104               \mbox{\hyperlink{board__def_8h_ad8ccfb52fb5c0a76f4d8fb2af468d1fb}{D6}} = 43, \mbox{\hyperlink{board__def_8h_a93df7326f43916b77c6e4aad115f6a9e}{E6}} = 44, \mbox{\hyperlink{board__def_8h_a45cefce966ee886c58afc7d5d2847cd7}{F6}} = 45, \mbox{\hyperlink{board__def_8h_ad9b06a78cb22bc57aa67346fea1c3bbb}{G6}} = 46, \mbox{\hyperlink{board__def_8h_a2c9bf0da74171e4a342a1e943f744c3e}{H6}} = 47, \mbox{\hyperlink{board__def_8h_a2ee4914b4d5a616d89a0a4e0cb18242f}{A7}} = 48, \mbox{\hyperlink{board__def_8h_a9ad57d3bb9929ce3ecfee3d555a1fb64}{B7}} = 49,}
+\DoxyCodeLine{105               \mbox{\hyperlink{board__def_8h_a2bf43c7c84c9f96ba9c1cf7ee1ef0b75}{C7}} = 50, \mbox{\hyperlink{board__def_8h_aa8800f149179a76d7dc39c8dfd3c54dc}{D7}} = 51, \mbox{\hyperlink{board__def_8h_aa55d1e79ca065bbf6031f96a5a0a5d66}{E7}} = 52, \mbox{\hyperlink{board__def_8h_a7b8cf4976cba09d0cc4b298a27e34b68}{F7}} = 53, \mbox{\hyperlink{board__def_8h_a6ba77aaec37ee683e3d9f03498020f45}{G7}} = 54, \mbox{\hyperlink{board__def_8h_a1f6319cad5bad8632d21b3b6e1a1da15}{H7}} = 55, \mbox{\hyperlink{board__def_8h_afa0f51ebb5c7bc99f144c75a3296ca5a}{A8}} = 56,}
+\DoxyCodeLine{106               \mbox{\hyperlink{board__def_8h_acb27ac6029e8f2a0e1452cb457745845}{B8}} = 57, \mbox{\hyperlink{board__def_8h_a60b7b0c98ffc5cd17f1d2f4bda3ace9f}{C8}} = 58, \mbox{\hyperlink{board__def_8h_a7a1859b60d3dd03eac6a5a9699e34fd2}{D8}} = 59, \mbox{\hyperlink{board__def_8h_a37333874c57695ee0b631fdd9fa9f2d4}{E8}} = 60, \mbox{\hyperlink{board__def_8h_a125f22dd0603c208765fc72a83e92026}{F8}} = 61, \mbox{\hyperlink{board__def_8h_ab3e90a51780b4e86be8768c66462a498}{G8}} = 62, \mbox{\hyperlink{board__def_8h_ac23cde204b2071a044b923cf1e1c2e38}{H8}} = 63,}
+\DoxyCodeLine{107               \mbox{\hyperlink{board__def_8h_a389aedf1d3a9e6701a9bad1fbf1295ec}{COLOR\_SQUARE}} = 64, \mbox{\hyperlink{board__def_8h_a9ebc932c0c91e8ba6fe2335f1a6c7c83}{NULL\_SQUARE}} = 65,}
+\DoxyCodeLine{108               \mbox{\hyperlink{board__def_8h_a2ed9355eee9718e368a7aad9c37ae845}{NS}} = 65; \textcolor{comment}{// NS is abbreviation for NULL\_SQUARE.}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} \mbox{\hyperlink{board__def_8h_aa49c98ee469a857896aa33edd9970fc8}{RANK\_1}} = 0, \mbox{\hyperlink{board__def_8h_ad413586d48b797485340bdddc4ba120a}{RANK\_2}} = 1, \mbox{\hyperlink{board__def_8h_afe4d50754e1f6b810d9b4e43ffa979e7}{RANK\_3}} = 2, \mbox{\hyperlink{board__def_8h_a1d4f489b4c30cef8f8b98606d0b8c7ee}{RANK\_4}} = 3, \mbox{\hyperlink{board__def_8h_aa57017dd3ee98a32f62dc7f00a3ffc1b}{RANK\_5}} = 4,}
+\DoxyCodeLine{111             \mbox{\hyperlink{board__def_8h_a8599e95e2e3e0dfc01baccc5ef3c7fcc}{RANK\_6}} = 5, \mbox{\hyperlink{board__def_8h_adfcc6172aaf53196a6cc97ebe314125e}{RANK\_7}} = 6, \mbox{\hyperlink{board__def_8h_a1df35a83989c3bc043110cdad78e2e31}{RANK\_8}} = 7, \mbox{\hyperlink{board__def_8h_a4809ac205849e7e47e04487f43c3c843}{NO\_RANK}} = 64;}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{keyword}{const} \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}}}
+\DoxyCodeLine{114     \textcolor{comment}{// we use "{}fyle"{} instead of "{}file"{} to avoid confusion with disk files.}}
+\DoxyCodeLine{115     \mbox{\hyperlink{board__def_8h_a45395b0dd3d62df05a3820b762cb79a7}{A\_FYLE}} = 0,}
+\DoxyCodeLine{116     \mbox{\hyperlink{board__def_8h_a41e3ec8f4330273666c0c9ccd6facaf1}{B\_FYLE}} = 1, \mbox{\hyperlink{board__def_8h_aebfa2a22dd76a13cd9d2cb65ccb3e2c0}{C\_FYLE}} = 2, \mbox{\hyperlink{board__def_8h_a9e7d830686ccbda16a4e10fce3cd987d}{D\_FYLE}} = 3, \mbox{\hyperlink{board__def_8h_ac2e133d96642fb8dcfd8d59025852256}{E\_FYLE}} = 4, \mbox{\hyperlink{board__def_8h_a0f94071b4fb8276160f0b2c5b95277bd}{F\_FYLE}} = 5, \mbox{\hyperlink{board__def_8h_a59c9dc541abaee1b59ed19c2cedf781f}{G\_FYLE}} = 6,}
+\DoxyCodeLine{117     \mbox{\hyperlink{board__def_8h_a082bbe4d9b377816d7371d6133dce91a}{H\_FYLE}} = 7, \mbox{\hyperlink{board__def_8h_accd7a6101e90be156cfa718a701338e5}{NO\_FYLE}} = 64;}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} \mbox{\hyperlink{board__def_8h_a067c26490817a346396743c3f560d49d}{rank\_FromChar}}(\textcolor{keywordtype}{char} c) \{}
+\DoxyCodeLine{120     \textcolor{keywordflow}{if} (c < '1' || c > \textcolor{charliteral}{'8'}) \{}
+\DoxyCodeLine{121         \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_a4809ac205849e7e47e04487f43c3c843}{NO\_RANK}};}
+\DoxyCodeLine{122     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{123         \textcolor{keywordflow}{return} (c -\/ \textcolor{charliteral}{'1'});}
+\DoxyCodeLine{124 \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{keyword}{inline} \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} \mbox{\hyperlink{board__def_8h_ad9ca7bae0bc245b516993b5d0ad6499b}{fyle\_FromChar}}(\textcolor{keywordtype}{char} c) \{}
+\DoxyCodeLine{127     \textcolor{keywordflow}{if} (c < 'a' || c > \textcolor{charliteral}{'h'}) \{}
+\DoxyCodeLine{128         \textcolor{keywordflow}{return} \mbox{\hyperlink{board__def_8h_accd7a6101e90be156cfa718a701338e5}{NO\_FYLE}};}
+\DoxyCodeLine{129     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{130         \textcolor{keywordflow}{return} (c -\/ \textcolor{charliteral}{'a'});}
+\DoxyCodeLine{131 \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 \textcolor{keyword}{constexpr} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{board__def_8h_abff1d5d06a0592c559e363423d19cf3e}{square\_Make}}(\mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} f, \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} r) \{ \textcolor{keywordflow}{return} ((r << 3) | f); \}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{keyword}{constexpr} \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} \mbox{\hyperlink{board__def_8h_a7582d6d05bd169c6d3a70046f79d4d35}{square\_Fyle}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq) \{ \textcolor{keywordflow}{return} (sq \& 0x7); \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{keyword}{constexpr} \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} \mbox{\hyperlink{board__def_8h_a0b26b0b55f31776028bedcf0704d0c2e}{square\_Rank}}(\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq) \{ \textcolor{keywordflow}{return} ((sq >> 3) \& 0x7); \}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \textcolor{keyword}{constexpr} \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{board__def_8h_a720d45d16863fe24387c7c597c523fa0}{square\_Relative}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq) \{}
+\DoxyCodeLine{140     \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}\textcolor{keyword}{>}(sq \string^ (c * 56));}
+\DoxyCodeLine{141 \}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{keyword}{constexpr} \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} \mbox{\hyperlink{board__def_8h_af19b952becd3c628d6cdd1be4f170a24}{rank\_Relative}}(\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} r) \{}
+\DoxyCodeLine{144     \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}}\textcolor{keyword}{>}(r \string^ (c * 7));}
+\DoxyCodeLine{145 \}}
+
+\end{DoxyCode}

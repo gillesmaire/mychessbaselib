@@ -1,0 +1,130 @@
+\hypertarget{codec__pgn_8h_source}{}\doxysection{codec\+\_\+pgn.\+h}
+\mbox{\hyperlink{codec__pgn_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright (C) 2016-\/2018  Fulvio Benini}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{ * This file is part of Scid (Shane's Chess Information Database).}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Scid is free software: you can redistribute it and/or modify}}
+\DoxyCodeLine{7 \textcolor{comment}{ * it under the terms of the GNU General Public License as published by}}
+\DoxyCodeLine{8 \textcolor{comment}{ * the Free Software Foundation.}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * Scid is distributed in the hope that it will be useful,}}
+\DoxyCodeLine{11 \textcolor{comment}{ * but WITHOUT ANY WARRANTY; without even the implied warranty of}}
+\DoxyCodeLine{12 \textcolor{comment}{ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the}}
+\DoxyCodeLine{13 \textcolor{comment}{ * GNU General Public License for more details.}}
+\DoxyCodeLine{14 \textcolor{comment}{ *}}
+\DoxyCodeLine{15 \textcolor{comment}{ * You should have received a copy of the GNU General Public License}}
+\DoxyCodeLine{16 \textcolor{comment}{ * along with Scid.  If not, see <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{17 \textcolor{comment}{ *}}
+\DoxyCodeLine{18 \textcolor{comment}{ */}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef CODEC\_PGN\_H}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define CODEC\_PGN\_H}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{codec__proxy_8h}{codec\_proxy.h}}"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{filebuf_8h}{filebuf.h}}"{}}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{pgn__encode_8h}{pgn\_encode.h}}"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{pgnparse_8h}{pgnparse.h}}"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <cstring>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{class }\mbox{\hyperlink{class_codec_pgn}{CodecPgn}} final : \textcolor{keyword}{public} \mbox{\hyperlink{class_codec_proxy}{CodecProxy}}<CodecPgn> \{}
+\DoxyCodeLine{37     \mbox{\hyperlink{class_filebuf_append}{FilebufAppend}} file\_;}
+\DoxyCodeLine{38     std::string filename\_;}
+\DoxyCodeLine{39     std::vector<char> buf\_;}
+\DoxyCodeLine{40     \textcolor{keywordtype}{size\_t} nParsed\_ = 0;}
+\DoxyCodeLine{41     \textcolor{keywordtype}{size\_t} nRead\_ = 0;}
+\DoxyCodeLine{42     \mbox{\hyperlink{struct_pgn_parse_log}{PgnParseLog}} parseLog\_;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45     \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8}{Codec}} \mbox{\hyperlink{class_codec_pgn_a963d587acb2e15ee6907450e65bc8497}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{class_i_codec_database_ac42393f987f4a84269c9e184ade910f8a16e4981ae35d6e12ce0a5ae096d224a6}{ICodecDatabase::PGN}}; \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     std::vector<std::string> \mbox{\hyperlink{class_codec_pgn_acd062da11e416162726eff97b0df09bd}{getFilenames}}() const final \{}
+\DoxyCodeLine{48         \textcolor{keywordflow}{return} std::vector<std::string>(1, filename\_);}
+\DoxyCodeLine{49     \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_pgn_a5dd04693647baaa55cd8683026da7460}{flush}}() final \{}
+\DoxyCodeLine{52         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} errFile = (file\_.pubsync() == 0) ? \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} : \mbox{\hyperlink{error_8h_ab13779c6cb65867602cfa92c27d6d659}{ERROR\_FileWrite}};}
+\DoxyCodeLine{53         \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} errProxy = \mbox{\hyperlink{class_codec_memory_a1e0fcb29cdc3c528a1ca38ec22c87b2e}{CodecProxy<CodecPgn>::flush}}();}
+\DoxyCodeLine{54         \textcolor{keywordflow}{return} (errFile != \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}}) ? errFile : errProxy;}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{65     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_pgn_aa83d02feb9e454cdac72f15c4d4a1cb3}{open}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* filename, \mbox{\hyperlink{common_8h_a68bff708b2e6f80e37e6294782b291e1}{fileModeT}} fmode) \{}
+\DoxyCodeLine{66         \mbox{\hyperlink{common_8h_a79da58dac9dcdbcd4005f1d440e363ba}{ASSERT}}(filename);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68         buf\_.resize(128 * 1024);}
+\DoxyCodeLine{69         nRead\_ = nParsed\_ = buf\_.size();}
+\DoxyCodeLine{70         filename\_ = filename;}
+\DoxyCodeLine{71         \textcolor{keywordflow}{if} (filename\_.empty())}
+\DoxyCodeLine{72             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a5556811f4fbef9102f895fca624ecf13}{ERROR\_FileOpen}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74         \textcolor{keywordflow}{if} (\textcolor{keyword}{auto} err = file\_.open(filename, fmode))}
+\DoxyCodeLine{75             \textcolor{keywordflow}{return} err;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77         \textcolor{keywordflow}{return} file\_.pubseekpos(0) == 0 ? \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}} : \mbox{\hyperlink{error_8h_abdeda0173dc99c36efcb5c34286a65c3}{ERROR\_FileSeek}};}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{87     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_pgn_a353f78bf9531c208c0e87025d7ea2a49}{parseNext}}(\mbox{\hyperlink{class_game}{Game}}\& game) \{}
+\DoxyCodeLine{88         \textcolor{keyword}{const} \textcolor{keyword}{auto} verge = 3 * (nRead\_ / 4);}
+\DoxyCodeLine{89         \textcolor{keywordflow}{if} (nParsed\_ > verge \&\& nRead\_ == buf\_.size()) \{}
+\DoxyCodeLine{90             nParsed\_ -\/= verge;}
+\DoxyCodeLine{91             nRead\_ -\/= verge;}
+\DoxyCodeLine{92             std::copy\_n(buf\_.data() + verge, nRead\_, buf\_.data());}
+\DoxyCodeLine{93             nRead\_ += file\_.sgetn(buf\_.data() + nRead\_, verge);}
+\DoxyCodeLine{94         \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96         game.\mbox{\hyperlink{class_game_a550e6ba9715ae3c39af958641070bf48}{Clear}}();}
+\DoxyCodeLine{97         \mbox{\hyperlink{class_pgn_visitor}{PgnVisitor}} visitor(game);}
+\DoxyCodeLine{98         \textcolor{keyword}{auto} parse = \mbox{\hyperlink{namespacepgn_a98ee346a4a45c134c03aca8e18027a10}{pgn::parse\_game}}(}
+\DoxyCodeLine{99             \{buf\_.data() + nParsed\_, buf\_.data() + nRead\_\}, visitor);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101         \textcolor{keywordtype}{bool} eof = (nRead\_ -\/ nParsed\_ == parse.first);}
+\DoxyCodeLine{102         \textcolor{keywordflow}{if} (eof \&\& nRead\_ == buf\_.size()) \{}
+\DoxyCodeLine{103             \textcolor{comment}{// Reached the end of input, but the file contains more bytes.}}
+\DoxyCodeLine{104             \textcolor{keywordflow}{if} (nRead\_ <= 128 * 1024 * 1024) \{}
+\DoxyCodeLine{105                 \textcolor{comment}{// Double the buffer size and retry.}}
+\DoxyCodeLine{106                 buf\_.resize(nRead\_ * 2);}
+\DoxyCodeLine{107                 nRead\_ += file\_.sgetn(buf\_.data() + nRead\_, nRead\_);}
+\DoxyCodeLine{108                 \textcolor{keywordflow}{return} \mbox{\hyperlink{class_codec_pgn_a353f78bf9531c208c0e87025d7ea2a49}{parseNext}}(game);}
+\DoxyCodeLine{109             \}}
+\DoxyCodeLine{110             \textcolor{comment}{// Abort}}
+\DoxyCodeLine{111             nRead\_ = nParsed\_ = 0;}
+\DoxyCodeLine{112             parseLog\_.\mbox{\hyperlink{struct_pgn_parse_log_ae090a7b2721fb337134812b79d2f6c03}{log}}.append(\textcolor{stringliteral}{"{}PGN parsing aborted.\(\backslash\)n"{}});}
+\DoxyCodeLine{113             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a7caa9aaca2599ee28498ccfd03c97a8d}{ERROR\_NotFound}};}
+\DoxyCodeLine{114         \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116         nParsed\_ += parse.first;}
+\DoxyCodeLine{117         parseLog\_.\mbox{\hyperlink{struct_pgn_parse_log_aca0cc2baaf3ee3a64284831ee523c069}{logGame}}(parse.first, visitor);}
+\DoxyCodeLine{118         \textcolor{keywordflow}{if} (eof \&\& !parse.second \&\& *game.\mbox{\hyperlink{class_game_a9205ae9a0a505e635ca347b409ecc5bf}{GetMoveComment}}() == \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{119             \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a7caa9aaca2599ee28498ccfd03c97a8d}{ERROR\_NotFound}};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121         \textcolor{keywordflow}{return} \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}};}
+\DoxyCodeLine{122     \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{129     std::pair<size\_t, size\_t> \mbox{\hyperlink{class_codec_pgn_a7083def1b661e315230b3ab3c716c78c}{parseProgress}}() \{}
+\DoxyCodeLine{130         \textcolor{keywordflow}{return} std::make\_pair(parseLog\_.\mbox{\hyperlink{struct_pgn_parse_log_af975229e71611d8f6e6b42a8ee17060f}{n\_bytes}} / 1024, file\_.size() / 1024);}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{136     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{class_codec_pgn_ac5b034cda80c2606aacd362b54728289}{parseErrors}}() \{ \textcolor{keywordflow}{return} parseLog\_.\mbox{\hyperlink{struct_pgn_parse_log_ae090a7b2721fb337134812b79d2f6c03}{log}}.c\_str(); \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{144     \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_codec_pgn_a18260d57c30ca3d5f56c573b70fc6a1d}{gameAdd}}(\mbox{\hyperlink{class_game}{Game}}* game) \{}
+\DoxyCodeLine{145         \textcolor{comment}{// TODO: we need this to fill in all the moveT-\/>san}}
+\DoxyCodeLine{146         \textcolor{comment}{// It would be better to do this when the game is decoded.}}
+\DoxyCodeLine{147         game-\/>\mbox{\hyperlink{class_game_aad5f00cf5043b7e7236fd0f05747f1e2}{MoveToStart}}();}
+\DoxyCodeLine{148         \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{149             game-\/>\mbox{\hyperlink{class_game_a2d8766e23ec07502cc1ef73b633d4c4c}{GetNextSAN}}();}
+\DoxyCodeLine{150         \} \textcolor{keywordflow}{while} (game-\/>\mbox{\hyperlink{class_game_aa5414239fc6ad823c58d57376249b678}{MoveForwardInPGN}}() == \mbox{\hyperlink{error_8h_a97c1af1656bc9df70e86ab103915c98a}{OK}});}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152         buf\_.clear();}
+\DoxyCodeLine{153         \mbox{\hyperlink{namespacepgn_ac8f928591f55f5cfd64a27f901bcdf09}{pgn::encode}}(*game, buf\_);}
+\DoxyCodeLine{154         buf\_.push\_back(\textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{155         \textcolor{keywordflow}{return} file\_.append(buf\_.data(), buf\_.size());}
+\DoxyCodeLine{156     \}}
+\DoxyCodeLine{157 \};}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

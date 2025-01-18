@@ -1,0 +1,678 @@
+\hypertarget{class_position}{}\doxysection{Position Class Reference}
+\label{class_position}\index{Position@{Position}}
+
+
+{\ttfamily \#include $<$position.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_position_a369a577425f8ba02e8750d04b6a088db}{Position}} ()
+\item 
+void \mbox{\hyperlink{class_position_a67707b57f72bbd3031ceec84e76a6f8c}{Clear}} ()
+\item 
+void \mbox{\hyperlink{class_position_a33c7dfea1b96c405018c299e41c18f80}{Std\+Start}} ()
+\item 
+bool \mbox{\hyperlink{class_position_a1bcd653aa5db4e7fe4daeeb72e45728b}{Is\+Std\+Start}} () const
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_a1b9684670eaeb3892441a1f45944970e}{Add\+Piece}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq)
+\item 
+bool \mbox{\hyperlink{class_position_ad853a31e5f41d12ac793dc0dc5e3f124}{is\+Chess960}} () const
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_position_aa98afab5366a6cef9dc80c42c32130fa}{Piece\+Count}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p)
+\item 
+const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$ \mbox{\hyperlink{class_position_a84685bfc33d6362a4a6ba1248886fcf3}{Get\+Material}} () const
+\item 
+void \mbox{\hyperlink{class_position_a975e09af484c006806a6ecc153ba2f15}{Set\+EPTarget}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} s)
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_position_a42deda780b68e95426766ec567ee0b69}{Get\+EPTarget}} () const
+\item 
+void \mbox{\hyperlink{class_position_a64a424fcfaa7dbed4a8a16fefa684f2b}{Set\+To\+Move}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c)
+\item 
+\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} \mbox{\hyperlink{class_position_af73f9ecf17674a03376deaa5468caabe}{Get\+To\+Move}} () const
+\item 
+bool \mbox{\hyperlink{class_position_a4c6839269d906540b76fa1b3c548a7ec}{White\+To\+Move}} () const
+\item 
+void \mbox{\hyperlink{class_position_adc42acc46fe1b4d60ab888c366f25ae9}{Set\+Ply\+Counter}} (\mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} x)
+\item 
+\mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} \mbox{\hyperlink{class_position_a6f7ed28e0f989ac3d99ba510c7e8ac4f}{Get\+Ply\+Counter}} () const
+\item 
+\mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} \mbox{\hyperlink{class_position_a185415319dc2abca47e86546a2b87062}{Get\+Full\+Move\+Count}} () const
+\item 
+const \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} $\ast$ \mbox{\hyperlink{class_position_a5ef93f6d4d4036f55718526453c551dc}{Get\+List}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a669e0a6ac4ec281b6695029ae6b8de87}{Get\+Count}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a56d2abe9038cc48a9d9c61d5159441a2}{Total\+Material}} ()
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a9269fa4b44c0a16d8175e08019d8f433}{Num\+Non\+Pawns}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c)
+\item 
+bool \mbox{\hyperlink{class_position_a740589a0fe06141c0cf5deaf2cdec602}{In\+Pawn\+Ending}} ()
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a42a784a650888f391963165a71a83f35}{Material\+Value}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a0a27a4623f3240b2c471b19c94ed7cb8}{Fyle\+Count}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}} f) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a25e6241034b9cd770c35369768c4f0e4}{Rank\+Count}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}} r) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a0783350ed0ac67e85f072d45a36c0e23}{Left\+Diag\+Count}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{common_8h_a08cf5104815dba0b082d917ac5f9e315}{left\+DiagT}} diag) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_ae40b9f8a314dd98ba145e3f450ecc26e}{Right\+Diag\+Count}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{common_8h_a7357981b308ff3c409f058170c23a3f0}{right\+DiagT}} diag) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a18b797719c85ca193f8b6083faf66294}{Square\+Color\+Count}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} sq\+Color) const
+\item 
+const \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} $\ast$ \mbox{\hyperlink{class_position_a2017cbfb8e32a3ce89ceaeec1b42ba37}{Get\+Board}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} \mbox{\hyperlink{class_position_a13f4018dcdca8447eee53f7b5d174e73}{Get\+Piece}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq) const
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_position_ab6cd3eb11a7bbf1c889d0712ea7f9821}{Get\+King\+Square}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c) const
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_position_a99e880e089dcebe8118c315edb7f4ebf}{Get\+King\+Square}} () const
+\item 
+\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} \mbox{\hyperlink{class_position_a9ec0ac99006fccae9f675876b4562e49}{Get\+Enemy\+King\+Square}} () const
+\item 
+bool \mbox{\hyperlink{class_position_afc60b89135a92e464b20f2e9ac764797}{Get\+Castling}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} c, \mbox{\hyperlink{common_8h_af19b44bc34d5ff7271c0707c34c44176}{castle\+DirT}} dir) const
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_position_a84fa281d00a8ce7623c02c637c1d8497}{Get\+Castling\+Flags}} () const
+\item 
+bool \mbox{\hyperlink{class_position_a97465242c9ecdac780ae8c849038c3cd}{valid\+Castling\+Flag}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, bool king\+\_\+side) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a89725295d4d9c182ff08536bcb604792}{Hash\+Value}} (void)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_aea52045cc95b7a632442b52ae346c79b}{Pawn\+Hash\+Value}} (void)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a264e7cb66d3c51c728df4d3d79eaeb81}{Get\+HPSig}} ()
+\item 
+void \mbox{\hyperlink{class_position_a4254163682ad3d2a1f139b9e1eb1f581}{Calc\+Pins}} ()
+\item 
+void \mbox{\hyperlink{class_position_a8dbb4db895e890e3d3c1fad06a05e2f7}{Gen\+Piece\+Moves}} (\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$mlist, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} sq, \mbox{\hyperlink{class_square_set}{Square\+Set}} $\ast$sqset, bool captures\+Only)
+\item 
+void \mbox{\hyperlink{class_position_abbdf32eb12b25a78b6fe5e0a667679ad}{Generate\+Moves}} (\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$mlist, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} mask, \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} gen\+Type, bool maybe\+In\+Check)
+\item 
+void \mbox{\hyperlink{class_position_ab3b7200214840b019d62d46d47d737be}{Generate\+Moves}} (\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$mlist)
+\item 
+void \mbox{\hyperlink{class_position_ae2e5f3f06053f06f2cdb308c1a298c4d}{Generate\+Moves}} (\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$mlist, \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} gen\+Type)
+\item 
+void \mbox{\hyperlink{class_position_ad9b3d48df0ad7598c905a0ed100f9640}{Generate\+Captures}} (\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$mlist)
+\item 
+int \mbox{\hyperlink{class_position_aca8b124d58a28930bb115a1dadcebfd5}{Is\+Legal\+Move}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} promo) const
+\item 
+{\footnotesize template$<$bool check\+\_\+legal = true$>$ }\\bool \mbox{\hyperlink{class_position_ae1fda6d888cfec306bd0916531d12cb6}{can\+Castle}} (bool king\+\_\+side) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_ae0026bb99952a305460f21be076dabde}{Calc\+Attacks}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} to\+Move, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} king\+Sq, \mbox{\hyperlink{class_square_list}{Square\+List}} $\ast$squares) const
+\item 
+int \mbox{\hyperlink{class_position_a7774ddf9bcb9c281594f5667b89de271}{Tree\+Calc\+Attacks}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} target)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a85624cb3224b43c21a0d922857be3984}{Calc\+Num\+Checks}} () const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_a9035ed5c275834aed16bfe01aaffc2f3}{Calc\+Num\+Checks}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} king\+Sq) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_aed40ac9812df9313e780ab89f6509ed0}{Calc\+Num\+Checks}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} king\+Sq, \mbox{\hyperlink{class_square_list}{Square\+List}} $\ast$check\+Squares) const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_position_af65c009b53bd62f8450586853f374d52}{Mobility}} (\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} p, \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} color, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from)
+\item 
+bool \mbox{\hyperlink{class_position_a619ec343fc2eb917a0cd901415ec0029}{Is\+King\+In\+Check}} ()
+\item 
+bool \mbox{\hyperlink{class_position_ad1a16385496c091a8e82781fcc71467a}{Is\+King\+In\+Check}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const \&sm)
+\item 
+bool \mbox{\hyperlink{class_position_a715e918e487ae64c33b85694c2977705}{Is\+King\+In\+Mate}} ()
+\item 
+bool \mbox{\hyperlink{class_position_a87c9f5b4774facec66a14a6c7a1ac80a}{Is\+Legal}} ()
+\item 
+bool \mbox{\hyperlink{class_position_afcd00cbbfaa4568e97f709683cf13d11}{Is\+Promo\+Move}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to)
+\item 
+void \mbox{\hyperlink{class_position_a20aa549fc91813b4456285cf1ba7307c}{make\+Move}} (\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} from, \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} to, \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} promo, \mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} \&res) const
+\item 
+void \mbox{\hyperlink{class_position_a615d6c9e47613883adc4552074cc30ad}{fill\+Move}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} \&sm) const
+\item 
+void \mbox{\hyperlink{class_position_a33097d7f98dc2fa4c8678634558228d2}{Do\+Simple\+Move}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const \&sm)
+\item 
+void \mbox{\hyperlink{class_position_a9aa05bd7b52fae8e528f64265b2945e0}{Do\+Simple\+Move}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$sm)
+\item 
+void \mbox{\hyperlink{class_position_aa06cc0083f1134a91a606fb32194bc8a}{Undo\+Simple\+Move}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const \&sm)
+\item 
+void \mbox{\hyperlink{class_position_a88cb5ea94f5ce33ec70ba15510f66b8f}{Make\+SANString}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$sm, char $\ast$s, \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}} flag)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_a3dd913e3153aa209485454f702b427e9}{Make\+Coord\+Moves}} (const char $\ast$moves, size\+\_\+t moves\+Len, std\+::string $\ast$to\+SAN=nullptr)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_a4f5a230fea6477d1ce2955ac6162ee49}{Read\+Coord\+Move}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$m, const char $\ast$s, size\+\_\+t slen, bool reverse)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_aeb7b7f8a06e5dc8e451982babb380668}{Parse\+Move}} (\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$sm, const char $\ast$begin, const char $\ast$end)
+\item 
+void \mbox{\hyperlink{class_position_aa0ca0188ef9a0841f10bdeecd0d45d48}{Make\+Long\+Str}} (char $\ast$str) const
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_a3ca883d27234b90845fa46437d86b99f}{Read\+From\+Long\+Str}} (const char $\ast$str)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_a0c62f8f48a9e00975f4b9aadbffddff8}{Read\+From\+FEN}} (const char $\ast$s)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_ac29a38f21114c26ea4d6ce3926e2b16a}{Read\+From\+FENor\+UCI}} (std\+::string\+\_\+view str)
+\item 
+void \mbox{\hyperlink{class_position_a803343713a3578050df6720d3dec592e}{Print\+Compact\+Str}} (char $\ast$cboard)
+\item 
+void \mbox{\hyperlink{class_position_ab8bca5b200359bb67019594bafec5b3b}{Print\+FEN}} (char $\ast$str) const
+\item 
+void \mbox{\hyperlink{class_position_af867836f717d523580f964ff4fb30ad1}{Dump\+Latex\+Board}} (\mbox{\hyperlink{class_d_string}{DString}} $\ast$dstr, bool flip)
+\item 
+void \mbox{\hyperlink{class_position_a3a46553e124200c8b465d250852775c6}{Dump\+Latex\+Board}} (\mbox{\hyperlink{class_d_string}{DString}} $\ast$dstr)
+\item 
+void \mbox{\hyperlink{class_position_ab34b54dd2e356c40ba1106afa6e8332c}{Dump\+Html\+Board}} (\mbox{\hyperlink{class_d_string}{DString}} $\ast$dstr, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} style, const char $\ast$dir, bool flip)
+\item 
+void \mbox{\hyperlink{class_position_a3b26bf41fdc1621feb98be0949851bc8}{Dump\+Html\+Board}} (\mbox{\hyperlink{class_d_string}{DString}} $\ast$dstr, \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} style, const char $\ast$dir)
+\item 
+int \mbox{\hyperlink{class_position_aa5dfd143aea39bf43122ed19048f9d83}{Compare}} (\mbox{\hyperlink{class_position}{Position}} $\ast$p)
+\item 
+void \mbox{\hyperlink{class_position_a3b8c6d81d34780d75d38818926da6df5}{Copy\+From}} (\mbox{\hyperlink{class_position}{Position}} $\ast$src)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_position_a633b5f43437e1cae2997315917091406}{Random}} (const char $\ast$material)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{class_position}{Position}} \& \mbox{\hyperlink{class_position_a06a12cb658451122ee09820004bbb3ab}{get\+Std\+Start}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_position_a369a577425f8ba02e8750d04b6a088db}\label{class_position_a369a577425f8ba02e8750d04b6a088db}} 
+\index{Position@{Position}!Position@{Position}}
+\index{Position@{Position}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{Position()}{Position()}}
+{\footnotesize\ttfamily Position\+::\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_position_a1b9684670eaeb3892441a1f45944970e}\label{class_position_a1b9684670eaeb3892441a1f45944970e}} 
+\index{Position@{Position}!AddPiece@{AddPiece}}
+\index{AddPiece@{AddPiece}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{AddPiece()}{AddPiece()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Add\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_ae0026bb99952a305460f21be076dabde}\label{class_position_ae0026bb99952a305460f21be076dabde}} 
+\index{Position@{Position}!CalcAttacks@{CalcAttacks}}
+\index{CalcAttacks@{CalcAttacks}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{CalcAttacks()}{CalcAttacks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Calc\+Attacks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{to\+Move,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{king\+Sq,  }\item[{\mbox{\hyperlink{class_square_list}{Square\+List}} $\ast$}]{squares }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_position_a85624cb3224b43c21a0d922857be3984}\label{class_position_a85624cb3224b43c21a0d922857be3984}} 
+\index{Position@{Position}!CalcNumChecks@{CalcNumChecks}}
+\index{CalcNumChecks@{CalcNumChecks}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{CalcNumChecks()}{CalcNumChecks()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Calc\+Num\+Checks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a9035ed5c275834aed16bfe01aaffc2f3}\label{class_position_a9035ed5c275834aed16bfe01aaffc2f3}} 
+\index{Position@{Position}!CalcNumChecks@{CalcNumChecks}}
+\index{CalcNumChecks@{CalcNumChecks}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{CalcNumChecks()}{CalcNumChecks()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Calc\+Num\+Checks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{king\+Sq }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_aed40ac9812df9313e780ab89f6509ed0}\label{class_position_aed40ac9812df9313e780ab89f6509ed0}} 
+\index{Position@{Position}!CalcNumChecks@{CalcNumChecks}}
+\index{CalcNumChecks@{CalcNumChecks}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{CalcNumChecks()}{CalcNumChecks()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Calc\+Num\+Checks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{king\+Sq,  }\item[{\mbox{\hyperlink{class_square_list}{Square\+List}} $\ast$}]{check\+Squares }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a4254163682ad3d2a1f139b9e1eb1f581}\label{class_position_a4254163682ad3d2a1f139b9e1eb1f581}} 
+\index{Position@{Position}!CalcPins@{CalcPins}}
+\index{CalcPins@{CalcPins}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{CalcPins()}{CalcPins()}}
+{\footnotesize\ttfamily void Position\+::\+Calc\+Pins (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_ae1fda6d888cfec306bd0916531d12cb6}\label{class_position_ae1fda6d888cfec306bd0916531d12cb6}} 
+\index{Position@{Position}!canCastle@{canCastle}}
+\index{canCastle@{canCastle}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{canCastle()}{canCastle()}}
+{\footnotesize\ttfamily template$<$bool check\+\_\+legal$>$ \\
+template bool Position\+::can\+Castle$<$ false $>$ (\begin{DoxyParamCaption}\item[{bool}]{king\+\_\+side }\end{DoxyParamCaption}) const}
+
+Check that the minimum requirements for castling are satisfied\+:
+\begin{DoxyItemize}
+\item both the king and the rook exists in the position
+\item the final squares of the king and the rook are empty 
+\begin{DoxyParams}{Parameters}
+{\em check\+\_\+legal} & also test for checks or blocking pieces. Ignore the castling flags and if the king is already in check. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\mbox{\Hypertarget{class_position_a67707b57f72bbd3031ceec84e76a6f8c}\label{class_position_a67707b57f72bbd3031ceec84e76a6f8c}} 
+\index{Position@{Position}!Clear@{Clear}}
+\index{Clear@{Clear}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}}
+{\footnotesize\ttfamily void Position\+::\+Clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_aa5dfd143aea39bf43122ed19048f9d83}\label{class_position_aa5dfd143aea39bf43122ed19048f9d83}} 
+\index{Position@{Position}!Compare@{Compare}}
+\index{Compare@{Compare}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{Compare()}{Compare()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_ab9731c2b2f199bcb03ed94acd840b93d}{sint}} Position\+::\+Compare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_position}{Position}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a3b8c6d81d34780d75d38818926da6df5}\label{class_position_a3b8c6d81d34780d75d38818926da6df5}} 
+\index{Position@{Position}!CopyFrom@{CopyFrom}}
+\index{CopyFrom@{CopyFrom}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{CopyFrom()}{CopyFrom()}}
+{\footnotesize\ttfamily void Position\+::\+Copy\+From (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_position}{Position}} $\ast$}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a9aa05bd7b52fae8e528f64265b2945e0}\label{class_position_a9aa05bd7b52fae8e528f64265b2945e0}} 
+\index{Position@{Position}!DoSimpleMove@{DoSimpleMove}}
+\index{DoSimpleMove@{DoSimpleMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{DoSimpleMove()}{DoSimpleMove()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Position\+::\+Do\+Simple\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$}]{sm }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a33097d7f98dc2fa4c8678634558228d2}\label{class_position_a33097d7f98dc2fa4c8678634558228d2}} 
+\index{Position@{Position}!DoSimpleMove@{DoSimpleMove}}
+\index{DoSimpleMove@{DoSimpleMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{DoSimpleMove()}{DoSimpleMove()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Position\+::\+Do\+Simple\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const \&}]{sm }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a3b26bf41fdc1621feb98be0949851bc8}\label{class_position_a3b26bf41fdc1621feb98be0949851bc8}} 
+\index{Position@{Position}!DumpHtmlBoard@{DumpHtmlBoard}}
+\index{DumpHtmlBoard@{DumpHtmlBoard}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{DumpHtmlBoard()}{DumpHtmlBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Position\+::\+Dump\+Html\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_d_string}{DString}} $\ast$}]{dstr,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{style,  }\item[{const char $\ast$}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_ab34b54dd2e356c40ba1106afa6e8332c}\label{class_position_ab34b54dd2e356c40ba1106afa6e8332c}} 
+\index{Position@{Position}!DumpHtmlBoard@{DumpHtmlBoard}}
+\index{DumpHtmlBoard@{DumpHtmlBoard}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{DumpHtmlBoard()}{DumpHtmlBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Position\+::\+Dump\+Html\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_d_string}{DString}} $\ast$}]{dstr,  }\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{style,  }\item[{const char $\ast$}]{dir,  }\item[{bool}]{flip }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a3a46553e124200c8b465d250852775c6}\label{class_position_a3a46553e124200c8b465d250852775c6}} 
+\index{Position@{Position}!DumpLatexBoard@{DumpLatexBoard}}
+\index{DumpLatexBoard@{DumpLatexBoard}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{DumpLatexBoard()}{DumpLatexBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Position\+::\+Dump\+Latex\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_d_string}{DString}} $\ast$}]{dstr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_af867836f717d523580f964ff4fb30ad1}\label{class_position_af867836f717d523580f964ff4fb30ad1}} 
+\index{Position@{Position}!DumpLatexBoard@{DumpLatexBoard}}
+\index{DumpLatexBoard@{DumpLatexBoard}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{DumpLatexBoard()}{DumpLatexBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Position\+::\+Dump\+Latex\+Board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_d_string}{DString}} $\ast$}]{dstr,  }\item[{bool}]{flip }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a615d6c9e47613883adc4552074cc30ad}\label{class_position_a615d6c9e47613883adc4552074cc30ad}} 
+\index{Position@{Position}!fillMove@{fillMove}}
+\index{fillMove@{fillMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{fillMove()}{fillMove()}}
+{\footnotesize\ttfamily void Position\+::fill\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} \&}]{sm }\end{DoxyParamCaption}) const}
+
+Use the current position to retrieve all the information needed to create a Simple\+Move which can also be used in Undo\+Simple\+Move. \mbox{\Hypertarget{class_position_a0a27a4623f3240b2c471b19c94ed7cb8}\label{class_position_a0a27a4623f3240b2c471b19c94ed7cb8}} 
+\index{Position@{Position}!FyleCount@{FyleCount}}
+\index{FyleCount@{FyleCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{FyleCount()}{FyleCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Fyle\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{board__def_8h_acf2e93eac47e0b5856d30b54464407c4}{fyleT}}}]{f }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_ad9b3d48df0ad7598c905a0ed100f9640}\label{class_position_ad9b3d48df0ad7598c905a0ed100f9640}} 
+\index{Position@{Position}!GenerateCaptures@{GenerateCaptures}}
+\index{GenerateCaptures@{GenerateCaptures}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GenerateCaptures()}{GenerateCaptures()}}
+{\footnotesize\ttfamily void Position\+::\+Generate\+Captures (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$}]{mlist }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_ab3b7200214840b019d62d46d47d737be}\label{class_position_ab3b7200214840b019d62d46d47d737be}} 
+\index{Position@{Position}!GenerateMoves@{GenerateMoves}}
+\index{GenerateMoves@{GenerateMoves}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GenerateMoves()}{GenerateMoves()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Position\+::\+Generate\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$}]{mlist }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_ae2e5f3f06053f06f2cdb308c1a298c4d}\label{class_position_ae2e5f3f06053f06f2cdb308c1a298c4d}} 
+\index{Position@{Position}!GenerateMoves@{GenerateMoves}}
+\index{GenerateMoves@{GenerateMoves}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GenerateMoves()}{GenerateMoves()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Position\+::\+Generate\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$}]{mlist,  }\item[{\mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}}}]{gen\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_abbdf32eb12b25a78b6fe5e0a667679ad}\label{class_position_abbdf32eb12b25a78b6fe5e0a667679ad}} 
+\index{Position@{Position}!GenerateMoves@{GenerateMoves}}
+\index{GenerateMoves@{GenerateMoves}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GenerateMoves()}{GenerateMoves()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Position\+::\+Generate\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$}]{mlist,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{mask,  }\item[{\mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}}}]{gen\+Type,  }\item[{bool}]{maybe\+In\+Check }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a8dbb4db895e890e3d3c1fad06a05e2f7}\label{class_position_a8dbb4db895e890e3d3c1fad06a05e2f7}} 
+\index{Position@{Position}!GenPieceMoves@{GenPieceMoves}}
+\index{GenPieceMoves@{GenPieceMoves}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GenPieceMoves()}{GenPieceMoves()}}
+{\footnotesize\ttfamily void Position\+::\+Gen\+Piece\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_move_list}{Move\+List}} $\ast$}]{mlist,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq,  }\item[{\mbox{\hyperlink{class_square_set}{Square\+Set}} $\ast$}]{sqset,  }\item[{bool}]{captures\+Only }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a2017cbfb8e32a3ce89ceaeec1b42ba37}\label{class_position_a2017cbfb8e32a3ce89ceaeec1b42ba37}} 
+\index{Position@{Position}!GetBoard@{GetBoard}}
+\index{GetBoard@{GetBoard}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetBoard()}{GetBoard()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} $\ast$ Position\+::\+Get\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_afc60b89135a92e464b20f2e9ac764797}\label{class_position_afc60b89135a92e464b20f2e9ac764797}} 
+\index{Position@{Position}!GetCastling@{GetCastling}}
+\index{GetCastling@{GetCastling}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetCastling()}{GetCastling()}}
+{\footnotesize\ttfamily bool Position\+::\+Get\+Castling (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c,  }\item[{\mbox{\hyperlink{common_8h_af19b44bc34d5ff7271c0707c34c44176}{castle\+DirT}}}]{dir }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a84fa281d00a8ce7623c02c637c1d8497}\label{class_position_a84fa281d00a8ce7623c02c637c1d8497}} 
+\index{Position@{Position}!GetCastlingFlags@{GetCastlingFlags}}
+\index{GetCastlingFlags@{GetCastlingFlags}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetCastlingFlags()}{GetCastlingFlags()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} Position\+::\+Get\+Castling\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a669e0a6ac4ec281b6695029ae6b8de87}\label{class_position_a669e0a6ac4ec281b6695029ae6b8de87}} 
+\index{Position@{Position}!GetCount@{GetCount}}
+\index{GetCount@{GetCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetCount()}{GetCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Get\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a9ec0ac99006fccae9f675876b4562e49}\label{class_position_a9ec0ac99006fccae9f675876b4562e49}} 
+\index{Position@{Position}!GetEnemyKingSquare@{GetEnemyKingSquare}}
+\index{GetEnemyKingSquare@{GetEnemyKingSquare}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetEnemyKingSquare()}{GetEnemyKingSquare()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Position\+::\+Get\+Enemy\+King\+Square (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a42deda780b68e95426766ec567ee0b69}\label{class_position_a42deda780b68e95426766ec567ee0b69}} 
+\index{Position@{Position}!GetEPTarget@{GetEPTarget}}
+\index{GetEPTarget@{GetEPTarget}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetEPTarget()}{GetEPTarget()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Position\+::\+Get\+EPTarget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a185415319dc2abca47e86546a2b87062}\label{class_position_a185415319dc2abca47e86546a2b87062}} 
+\index{Position@{Position}!GetFullMoveCount@{GetFullMoveCount}}
+\index{GetFullMoveCount@{GetFullMoveCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetFullMoveCount()}{GetFullMoveCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} Position\+::\+Get\+Full\+Move\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a264e7cb66d3c51c728df4d3d79eaeb81}\label{class_position_a264e7cb66d3c51c728df4d3d79eaeb81}} 
+\index{Position@{Position}!GetHPSig@{GetHPSig}}
+\index{GetHPSig@{GetHPSig}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetHPSig()}{GetHPSig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Get\+HPSig (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a99e880e089dcebe8118c315edb7f4ebf}\label{class_position_a99e880e089dcebe8118c315edb7f4ebf}} 
+\index{Position@{Position}!GetKingSquare@{GetKingSquare}}
+\index{GetKingSquare@{GetKingSquare}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetKingSquare()}{GetKingSquare()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Position\+::\+Get\+King\+Square (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_ab6cd3eb11a7bbf1c889d0712ea7f9821}\label{class_position_ab6cd3eb11a7bbf1c889d0712ea7f9821}} 
+\index{Position@{Position}!GetKingSquare@{GetKingSquare}}
+\index{GetKingSquare@{GetKingSquare}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetKingSquare()}{GetKingSquare()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} Position\+::\+Get\+King\+Square (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a5ef93f6d4d4036f55718526453c551dc}\label{class_position_a5ef93f6d4d4036f55718526453c551dc}} 
+\index{Position@{Position}!GetList@{GetList}}
+\index{GetList@{GetList}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetList()}{GetList()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}} $\ast$ Position\+::\+Get\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a84685bfc33d6362a4a6ba1248886fcf3}\label{class_position_a84685bfc33d6362a4a6ba1248886fcf3}} 
+\index{Position@{Position}!GetMaterial@{GetMaterial}}
+\index{GetMaterial@{GetMaterial}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetMaterial()}{GetMaterial()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$ Position\+::\+Get\+Material (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a13f4018dcdca8447eee53f7b5d174e73}\label{class_position_a13f4018dcdca8447eee53f7b5d174e73}} 
+\index{Position@{Position}!GetPiece@{GetPiece}}
+\index{GetPiece@{GetPiece}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetPiece()}{GetPiece()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}} Position\+::\+Get\+Piece (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{sq }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a6f7ed28e0f989ac3d99ba510c7e8ac4f}\label{class_position_a6f7ed28e0f989ac3d99ba510c7e8ac4f}} 
+\index{Position@{Position}!GetPlyCounter@{GetPlyCounter}}
+\index{GetPlyCounter@{GetPlyCounter}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetPlyCounter()}{GetPlyCounter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} Position\+::\+Get\+Ply\+Counter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a06a12cb658451122ee09820004bbb3ab}\label{class_position_a06a12cb658451122ee09820004bbb3ab}} 
+\index{Position@{Position}!getStdStart@{getStdStart}}
+\index{getStdStart@{getStdStart}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{getStdStart()}{getStdStart()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_position}{Position}} \& Position\+::get\+Std\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_position_af73f9ecf17674a03376deaa5468caabe}\label{class_position_af73f9ecf17674a03376deaa5468caabe}} 
+\index{Position@{Position}!GetToMove@{GetToMove}}
+\index{GetToMove@{GetToMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{GetToMove()}{GetToMove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} Position\+::\+Get\+To\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a89725295d4d9c182ff08536bcb604792}\label{class_position_a89725295d4d9c182ff08536bcb604792}} 
+\index{Position@{Position}!HashValue@{HashValue}}
+\index{HashValue@{HashValue}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{HashValue()}{HashValue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Hash\+Value (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a740589a0fe06141c0cf5deaf2cdec602}\label{class_position_a740589a0fe06141c0cf5deaf2cdec602}} 
+\index{Position@{Position}!InPawnEnding@{InPawnEnding}}
+\index{InPawnEnding@{InPawnEnding}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{InPawnEnding()}{InPawnEnding()}}
+{\footnotesize\ttfamily bool Position\+::\+In\+Pawn\+Ending (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_ad853a31e5f41d12ac793dc0dc5e3f124}\label{class_position_ad853a31e5f41d12ac793dc0dc5e3f124}} 
+\index{Position@{Position}!isChess960@{isChess960}}
+\index{isChess960@{isChess960}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{isChess960()}{isChess960()}}
+{\footnotesize\ttfamily bool Position\+::is\+Chess960 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a619ec343fc2eb917a0cd901415ec0029}\label{class_position_a619ec343fc2eb917a0cd901415ec0029}} 
+\index{Position@{Position}!IsKingInCheck@{IsKingInCheck}}
+\index{IsKingInCheck@{IsKingInCheck}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{IsKingInCheck()}{IsKingInCheck()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Position\+::\+Is\+King\+In\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_ad1a16385496c091a8e82781fcc71467a}\label{class_position_ad1a16385496c091a8e82781fcc71467a}} 
+\index{Position@{Position}!IsKingInCheck@{IsKingInCheck}}
+\index{IsKingInCheck@{IsKingInCheck}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{IsKingInCheck()}{IsKingInCheck()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Position\+::\+Is\+King\+In\+Check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const \&}]{sm }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a715e918e487ae64c33b85694c2977705}\label{class_position_a715e918e487ae64c33b85694c2977705}} 
+\index{Position@{Position}!IsKingInMate@{IsKingInMate}}
+\index{IsKingInMate@{IsKingInMate}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{IsKingInMate()}{IsKingInMate()}}
+{\footnotesize\ttfamily bool Position\+::\+Is\+King\+In\+Mate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a87c9f5b4774facec66a14a6c7a1ac80a}\label{class_position_a87c9f5b4774facec66a14a6c7a1ac80a}} 
+\index{Position@{Position}!IsLegal@{IsLegal}}
+\index{IsLegal@{IsLegal}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{IsLegal()}{IsLegal()}}
+{\footnotesize\ttfamily bool Position\+::\+Is\+Legal (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_aca8b124d58a28930bb115a1dadcebfd5}\label{class_position_aca8b124d58a28930bb115a1dadcebfd5}} 
+\index{Position@{Position}!IsLegalMove@{IsLegalMove}}
+\index{IsLegalMove@{IsLegalMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{IsLegalMove()}{IsLegalMove()}}
+{\footnotesize\ttfamily int Position\+::\+Is\+Legal\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{from,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{to,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{promo }\end{DoxyParamCaption}) const}
+
+Returns\+: 0 -\/\texorpdfstring{$>$}{>} invalid move 1 -\/\texorpdfstring{$>$}{>} valid normal move 2 -\/\texorpdfstring{$>$}{>} valid castle king side -\/2 -\/\texorpdfstring{$>$}{>} valid castle queen side \mbox{\Hypertarget{class_position_afcd00cbbfaa4568e97f709683cf13d11}\label{class_position_afcd00cbbfaa4568e97f709683cf13d11}} 
+\index{Position@{Position}!IsPromoMove@{IsPromoMove}}
+\index{IsPromoMove@{IsPromoMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{IsPromoMove()}{IsPromoMove()}}
+{\footnotesize\ttfamily bool Position\+::\+Is\+Promo\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{from,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{to }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a1bcd653aa5db4e7fe4daeeb72e45728b}\label{class_position_a1bcd653aa5db4e7fe4daeeb72e45728b}} 
+\index{Position@{Position}!IsStdStart@{IsStdStart}}
+\index{IsStdStart@{IsStdStart}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{IsStdStart()}{IsStdStart()}}
+{\footnotesize\ttfamily bool Position\+::\+Is\+Std\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_position_a0783350ed0ac67e85f072d45a36c0e23}\label{class_position_a0783350ed0ac67e85f072d45a36c0e23}} 
+\index{Position@{Position}!LeftDiagCount@{LeftDiagCount}}
+\index{LeftDiagCount@{LeftDiagCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{LeftDiagCount()}{LeftDiagCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Left\+Diag\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{common_8h_a08cf5104815dba0b082d917ac5f9e315}{left\+DiagT}}}]{diag }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a3dd913e3153aa209485454f702b427e9}\label{class_position_a3dd913e3153aa209485454f702b427e9}} 
+\index{Position@{Position}!MakeCoordMoves@{MakeCoordMoves}}
+\index{MakeCoordMoves@{MakeCoordMoves}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{MakeCoordMoves()}{MakeCoordMoves()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Make\+Coord\+Moves (\begin{DoxyParamCaption}\item[{const char $\ast$}]{moves,  }\item[{size\+\_\+t}]{moves\+Len,  }\item[{std\+::string $\ast$}]{to\+SAN = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_aa0ca0188ef9a0841f10bdeecd0d45d48}\label{class_position_aa0ca0188ef9a0841f10bdeecd0d45d48}} 
+\index{Position@{Position}!MakeLongStr@{MakeLongStr}}
+\index{MakeLongStr@{MakeLongStr}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{MakeLongStr()}{MakeLongStr()}}
+{\footnotesize\ttfamily void Position\+::\+Make\+Long\+Str (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_position_a20aa549fc91813b4456285cf1ba7307c}\label{class_position_a20aa549fc91813b4456285cf1ba7307c}} 
+\index{Position@{Position}!makeMove@{makeMove}}
+\index{makeMove@{makeMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{makeMove()}{makeMove()}}
+{\footnotesize\ttfamily void Position\+::make\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{from,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{to,  }\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{promo,  }\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} \&}]{res }\end{DoxyParamCaption}) const}
+
+Make a \mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}}. If {\itshape promo} != INVALID\+\_\+\+PIECE it is a special move\+: promo == PAWN -\/\texorpdfstring{$>$}{>} null move from != to -\/\texorpdfstring{$>$}{>} promotion from == to \&\& PAWN == KING -\/\texorpdfstring{$>$}{>} castle kingside from == to \&\& PAWN != KING -\/\texorpdfstring{$>$}{>} castle queenside \mbox{\Hypertarget{class_position_a88cb5ea94f5ce33ec70ba15510f66b8f}\label{class_position_a88cb5ea94f5ce33ec70ba15510f66b8f}} 
+\index{Position@{Position}!MakeSANString@{MakeSANString}}
+\index{MakeSANString@{MakeSANString}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{MakeSANString()}{MakeSANString()}}
+{\footnotesize\ttfamily void Position\+::\+Make\+SANString (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$}]{sm,  }\item[{char $\ast$}]{s,  }\item[{\mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}}}]{flag }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a42a784a650888f391963165a71a83f35}\label{class_position_a42a784a650888f391963165a71a83f35}} 
+\index{Position@{Position}!MaterialValue@{MaterialValue}}
+\index{MaterialValue@{MaterialValue}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{MaterialValue()}{MaterialValue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Material\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_af65c009b53bd62f8450586853f374d52}\label{class_position_af65c009b53bd62f8450586853f374d52}} 
+\index{Position@{Position}!Mobility@{Mobility}}
+\index{Mobility@{Mobility}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{Mobility()}{Mobility()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Mobility (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{color,  }\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{from }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a9269fa4b44c0a16d8175e08019d8f433}\label{class_position_a9269fa4b44c0a16d8175e08019d8f433}} 
+\index{Position@{Position}!NumNonPawns@{NumNonPawns}}
+\index{NumNonPawns@{NumNonPawns}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{NumNonPawns()}{NumNonPawns()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Num\+Non\+Pawns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_aeb7b7f8a06e5dc8e451982babb380668}\label{class_position_aeb7b7f8a06e5dc8e451982babb380668}} 
+\index{Position@{Position}!ParseMove@{ParseMove}}
+\index{ParseMove@{ParseMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{ParseMove()}{ParseMove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Parse\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$}]{sm,  }\item[{const char $\ast$}]{begin,  }\item[{const char $\ast$}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_aea52045cc95b7a632442b52ae346c79b}\label{class_position_aea52045cc95b7a632442b52ae346c79b}} 
+\index{Position@{Position}!PawnHashValue@{PawnHashValue}}
+\index{PawnHashValue@{PawnHashValue}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{PawnHashValue()}{PawnHashValue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Pawn\+Hash\+Value (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_aa98afab5366a6cef9dc80c42c32130fa}\label{class_position_aa98afab5366a6cef9dc80c42c32130fa}} 
+\index{Position@{Position}!PieceCount@{PieceCount}}
+\index{PieceCount@{PieceCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{PieceCount()}{PieceCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} Position\+::\+Piece\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a803343713a3578050df6720d3dec592e}\label{class_position_a803343713a3578050df6720d3dec592e}} 
+\index{Position@{Position}!PrintCompactStr@{PrintCompactStr}}
+\index{PrintCompactStr@{PrintCompactStr}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{PrintCompactStr()}{PrintCompactStr()}}
+{\footnotesize\ttfamily void Position\+::\+Print\+Compact\+Str (\begin{DoxyParamCaption}\item[{char $\ast$}]{cboard }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_ab8bca5b200359bb67019594bafec5b3b}\label{class_position_ab8bca5b200359bb67019594bafec5b3b}} 
+\index{Position@{Position}!PrintFEN@{PrintFEN}}
+\index{PrintFEN@{PrintFEN}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{PrintFEN()}{PrintFEN()}}
+{\footnotesize\ttfamily void Position\+::\+Print\+FEN (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_position_a633b5f43437e1cae2997315917091406}\label{class_position_a633b5f43437e1cae2997315917091406}} 
+\index{Position@{Position}!Random@{Random}}
+\index{Random@{Random}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{Random()}{Random()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Random (\begin{DoxyParamCaption}\item[{const char $\ast$}]{material }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a25e6241034b9cd770c35369768c4f0e4}\label{class_position_a25e6241034b9cd770c35369768c4f0e4}} 
+\index{Position@{Position}!RankCount@{RankCount}}
+\index{RankCount@{RankCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{RankCount()}{RankCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Rank\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{board__def_8h_aaf64c635c2f9dc12047c1577dcec1167}{rankT}}}]{r }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a4f5a230fea6477d1ce2955ac6162ee49}\label{class_position_a4f5a230fea6477d1ce2955ac6162ee49}} 
+\index{Position@{Position}!ReadCoordMove@{ReadCoordMove}}
+\index{ReadCoordMove@{ReadCoordMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{ReadCoordMove()}{ReadCoordMove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Read\+Coord\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} $\ast$}]{m,  }\item[{const char $\ast$}]{s,  }\item[{size\+\_\+t}]{slen,  }\item[{bool}]{reverse }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a0c62f8f48a9e00975f4b9aadbffddff8}\label{class_position_a0c62f8f48a9e00975f4b9aadbffddff8}} 
+\index{Position@{Position}!ReadFromFEN@{ReadFromFEN}}
+\index{ReadFromFEN@{ReadFromFEN}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{ReadFromFEN()}{ReadFromFEN()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Read\+From\+FEN (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+Setup the position from a FEN string. Note\+: the slashes usually found in Fen strings to mark the start of a new row do not need to be present, but if they are, they must appear at the actual start of a new row or the string will be considered corrupt.
+
+IMPORTANT\+: the shortcut of having a two-\/digit number to represent a number of empty rows (e.\+g. \char`\"{}/24/\char`\"{} instead of \char`\"{}/8/8/8/\char`\"{}) is NOT accepted by this function.
+
+It is not considered an error for the halfmove clock or fullmove counter to be invalid, so this routine can also read positions from EPD lines (which only share the first four fields with FEN). \mbox{\Hypertarget{class_position_ac29a38f21114c26ea4d6ce3926e2b16a}\label{class_position_ac29a38f21114c26ea4d6ce3926e2b16a}} 
+\index{Position@{Position}!ReadFromFENorUCI@{ReadFromFENorUCI}}
+\index{ReadFromFENorUCI@{ReadFromFENorUCI}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{ReadFromFENorUCI()}{ReadFromFENorUCI()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Read\+From\+FENor\+UCI (\begin{DoxyParamCaption}\item[{std\+::string\+\_\+view}]{str }\end{DoxyParamCaption})}
+
+Setup the position from a FEN string or UCI \char`\"{}position\char`\"{}. Accept strings like \char`\"{}position startpos\char`\"{}, \char`\"{}position startpos moves e2e4\char`\"{}, \char`\"{}\+FENSTRING\char`\"{}, \char`\"{}\+FENSTRING moves e2e4\char`\"{}, \char`\"{}position fen FENSTRING moves e2e4\char`\"{}. \mbox{\Hypertarget{class_position_a3ca883d27234b90845fa46437d86b99f}\label{class_position_a3ca883d27234b90845fa46437d86b99f}} 
+\index{Position@{Position}!ReadFromLongStr@{ReadFromLongStr}}
+\index{ReadFromLongStr@{ReadFromLongStr}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{ReadFromLongStr()}{ReadFromLongStr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Position\+::\+Read\+From\+Long\+Str (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_ae40b9f8a314dd98ba145e3f450ecc26e}\label{class_position_ae40b9f8a314dd98ba145e3f450ecc26e}} 
+\index{Position@{Position}!RightDiagCount@{RightDiagCount}}
+\index{RightDiagCount@{RightDiagCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{RightDiagCount()}{RightDiagCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Right\+Diag\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{common_8h_a7357981b308ff3c409f058170c23a3f0}{right\+DiagT}}}]{diag }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a975e09af484c006806a6ecc153ba2f15}\label{class_position_a975e09af484c006806a6ecc153ba2f15}} 
+\index{Position@{Position}!SetEPTarget@{SetEPTarget}}
+\index{SetEPTarget@{SetEPTarget}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{SetEPTarget()}{SetEPTarget()}}
+{\footnotesize\ttfamily void Position\+::\+Set\+EPTarget (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_adc42acc46fe1b4d60ab888c366f25ae9}\label{class_position_adc42acc46fe1b4d60ab888c366f25ae9}} 
+\index{Position@{Position}!SetPlyCounter@{SetPlyCounter}}
+\index{SetPlyCounter@{SetPlyCounter}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{SetPlyCounter()}{SetPlyCounter()}}
+{\footnotesize\ttfamily void Position\+::\+Set\+Ply\+Counter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a64a424fcfaa7dbed4a8a16fefa684f2b}\label{class_position_a64a424fcfaa7dbed4a8a16fefa684f2b}} 
+\index{Position@{Position}!SetToMove@{SetToMove}}
+\index{SetToMove@{SetToMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{SetToMove()}{SetToMove()}}
+{\footnotesize\ttfamily void Position\+::\+Set\+To\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a18b797719c85ca193f8b6083faf66294}\label{class_position_a18b797719c85ca193f8b6083faf66294}} 
+\index{Position@{Position}!SquareColorCount@{SquareColorCount}}
+\index{SquareColorCount@{SquareColorCount}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{SquareColorCount()}{SquareColorCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Square\+Color\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_ac1897395b8e2b8ad9f873b30249f3920}{pieceT}}}]{p,  }\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{sq\+Color }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a33c7dfea1b96c405018c299e41c18f80}\label{class_position_a33c7dfea1b96c405018c299e41c18f80}} 
+\index{Position@{Position}!StdStart@{StdStart}}
+\index{StdStart@{StdStart}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{StdStart()}{StdStart()}}
+{\footnotesize\ttfamily void Position\+::\+Std\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a56d2abe9038cc48a9d9c61d5159441a2}\label{class_position_a56d2abe9038cc48a9d9c61d5159441a2}} 
+\index{Position@{Position}!TotalMaterial@{TotalMaterial}}
+\index{TotalMaterial@{TotalMaterial}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{TotalMaterial()}{TotalMaterial()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Position\+::\+Total\+Material (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_position_a7774ddf9bcb9c281594f5667b89de271}\label{class_position_a7774ddf9bcb9c281594f5667b89de271}} 
+\index{Position@{Position}!TreeCalcAttacks@{TreeCalcAttacks}}
+\index{TreeCalcAttacks@{TreeCalcAttacks}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{TreeCalcAttacks()}{TreeCalcAttacks()}}
+{\footnotesize\ttfamily int Position\+::\+Tree\+Calc\+Attacks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a3108e3f00f59ecc09bef6c74ef203381}{squareT}}}]{target }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_aa06cc0083f1134a91a606fb32194bc8a}\label{class_position_aa06cc0083f1134a91a606fb32194bc8a}} 
+\index{Position@{Position}!UndoSimpleMove@{UndoSimpleMove}}
+\index{UndoSimpleMove@{UndoSimpleMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{UndoSimpleMove()}{UndoSimpleMove()}}
+{\footnotesize\ttfamily void Position\+::\+Undo\+Simple\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const \&}]{sm }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_position_a97465242c9ecdac780ae8c849038c3cd}\label{class_position_a97465242c9ecdac780ae8c849038c3cd}} 
+\index{Position@{Position}!validCastlingFlag@{validCastlingFlag}}
+\index{validCastlingFlag@{validCastlingFlag}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{validCastlingFlag()}{validCastlingFlag()}}
+{\footnotesize\ttfamily bool Position\+::valid\+Castling\+Flag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{color,  }\item[{bool}]{king\+\_\+side }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_position_a4c6839269d906540b76fa1b3c548a7ec}\label{class_position_a4c6839269d906540b76fa1b3c548a7ec}} 
+\index{Position@{Position}!WhiteToMove@{WhiteToMove}}
+\index{WhiteToMove@{WhiteToMove}!Position@{Position}}
+\doxysubsubsection{\texorpdfstring{WhiteToMove()}{WhiteToMove()}}
+{\footnotesize\ttfamily bool Position\+::\+White\+To\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{position_8h}{position.\+h}}\item 
+\mbox{\hyperlink{position_8cpp}{position.\+cpp}}\end{DoxyCompactItemize}

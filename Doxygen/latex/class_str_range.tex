@@ -1,0 +1,75 @@
+\hypertarget{class_str_range}{}\doxysection{Str\+Range Class Reference}
+\label{class_str_range}\index{StrRange@{StrRange}}
+
+
+{\ttfamily \#include $<$misc.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_str_range_ade43d93b2445ba2174c56d8e5f309ae2}{Str\+Range}} (const char $\ast$range)
+\item 
+bool \mbox{\hyperlink{class_str_range_a13bb979e1c4ecb61cd82542c443c39de}{in\+Range}} (long val) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_str_range_a0d21167c2b5da6158265c979227a3960}{Str\+Range}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+long \mbox{\hyperlink{class_str_range_aa06540b6cf291910ac5115ed91e323b6}{min\+\_\+}}
+\item 
+long \mbox{\hyperlink{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}{max\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{class_str_range}{Str\+Range}} -\/ parse a string interpreting its content as 1 or 2 integers separated by whitespace. The integers represent the min and max value of a range. If only one integer is provided it will represent both the min and max value. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_str_range_a0d21167c2b5da6158265c979227a3960}\label{class_str_range_a0d21167c2b5da6158265c979227a3960}} 
+\index{StrRange@{StrRange}!StrRange@{StrRange}}
+\index{StrRange@{StrRange}!StrRange@{StrRange}}
+\doxysubsubsection{\texorpdfstring{StrRange()}{StrRange()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Str\+Range\+::\+Str\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_str_range_ade43d93b2445ba2174c56d8e5f309ae2}\label{class_str_range_ade43d93b2445ba2174c56d8e5f309ae2}} 
+\index{StrRange@{StrRange}!StrRange@{StrRange}}
+\index{StrRange@{StrRange}!StrRange@{StrRange}}
+\doxysubsubsection{\texorpdfstring{StrRange()}{StrRange()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Str\+Range\+::\+Str\+Range (\begin{DoxyParamCaption}\item[{const char $\ast$}]{range }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_str_range_a13bb979e1c4ecb61cd82542c443c39de}\label{class_str_range_a13bb979e1c4ecb61cd82542c443c39de}} 
+\index{StrRange@{StrRange}!inRange@{inRange}}
+\index{inRange@{inRange}!StrRange@{StrRange}}
+\doxysubsubsection{\texorpdfstring{inRange()}{inRange()}}
+{\footnotesize\ttfamily bool Str\+Range\+::in\+Range (\begin{DoxyParamCaption}\item[{long}]{val }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if {\itshape val} is \texorpdfstring{$>$}{>}= min\+\_\+ and \texorpdfstring{$<$}{<}= max\+\_\+ 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}\label{class_str_range_a3e7a864c78d0e8423b3b1d23b0c42d2c}} 
+\index{StrRange@{StrRange}!max\_@{max\_}}
+\index{max\_@{max\_}!StrRange@{StrRange}}
+\doxysubsubsection{\texorpdfstring{max\_}{max\_}}
+{\footnotesize\ttfamily long Str\+Range\+::max\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_str_range_aa06540b6cf291910ac5115ed91e323b6}\label{class_str_range_aa06540b6cf291910ac5115ed91e323b6}} 
+\index{StrRange@{StrRange}!min\_@{min\_}}
+\index{min\_@{min\_}!StrRange@{StrRange}}
+\doxysubsubsection{\texorpdfstring{min\_}{min\_}}
+{\footnotesize\ttfamily long Str\+Range\+::min\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{misc_8h}{misc.\+h}}\end{DoxyCompactItemize}

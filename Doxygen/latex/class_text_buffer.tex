@@ -1,0 +1,261 @@
+\hypertarget{class_text_buffer}{}\doxysection{Text\+Buffer Class Reference}
+\label{class_text_buffer}\index{TextBuffer@{TextBuffer}}
+
+
+{\ttfamily \#include $<$textbuf.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_text_buffer_ad1cd85ca116ded421f7e20026ada244a}{Text\+Buffer}} ()
+\item 
+\mbox{\hyperlink{class_text_buffer_ae6e62ee499ddea775d45fdf16ecebe06}{$\sim$\+Text\+Buffer}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_a473746cd65e052a3f03f475eba90c7ba}{Init}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_a55bd9ea295899ad5f5913ad61c40bb8e}{Free}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_a1a8c87280f36792b7f7aeecac05289cd}{Empty}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_a5e073baca6cf982174947454e2524e6c}{Set\+Buffer\+Size}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} length)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_text_buffer_ab3f3ca8cd24831cece8f7a6702084b29}{Get\+Buffer\+Size}} ()
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_text_buffer_a8214e3bc88f31d3c077872586bc03157}{Get\+Byte\+Count}} ()
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_text_buffer_a79399657644a7fd6d262f6b8c0615904}{Get\+Line\+Count}} ()
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_text_buffer_ab82c6a44d677b520ac775160b4004fa1}{Get\+Column}} ()
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_text_buffer_afc1c5184b17d2fe5967abd00b3a1e8f2}{Get\+Wrap\+Column}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_a51b57cdb9ca1959ed718de6783e27533}{Set\+Wrap\+Column}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} column)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_text_buffer_a2924aba70c3dd9bf5cad14e774759158}{Get\+Indent}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_ad5531d496420c910e65432a22ef45aa2}{Set\+Indent}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} column)
+\item 
+char $\ast$ \mbox{\hyperlink{class_text_buffer_ac967ed2e7e26d030ebad5b96cfc093d7}{Get\+Buffer}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_ab436d3d19c64fca88e96d343553157ce}{Newlines\+To\+Spaces}} (bool b)
+\item 
+void \mbox{\hyperlink{class_text_buffer_a69f78119402183dd9f7dfb03e0bd1d90}{Add\+Translation}} (char ch, const char $\ast$str)
+\item 
+void \mbox{\hyperlink{class_text_buffer_a9763371d50dcbfb9cbc6626bb1fa0679}{Clear\+Translation}} (int ch)
+\item 
+void \mbox{\hyperlink{class_text_buffer_a004398f5dc6050791a590c74f1d666cb}{Clear\+Translations}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_ad73ba3f7329886391117cfa7cccfb5fd}{Pause\+Translations}} ()
+\item 
+void \mbox{\hyperlink{class_text_buffer_a8a57d8578dc7cb2d595e7a154d3c2184}{Resume\+Translations}} ()
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_a4eb3f24b3484043aa2db10104639cb26}{New\+Line}} ()
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_a5a5e21b8bcecb1e3f5dc8a7766613058}{Indent}} ()
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_a86cd60f2c8584bdc40d64823bfb17363}{Print\+Line}} (const char $\ast$str)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_ad5ff9b494f1816089d484b37f78bba6f}{Print\+Word}} (const char $\ast$str)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_a67e7a75e05c7d3c6d44b0af2a9f4fb49}{Print\+String}} (const char $\ast$str)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_ade40d3c4951986389ad16363561859f0}{Print\+Space}} ()
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_a9ed662824ca563ae71ab06605bb81e69}{Print\+Char}} (char b)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_a6a00746ec4e54b3e73cf0b6bc293e216}{Print\+Int}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} i, const char $\ast$str)
+\item 
+\mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} \mbox{\hyperlink{class_text_buffer_a716f11bb00493d85336c1bd2d28e3708}{Print\+Int}} (\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} i)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_text_buffer_ad1cd85ca116ded421f7e20026ada244a}\label{class_text_buffer_ad1cd85ca116ded421f7e20026ada244a}} 
+\index{TextBuffer@{TextBuffer}!TextBuffer@{TextBuffer}}
+\index{TextBuffer@{TextBuffer}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{TextBuffer()}{TextBuffer()}}
+{\footnotesize\ttfamily Text\+Buffer\+::\+Text\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_ae6e62ee499ddea775d45fdf16ecebe06}\label{class_text_buffer_ae6e62ee499ddea775d45fdf16ecebe06}} 
+\index{TextBuffer@{TextBuffer}!````~TextBuffer@{$\sim$TextBuffer}}
+\index{````~TextBuffer@{$\sim$TextBuffer}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{$\sim$TextBuffer()}{~TextBuffer()}}
+{\footnotesize\ttfamily Text\+Buffer\+::$\sim$\+Text\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_text_buffer_a69f78119402183dd9f7dfb03e0bd1d90}\label{class_text_buffer_a69f78119402183dd9f7dfb03e0bd1d90}} 
+\index{TextBuffer@{TextBuffer}!AddTranslation@{AddTranslation}}
+\index{AddTranslation@{AddTranslation}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{AddTranslation()}{AddTranslation()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Add\+Translation (\begin{DoxyParamCaption}\item[{char}]{ch,  }\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a9763371d50dcbfb9cbc6626bb1fa0679}\label{class_text_buffer_a9763371d50dcbfb9cbc6626bb1fa0679}} 
+\index{TextBuffer@{TextBuffer}!ClearTranslation@{ClearTranslation}}
+\index{ClearTranslation@{ClearTranslation}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{ClearTranslation()}{ClearTranslation()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Clear\+Translation (\begin{DoxyParamCaption}\item[{int}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a004398f5dc6050791a590c74f1d666cb}\label{class_text_buffer_a004398f5dc6050791a590c74f1d666cb}} 
+\index{TextBuffer@{TextBuffer}!ClearTranslations@{ClearTranslations}}
+\index{ClearTranslations@{ClearTranslations}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{ClearTranslations()}{ClearTranslations()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Clear\+Translations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a1a8c87280f36792b7f7aeecac05289cd}\label{class_text_buffer_a1a8c87280f36792b7f7aeecac05289cd}} 
+\index{TextBuffer@{TextBuffer}!Empty@{Empty}}
+\index{Empty@{Empty}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{Empty()}{Empty()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Empty (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a55bd9ea295899ad5f5913ad61c40bb8e}\label{class_text_buffer_a55bd9ea295899ad5f5913ad61c40bb8e}} 
+\index{TextBuffer@{TextBuffer}!Free@{Free}}
+\index{Free@{Free}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Free (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_ac967ed2e7e26d030ebad5b96cfc093d7}\label{class_text_buffer_ac967ed2e7e26d030ebad5b96cfc093d7}} 
+\index{TextBuffer@{TextBuffer}!GetBuffer@{GetBuffer}}
+\index{GetBuffer@{GetBuffer}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{GetBuffer()}{GetBuffer()}}
+{\footnotesize\ttfamily char $\ast$ Text\+Buffer\+::\+Get\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_ab3f3ca8cd24831cece8f7a6702084b29}\label{class_text_buffer_ab3f3ca8cd24831cece8f7a6702084b29}} 
+\index{TextBuffer@{TextBuffer}!GetBufferSize@{GetBufferSize}}
+\index{GetBufferSize@{GetBufferSize}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{GetBufferSize()}{GetBufferSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Text\+Buffer\+::\+Get\+Buffer\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a8214e3bc88f31d3c077872586bc03157}\label{class_text_buffer_a8214e3bc88f31d3c077872586bc03157}} 
+\index{TextBuffer@{TextBuffer}!GetByteCount@{GetByteCount}}
+\index{GetByteCount@{GetByteCount}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{GetByteCount()}{GetByteCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Text\+Buffer\+::\+Get\+Byte\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_ab82c6a44d677b520ac775160b4004fa1}\label{class_text_buffer_ab82c6a44d677b520ac775160b4004fa1}} 
+\index{TextBuffer@{TextBuffer}!GetColumn@{GetColumn}}
+\index{GetColumn@{GetColumn}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{GetColumn()}{GetColumn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Text\+Buffer\+::\+Get\+Column (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a2924aba70c3dd9bf5cad14e774759158}\label{class_text_buffer_a2924aba70c3dd9bf5cad14e774759158}} 
+\index{TextBuffer@{TextBuffer}!GetIndent@{GetIndent}}
+\index{GetIndent@{GetIndent}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{GetIndent()}{GetIndent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Text\+Buffer\+::\+Get\+Indent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a79399657644a7fd6d262f6b8c0615904}\label{class_text_buffer_a79399657644a7fd6d262f6b8c0615904}} 
+\index{TextBuffer@{TextBuffer}!GetLineCount@{GetLineCount}}
+\index{GetLineCount@{GetLineCount}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{GetLineCount()}{GetLineCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Text\+Buffer\+::\+Get\+Line\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_afc1c5184b17d2fe5967abd00b3a1e8f2}\label{class_text_buffer_afc1c5184b17d2fe5967abd00b3a1e8f2}} 
+\index{TextBuffer@{TextBuffer}!GetWrapColumn@{GetWrapColumn}}
+\index{GetWrapColumn@{GetWrapColumn}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{GetWrapColumn()}{GetWrapColumn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Text\+Buffer\+::\+Get\+Wrap\+Column (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a5a5e21b8bcecb1e3f5dc8a7766613058}\label{class_text_buffer_a5a5e21b8bcecb1e3f5dc8a7766613058}} 
+\index{TextBuffer@{TextBuffer}!Indent@{Indent}}
+\index{Indent@{Indent}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{Indent()}{Indent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Indent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a473746cd65e052a3f03f475eba90c7ba}\label{class_text_buffer_a473746cd65e052a3f03f475eba90c7ba}} 
+\index{TextBuffer@{TextBuffer}!Init@{Init}}
+\index{Init@{Init}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a4eb3f24b3484043aa2db10104639cb26}\label{class_text_buffer_a4eb3f24b3484043aa2db10104639cb26}} 
+\index{TextBuffer@{TextBuffer}!NewLine@{NewLine}}
+\index{NewLine@{NewLine}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{NewLine()}{NewLine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+New\+Line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_ab436d3d19c64fca88e96d343553157ce}\label{class_text_buffer_ab436d3d19c64fca88e96d343553157ce}} 
+\index{TextBuffer@{TextBuffer}!NewlinesToSpaces@{NewlinesToSpaces}}
+\index{NewlinesToSpaces@{NewlinesToSpaces}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{NewlinesToSpaces()}{NewlinesToSpaces()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Newlines\+To\+Spaces (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_ad73ba3f7329886391117cfa7cccfb5fd}\label{class_text_buffer_ad73ba3f7329886391117cfa7cccfb5fd}} 
+\index{TextBuffer@{TextBuffer}!PauseTranslations@{PauseTranslations}}
+\index{PauseTranslations@{PauseTranslations}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PauseTranslations()}{PauseTranslations()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Pause\+Translations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a9ed662824ca563ae71ab06605bb81e69}\label{class_text_buffer_a9ed662824ca563ae71ab06605bb81e69}} 
+\index{TextBuffer@{TextBuffer}!PrintChar@{PrintChar}}
+\index{PrintChar@{PrintChar}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PrintChar()}{PrintChar()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Print\+Char (\begin{DoxyParamCaption}\item[{char}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a716f11bb00493d85336c1bd2d28e3708}\label{class_text_buffer_a716f11bb00493d85336c1bd2d28e3708}} 
+\index{TextBuffer@{TextBuffer}!PrintInt@{PrintInt}}
+\index{PrintInt@{PrintInt}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PrintInt()}{PrintInt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Print\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a6a00746ec4e54b3e73cf0b6bc293e216}\label{class_text_buffer_a6a00746ec4e54b3e73cf0b6bc293e216}} 
+\index{TextBuffer@{TextBuffer}!PrintInt@{PrintInt}}
+\index{PrintInt@{PrintInt}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PrintInt()}{PrintInt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Print\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{i,  }\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a86cd60f2c8584bdc40d64823bfb17363}\label{class_text_buffer_a86cd60f2c8584bdc40d64823bfb17363}} 
+\index{TextBuffer@{TextBuffer}!PrintLine@{PrintLine}}
+\index{PrintLine@{PrintLine}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PrintLine()}{PrintLine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Print\+Line (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_ade40d3c4951986389ad16363561859f0}\label{class_text_buffer_ade40d3c4951986389ad16363561859f0}} 
+\index{TextBuffer@{TextBuffer}!PrintSpace@{PrintSpace}}
+\index{PrintSpace@{PrintSpace}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PrintSpace()}{PrintSpace()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Print\+Space (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a67e7a75e05c7d3c6d44b0af2a9f4fb49}\label{class_text_buffer_a67e7a75e05c7d3c6d44b0af2a9f4fb49}} 
+\index{TextBuffer@{TextBuffer}!PrintString@{PrintString}}
+\index{PrintString@{PrintString}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PrintString()}{PrintString()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Print\+String (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_ad5ff9b494f1816089d484b37f78bba6f}\label{class_text_buffer_ad5ff9b494f1816089d484b37f78bba6f}} 
+\index{TextBuffer@{TextBuffer}!PrintWord@{PrintWord}}
+\index{PrintWord@{PrintWord}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{PrintWord()}{PrintWord()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{error_8h_a3d30ac5665bf72ba7258c90866c775c0}{errorT}} Text\+Buffer\+::\+Print\+Word (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_a8a57d8578dc7cb2d595e7a154d3c2184}\label{class_text_buffer_a8a57d8578dc7cb2d595e7a154d3c2184}} 
+\index{TextBuffer@{TextBuffer}!ResumeTranslations@{ResumeTranslations}}
+\index{ResumeTranslations@{ResumeTranslations}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{ResumeTranslations()}{ResumeTranslations()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Resume\+Translations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a5e073baca6cf982174947454e2524e6c}\label{class_text_buffer_a5e073baca6cf982174947454e2524e6c}} 
+\index{TextBuffer@{TextBuffer}!SetBufferSize@{SetBufferSize}}
+\index{SetBufferSize@{SetBufferSize}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{SetBufferSize()}{SetBufferSize()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Set\+Buffer\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_text_buffer_ad5531d496420c910e65432a22ef45aa2}\label{class_text_buffer_ad5531d496420c910e65432a22ef45aa2}} 
+\index{TextBuffer@{TextBuffer}!SetIndent@{SetIndent}}
+\index{SetIndent@{SetIndent}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{SetIndent()}{SetIndent()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Set\+Indent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{column }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_text_buffer_a51b57cdb9ca1959ed718de6783e27533}\label{class_text_buffer_a51b57cdb9ca1959ed718de6783e27533}} 
+\index{TextBuffer@{TextBuffer}!SetWrapColumn@{SetWrapColumn}}
+\index{SetWrapColumn@{SetWrapColumn}!TextBuffer@{TextBuffer}}
+\doxysubsubsection{\texorpdfstring{SetWrapColumn()}{SetWrapColumn()}}
+{\footnotesize\ttfamily void Text\+Buffer\+::\+Set\+Wrap\+Column (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}}}]{column }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{textbuf_8h}{textbuf.\+h}}\item 
+\mbox{\hyperlink{textbuf_8cpp}{textbuf.\+cpp}}\end{DoxyCompactItemize}

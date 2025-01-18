@@ -1,0 +1,136 @@
+\hypertarget{position_8h}{}\doxysection{position.\+h File Reference}
+\label{position_8h}\index{position.h@{position.h}}
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}movelist.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$string\+\_\+view$>$}\newline
+Include dependency graph for position.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{position_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{position_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_position}{Position}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}}
+\item 
+typedef \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{position_8h_a29528de8dc87e4e52b5c1d4dce6b9914}{WQ\+\_\+\+CASTLE}} = 1
+\item 
+const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{position_8h_af08f8cf00f6dcf0d3befb088fddc5a53}{WK\+\_\+\+CASTLE}} = 2
+\item 
+const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{position_8h_a6c74dbaca158d753aedee07978fb6909}{BQ\+\_\+\+CASTLE}} = 4
+\item 
+const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{position_8h_aedbdd94328b57037520765135a14655b}{BK\+\_\+\+CASTLE}} = 8
+\item 
+const \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}} \mbox{\hyperlink{position_8h_a5f2126043cacb4b064cccb526d7bfec0}{SAN\+\_\+\+NO\+\_\+\+CHECKTEST}} = 0
+\item 
+const \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}} \mbox{\hyperlink{position_8h_a305970af63ead006798fb81be1b08c0a}{SAN\+\_\+\+CHECKTEST}} = 1
+\item 
+const \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}} \mbox{\hyperlink{position_8h_a1ff2ad0518362846aed8ecb352a52b19}{SAN\+\_\+\+MATETEST}} = 2
+\item 
+const \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} \mbox{\hyperlink{position_8h_a457f402173f6ef0830c315bb31e8d172}{GEN\+\_\+\+CAPTURES}} = 1
+\item 
+const \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} \mbox{\hyperlink{position_8h_a12dc203406fc2961896f7c2d789a93b2}{GEN\+\_\+\+NON\+\_\+\+CAPS}} = 2
+\item 
+const \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} \mbox{\hyperlink{position_8h_a278b872fe7d5ff9d64ce9a6b18d8a4f5}{GEN\+\_\+\+ALL\+\_\+\+MOVES}} = (\mbox{\hyperlink{position_8h_a457f402173f6ef0830c315bb31e8d172}{GEN\+\_\+\+CAPTURES}} $\vert$ \mbox{\hyperlink{position_8h_a12dc203406fc2961896f7c2d789a93b2}{GEN\+\_\+\+NON\+\_\+\+CAPS}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{position_8h_a52803a5599ce891c5b7bdd67cf47b156}\label{position_8h_a52803a5599ce891c5b7bdd67cf47b156}} 
+\index{position.h@{position.h}!genMovesT@{genMovesT}}
+\index{genMovesT@{genMovesT}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{genMovesT}{genMovesT}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}}}
+
+\mbox{\Hypertarget{position_8h_aacf795a0f0fab728478cee916789aa78}\label{position_8h_aacf795a0f0fab728478cee916789aa78}} 
+\index{position.h@{position.h}!sanFlagT@{sanFlagT}}
+\index{sanFlagT@{sanFlagT}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{sanFlagT}{sanFlagT}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{position_8h_aedbdd94328b57037520765135a14655b}\label{position_8h_aedbdd94328b57037520765135a14655b}} 
+\index{position.h@{position.h}!BK\_CASTLE@{BK\_CASTLE}}
+\index{BK\_CASTLE@{BK\_CASTLE}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{BK\_CASTLE}{BK\_CASTLE}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} BK\+\_\+\+CASTLE = 8}
+
+\mbox{\Hypertarget{position_8h_a6c74dbaca158d753aedee07978fb6909}\label{position_8h_a6c74dbaca158d753aedee07978fb6909}} 
+\index{position.h@{position.h}!BQ\_CASTLE@{BQ\_CASTLE}}
+\index{BQ\_CASTLE@{BQ\_CASTLE}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{BQ\_CASTLE}{BQ\_CASTLE}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} BQ\+\_\+\+CASTLE = 4}
+
+\mbox{\Hypertarget{position_8h_a278b872fe7d5ff9d64ce9a6b18d8a4f5}\label{position_8h_a278b872fe7d5ff9d64ce9a6b18d8a4f5}} 
+\index{position.h@{position.h}!GEN\_ALL\_MOVES@{GEN\_ALL\_MOVES}}
+\index{GEN\_ALL\_MOVES@{GEN\_ALL\_MOVES}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{GEN\_ALL\_MOVES}{GEN\_ALL\_MOVES}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} GEN\+\_\+\+ALL\+\_\+\+MOVES = (\mbox{\hyperlink{position_8h_a457f402173f6ef0830c315bb31e8d172}{GEN\+\_\+\+CAPTURES}} $\vert$ \mbox{\hyperlink{position_8h_a12dc203406fc2961896f7c2d789a93b2}{GEN\+\_\+\+NON\+\_\+\+CAPS}})}
+
+\mbox{\Hypertarget{position_8h_a457f402173f6ef0830c315bb31e8d172}\label{position_8h_a457f402173f6ef0830c315bb31e8d172}} 
+\index{position.h@{position.h}!GEN\_CAPTURES@{GEN\_CAPTURES}}
+\index{GEN\_CAPTURES@{GEN\_CAPTURES}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{GEN\_CAPTURES}{GEN\_CAPTURES}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} GEN\+\_\+\+CAPTURES = 1}
+
+\mbox{\Hypertarget{position_8h_a12dc203406fc2961896f7c2d789a93b2}\label{position_8h_a12dc203406fc2961896f7c2d789a93b2}} 
+\index{position.h@{position.h}!GEN\_NON\_CAPS@{GEN\_NON\_CAPS}}
+\index{GEN\_NON\_CAPS@{GEN\_NON\_CAPS}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{GEN\_NON\_CAPS}{GEN\_NON\_CAPS}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{position_8h_a52803a5599ce891c5b7bdd67cf47b156}{gen\+MovesT}} GEN\+\_\+\+NON\+\_\+\+CAPS = 2}
+
+\mbox{\Hypertarget{position_8h_a305970af63ead006798fb81be1b08c0a}\label{position_8h_a305970af63ead006798fb81be1b08c0a}} 
+\index{position.h@{position.h}!SAN\_CHECKTEST@{SAN\_CHECKTEST}}
+\index{SAN\_CHECKTEST@{SAN\_CHECKTEST}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{SAN\_CHECKTEST}{SAN\_CHECKTEST}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}} SAN\+\_\+\+CHECKTEST = 1}
+
+\mbox{\Hypertarget{position_8h_a1ff2ad0518362846aed8ecb352a52b19}\label{position_8h_a1ff2ad0518362846aed8ecb352a52b19}} 
+\index{position.h@{position.h}!SAN\_MATETEST@{SAN\_MATETEST}}
+\index{SAN\_MATETEST@{SAN\_MATETEST}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{SAN\_MATETEST}{SAN\_MATETEST}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}} SAN\+\_\+\+MATETEST = 2}
+
+\mbox{\Hypertarget{position_8h_a5f2126043cacb4b064cccb526d7bfec0}\label{position_8h_a5f2126043cacb4b064cccb526d7bfec0}} 
+\index{position.h@{position.h}!SAN\_NO\_CHECKTEST@{SAN\_NO\_CHECKTEST}}
+\index{SAN\_NO\_CHECKTEST@{SAN\_NO\_CHECKTEST}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{SAN\_NO\_CHECKTEST}{SAN\_NO\_CHECKTEST}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{position_8h_aacf795a0f0fab728478cee916789aa78}{san\+FlagT}} SAN\+\_\+\+NO\+\_\+\+CHECKTEST = 0}
+
+\mbox{\Hypertarget{position_8h_af08f8cf00f6dcf0d3befb088fddc5a53}\label{position_8h_af08f8cf00f6dcf0d3befb088fddc5a53}} 
+\index{position.h@{position.h}!WK\_CASTLE@{WK\_CASTLE}}
+\index{WK\_CASTLE@{WK\_CASTLE}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{WK\_CASTLE}{WK\_CASTLE}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} WK\+\_\+\+CASTLE = 2}
+
+\mbox{\Hypertarget{position_8h_a29528de8dc87e4e52b5c1d4dce6b9914}\label{position_8h_a29528de8dc87e4e52b5c1d4dce6b9914}} 
+\index{position.h@{position.h}!WQ\_CASTLE@{WQ\_CASTLE}}
+\index{WQ\_CASTLE@{WQ\_CASTLE}!position.h@{position.h}}
+\doxysubsubsection{\texorpdfstring{WQ\_CASTLE}{WQ\_CASTLE}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} WQ\+\_\+\+CASTLE = 1}
+

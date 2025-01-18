@@ -1,0 +1,246 @@
+\hypertarget{game_8cpp}{}\doxysection{game.\+cpp File Reference}
+\label{game_8cpp}\index{game.cpp@{game.cpp}}
+{\ttfamily \#include \char`\"{}game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bytebuf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dstring.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}naglatex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nagtext.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}position.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stored.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}textbuf.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+Include dependency graph for game.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{game_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{game_8cpp_a87269045f25973d514bc2f4840b5d7e9}{ENCODE\+\_\+\+NAG}}~11
+\item 
+\#define \mbox{\hyperlink{game_8cpp_a2762cef60753ad854df9609c8170cf37}{ENCODE\+\_\+\+COMMENT}}~12
+\item 
+\#define \mbox{\hyperlink{game_8cpp_a213e68c54309f181e82ccfc54d8b0af0}{ENCODE\+\_\+\+START\+\_\+\+MARKER}}~13
+\item 
+\#define \mbox{\hyperlink{game_8cpp_a96e8f3b941747364138a1ce49f1e22fd}{ENCODE\+\_\+\+END\+\_\+\+MARKER}}~14
+\item 
+\#define \mbox{\hyperlink{game_8cpp_a0da92185e73c6aa1787e41923cf1b5ea}{ENCODE\+\_\+\+END\+\_\+\+GAME}}~15
+\item 
+\#define \mbox{\hyperlink{game_8cpp_afc7f7ecc787284810c73758eb7026225}{ENCODE\+\_\+\+FIRST}}~11
+\item 
+\#define \mbox{\hyperlink{game_8cpp_a640cd70e8ca7ae3023e6400f21360b41}{ENCODE\+\_\+\+LAST}}~15
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_game}{Game}} $\ast$ \mbox{\hyperlink{game_8cpp_a69355ac2f567ed5cd5373a0ea9667166}{Game\+Ptr}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{game_8cpp_a40f6ce5b8d42b7bb98d15270429c8eae}{trans\+Pieces}} (char $\ast$s)
+\item 
+char \mbox{\hyperlink{game_8cpp_a4db16f82f73243824c9e974b4b246287}{trans\+Pieces\+Char}} (char c)
+\item 
+void \mbox{\hyperlink{game_8cpp_af3aaeb6e37a8b2f1572fda4344c80bf3}{game\+\_\+print\+Nag}} (\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} nag, char $\ast$str, bool as\+Symbol, \mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{game\+FormatT}} format)
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{game_8cpp_a534c67a00d26cb1a55e666d5464d0dd9}{game\+\_\+parse\+Nag}} (std\+::pair$<$ const char $\ast$, const char $\ast$ $>$ strview)
+\item 
+{\footnotesize template$<$typename DestT $>$ }\\void \mbox{\hyperlink{game_8cpp_a45f0a1d7ce760b5b26480e3089bd5973}{encode\+Move}} (const \mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} \&sm, DestT \&dest)
+\item 
+{\footnotesize template$<$typename MoveT , typename DestT $>$ }\\std\+::pair$<$ unsigned, unsigned $>$ \mbox{\hyperlink{game_8cpp_a550cf5e1a6ecf3b7eadb1bffa27c49fc}{encode\+Movelist}} (bool mark\+\_\+comments, const MoveT $\ast$m, DestT \&dest)
+\begin{DoxyCompactList}\small\item\em Encode the moves, the nags, the comment mark and the variations. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename MoveT $>$ }\\auto \mbox{\hyperlink{game_8cpp_a9146070aa4650eb2cfbfa9b2e38df316}{count\+Comments}} (const MoveT $\ast$m)
+\item 
+{\footnotesize template$<$typename MoveT , typename DestT $>$ }\\void \mbox{\hyperlink{game_8cpp_a96a3c69128ef46ea92b20109d803444f}{encode\+Comments}} (bool mark\+\_\+comments, const MoveT $\ast$m, DestT \&dest)
+\item 
+{\footnotesize template$<$typename MoveT $>$ }\\std\+::pair$<$ bool, bool $>$ \mbox{\hyperlink{game_8cpp_a7f836dc1d2cc894c5444fb22b93b4af1}{mainline\+Info}} (const \mbox{\hyperlink{class_position}{Position}} $\ast$custom\+Start, const MoveT $\ast$first\+Move, \mbox{\hyperlink{class_index_entry}{Index\+Entry}} \&dest)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{game_8cpp_aecc5fe43efa9721b6f23e6edf975638a}{language}} = 0
+\item 
+const char $\ast$ \mbox{\hyperlink{game_8cpp_ac186b9655ca1a7d9ed462f7ead4cb6f2}{lang\+Pieces}} \mbox{[}$\,$\mbox{]}
+\item 
+const char $\ast$ \mbox{\hyperlink{game_8cpp_a943be3d0c8920c5afeb2f8845d28d61c}{rating\+Type\+Names}} \mbox{[}8\mbox{]}
+\item 
+constexpr int \mbox{\hyperlink{game_8cpp_a02d078eac75fa4fd5554de048a88c477}{MOVE\+\_\+\+CHUNKSIZE}} = 128
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{game_8cpp_a2762cef60753ad854df9609c8170cf37}\label{game_8cpp_a2762cef60753ad854df9609c8170cf37}} 
+\index{game.cpp@{game.cpp}!ENCODE\_COMMENT@{ENCODE\_COMMENT}}
+\index{ENCODE\_COMMENT@{ENCODE\_COMMENT}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ENCODE\_COMMENT}{ENCODE\_COMMENT}}
+{\footnotesize\ttfamily \#define ENCODE\+\_\+\+COMMENT~12}
+
+\mbox{\Hypertarget{game_8cpp_a0da92185e73c6aa1787e41923cf1b5ea}\label{game_8cpp_a0da92185e73c6aa1787e41923cf1b5ea}} 
+\index{game.cpp@{game.cpp}!ENCODE\_END\_GAME@{ENCODE\_END\_GAME}}
+\index{ENCODE\_END\_GAME@{ENCODE\_END\_GAME}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ENCODE\_END\_GAME}{ENCODE\_END\_GAME}}
+{\footnotesize\ttfamily \#define ENCODE\+\_\+\+END\+\_\+\+GAME~15}
+
+\mbox{\Hypertarget{game_8cpp_a96e8f3b941747364138a1ce49f1e22fd}\label{game_8cpp_a96e8f3b941747364138a1ce49f1e22fd}} 
+\index{game.cpp@{game.cpp}!ENCODE\_END\_MARKER@{ENCODE\_END\_MARKER}}
+\index{ENCODE\_END\_MARKER@{ENCODE\_END\_MARKER}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ENCODE\_END\_MARKER}{ENCODE\_END\_MARKER}}
+{\footnotesize\ttfamily \#define ENCODE\+\_\+\+END\+\_\+\+MARKER~14}
+
+\mbox{\Hypertarget{game_8cpp_afc7f7ecc787284810c73758eb7026225}\label{game_8cpp_afc7f7ecc787284810c73758eb7026225}} 
+\index{game.cpp@{game.cpp}!ENCODE\_FIRST@{ENCODE\_FIRST}}
+\index{ENCODE\_FIRST@{ENCODE\_FIRST}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ENCODE\_FIRST}{ENCODE\_FIRST}}
+{\footnotesize\ttfamily \#define ENCODE\+\_\+\+FIRST~11}
+
+\mbox{\Hypertarget{game_8cpp_a640cd70e8ca7ae3023e6400f21360b41}\label{game_8cpp_a640cd70e8ca7ae3023e6400f21360b41}} 
+\index{game.cpp@{game.cpp}!ENCODE\_LAST@{ENCODE\_LAST}}
+\index{ENCODE\_LAST@{ENCODE\_LAST}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ENCODE\_LAST}{ENCODE\_LAST}}
+{\footnotesize\ttfamily \#define ENCODE\+\_\+\+LAST~15}
+
+\mbox{\Hypertarget{game_8cpp_a87269045f25973d514bc2f4840b5d7e9}\label{game_8cpp_a87269045f25973d514bc2f4840b5d7e9}} 
+\index{game.cpp@{game.cpp}!ENCODE\_NAG@{ENCODE\_NAG}}
+\index{ENCODE\_NAG@{ENCODE\_NAG}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ENCODE\_NAG}{ENCODE\_NAG}}
+{\footnotesize\ttfamily \#define ENCODE\+\_\+\+NAG~11}
+
+\mbox{\Hypertarget{game_8cpp_a213e68c54309f181e82ccfc54d8b0af0}\label{game_8cpp_a213e68c54309f181e82ccfc54d8b0af0}} 
+\index{game.cpp@{game.cpp}!ENCODE\_START\_MARKER@{ENCODE\_START\_MARKER}}
+\index{ENCODE\_START\_MARKER@{ENCODE\_START\_MARKER}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ENCODE\_START\_MARKER}{ENCODE\_START\_MARKER}}
+{\footnotesize\ttfamily \#define ENCODE\+\_\+\+START\+\_\+\+MARKER~13}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{game_8cpp_a69355ac2f567ed5cd5373a0ea9667166}\label{game_8cpp_a69355ac2f567ed5cd5373a0ea9667166}} 
+\index{game.cpp@{game.cpp}!GamePtr@{GamePtr}}
+\index{GamePtr@{GamePtr}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{GamePtr}{GamePtr}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{class_game}{Game}}$\ast$ \mbox{\hyperlink{game_8cpp_a69355ac2f567ed5cd5373a0ea9667166}{Game\+Ptr}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{game_8cpp_a9146070aa4650eb2cfbfa9b2e38df316}\label{game_8cpp_a9146070aa4650eb2cfbfa9b2e38df316}} 
+\index{game.cpp@{game.cpp}!countComments@{countComments}}
+\index{countComments@{countComments}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{countComments()}{countComments()}}
+{\footnotesize\ttfamily template$<$typename MoveT $>$ \\
+auto count\+Comments (\begin{DoxyParamCaption}\item[{const MoveT $\ast$}]{m }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8cpp_a96a3c69128ef46ea92b20109d803444f}\label{game_8cpp_a96a3c69128ef46ea92b20109d803444f}} 
+\index{game.cpp@{game.cpp}!encodeComments@{encodeComments}}
+\index{encodeComments@{encodeComments}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{encodeComments()}{encodeComments()}}
+{\footnotesize\ttfamily template$<$typename MoveT , typename DestT $>$ \\
+void encode\+Comments (\begin{DoxyParamCaption}\item[{bool}]{mark\+\_\+comments,  }\item[{const MoveT $\ast$}]{m,  }\item[{DestT \&}]{dest }\end{DoxyParamCaption})}
+
+The Comments section is composed by null-\/terminated strings. The comments are stored in the order in which they will appear in the PGN notation\+: \{C1\} 1.\+d4 \{C2\} (1.\+b4 \{C3\} 1...e5 \{C4\} (1...Na6 \{C5\}) 2.\+e4 \{C6\}) (\{C7\} 1.\+g4 \{C8\}) 1...d5 \{C9\} \mbox{\Hypertarget{game_8cpp_a45f0a1d7ce760b5b26480e3089bd5973}\label{game_8cpp_a45f0a1d7ce760b5b26480e3089bd5973}} 
+\index{game.cpp@{game.cpp}!encodeMove@{encodeMove}}
+\index{encodeMove@{encodeMove}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{encodeMove()}{encodeMove()}}
+{\footnotesize\ttfamily template$<$typename DestT $>$ \\
+void encode\+Move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} \&}]{sm,  }\item[{DestT \&}]{dest }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8cpp_a550cf5e1a6ecf3b7eadb1bffa27c49fc}\label{game_8cpp_a550cf5e1a6ecf3b7eadb1bffa27c49fc}} 
+\index{game.cpp@{game.cpp}!encodeMovelist@{encodeMovelist}}
+\index{encodeMovelist@{encodeMovelist}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{encodeMovelist()}{encodeMovelist()}}
+{\footnotesize\ttfamily template$<$typename MoveT , typename DestT $>$ \\
+std\+::pair$<$ unsigned, unsigned $>$ encode\+Movelist (\begin{DoxyParamCaption}\item[{bool}]{mark\+\_\+comments,  }\item[{const MoveT $\ast$}]{m,  }\item[{DestT \&}]{dest }\end{DoxyParamCaption})}
+
+
+
+Encode the moves, the nags, the comment mark and the variations. 
+
+\mbox{\Hypertarget{game_8cpp_a534c67a00d26cb1a55e666d5464d0dd9}\label{game_8cpp_a534c67a00d26cb1a55e666d5464d0dd9}} 
+\index{game.cpp@{game.cpp}!game\_parseNag@{game\_parseNag}}
+\index{game\_parseNag@{game\_parseNag}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{game\_parseNag()}{game\_parseNag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} game\+\_\+parse\+Nag (\begin{DoxyParamCaption}\item[{std\+::pair$<$ const char $\ast$, const char $\ast$ $>$}]{strview }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8cpp_af3aaeb6e37a8b2f1572fda4344c80bf3}\label{game_8cpp_af3aaeb6e37a8b2f1572fda4344c80bf3}} 
+\index{game.cpp@{game.cpp}!game\_printNag@{game\_printNag}}
+\index{game\_printNag@{game\_printNag}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{game\_printNag()}{game\_printNag()}}
+{\footnotesize\ttfamily void game\+\_\+print\+Nag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{nag,  }\item[{char $\ast$}]{str,  }\item[{bool}]{as\+Symbol,  }\item[{\mbox{\hyperlink{game_8h_aebe7c12f6f36195ebe5f893d08df500c}{game\+FormatT}}}]{format }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8cpp_a7f836dc1d2cc894c5444fb22b93b4af1}\label{game_8cpp_a7f836dc1d2cc894c5444fb22b93b4af1}} 
+\index{game.cpp@{game.cpp}!mainlineInfo@{mainlineInfo}}
+\index{mainlineInfo@{mainlineInfo}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{mainlineInfo()}{mainlineInfo()}}
+{\footnotesize\ttfamily template$<$typename MoveT $>$ \\
+std\+::pair$<$ bool, bool $>$ mainline\+Info (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_position}{Position}} $\ast$}]{custom\+Start,  }\item[{const MoveT $\ast$}]{first\+Move,  }\item[{\mbox{\hyperlink{class_index_entry}{Index\+Entry}} \&}]{dest }\end{DoxyParamCaption})}
+
+Calculate the game\textquotesingle{}s main line information\+:
+\begin{DoxyItemize}
+\item home pawn delta information
+\item promotions flags
+\item number of half moves
+\item final material signature
+\item stored line code 
+\end{DoxyItemize}\mbox{\Hypertarget{game_8cpp_a40f6ce5b8d42b7bb98d15270429c8eae}\label{game_8cpp_a40f6ce5b8d42b7bb98d15270429c8eae}} 
+\index{game.cpp@{game.cpp}!transPieces@{transPieces}}
+\index{transPieces@{transPieces}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{transPieces()}{transPieces()}}
+{\footnotesize\ttfamily void trans\+Pieces (\begin{DoxyParamCaption}\item[{char $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{game_8cpp_a4db16f82f73243824c9e974b4b246287}\label{game_8cpp_a4db16f82f73243824c9e974b4b246287}} 
+\index{game.cpp@{game.cpp}!transPiecesChar@{transPiecesChar}}
+\index{transPiecesChar@{transPiecesChar}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{transPiecesChar()}{transPiecesChar()}}
+{\footnotesize\ttfamily char trans\+Pieces\+Char (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{game_8cpp_ac186b9655ca1a7d9ed462f7ead4cb6f2}\label{game_8cpp_ac186b9655ca1a7d9ed462f7ead4cb6f2}} 
+\index{game.cpp@{game.cpp}!langPieces@{langPieces}}
+\index{langPieces@{langPieces}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{langPieces}{langPieces}}
+{\footnotesize\ttfamily const char$\ast$ lang\+Pieces\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{ \textcolor{stringliteral}{"{}"{}}, }
+\DoxyCodeLine{\textcolor{stringliteral}{"{}PPKRQDRTBFNC"{}}, \textcolor{stringliteral}{"{}PPKRQDRTBANC"{}}, \textcolor{stringliteral}{"{}PBKKQDRTBLNS"{}}, }
+\DoxyCodeLine{\textcolor{stringliteral}{"{}PPKRQDRTBANC"{}}, \textcolor{stringliteral}{"{}PpKKQDRTBLNP"{}}, \textcolor{stringliteral}{"{}PPKKQDRVBSNJ"{}},}
+\DoxyCodeLine{\textcolor{stringliteral}{"{}PGKKQVRBBFNH"{}}, \textcolor{stringliteral}{"{}PBKKQDRTBLNS"{}}, \textcolor{stringliteral}{"{}PBKKQDRTBLNS"{}}, \textcolor{stringliteral}{"{}PPKRQDRTBANC"{}}, \textcolor{stringliteral}{"{}PSKKQDRTBLNR"{}}, \textcolor{stringliteral}{"{}"{}} \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{game_8cpp_aecc5fe43efa9721b6f23e6edf975638a}\label{game_8cpp_aecc5fe43efa9721b6f23e6edf975638a}} 
+\index{game.cpp@{game.cpp}!language@{language}}
+\index{language@{language}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{language}{language}}
+{\footnotesize\ttfamily int language = 0}
+
+\mbox{\Hypertarget{game_8cpp_a02d078eac75fa4fd5554de048a88c477}\label{game_8cpp_a02d078eac75fa4fd5554de048a88c477}} 
+\index{game.cpp@{game.cpp}!MOVE\_CHUNKSIZE@{MOVE\_CHUNKSIZE}}
+\index{MOVE\_CHUNKSIZE@{MOVE\_CHUNKSIZE}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{MOVE\_CHUNKSIZE}{MOVE\_CHUNKSIZE}}
+{\footnotesize\ttfamily constexpr int MOVE\+\_\+\+CHUNKSIZE = 128\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{game_8cpp_a943be3d0c8920c5afeb2f8845d28d61c}\label{game_8cpp_a943be3d0c8920c5afeb2f8845d28d61c}} 
+\index{game.cpp@{game.cpp}!ratingTypeNames@{ratingTypeNames}}
+\index{ratingTypeNames@{ratingTypeNames}!game.cpp@{game.cpp}}
+\doxysubsubsection{\texorpdfstring{ratingTypeNames}{ratingTypeNames}}
+{\footnotesize\ttfamily const char$\ast$ rating\+Type\+Names\mbox{[}8\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Elo"{}}, \textcolor{stringliteral}{"{}Rating"{}}, \textcolor{stringliteral}{"{}Rapid"{}}, \textcolor{stringliteral}{"{}ICCF"{}}, \textcolor{stringliteral}{"{}USCF"{}}, \textcolor{stringliteral}{"{}DWZ"{}}, \textcolor{stringliteral}{"{}ECF"{}},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

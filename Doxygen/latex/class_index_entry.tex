@@ -1,0 +1,777 @@
+\hypertarget{class_index_entry}{}\doxysection{Index\+Entry Class Reference}
+\label{class_index_entry}\index{IndexEntry@{IndexEntry}}
+
+
+{\ttfamily \#include $<$indexentry.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada45c860f5813ae2c8f185fa8ceca2d0ef}{IDX\+\_\+\+FLAG\+\_\+\+START}} = 0
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabe3cb55d7646522566193f615d4e5f16}{IDX\+\_\+\+FLAG\+\_\+\+PROMO}} = 1
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada6e9bd19ebc4b5f14ea2c0f3a472b0f1a}{IDX\+\_\+\+FLAG\+\_\+\+UPROMO}} = 2
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}{IDX\+\_\+\+FLAG\+\_\+\+DELETE}} = 3
+, \newline
+\mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabd828387729000c8e1be8758662dc117}{IDX\+\_\+\+FLAG\+\_\+\+WHITE\+\_\+\+OP}} = 4
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaed5b0d970bcc02d0c8f0b86b9556e987}{IDX\+\_\+\+FLAG\+\_\+\+BLACK\+\_\+\+OP}} = 5
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadad266d1122d61505744f935af2b18e4a2}{IDX\+\_\+\+FLAG\+\_\+\+MIDDLEGAME}} = 6
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada72d91354db29557bc775ffba1203e96f}{IDX\+\_\+\+FLAG\+\_\+\+ENDGAME}} = 7
+, \newline
+\mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada16fc12b30b6aaf4ad7cb38bf56be5ee8}{IDX\+\_\+\+FLAG\+\_\+\+NOVELTY}} = 8
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadab657dbc2cd34ffb0c1b1fd9876802674}{IDX\+\_\+\+FLAG\+\_\+\+PAWN}} = 9
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada64906e1ac47b8c0034853cdb7452d3a0}{IDX\+\_\+\+FLAG\+\_\+\+TACTICS}} = 10
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3a776f706aafd89df6d30364aa9df4de}{IDX\+\_\+\+FLAG\+\_\+\+KSIDE}} = 11
+, \newline
+\mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaadb0861e9fdb100c744d43c905c91eda}{IDX\+\_\+\+FLAG\+\_\+\+QSIDE}} = 12
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadae13818a037f98cc5f132774a0660bffa}{IDX\+\_\+\+FLAG\+\_\+\+BRILLIANCY}} = 13
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3324f3d3ba94d3a226a4d49064bf4773}{IDX\+\_\+\+FLAG\+\_\+\+BLUNDER}} = 14
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada4565aac611c258ae97740b836f7e6b3d}{IDX\+\_\+\+FLAG\+\_\+\+USER}} = 15
+, \newline
+\mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadadbc1021cd9f42bd6d18f7c1a07b54c48}{IDX\+\_\+\+FLAG\+\_\+\+CUSTOM1}} = 16
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf24e21d1cd0d3951ae165f0df6556e3e}{IDX\+\_\+\+FLAG\+\_\+\+CUSTOM2}} = 17
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3c935e77c801d5540173c91efffe3832}{IDX\+\_\+\+FLAG\+\_\+\+CUSTOM3}} = 18
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada98590ae2ede3b8887db14021679b9f82}{IDX\+\_\+\+FLAG\+\_\+\+CUSTOM4}} = 19
+, \newline
+\mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada24e896a8b47d40b70608e153dc483112}{IDX\+\_\+\+FLAG\+\_\+\+CUSTOM5}} = 20
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf8caf7f162e0635353bdda24ff52235d}{IDX\+\_\+\+FLAG\+\_\+\+CUSTOM6}} = 21
+, \mbox{\hyperlink{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaaba0cd43671b248cdf69e4bb1a42c1a9}{IDX\+\_\+\+NUM\+\_\+\+FLAGS}} = 22
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{class_index_entry_acb9e8a47119feff794b4f460600052ce}{Get\+Offset}} () const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_index_entry_aa078012466b69951bf5421646e4988e9}{Get\+Length}} () const
+\item 
+\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} \mbox{\hyperlink{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}{Get\+White}} () const
+\item 
+\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} \mbox{\hyperlink{class_index_entry_ade16d2fe229cb5de291b237356127ff4}{Get\+White\+Elo}} () const
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_index_entry_acb85bca2f53635711c867a6f49439d4a}{Get\+White\+Rating\+Type}} () const
+\item 
+\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} \mbox{\hyperlink{class_index_entry_a812dafa8a43c269681d8a8171c13526e}{Get\+Black}} () const
+\item 
+\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} \mbox{\hyperlink{class_index_entry_a3a5157afa93f85aa599cc8b6b3a4b13f}{Get\+Black\+Elo}} () const
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_index_entry_a68388abfa58f47f1a5d8eef282a4a5c8}{Get\+Black\+Rating\+Type}} () const
+\item 
+\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} \mbox{\hyperlink{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}{Get\+Event}} () const
+\item 
+\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} \mbox{\hyperlink{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}{Get\+Site}} () const
+\item 
+\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} \mbox{\hyperlink{class_index_entry_a6799286fea8f9d004217d547f68add06}{Get\+Round}} () const
+\item 
+\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} \mbox{\hyperlink{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}{Get\+Date}} () const
+\item 
+\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} \mbox{\hyperlink{class_index_entry_a4fcaa0618a723f53aacf032d42d41d64}{Get\+Event\+Date}} () const
+\item 
+\mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} \mbox{\hyperlink{class_index_entry_a940b237c632951db339a5e6e9ffe4f71}{Get\+Result}} () const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_a5e29a96385a19e91fabb264e9077ab4c}{Get\+Variation\+Count}} () const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_a1f7917dd8dc36f2fa49f5b26fdfb21ab}{Get\+Comment\+Count}} () const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_ade496ec60f891d52bcd4a9f06f8f18a5}{Get\+Nag\+Count}} () const
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_index_entry_ab1fc3c37c283a58fef092af909d8103a}{Get\+Num\+Half\+Moves}} () const
+\item 
+\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} \mbox{\hyperlink{class_index_entry_ab284b4b6bf30b7b9157ea1b485e8963d}{Get\+Final\+Mat\+Sig}} () const
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_index_entry_acc96a0bac7dd6593d10adcae12e6d741}{Get\+Stored\+Line\+Code}} () const
+\item 
+\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} \mbox{\hyperlink{class_index_entry_a606973d42c43ed54ea8c8773e3a7e29f}{Get\+Eco\+Code}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}{Get\+Flag}} (uint32\+\_\+t mask) const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_index_entry_a138b18c5dee510959f1095fa799f07bc}{Get\+Raw\+Flags}} () const
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_index_entry_ab4d6cff01955210035f85e6a9fef33fe}{Get\+Raw4bits\+Counts}} () const
+\item 
+void \mbox{\hyperlink{class_index_entry_ab5c8faac1e7a800a36b81363990e03e9}{set\+Chess\+Std}} ()
+\item 
+void \mbox{\hyperlink{class_index_entry_a336b261986e0e44fe7c94a1fa9754f5a}{set\+Chess960}} ()
+\item 
+bool \mbox{\hyperlink{class_index_entry_ae3e75616529bc120625d241368ff95a2}{is\+Chess\+Std}} () const
+\item 
+const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$ \mbox{\hyperlink{class_index_entry_a6716a6ff9cec5307ee78b4ae8039119a}{Get\+Home\+Pawn\+Data}} () const
+\item 
+void \mbox{\hyperlink{class_index_entry_a381edb946eb4f74c5b67ea097b6b4b6e}{Set\+Home\+Pawn\+Data}} (\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} hp\+Count, const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} hp\+Val\mbox{[}8\mbox{]})
+\item 
+void \mbox{\hyperlink{class_index_entry_a964e3057d9b9ffae3f93bdda31972efc}{Set\+Offset}} (uint64\+\_\+t offset)
+\item 
+void \mbox{\hyperlink{class_index_entry_abcdc23b94aa2f4acdcea2beda6926dd8}{Set\+Length}} (size\+\_\+t length)
+\item 
+void \mbox{\hyperlink{class_index_entry_aab203360f3bb93d8833280ac42f70a20}{Set\+White}} (\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} id)
+\item 
+void \mbox{\hyperlink{class_index_entry_a86dcef8057efaa275bb484f28a2b4432}{Set\+White\+Elo}} (\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} elo)
+\item 
+void \mbox{\hyperlink{class_index_entry_ad77af7107077a7eecad3e3b4e426f534}{Set\+White\+Rating\+Type}} (\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} b)
+\item 
+void \mbox{\hyperlink{class_index_entry_a381acfc68cffbf97831444031e978d13}{Set\+Black}} (\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} id)
+\item 
+void \mbox{\hyperlink{class_index_entry_aa83a64b45c3c0afad93a855f9843cbef}{Set\+Black\+Elo}} (\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} elo)
+\item 
+void \mbox{\hyperlink{class_index_entry_a0d36da0d7dbdf121a9f4a3337e26ccc5}{Set\+Black\+Rating\+Type}} (\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} b)
+\item 
+void \mbox{\hyperlink{class_index_entry_ab3c8d5fe535dc4a9d349c6ba54a7f224}{Set\+Event}} (\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} id)
+\item 
+void \mbox{\hyperlink{class_index_entry_ab642354b48aa8a1bf56a5bca2b433f68}{Set\+Site}} (\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} id)
+\item 
+void \mbox{\hyperlink{class_index_entry_a600eb267be7ac5b722ae16a4fb6befa7}{Set\+Round}} (\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} id)
+\item 
+void \mbox{\hyperlink{class_index_entry_a772741ad1f99354f623e8f61d42de73b}{Set\+Date}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} date)
+\item 
+void \mbox{\hyperlink{class_index_entry_ad11785a304841d325da786bd93a4d7dd}{Set\+Event\+Date}} (\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} edate)
+\item 
+void \mbox{\hyperlink{class_index_entry_a70019a4ecb50ed0ce536ad953476af91}{Set\+Result}} (\mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} res)
+\item 
+void \mbox{\hyperlink{class_index_entry_a5e8ffe9437734755cc757889a99232ef}{Set\+Variation\+Count}} (unsigned x)
+\item 
+void \mbox{\hyperlink{class_index_entry_ad291f7770c4194472bed57e227fc6084}{Set\+Comment\+Count}} (unsigned x)
+\item 
+void \mbox{\hyperlink{class_index_entry_ac2ef9ebe3b34947bae0a9a21959f590f}{Set\+Nag\+Count}} (unsigned x)
+\item 
+void \mbox{\hyperlink{class_index_entry_a5380346975818e43e6fa2d14110d57da}{Set\+Raw\+Variation\+Count}} (unsigned x)
+\item 
+void \mbox{\hyperlink{class_index_entry_aa7c99978b12bfd1abc21ea7abe217867}{Set\+Raw\+Comment\+Count}} (unsigned x)
+\item 
+void \mbox{\hyperlink{class_index_entry_a836a0f3cb895c1dd2bc173625c709184}{Set\+Raw\+Nag\+Count}} (unsigned x)
+\item 
+void \mbox{\hyperlink{class_index_entry_a307bfcb1bf089698cf8e47c8c128fe67}{Set\+Num\+Half\+Moves}} (\mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}} b)
+\item 
+void \mbox{\hyperlink{class_index_entry_a9c3d3b6b5845099f2209fc518288131b}{Set\+Final\+Mat\+Sig}} (\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} ms)
+\item 
+void \mbox{\hyperlink{class_index_entry_a928f361c7307d0fd9ab2b3f5e73c0ecc}{Set\+Stored\+Line\+Code}} (\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} b)
+\item 
+void \mbox{\hyperlink{class_index_entry_a6d142c6953365dd742d0005303f78db9}{Set\+Eco\+Code}} (\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} eco)
+\item 
+void \mbox{\hyperlink{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}{Set\+Flag}} (uint32\+\_\+t flag\+Mask, bool set)
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_a1e6a3a03ee08fe8680efc1019c2bbc00}{Get\+Year}} () const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_ae5d4092815465502f4a6d4e848c09a84}{Get\+Month}} () const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_aa7f6e9e83d341f2e7e4138349761056a}{Get\+Day}} () const
+\item 
+void \mbox{\hyperlink{class_index_entry_a7961cbcb1f75ff6a35560cff62f96571}{Set\+Player}} (\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}} col, \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} id)
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{class_index_entry_ab32579432ba6d8507f46d6571e688115}{Get\+Rating}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_a8a2bfbca861309e73da317cbfc04a9c3}{Get\+Start\+Flag}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_af29d0df0810890b57fd8a89bc7b88c39}{Get\+Promotions\+Flag}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_a6f0d338a3f9e0f047bc95bc626880046}{Get\+Under\+Promo\+Flag}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_a2a092be4a8bba3f4640a3dd9078bbfa6}{Get\+Comments\+Flag}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_a2a246587b1a05091a61047bc79862f74}{Get\+Variations\+Flag}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_aae4bdeaec343ea9b0ec764fb013ca608}{Get\+Nags\+Flag}} () const
+\item 
+bool \mbox{\hyperlink{class_index_entry_a772a72a62646bc4cfb00bc22287fcb2e}{Get\+Delete\+Flag}} () const
+\item 
+\mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_a3c6de0a9732a08e63d1e3e50c1005194}{Get\+Flag\+Str}} (char $\ast$dest, const char $\ast$flags) const
+\item 
+void \mbox{\hyperlink{class_index_entry_a0aa2446f71f93314ee889c0a50257df4}{Set\+Start\+Flag}} (bool b)
+\item 
+void \mbox{\hyperlink{class_index_entry_a6001c4ce1fa035be5134d0fe18bf87bf}{Set\+Promotions\+Flag}} (bool b)
+\item 
+void \mbox{\hyperlink{class_index_entry_abf9cdf850e382c451df3ee8be86a5589}{Set\+Under\+Promo\+Flag}} (bool b)
+\item 
+void \mbox{\hyperlink{class_index_entry_ad4a20c6a767f34727277c399052ee366}{Set\+Delete\+Flag}} (bool b)
+\item 
+void \mbox{\hyperlink{class_index_entry_ae756b3726268ae74f1ad09c198fde931}{clear\+Flags}} ()
+\item 
+bool \mbox{\hyperlink{class_index_entry_ab54293be54b61bcfb15cb75953cd2bfd}{equal\+Except\+Flags}} (\mbox{\hyperlink{class_index_entry}{Index\+Entry}} ie) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} \mbox{\hyperlink{class_index_entry_a7660845e306c185d9146501cd0225057}{Char\+To\+Flag}} (char ch)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}{Char\+To\+Flag\+Mask}} (char flag)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{class_index_entry_a7cfd913f990d69e6f89626437d40d0be}{Str\+To\+Flag\+Mask}} (const char $\ast$flags)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const uint32\+\_\+t \mbox{\hyperlink{class_index_entry_a089d97dc36737cd2c0595f215ca57b04}{IDX\+\_\+\+MASK\+\_\+\+ALLFLAGS}} = 0x\+FFFFFFFF
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fad}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fad}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_START@{IDX\_FLAG\_START}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_START@{IDX\_FLAG\_START}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada45c860f5813ae2c8f185fa8ceca2d0ef}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada45c860f5813ae2c8f185fa8ceca2d0ef}} 
+IDX\+\_\+\+FLAG\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_PROMO@{IDX\_FLAG\_PROMO}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_PROMO@{IDX\_FLAG\_PROMO}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabe3cb55d7646522566193f615d4e5f16}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabe3cb55d7646522566193f615d4e5f16}} 
+IDX\+\_\+\+FLAG\+\_\+\+PROMO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_UPROMO@{IDX\_FLAG\_UPROMO}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_UPROMO@{IDX\_FLAG\_UPROMO}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada6e9bd19ebc4b5f14ea2c0f3a472b0f1a}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada6e9bd19ebc4b5f14ea2c0f3a472b0f1a}} 
+IDX\+\_\+\+FLAG\+\_\+\+UPROMO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_DELETE@{IDX\_FLAG\_DELETE}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_DELETE@{IDX\_FLAG\_DELETE}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaa9d27db162a7b3d5f208a53cd108c2c1}} 
+IDX\+\_\+\+FLAG\+\_\+\+DELETE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_WHITE\_OP@{IDX\_FLAG\_WHITE\_OP}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_WHITE\_OP@{IDX\_FLAG\_WHITE\_OP}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabd828387729000c8e1be8758662dc117}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadabd828387729000c8e1be8758662dc117}} 
+IDX\+\_\+\+FLAG\+\_\+\+WHITE\+\_\+\+OP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_BLACK\_OP@{IDX\_FLAG\_BLACK\_OP}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_BLACK\_OP@{IDX\_FLAG\_BLACK\_OP}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaed5b0d970bcc02d0c8f0b86b9556e987}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaed5b0d970bcc02d0c8f0b86b9556e987}} 
+IDX\+\_\+\+FLAG\+\_\+\+BLACK\+\_\+\+OP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_MIDDLEGAME@{IDX\_FLAG\_MIDDLEGAME}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_MIDDLEGAME@{IDX\_FLAG\_MIDDLEGAME}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadad266d1122d61505744f935af2b18e4a2}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadad266d1122d61505744f935af2b18e4a2}} 
+IDX\+\_\+\+FLAG\+\_\+\+MIDDLEGAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_ENDGAME@{IDX\_FLAG\_ENDGAME}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_ENDGAME@{IDX\_FLAG\_ENDGAME}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada72d91354db29557bc775ffba1203e96f}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada72d91354db29557bc775ffba1203e96f}} 
+IDX\+\_\+\+FLAG\+\_\+\+ENDGAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_NOVELTY@{IDX\_FLAG\_NOVELTY}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_NOVELTY@{IDX\_FLAG\_NOVELTY}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada16fc12b30b6aaf4ad7cb38bf56be5ee8}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada16fc12b30b6aaf4ad7cb38bf56be5ee8}} 
+IDX\+\_\+\+FLAG\+\_\+\+NOVELTY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_PAWN@{IDX\_FLAG\_PAWN}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_PAWN@{IDX\_FLAG\_PAWN}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadab657dbc2cd34ffb0c1b1fd9876802674}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadab657dbc2cd34ffb0c1b1fd9876802674}} 
+IDX\+\_\+\+FLAG\+\_\+\+PAWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_TACTICS@{IDX\_FLAG\_TACTICS}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_TACTICS@{IDX\_FLAG\_TACTICS}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada64906e1ac47b8c0034853cdb7452d3a0}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada64906e1ac47b8c0034853cdb7452d3a0}} 
+IDX\+\_\+\+FLAG\+\_\+\+TACTICS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_KSIDE@{IDX\_FLAG\_KSIDE}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_KSIDE@{IDX\_FLAG\_KSIDE}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3a776f706aafd89df6d30364aa9df4de}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3a776f706aafd89df6d30364aa9df4de}} 
+IDX\+\_\+\+FLAG\+\_\+\+KSIDE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_QSIDE@{IDX\_FLAG\_QSIDE}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_QSIDE@{IDX\_FLAG\_QSIDE}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaadb0861e9fdb100c744d43c905c91eda}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaadb0861e9fdb100c744d43c905c91eda}} 
+IDX\+\_\+\+FLAG\+\_\+\+QSIDE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_BRILLIANCY@{IDX\_FLAG\_BRILLIANCY}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_BRILLIANCY@{IDX\_FLAG\_BRILLIANCY}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadae13818a037f98cc5f132774a0660bffa}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadae13818a037f98cc5f132774a0660bffa}} 
+IDX\+\_\+\+FLAG\+\_\+\+BRILLIANCY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_BLUNDER@{IDX\_FLAG\_BLUNDER}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_BLUNDER@{IDX\_FLAG\_BLUNDER}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3324f3d3ba94d3a226a4d49064bf4773}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3324f3d3ba94d3a226a4d49064bf4773}} 
+IDX\+\_\+\+FLAG\+\_\+\+BLUNDER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_USER@{IDX\_FLAG\_USER}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_USER@{IDX\_FLAG\_USER}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada4565aac611c258ae97740b836f7e6b3d}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada4565aac611c258ae97740b836f7e6b3d}} 
+IDX\+\_\+\+FLAG\+\_\+\+USER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_CUSTOM1@{IDX\_FLAG\_CUSTOM1}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_CUSTOM1@{IDX\_FLAG\_CUSTOM1}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadadbc1021cd9f42bd6d18f7c1a07b54c48}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadadbc1021cd9f42bd6d18f7c1a07b54c48}} 
+IDX\+\_\+\+FLAG\+\_\+\+CUSTOM1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_CUSTOM2@{IDX\_FLAG\_CUSTOM2}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_CUSTOM2@{IDX\_FLAG\_CUSTOM2}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf24e21d1cd0d3951ae165f0df6556e3e}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf24e21d1cd0d3951ae165f0df6556e3e}} 
+IDX\+\_\+\+FLAG\+\_\+\+CUSTOM2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_CUSTOM3@{IDX\_FLAG\_CUSTOM3}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_CUSTOM3@{IDX\_FLAG\_CUSTOM3}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3c935e77c801d5540173c91efffe3832}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada3c935e77c801d5540173c91efffe3832}} 
+IDX\+\_\+\+FLAG\+\_\+\+CUSTOM3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_CUSTOM4@{IDX\_FLAG\_CUSTOM4}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_CUSTOM4@{IDX\_FLAG\_CUSTOM4}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada98590ae2ede3b8887db14021679b9f82}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada98590ae2ede3b8887db14021679b9f82}} 
+IDX\+\_\+\+FLAG\+\_\+\+CUSTOM4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_CUSTOM5@{IDX\_FLAG\_CUSTOM5}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_CUSTOM5@{IDX\_FLAG\_CUSTOM5}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada24e896a8b47d40b70608e153dc483112}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fada24e896a8b47d40b70608e153dc483112}} 
+IDX\+\_\+\+FLAG\+\_\+\+CUSTOM5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_FLAG\_CUSTOM6@{IDX\_FLAG\_CUSTOM6}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_FLAG\_CUSTOM6@{IDX\_FLAG\_CUSTOM6}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf8caf7f162e0635353bdda24ff52235d}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaf8caf7f162e0635353bdda24ff52235d}} 
+IDX\+\_\+\+FLAG\+\_\+\+CUSTOM6&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDX\_NUM\_FLAGS@{IDX\_NUM\_FLAGS}!IndexEntry@{IndexEntry}}\index{IndexEntry@{IndexEntry}!IDX\_NUM\_FLAGS@{IDX\_NUM\_FLAGS}}}\mbox{\Hypertarget{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaaba0cd43671b248cdf69e4bb1a42c1a9}\label{class_index_entry_ad1e429fc0b47d4cd0ddb5cf6ae3b3fadaaba0cd43671b248cdf69e4bb1a42c1a9}} 
+IDX\+\_\+\+NUM\+\_\+\+FLAGS&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_index_entry_a7660845e306c185d9146501cd0225057}\label{class_index_entry_a7660845e306c185d9146501cd0225057}} 
+\index{IndexEntry@{IndexEntry}!CharToFlag@{CharToFlag}}
+\index{CharToFlag@{CharToFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{CharToFlag()}{CharToFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Char\+To\+Flag (\begin{DoxyParamCaption}\item[{char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}\label{class_index_entry_ab027f41fc1e16299cf11976cb38e786d}} 
+\index{IndexEntry@{IndexEntry}!CharToFlagMask@{CharToFlagMask}}
+\index{CharToFlagMask@{CharToFlagMask}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{CharToFlagMask()}{CharToFlagMask()}}
+{\footnotesize\ttfamily uint32\+\_\+t Index\+Entry\+::\+Char\+To\+Flag\+Mask (\begin{DoxyParamCaption}\item[{char}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_index_entry_ae756b3726268ae74f1ad09c198fde931}\label{class_index_entry_ae756b3726268ae74f1ad09c198fde931}} 
+\index{IndexEntry@{IndexEntry}!clearFlags@{clearFlags}}
+\index{clearFlags@{clearFlags}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{clearFlags()}{clearFlags()}}
+{\footnotesize\ttfamily void Index\+Entry\+::clear\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab54293be54b61bcfb15cb75953cd2bfd}\label{class_index_entry_ab54293be54b61bcfb15cb75953cd2bfd}} 
+\index{IndexEntry@{IndexEntry}!equalExceptFlags@{equalExceptFlags}}
+\index{equalExceptFlags@{equalExceptFlags}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{equalExceptFlags()}{equalExceptFlags()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::equal\+Except\+Flags (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_index_entry}{Index\+Entry}}}]{ie }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a812dafa8a43c269681d8a8171c13526e}\label{class_index_entry_a812dafa8a43c269681d8a8171c13526e}} 
+\index{IndexEntry@{IndexEntry}!GetBlack@{GetBlack}}
+\index{GetBlack@{GetBlack}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetBlack()}{GetBlack()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} Index\+Entry\+::\+Get\+Black (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a3a5157afa93f85aa599cc8b6b3a4b13f}\label{class_index_entry_a3a5157afa93f85aa599cc8b6b3a4b13f}} 
+\index{IndexEntry@{IndexEntry}!GetBlackElo@{GetBlackElo}}
+\index{GetBlackElo@{GetBlackElo}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetBlackElo()}{GetBlackElo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} Index\+Entry\+::\+Get\+Black\+Elo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a68388abfa58f47f1a5d8eef282a4a5c8}\label{class_index_entry_a68388abfa58f47f1a5d8eef282a4a5c8}} 
+\index{IndexEntry@{IndexEntry}!GetBlackRatingType@{GetBlackRatingType}}
+\index{GetBlackRatingType@{GetBlackRatingType}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetBlackRatingType()}{GetBlackRatingType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} Index\+Entry\+::\+Get\+Black\+Rating\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a1f7917dd8dc36f2fa49f5b26fdfb21ab}\label{class_index_entry_a1f7917dd8dc36f2fa49f5b26fdfb21ab}} 
+\index{IndexEntry@{IndexEntry}!GetCommentCount@{GetCommentCount}}
+\index{GetCommentCount@{GetCommentCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetCommentCount()}{GetCommentCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Get\+Comment\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a2a092be4a8bba3f4640a3dd9078bbfa6}\label{class_index_entry_a2a092be4a8bba3f4640a3dd9078bbfa6}} 
+\index{IndexEntry@{IndexEntry}!GetCommentsFlag@{GetCommentsFlag}}
+\index{GetCommentsFlag@{GetCommentsFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetCommentsFlag()}{GetCommentsFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Comments\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}\label{class_index_entry_abdeb2790d7c416e737ce4fb8efd8e6c2}} 
+\index{IndexEntry@{IndexEntry}!GetDate@{GetDate}}
+\index{GetDate@{GetDate}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetDate()}{GetDate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} Index\+Entry\+::\+Get\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_aa7f6e9e83d341f2e7e4138349761056a}\label{class_index_entry_aa7f6e9e83d341f2e7e4138349761056a}} 
+\index{IndexEntry@{IndexEntry}!GetDay@{GetDay}}
+\index{GetDay@{GetDay}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetDay()}{GetDay()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Get\+Day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a772a72a62646bc4cfb00bc22287fcb2e}\label{class_index_entry_a772a72a62646bc4cfb00bc22287fcb2e}} 
+\index{IndexEntry@{IndexEntry}!GetDeleteFlag@{GetDeleteFlag}}
+\index{GetDeleteFlag@{GetDeleteFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetDeleteFlag()}{GetDeleteFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Delete\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a606973d42c43ed54ea8c8773e3a7e29f}\label{class_index_entry_a606973d42c43ed54ea8c8773e3a7e29f}} 
+\index{IndexEntry@{IndexEntry}!GetEcoCode@{GetEcoCode}}
+\index{GetEcoCode@{GetEcoCode}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetEcoCode()}{GetEcoCode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}} Index\+Entry\+::\+Get\+Eco\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}\label{class_index_entry_a1b531d49841bc68a71c6445a39ab8f9b}} 
+\index{IndexEntry@{IndexEntry}!GetEvent@{GetEvent}}
+\index{GetEvent@{GetEvent}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetEvent()}{GetEvent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} Index\+Entry\+::\+Get\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a4fcaa0618a723f53aacf032d42d41d64}\label{class_index_entry_a4fcaa0618a723f53aacf032d42d41d64}} 
+\index{IndexEntry@{IndexEntry}!GetEventDate@{GetEventDate}}
+\index{GetEventDate@{GetEventDate}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetEventDate()}{GetEventDate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}} Index\+Entry\+::\+Get\+Event\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab284b4b6bf30b7b9157ea1b485e8963d}\label{class_index_entry_ab284b4b6bf30b7b9157ea1b485e8963d}} 
+\index{IndexEntry@{IndexEntry}!GetFinalMatSig@{GetFinalMatSig}}
+\index{GetFinalMatSig@{GetFinalMatSig}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetFinalMatSig()}{GetFinalMatSig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}} Index\+Entry\+::\+Get\+Final\+Mat\+Sig (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}\label{class_index_entry_a4084f675bfd6b9c5196481df4d0987cf}} 
+\index{IndexEntry@{IndexEntry}!GetFlag@{GetFlag}}
+\index{GetFlag@{GetFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetFlag()}{GetFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Flag (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{mask }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a3c6de0a9732a08e63d1e3e50c1005194}\label{class_index_entry_a3c6de0a9732a08e63d1e3e50c1005194}} 
+\index{IndexEntry@{IndexEntry}!GetFlagStr@{GetFlagStr}}
+\index{GetFlagStr@{GetFlagStr}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetFlagStr()}{GetFlagStr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Get\+Flag\+Str (\begin{DoxyParamCaption}\item[{char $\ast$}]{dest,  }\item[{const char $\ast$}]{flags }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a6716a6ff9cec5307ee78b4ae8039119a}\label{class_index_entry_a6716a6ff9cec5307ee78b4ae8039119a}} 
+\index{IndexEntry@{IndexEntry}!GetHomePawnData@{GetHomePawnData}}
+\index{GetHomePawnData@{GetHomePawnData}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetHomePawnData()}{GetHomePawnData()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$ Index\+Entry\+::\+Get\+Home\+Pawn\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_aa078012466b69951bf5421646e4988e9}\label{class_index_entry_aa078012466b69951bf5421646e4988e9}} 
+\index{IndexEntry@{IndexEntry}!GetLength@{GetLength}}
+\index{GetLength@{GetLength}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetLength()}{GetLength()}}
+{\footnotesize\ttfamily uint32\+\_\+t Index\+Entry\+::\+Get\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ae5d4092815465502f4a6d4e848c09a84}\label{class_index_entry_ae5d4092815465502f4a6d4e848c09a84}} 
+\index{IndexEntry@{IndexEntry}!GetMonth@{GetMonth}}
+\index{GetMonth@{GetMonth}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetMonth()}{GetMonth()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Get\+Month (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ade496ec60f891d52bcd4a9f06f8f18a5}\label{class_index_entry_ade496ec60f891d52bcd4a9f06f8f18a5}} 
+\index{IndexEntry@{IndexEntry}!GetNagCount@{GetNagCount}}
+\index{GetNagCount@{GetNagCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetNagCount()}{GetNagCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Get\+Nag\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_aae4bdeaec343ea9b0ec764fb013ca608}\label{class_index_entry_aae4bdeaec343ea9b0ec764fb013ca608}} 
+\index{IndexEntry@{IndexEntry}!GetNagsFlag@{GetNagsFlag}}
+\index{GetNagsFlag@{GetNagsFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetNagsFlag()}{GetNagsFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Nags\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab1fc3c37c283a58fef092af909d8103a}\label{class_index_entry_ab1fc3c37c283a58fef092af909d8103a}} 
+\index{IndexEntry@{IndexEntry}!GetNumHalfMoves@{GetNumHalfMoves}}
+\index{GetNumHalfMoves@{GetNumHalfMoves}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetNumHalfMoves()}{GetNumHalfMoves()}}
+{\footnotesize\ttfamily uint16\+\_\+t Index\+Entry\+::\+Get\+Num\+Half\+Moves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_acb9e8a47119feff794b4f460600052ce}\label{class_index_entry_acb9e8a47119feff794b4f460600052ce}} 
+\index{IndexEntry@{IndexEntry}!GetOffset@{GetOffset}}
+\index{GetOffset@{GetOffset}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetOffset()}{GetOffset()}}
+{\footnotesize\ttfamily uint64\+\_\+t Index\+Entry\+::\+Get\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_af29d0df0810890b57fd8a89bc7b88c39}\label{class_index_entry_af29d0df0810890b57fd8a89bc7b88c39}} 
+\index{IndexEntry@{IndexEntry}!GetPromotionsFlag@{GetPromotionsFlag}}
+\index{GetPromotionsFlag@{GetPromotionsFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetPromotionsFlag()}{GetPromotionsFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Promotions\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab32579432ba6d8507f46d6571e688115}\label{class_index_entry_ab32579432ba6d8507f46d6571e688115}} 
+\index{IndexEntry@{IndexEntry}!GetRating@{GetRating}}
+\index{GetRating@{GetRating}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetRating()}{GetRating()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} Index\+Entry\+::\+Get\+Rating (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab4d6cff01955210035f85e6a9fef33fe}\label{class_index_entry_ab4d6cff01955210035f85e6a9fef33fe}} 
+\index{IndexEntry@{IndexEntry}!GetRaw4bitsCounts@{GetRaw4bitsCounts}}
+\index{GetRaw4bitsCounts@{GetRaw4bitsCounts}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetRaw4bitsCounts()}{GetRaw4bitsCounts()}}
+{\footnotesize\ttfamily uint16\+\_\+t Index\+Entry\+::\+Get\+Raw4bits\+Counts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a138b18c5dee510959f1095fa799f07bc}\label{class_index_entry_a138b18c5dee510959f1095fa799f07bc}} 
+\index{IndexEntry@{IndexEntry}!GetRawFlags@{GetRawFlags}}
+\index{GetRawFlags@{GetRawFlags}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetRawFlags()}{GetRawFlags()}}
+{\footnotesize\ttfamily uint32\+\_\+t Index\+Entry\+::\+Get\+Raw\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a940b237c632951db339a5e6e9ffe4f71}\label{class_index_entry_a940b237c632951db339a5e6e9ffe4f71}} 
+\index{IndexEntry@{IndexEntry}!GetResult@{GetResult}}
+\index{GetResult@{GetResult}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetResult()}{GetResult()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}} Index\+Entry\+::\+Get\+Result (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a6799286fea8f9d004217d547f68add06}\label{class_index_entry_a6799286fea8f9d004217d547f68add06}} 
+\index{IndexEntry@{IndexEntry}!GetRound@{GetRound}}
+\index{GetRound@{GetRound}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetRound()}{GetRound()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} Index\+Entry\+::\+Get\+Round (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}\label{class_index_entry_ae506ce919b2ea13ef613c0e4cdffe957}} 
+\index{IndexEntry@{IndexEntry}!GetSite@{GetSite}}
+\index{GetSite@{GetSite}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetSite()}{GetSite()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} Index\+Entry\+::\+Get\+Site (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a8a2bfbca861309e73da317cbfc04a9c3}\label{class_index_entry_a8a2bfbca861309e73da317cbfc04a9c3}} 
+\index{IndexEntry@{IndexEntry}!GetStartFlag@{GetStartFlag}}
+\index{GetStartFlag@{GetStartFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetStartFlag()}{GetStartFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Start\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_acc96a0bac7dd6593d10adcae12e6d741}\label{class_index_entry_acc96a0bac7dd6593d10adcae12e6d741}} 
+\index{IndexEntry@{IndexEntry}!GetStoredLineCode@{GetStoredLineCode}}
+\index{GetStoredLineCode@{GetStoredLineCode}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetStoredLineCode()}{GetStoredLineCode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} Index\+Entry\+::\+Get\+Stored\+Line\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a6f0d338a3f9e0f047bc95bc626880046}\label{class_index_entry_a6f0d338a3f9e0f047bc95bc626880046}} 
+\index{IndexEntry@{IndexEntry}!GetUnderPromoFlag@{GetUnderPromoFlag}}
+\index{GetUnderPromoFlag@{GetUnderPromoFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetUnderPromoFlag()}{GetUnderPromoFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Under\+Promo\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a5e29a96385a19e91fabb264e9077ab4c}\label{class_index_entry_a5e29a96385a19e91fabb264e9077ab4c}} 
+\index{IndexEntry@{IndexEntry}!GetVariationCount@{GetVariationCount}}
+\index{GetVariationCount@{GetVariationCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetVariationCount()}{GetVariationCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Get\+Variation\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a2a246587b1a05091a61047bc79862f74}\label{class_index_entry_a2a246587b1a05091a61047bc79862f74}} 
+\index{IndexEntry@{IndexEntry}!GetVariationsFlag@{GetVariationsFlag}}
+\index{GetVariationsFlag@{GetVariationsFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetVariationsFlag()}{GetVariationsFlag()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::\+Get\+Variations\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}\label{class_index_entry_a44a428cd1491f4528df5dcfaca0b4137}} 
+\index{IndexEntry@{IndexEntry}!GetWhite@{GetWhite}}
+\index{GetWhite@{GetWhite}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetWhite()}{GetWhite()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}} Index\+Entry\+::\+Get\+White (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ade16d2fe229cb5de291b237356127ff4}\label{class_index_entry_ade16d2fe229cb5de291b237356127ff4}} 
+\index{IndexEntry@{IndexEntry}!GetWhiteElo@{GetWhiteElo}}
+\index{GetWhiteElo@{GetWhiteElo}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetWhiteElo()}{GetWhiteElo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}} Index\+Entry\+::\+Get\+White\+Elo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_acb85bca2f53635711c867a6f49439d4a}\label{class_index_entry_acb85bca2f53635711c867a6f49439d4a}} 
+\index{IndexEntry@{IndexEntry}!GetWhiteRatingType@{GetWhiteRatingType}}
+\index{GetWhiteRatingType@{GetWhiteRatingType}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetWhiteRatingType()}{GetWhiteRatingType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} Index\+Entry\+::\+Get\+White\+Rating\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a1e6a3a03ee08fe8680efc1019c2bbc00}\label{class_index_entry_a1e6a3a03ee08fe8680efc1019c2bbc00}} 
+\index{IndexEntry@{IndexEntry}!GetYear@{GetYear}}
+\index{GetYear@{GetYear}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{GetYear()}{GetYear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a4f5fce8c1ef282264f9214809524d836}{uint}} Index\+Entry\+::\+Get\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ae3e75616529bc120625d241368ff95a2}\label{class_index_entry_ae3e75616529bc120625d241368ff95a2}} 
+\index{IndexEntry@{IndexEntry}!isChessStd@{isChessStd}}
+\index{isChessStd@{isChessStd}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{isChessStd()}{isChessStd()}}
+{\footnotesize\ttfamily bool Index\+Entry\+::is\+Chess\+Std (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a381acfc68cffbf97831444031e978d13}\label{class_index_entry_a381acfc68cffbf97831444031e978d13}} 
+\index{IndexEntry@{IndexEntry}!SetBlack@{SetBlack}}
+\index{SetBlack@{SetBlack}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetBlack()}{SetBlack()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Black (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_aa83a64b45c3c0afad93a855f9843cbef}\label{class_index_entry_aa83a64b45c3c0afad93a855f9843cbef}} 
+\index{IndexEntry@{IndexEntry}!SetBlackElo@{SetBlackElo}}
+\index{SetBlackElo@{SetBlackElo}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetBlackElo()}{SetBlackElo()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Black\+Elo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}}]{elo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a0d36da0d7dbdf121a9f4a3337e26ccc5}\label{class_index_entry_a0d36da0d7dbdf121a9f4a3337e26ccc5}} 
+\index{IndexEntry@{IndexEntry}!SetBlackRatingType@{SetBlackRatingType}}
+\index{SetBlackRatingType@{SetBlackRatingType}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetBlackRatingType()}{SetBlackRatingType()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Black\+Rating\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a336b261986e0e44fe7c94a1fa9754f5a}\label{class_index_entry_a336b261986e0e44fe7c94a1fa9754f5a}} 
+\index{IndexEntry@{IndexEntry}!setChess960@{setChess960}}
+\index{setChess960@{setChess960}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{setChess960()}{setChess960()}}
+{\footnotesize\ttfamily void Index\+Entry\+::set\+Chess960 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab5c8faac1e7a800a36b81363990e03e9}\label{class_index_entry_ab5c8faac1e7a800a36b81363990e03e9}} 
+\index{IndexEntry@{IndexEntry}!setChessStd@{setChessStd}}
+\index{setChessStd@{setChessStd}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{setChessStd()}{setChessStd()}}
+{\footnotesize\ttfamily void Index\+Entry\+::set\+Chess\+Std (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ad291f7770c4194472bed57e227fc6084}\label{class_index_entry_ad291f7770c4194472bed57e227fc6084}} 
+\index{IndexEntry@{IndexEntry}!SetCommentCount@{SetCommentCount}}
+\index{SetCommentCount@{SetCommentCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetCommentCount()}{SetCommentCount()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Comment\+Count (\begin{DoxyParamCaption}\item[{unsigned}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a772741ad1f99354f623e8f61d42de73b}\label{class_index_entry_a772741ad1f99354f623e8f61d42de73b}} 
+\index{IndexEntry@{IndexEntry}!SetDate@{SetDate}}
+\index{SetDate@{SetDate}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetDate()}{SetDate()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}}]{date }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ad4a20c6a767f34727277c399052ee366}\label{class_index_entry_ad4a20c6a767f34727277c399052ee366}} 
+\index{IndexEntry@{IndexEntry}!SetDeleteFlag@{SetDeleteFlag}}
+\index{SetDeleteFlag@{SetDeleteFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetDeleteFlag()}{SetDeleteFlag()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Delete\+Flag (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a6d142c6953365dd742d0005303f78db9}\label{class_index_entry_a6d142c6953365dd742d0005303f78db9}} 
+\index{IndexEntry@{IndexEntry}!SetEcoCode@{SetEcoCode}}
+\index{SetEcoCode@{SetEcoCode}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetEcoCode()}{SetEcoCode()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Eco\+Code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a09954ca6527a6a63b1403b70bbc139fe}{ecoT}}}]{eco }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab3c8d5fe535dc4a9d349c6ba54a7f224}\label{class_index_entry_ab3c8d5fe535dc4a9d349c6ba54a7f224}} 
+\index{IndexEntry@{IndexEntry}!SetEvent@{SetEvent}}
+\index{SetEvent@{SetEvent}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetEvent()}{SetEvent()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ad11785a304841d325da786bd93a4d7dd}\label{class_index_entry_ad11785a304841d325da786bd93a4d7dd}} 
+\index{IndexEntry@{IndexEntry}!SetEventDate@{SetEventDate}}
+\index{SetEventDate@{SetEventDate}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetEventDate()}{SetEventDate()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Event\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{date_8h_a509ee2fb179a5670d482acd4437f1547}{dateT}}}]{edate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a9c3d3b6b5845099f2209fc518288131b}\label{class_index_entry_a9c3d3b6b5845099f2209fc518288131b}} 
+\index{IndexEntry@{IndexEntry}!SetFinalMatSig@{SetFinalMatSig}}
+\index{SetFinalMatSig@{SetFinalMatSig}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetFinalMatSig()}{SetFinalMatSig()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Final\+Mat\+Sig (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{matsig_8h_a2f7a9f54df8c437a0569b2475caac618}{mat\+SigT}}}]{ms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}\label{class_index_entry_ad8b0bab862d4eca8e1d01e866e1fc24d}} 
+\index{IndexEntry@{IndexEntry}!SetFlag@{SetFlag}}
+\index{SetFlag@{SetFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetFlag()}{SetFlag()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Flag (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{flag\+Mask,  }\item[{bool}]{set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a381edb946eb4f74c5b67ea097b6b4b6e}\label{class_index_entry_a381edb946eb4f74c5b67ea097b6b4b6e}} 
+\index{IndexEntry@{IndexEntry}!SetHomePawnData@{SetHomePawnData}}
+\index{SetHomePawnData@{SetHomePawnData}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetHomePawnData()}{SetHomePawnData()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Home\+Pawn\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{hp\+Count,  }\item[{const \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{hp\+Val\mbox{[}8\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_abcdc23b94aa2f4acdcea2beda6926dd8}\label{class_index_entry_abcdc23b94aa2f4acdcea2beda6926dd8}} 
+\index{IndexEntry@{IndexEntry}!SetLength@{SetLength}}
+\index{SetLength@{SetLength}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetLength()}{SetLength()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Length (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ac2ef9ebe3b34947bae0a9a21959f590f}\label{class_index_entry_ac2ef9ebe3b34947bae0a9a21959f590f}} 
+\index{IndexEntry@{IndexEntry}!SetNagCount@{SetNagCount}}
+\index{SetNagCount@{SetNagCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetNagCount()}{SetNagCount()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Nag\+Count (\begin{DoxyParamCaption}\item[{unsigned}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a307bfcb1bf089698cf8e47c8c128fe67}\label{class_index_entry_a307bfcb1bf089698cf8e47c8c128fe67}} 
+\index{IndexEntry@{IndexEntry}!SetNumHalfMoves@{SetNumHalfMoves}}
+\index{SetNumHalfMoves@{SetNumHalfMoves}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetNumHalfMoves()}{SetNumHalfMoves()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Num\+Half\+Moves (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a9e58a7bf060b7a5fbf6a401d3020adca}{ushort}}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a964e3057d9b9ffae3f93bdda31972efc}\label{class_index_entry_a964e3057d9b9ffae3f93bdda31972efc}} 
+\index{IndexEntry@{IndexEntry}!SetOffset@{SetOffset}}
+\index{SetOffset@{SetOffset}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetOffset()}{SetOffset()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Offset (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a7961cbcb1f75ff6a35560cff62f96571}\label{class_index_entry_a7961cbcb1f75ff6a35560cff62f96571}} 
+\index{IndexEntry@{IndexEntry}!SetPlayer@{SetPlayer}}
+\index{SetPlayer@{SetPlayer}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetPlayer()}{SetPlayer()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{board__def_8h_a392377b3504195ce1ed9148b4f8a3295}{colorT}}}]{col,  }\item[{\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a6001c4ce1fa035be5134d0fe18bf87bf}\label{class_index_entry_a6001c4ce1fa035be5134d0fe18bf87bf}} 
+\index{IndexEntry@{IndexEntry}!SetPromotionsFlag@{SetPromotionsFlag}}
+\index{SetPromotionsFlag@{SetPromotionsFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetPromotionsFlag()}{SetPromotionsFlag()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Promotions\+Flag (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_aa7c99978b12bfd1abc21ea7abe217867}\label{class_index_entry_aa7c99978b12bfd1abc21ea7abe217867}} 
+\index{IndexEntry@{IndexEntry}!SetRawCommentCount@{SetRawCommentCount}}
+\index{SetRawCommentCount@{SetRawCommentCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetRawCommentCount()}{SetRawCommentCount()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Raw\+Comment\+Count (\begin{DoxyParamCaption}\item[{unsigned}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a836a0f3cb895c1dd2bc173625c709184}\label{class_index_entry_a836a0f3cb895c1dd2bc173625c709184}} 
+\index{IndexEntry@{IndexEntry}!SetRawNagCount@{SetRawNagCount}}
+\index{SetRawNagCount@{SetRawNagCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetRawNagCount()}{SetRawNagCount()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Raw\+Nag\+Count (\begin{DoxyParamCaption}\item[{unsigned}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a5380346975818e43e6fa2d14110d57da}\label{class_index_entry_a5380346975818e43e6fa2d14110d57da}} 
+\index{IndexEntry@{IndexEntry}!SetRawVariationCount@{SetRawVariationCount}}
+\index{SetRawVariationCount@{SetRawVariationCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetRawVariationCount()}{SetRawVariationCount()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Raw\+Variation\+Count (\begin{DoxyParamCaption}\item[{unsigned}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a70019a4ecb50ed0ce536ad953476af91}\label{class_index_entry_a70019a4ecb50ed0ce536ad953476af91}} 
+\index{IndexEntry@{IndexEntry}!SetResult@{SetResult}}
+\index{SetResult@{SetResult}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetResult()}{SetResult()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_acb6fa1964a0822112ce411a072fa6818}{resultT}}}]{res }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a600eb267be7ac5b722ae16a4fb6befa7}\label{class_index_entry_a600eb267be7ac5b722ae16a4fb6befa7}} 
+\index{IndexEntry@{IndexEntry}!SetRound@{SetRound}}
+\index{SetRound@{SetRound}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetRound()}{SetRound()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Round (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ab642354b48aa8a1bf56a5bca2b433f68}\label{class_index_entry_ab642354b48aa8a1bf56a5bca2b433f68}} 
+\index{IndexEntry@{IndexEntry}!SetSite@{SetSite}}
+\index{SetSite@{SetSite}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetSite()}{SetSite()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Site (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a0aa2446f71f93314ee889c0a50257df4}\label{class_index_entry_a0aa2446f71f93314ee889c0a50257df4}} 
+\index{IndexEntry@{IndexEntry}!SetStartFlag@{SetStartFlag}}
+\index{SetStartFlag@{SetStartFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetStartFlag()}{SetStartFlag()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Start\+Flag (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a928f361c7307d0fd9ab2b3f5e73c0ecc}\label{class_index_entry_a928f361c7307d0fd9ab2b3f5e73c0ecc}} 
+\index{IndexEntry@{IndexEntry}!SetStoredLineCode@{SetStoredLineCode}}
+\index{SetStoredLineCode@{SetStoredLineCode}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetStoredLineCode()}{SetStoredLineCode()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Stored\+Line\+Code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_abf9cdf850e382c451df3ee8be86a5589}\label{class_index_entry_abf9cdf850e382c451df3ee8be86a5589}} 
+\index{IndexEntry@{IndexEntry}!SetUnderPromoFlag@{SetUnderPromoFlag}}
+\index{SetUnderPromoFlag@{SetUnderPromoFlag}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetUnderPromoFlag()}{SetUnderPromoFlag()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Under\+Promo\+Flag (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a5e8ffe9437734755cc757889a99232ef}\label{class_index_entry_a5e8ffe9437734755cc757889a99232ef}} 
+\index{IndexEntry@{IndexEntry}!SetVariationCount@{SetVariationCount}}
+\index{SetVariationCount@{SetVariationCount}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetVariationCount()}{SetVariationCount()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+Variation\+Count (\begin{DoxyParamCaption}\item[{unsigned}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_aab203360f3bb93d8833280ac42f70a20}\label{class_index_entry_aab203360f3bb93d8833280ac42f70a20}} 
+\index{IndexEntry@{IndexEntry}!SetWhite@{SetWhite}}
+\index{SetWhite@{SetWhite}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetWhite()}{SetWhite()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+White (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{indexentry_8h_a24360c7731ff5659e711d8e588cd4008}{id\+NumberT}}}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a86dcef8057efaa275bb484f28a2b4432}\label{class_index_entry_a86dcef8057efaa275bb484f28a2b4432}} 
+\index{IndexEntry@{IndexEntry}!SetWhiteElo@{SetWhiteElo}}
+\index{SetWhiteElo@{SetWhiteElo}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetWhiteElo()}{SetWhiteElo()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+White\+Elo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a16e4fc43df6920aaf94be5cb51e30f85}{eloT}}}]{elo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_ad77af7107077a7eecad3e3b4e426f534}\label{class_index_entry_ad77af7107077a7eecad3e3b4e426f534}} 
+\index{IndexEntry@{IndexEntry}!SetWhiteRatingType@{SetWhiteRatingType}}
+\index{SetWhiteRatingType@{SetWhiteRatingType}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{SetWhiteRatingType()}{SetWhiteRatingType()}}
+{\footnotesize\ttfamily void Index\+Entry\+::\+Set\+White\+Rating\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_index_entry_a7cfd913f990d69e6f89626437d40d0be}\label{class_index_entry_a7cfd913f990d69e6f89626437d40d0be}} 
+\index{IndexEntry@{IndexEntry}!StrToFlagMask@{StrToFlagMask}}
+\index{StrToFlagMask@{StrToFlagMask}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{StrToFlagMask()}{StrToFlagMask()}}
+{\footnotesize\ttfamily uint32\+\_\+t Index\+Entry\+::\+Str\+To\+Flag\+Mask (\begin{DoxyParamCaption}\item[{const char $\ast$}]{flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_index_entry_a089d97dc36737cd2c0595f215ca57b04}\label{class_index_entry_a089d97dc36737cd2c0595f215ca57b04}} 
+\index{IndexEntry@{IndexEntry}!IDX\_MASK\_ALLFLAGS@{IDX\_MASK\_ALLFLAGS}}
+\index{IDX\_MASK\_ALLFLAGS@{IDX\_MASK\_ALLFLAGS}!IndexEntry@{IndexEntry}}
+\doxysubsubsection{\texorpdfstring{IDX\_MASK\_ALLFLAGS}{IDX\_MASK\_ALLFLAGS}}
+{\footnotesize\ttfamily const uint32\+\_\+t Index\+Entry\+::\+IDX\+\_\+\+MASK\+\_\+\+ALLFLAGS = 0x\+FFFFFFFF\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{indexentry_8h}{indexentry.\+h}}\end{DoxyCompactItemize}

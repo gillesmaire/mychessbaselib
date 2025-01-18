@@ -1,0 +1,242 @@
+\hypertarget{structmove_t}{}\doxysection{moveT Struct Reference}
+\label{structmove_t}\index{moveT@{moveT}}
+
+
+{\ttfamily \#include $<$movetree.\+h$>$}
+
+
+
+Collaboration diagram for moveT\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{structmove_t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{structmove_t_abcd9a3df898e3ec7575551e056a4304a}{clear}} ()
+\item 
+bool \mbox{\hyperlink{structmove_t_a49235c0915d4f049cf31c9f038e82c13}{start\+Marker}} () const
+\item 
+bool \mbox{\hyperlink{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}{end\+Marker}} () const
+\item 
+bool \mbox{\hyperlink{structmove_t_ac3591be4d575b8fa9ee2e0e4e9ac5caa}{is\+Null}} () const
+\item 
+const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ \mbox{\hyperlink{structmove_t_a512c4d371415e459fcb0bbe03b000a75}{Next}} () const
+\item 
+\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const \& \mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}} () const
+\item 
+{\footnotesize template$<$typename TNew $>$ }\\\mbox{\hyperlink{structmove_t}{moveT}} $\ast$ \mbox{\hyperlink{structmove_t_ac343d2eb8c3412ad2f29fdcc69f14260}{clone\+Line}} (\mbox{\hyperlink{structmove_t}{moveT}} $\ast$parent, TNew new\+Move) const
+\item 
+void \mbox{\hyperlink{structmove_t_a05de01b6f6b37cd9373b0360b197bd14}{swap\+Line}} (\mbox{\hyperlink{structmove_t}{moveT}} \&\mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}})
+\item 
+const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ \mbox{\hyperlink{structmove_t_a9179ac049dc54edc3855e1f862f309fb}{get\+Prev\+Move}} () const
+\item 
+std\+::pair$<$ const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$, const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ $>$ \mbox{\hyperlink{structmove_t_a747d4c95c57329834fbbc9964dbdc3af}{get\+Parent}} () const
+\item 
+std\+::pair$<$ \mbox{\hyperlink{structmove_t}{moveT}} $\ast$, \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ $>$ \mbox{\hyperlink{structmove_t_ae8f827feca53900c3b74800938b96db9}{get\+Parent}} ()
+\item 
+\mbox{\hyperlink{structmove_t}{moveT}} $\ast$ \mbox{\hyperlink{structmove_t_ab93ec9906b52d94d97c426845e7afc2b}{next\+Move\+In\+PGN}} () const
+\item 
+void \mbox{\hyperlink{structmove_t_ad74b2158a1a41f42731fe6ae4b17208b}{set\+Next}} (\mbox{\hyperlink{structmove_t}{moveT}} $\ast$\mbox{\hyperlink{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}{move}})
+\item 
+void \mbox{\hyperlink{structmove_t_ad8207ff8b694ba8bd09d7fc9830a0d4b}{insert\+Child}} (\mbox{\hyperlink{structmove_t}{moveT}} $\ast$var\+Start, int pos)
+\item 
+void \mbox{\hyperlink{structmove_t_a72ec867fcd1e1ca5ccdf49bdff1bc856}{append\+Child}} (\mbox{\hyperlink{structmove_t}{moveT}} $\ast$var\+Start)
+\item 
+void \mbox{\hyperlink{structmove_t_ac6b27c0d0167e6571be28aaedae6ab63}{detach\+Child}} (\mbox{\hyperlink{structmove_t}{moveT}} $\ast$var\+Start)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmove_t}{moveT}} $\ast$ \mbox{\hyperlink{structmove_t_a88730d1daf7cff30ad17a69ff782d075}{prev}}
+\item 
+\mbox{\hyperlink{structmove_t}{moveT}} $\ast$ \mbox{\hyperlink{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}{next}}
+\item 
+\mbox{\hyperlink{structmove_t}{moveT}} $\ast$ \mbox{\hyperlink{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}{var\+Child}}
+\item 
+\mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} \mbox{\hyperlink{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}{move\+Data}}
+\item 
+char \mbox{\hyperlink{structmove_t_a751bad59bbaf4454b86c24b8ab215de4}{san}} \mbox{[}10\mbox{]}
+\item 
+\mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481c}{markerT}} \mbox{\hyperlink{structmove_t_a2cb3e95a41f2d8bfad53169431ad33c9}{marker}}
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{structmove_t_a3b1d71470188bb30eb064bfab6011cab}{num\+Variations}}
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{structmove_t_a28d943e80ef544c31f93bb34f585b2b2}{nag\+Count}}
+\item 
+\mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} \mbox{\hyperlink{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}{nags}} \mbox{[}\mbox{\hyperlink{movetree_8h_a2ab6038df3b02e956599bf26ce306f04}{MAX\+\_\+\+NAGS}}\mbox{]}
+\item 
+std\+::string \mbox{\hyperlink{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}{comment}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structmove_t_a72ec867fcd1e1ca5ccdf49bdff1bc856}\label{structmove_t_a72ec867fcd1e1ca5ccdf49bdff1bc856}} 
+\index{moveT@{moveT}!appendChild@{appendChild}}
+\index{appendChild@{appendChild}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{appendChild()}{appendChild()}}
+{\footnotesize\ttfamily void move\+T\+::append\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmove_t}{moveT}} $\ast$}]{var\+Start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_abcd9a3df898e3ec7575551e056a4304a}\label{structmove_t_abcd9a3df898e3ec7575551e056a4304a}} 
+\index{moveT@{moveT}!clear@{clear}}
+\index{clear@{clear}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void move\+T\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ac343d2eb8c3412ad2f29fdcc69f14260}\label{structmove_t_ac343d2eb8c3412ad2f29fdcc69f14260}} 
+\index{moveT@{moveT}!cloneLine@{cloneLine}}
+\index{cloneLine@{cloneLine}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{cloneLine()}{cloneLine()}}
+{\footnotesize\ttfamily template$<$typename TNew $>$ \\
+\mbox{\hyperlink{structmove_t}{moveT}} $\ast$ move\+T\+::clone\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmove_t}{moveT}} $\ast$}]{parent,  }\item[{TNew}]{new\+Move }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ac6b27c0d0167e6571be28aaedae6ab63}\label{structmove_t_ac6b27c0d0167e6571be28aaedae6ab63}} 
+\index{moveT@{moveT}!detachChild@{detachChild}}
+\index{detachChild@{detachChild}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{detachChild()}{detachChild()}}
+{\footnotesize\ttfamily void move\+T\+::detach\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmove_t}{moveT}} $\ast$}]{var\+Start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}\label{structmove_t_ab45425ad7f2385d2cc117c2a806c3b3f}} 
+\index{moveT@{moveT}!endMarker@{endMarker}}
+\index{endMarker@{endMarker}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{endMarker()}{endMarker()}}
+{\footnotesize\ttfamily bool move\+T\+::end\+Marker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ae8f827feca53900c3b74800938b96db9}\label{structmove_t_ae8f827feca53900c3b74800938b96db9}} 
+\index{moveT@{moveT}!getParent@{getParent}}
+\index{getParent@{getParent}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{getParent()}{getParent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::pair$<$ \mbox{\hyperlink{structmove_t}{moveT}} $\ast$, \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ $>$ move\+T\+::get\+Parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_a747d4c95c57329834fbbc9964dbdc3af}\label{structmove_t_a747d4c95c57329834fbbc9964dbdc3af}} 
+\index{moveT@{moveT}!getParent@{getParent}}
+\index{getParent@{getParent}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{getParent()}{getParent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::pair$<$ const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$, const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ $>$ move\+T\+::get\+Parent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_a9179ac049dc54edc3855e1f862f309fb}\label{structmove_t_a9179ac049dc54edc3855e1f862f309fb}} 
+\index{moveT@{moveT}!getPrevMove@{getPrevMove}}
+\index{getPrevMove@{getPrevMove}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{getPrevMove()}{getPrevMove()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ move\+T\+::get\+Prev\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ad8207ff8b694ba8bd09d7fc9830a0d4b}\label{structmove_t_ad8207ff8b694ba8bd09d7fc9830a0d4b}} 
+\index{moveT@{moveT}!insertChild@{insertChild}}
+\index{insertChild@{insertChild}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{insertChild()}{insertChild()}}
+{\footnotesize\ttfamily void move\+T\+::insert\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmove_t}{moveT}} $\ast$}]{var\+Start,  }\item[{int}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ac3591be4d575b8fa9ee2e0e4e9ac5caa}\label{structmove_t_ac3591be4d575b8fa9ee2e0e4e9ac5caa}} 
+\index{moveT@{moveT}!isNull@{isNull}}
+\index{isNull@{isNull}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{isNull()}{isNull()}}
+{\footnotesize\ttfamily bool move\+T\+::is\+Null (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}\label{structmove_t_a53a6d35d53d05866608b21f6bfcaac55}} 
+\index{moveT@{moveT}!move@{move}}
+\index{move@{move}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} const  \& move\+T\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_a512c4d371415e459fcb0bbe03b000a75}\label{structmove_t_a512c4d371415e459fcb0bbe03b000a75}} 
+\index{moveT@{moveT}!Next@{Next}}
+\index{Next@{Next}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{Next()}{Next()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ move\+T\+::\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ab93ec9906b52d94d97c426845e7afc2b}\label{structmove_t_ab93ec9906b52d94d97c426845e7afc2b}} 
+\index{moveT@{moveT}!nextMoveInPGN@{nextMoveInPGN}}
+\index{nextMoveInPGN@{nextMoveInPGN}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{nextMoveInPGN()}{nextMoveInPGN()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmove_t}{moveT}} $\ast$ move\+T\+::next\+Move\+In\+PGN (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_ad74b2158a1a41f42731fe6ae4b17208b}\label{structmove_t_ad74b2158a1a41f42731fe6ae4b17208b}} 
+\index{moveT@{moveT}!setNext@{setNext}}
+\index{setNext@{setNext}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{setNext()}{setNext()}}
+{\footnotesize\ttfamily void move\+T\+::set\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmove_t}{moveT}} $\ast$}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_a49235c0915d4f049cf31c9f038e82c13}\label{structmove_t_a49235c0915d4f049cf31c9f038e82c13}} 
+\index{moveT@{moveT}!startMarker@{startMarker}}
+\index{startMarker@{startMarker}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{startMarker()}{startMarker()}}
+{\footnotesize\ttfamily bool move\+T\+::start\+Marker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structmove_t_a05de01b6f6b37cd9373b0360b197bd14}\label{structmove_t_a05de01b6f6b37cd9373b0360b197bd14}} 
+\index{moveT@{moveT}!swapLine@{swapLine}}
+\index{swapLine@{swapLine}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{swapLine()}{swapLine()}}
+{\footnotesize\ttfamily void move\+T\+::swap\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmove_t}{moveT}} \&}]{move }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}\label{structmove_t_ae46a4cdc5219f98d0aaf148dd20d07e4}} 
+\index{moveT@{moveT}!comment@{comment}}
+\index{comment@{comment}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{comment}{comment}}
+{\footnotesize\ttfamily std\+::string move\+T\+::comment}
+
+\mbox{\Hypertarget{structmove_t_a2cb3e95a41f2d8bfad53169431ad33c9}\label{structmove_t_a2cb3e95a41f2d8bfad53169431ad33c9}} 
+\index{moveT@{moveT}!marker@{marker}}
+\index{marker@{marker}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{marker}{marker}}
+{\footnotesize\ttfamily \mbox{\hyperlink{movetree_8h_a88211f7980b9793393779a7d774d481c}{markerT}} move\+T\+::marker}
+
+\mbox{\Hypertarget{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}\label{structmove_t_ae465fbb8dad1a3ec5fc20f85bb5e5027}} 
+\index{moveT@{moveT}!moveData@{moveData}}
+\index{moveData@{moveData}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{moveData}{moveData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structsimple_move_t}{simple\+MoveT}} move\+T\+::move\+Data}
+
+\mbox{\Hypertarget{structmove_t_a28d943e80ef544c31f93bb34f585b2b2}\label{structmove_t_a28d943e80ef544c31f93bb34f585b2b2}} 
+\index{moveT@{moveT}!nagCount@{nagCount}}
+\index{nagCount@{nagCount}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{nagCount}{nagCount}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} move\+T\+::nag\+Count}
+
+\mbox{\Hypertarget{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}\label{structmove_t_a21b17ea2ca3632b19aaf86ba5c07e8a9}} 
+\index{moveT@{moveT}!nags@{nags}}
+\index{nags@{nags}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{nags}{nags}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} move\+T\+::nags\mbox{[}\mbox{\hyperlink{movetree_8h_a2ab6038df3b02e956599bf26ce306f04}{MAX\+\_\+\+NAGS}}\mbox{]}}
+
+\mbox{\Hypertarget{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}\label{structmove_t_a9359ca6ff054f3d65f83a8e284a5679a}} 
+\index{moveT@{moveT}!next@{next}}
+\index{next@{next}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmove_t}{moveT}}$\ast$ move\+T\+::next}
+
+\mbox{\Hypertarget{structmove_t_a3b1d71470188bb30eb064bfab6011cab}\label{structmove_t_a3b1d71470188bb30eb064bfab6011cab}} 
+\index{moveT@{moveT}!numVariations@{numVariations}}
+\index{numVariations@{numVariations}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{numVariations}{numVariations}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8h_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} move\+T\+::num\+Variations}
+
+\mbox{\Hypertarget{structmove_t_a88730d1daf7cff30ad17a69ff782d075}\label{structmove_t_a88730d1daf7cff30ad17a69ff782d075}} 
+\index{moveT@{moveT}!prev@{prev}}
+\index{prev@{prev}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{prev}{prev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmove_t}{moveT}}$\ast$ move\+T\+::prev}
+
+\mbox{\Hypertarget{structmove_t_a751bad59bbaf4454b86c24b8ab215de4}\label{structmove_t_a751bad59bbaf4454b86c24b8ab215de4}} 
+\index{moveT@{moveT}!san@{san}}
+\index{san@{san}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{san}{san}}
+{\footnotesize\ttfamily char move\+T\+::san\mbox{[}10\mbox{]}}
+
+\mbox{\Hypertarget{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}\label{structmove_t_ae9fbf996380305fe6e8aaad8a65f4517}} 
+\index{moveT@{moveT}!varChild@{varChild}}
+\index{varChild@{varChild}!moveT@{moveT}}
+\doxysubsubsection{\texorpdfstring{varChild}{varChild}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmove_t}{moveT}}$\ast$ move\+T\+::var\+Child}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{movetree_8h}{movetree.\+h}}\end{DoxyCompactItemize}
