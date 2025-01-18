@@ -55,6 +55,15 @@ int DBasePool::find(const char* filename) {
 	return 0;
 }
 
+int DBasePool::find(QString filename) {
+	for (int i = 0, n = MAX_BASES; i < n; i++) {
+		if (dbList[i].inUse && dbList[i].getFileName() == filename.toStdString())
+			return i + 1;
+	}
+	return 0;
+}
+
+
 scidBaseT* DBasePool::getBase(int baseHandle) {
 	if (baseHandle < 1 || baseHandle > MAX_BASES) return 0;
 	scidBaseT* res = &(dbList[baseHandle - 1]);

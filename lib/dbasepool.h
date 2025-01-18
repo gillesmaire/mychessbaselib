@@ -20,6 +20,8 @@
 #define DBASEPOOL_H
 
 #include <vector>
+#include <QString>
+
 struct scidBaseT;
 
 
@@ -60,7 +62,17 @@ void closeAll();
  */
 int find(const char* filename);
 
+///
+/// \brief find search for a database
+/// \param filename : the filename of the wanted database.
+///                    Database in native Scid format do not use extension ("example").
+///                    Other databases require file extension ("example.pgn").
+/// \return  
+///     - the handle of the database corresponding to @e filename.
+///     - 0 if not found.
+///
 
+int find (QString filename);
 /**
  * getBase() - get a database from the pool.
  * @param baseHandle: the handle of the wanted database.
