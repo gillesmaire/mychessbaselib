@@ -1,0 +1,33 @@
+name: Generate Doxygen Documentation
+
+on:
+  push:
+    branches:
+      - main  # Génère la documentation pour la branche "main"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  generate-docs:
+    runs-on: debian-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Doxygen
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y doxygen graphviz
+
+    - name: Generate Doxygen Documentation
+      run: doxygen Doxyfile
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./Doxygen/html
+
