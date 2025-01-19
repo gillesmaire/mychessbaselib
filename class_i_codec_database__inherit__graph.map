@@ -1,0 +1,15 @@
+<map id="ICodecDatabase" name="ICodecDatabase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="277,5,405,31"/>
+<area shape="rect" id="Node000002" href="$class_codec_memory.html" title=" " alt="" coords="149,79,265,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="309,39,230,81,228,76,306,35"/>
+<area shape="rect" id="Node000006" href="$class_codec_s_c_i_d4.html" title=" " alt="" coords="290,79,391,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="343,44,343,79,338,79,338,44"/>
+<area shape="rect" id="Node000007" href="$class_codec_s_c_i_d5.html" title=" " alt="" coords="415,79,517,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="374,35,447,76,444,81,371,40"/>
+<area shape="rect" id="Node000003" href="$class_codec_proxy.html" title=" " alt="" coords="5,152,199,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="180,114,121,154,118,150,177,110"/>
+<area shape="rect" id="Node000005" href="$class_codec_proxy.html" title=" " alt="" coords="223,152,403,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="237,110,297,150,294,154,234,114"/>
+<area shape="rect" id="Node000004" href="$class_codec_pgn.html" title=" " alt="" coords="59,225,145,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="105,191,105,225,99,225,99,191"/>
+</map>

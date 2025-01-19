@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['valid_5fking_0',['valid_king',['../namespacemovegen.html#a51c3bd822af7e3536a549a3a0ab03c24',1,'movegen']]],
+  ['valid_5fknight_1',['valid_knight',['../namespacemovegen.html#abd587e0073db8b862ea89d3e310d9443',1,'movegen']]],
+  ['valid_5fslider_2',['valid_slider',['../namespacemovegen.html#af7beb8bac7ba4a8b6b5bf57473b52647',1,'movegen']]],
+  ['validcastlingflag_3',['validCastlingFlag',['../class_position.html#a97465242c9ecdac780ae8c849038c3cd',1,'Position']]],
+  ['varexactmatch_4',['VarExactMatch',['../class_game.html#aee0dee1f89a169012dd65de60aa9184a',1,'Game']]],
+  ['vectorchunked_5',['vectorchunked',['../class_vector_chunked.html#a53ceef04d9b3ef875eac0e8559f0e65a',1,'VectorChunked::VectorChunked()=default'],['../class_vector_chunked.html#ab25abb4c9dc5fe04f060b982cb5ec066',1,'VectorChunked::VectorChunked(const VectorChunked &amp;)=delete']]],
+  ['viewtagpairs_6',['viewTagPairs',['../class_game.html#a38f3ff0dac3aec0fe6f8d72029796e0c',1,'Game']]],
+  ['visitpgn_5fcomment_7',['visitPGN_Comment',['../class_pgn_visitor.html#ad3cc8d2731c14b681cf9d7dea61ee676',1,'PgnVisitor']]],
+  ['visitpgn_5fendofline_8',['visitPGN_EndOfLine',['../class_pgn_visitor.html#a4dc966b45656bd663320376064f6eda5',1,'PgnVisitor']]],
+  ['visitpgn_5fepd_9',['visitPGN_EPD',['../class_pgn_visitor.html#a75212432e88d2b3175ef8a215d39ae49',1,'PgnVisitor']]],
+  ['visitpgn_5fescape_10',['visitPGN_Escape',['../class_pgn_visitor.html#a652cfb2feccef00d1fd2eda975aaf705',1,'PgnVisitor']]],
+  ['visitpgn_5finputeof_11',['visitPGN_inputEOF',['../class_pgn_visitor.html#aa7376268ebacbf33bff7d43d6cf81f84',1,'PgnVisitor']]],
+  ['visitpgn_5finputunexpectedpgnheader_12',['visitPGN_inputUnexpectedPGNHeader',['../class_pgn_visitor.html#af518cc3b74ff817e14310b74b951da5b',1,'PgnVisitor']]],
+  ['visitpgn_5fmovenum_13',['visitPGN_MoveNum',['../class_pgn_visitor.html#a15459264340e4c67957c2599fc938ac0',1,'PgnVisitor']]],
+  ['visitpgn_5fnag_14',['visitPGN_NAG',['../class_pgn_visitor.html#a3b390f2f215bd2bc45c57bee297c060e',1,'PgnVisitor']]],
+  ['visitpgn_5fresultfinal_15',['visitPGN_ResultFinal',['../class_pgn_visitor.html#adb9660e13d8a639dc0dbad17f59e7103',1,'PgnVisitor']]],
+  ['visitpgn_5fsanmove_16',['visitPGN_SANMove',['../class_pgn_visitor.html#a260f61fdf964d8f2fa66c79f9a806ce6',1,'PgnVisitor']]],
+  ['visitpgn_5fsuffix_17',['visitPGN_Suffix',['../class_pgn_visitor.html#aa765ce620bb0617ffd213d8a27725f46',1,'PgnVisitor']]],
+  ['visitpgn_5ftagpair_18',['visitPGN_TagPair',['../class_pgn_visitor.html#ae3ffb25286605899ce04e722c0be2171',1,'PgnVisitor']]],
+  ['visitpgn_5funknown_19',['visitPGN_Unknown',['../class_pgn_visitor.html#af2826e11ddb8b408787f8143bb005836',1,'PgnVisitor']]],
+  ['visitpgn_5fvariationend_20',['visitPGN_VariationEnd',['../class_pgn_visitor.html#a4e53fa8d8fa3cf792b199ccf49b162cb',1,'PgnVisitor']]],
+  ['visitpgn_5fvariationstart_21',['visitPGN_VariationStart',['../class_pgn_visitor.html#a426f6a074f86d302477f13aff933ce85',1,'PgnVisitor']]]
+];
