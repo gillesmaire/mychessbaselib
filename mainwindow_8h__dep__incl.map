@@ -1,0 +1,9 @@
+<map id="examples/mainwindow.h" name="examples/mainwindow.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="187,5,371,31"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html" title=" " alt="" coords="5,79,156,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,38,114,81,112,76,234,33"/>
+<area shape="rect" id="Node000003" href="$mainwindow_8cpp.html" title=" " alt="" coords="180,79,379,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="282,44,282,79,277,79,277,44"/>
+<area shape="rect" id="Node000004" href="$scidbasemodel_8cpp.html" title=" " alt="" coords="403,79,617,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="330,32,473,76,472,81,329,37"/>
+</map>

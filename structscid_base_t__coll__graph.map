@@ -1,0 +1,11 @@
+<map id="scidBaseT" name="scidBaseT">
+<area shape="rect" id="Node000001" title=" " alt="" coords="153,108,241,133"/>
+<area shape="rect" id="Node000002" href="$class_tree_cache.html" title=" " alt="" coords="5,5,95,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,44,60,64,72,82,90,95,110,105,153,115,152,120,108,110,87,100,68,86,55,66,49,45"/>
+<area shape="rect" id="Node000003" href="$class_filter.html" title=" " alt="" coords="124,5,179,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,45,150,64,155,83,164,96,177,106,173,110,161,99,150,85,145,65,144,45"/>
+<area shape="rect" id="Node000004" href="$class_game.html" title=" " alt="" coords="211,5,273,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,45,204,109,199,107,229,42"/>
+<area shape="rect" id="Node000005" href="$class_undo_redo.html" title=" " alt="" coords="297,5,488,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="361,40,273,86,223,110,221,105,270,82,359,35"/>
+</map>
