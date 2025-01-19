@@ -9,3 +9,4 @@ moc_*.*
 *.pro.user.*
 mychessbaselib.wiki
 Doxygen
+FETCH_HEAD
