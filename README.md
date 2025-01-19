@@ -20,7 +20,12 @@ A technical documentation  is available in Wiki o github
 ## Doxygen documentation 
 
 The Doxyfile file to generate a documentation is present in root directory of project.
-It is names Doxyfile
+
+The documentation is avalable at [here](https://gillesmaire.github.io/mychessbaselib/index.html)
+
+Th main class definition is [ChessBase](https://gillesmaire.github.io/mychessbaselib/class_chess_base.html)
+
+
 
 
 
