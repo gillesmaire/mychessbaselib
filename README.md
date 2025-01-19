@@ -23,7 +23,7 @@ The Doxyfile file to generate a documentation is present in root directory of pr
 
 The documentation is avalable at [here](https://gillesmaire.github.io/mychessbaselib/index.html)
 
-Th main class definition is [ChessBase](https://gillesmaire.github.io/mychessbaselib/class_chess_base.html)
+The main class definition is [ChessBase](https://gillesmaire.github.io/mychessbaselib/class_chess_base.html)
 
 
 

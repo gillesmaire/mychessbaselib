@@ -1,7 +1,0 @@
-<map id="scidBaseT" name="scidBaseT">
-<area shape="rect" id="node1" title=" " alt="" coords="153,109,241,136"/>
-<area shape="rect" id="node2" href="$class_tree_cache.html" title=" " alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node3" href="$class_filter.html" title=" " alt="" coords="124,5,179,32"/>
-<area shape="rect" id="node4" href="$class_game.html" title=" " alt="" coords="211,5,273,32"/>
-<area shape="rect" id="node5" href="$class_undo_redo.html" title=" " alt="" coords="297,5,488,32"/>
-</map>
