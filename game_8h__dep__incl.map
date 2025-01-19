@@ -1,0 +1,29 @@
+<map id="lib/game.h" name="lib/game.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="549,5,639,31"/>
+<area shape="rect" id="Node000002" href="$mainwindow_8cpp.html" title=" " alt="" coords="5,225,204,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="536,34,461,53,380,81,302,118,228,160,123,227,120,223,226,155,300,113,378,76,459,48,535,29"/>
+<area shape="rect" id="Node000003" href="$codec__proxy_8h.html" title=" " alt="" coords="527,79,661,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="597,44,597,79,591,79,591,44"/>
+<area shape="rect" id="Node000006" href="$game_8cpp.html" title=" " alt="" coords="825,79,931,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="653,31,833,76,831,81,652,37"/>
+<area shape="rect" id="Node000007" href="$pgnparse_8h.html" title=" " alt="" coords="686,79,801,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="631,34,720,76,718,81,629,39"/>
+<area shape="rect" id="Node000008" href="$scidbase_8h.html" title=" " alt="" coords="392,79,503,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="560,39,472,81,470,76,557,34"/>
+<area shape="rect" id="Node000004" href="$codec__pgn_8h.html" title=" " alt="" coords="682,152,805,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="631,107,720,149,718,154,629,112"/>
+<area shape="rect" id="Node000005" href="$scidbase_8cpp.html" title=" " alt="" coords="655,225,781,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="737,191,725,226,720,224,732,189"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="746,118,746,152,741,152,741,118"/>
+<area shape="poly" id="edge15_Node000008_Node000005" title=" " alt="" coords="461,115,482,146,512,175,546,195,583,209,655,227,654,232,581,214,543,199,508,179,478,150,457,118"/>
+<area shape="rect" id="Node000009" href="$chessbase_8cpp.html" title=" " alt="" coords="467,225,604,251"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="451,118,457,147,468,176,491,203,517,223,514,227,488,207,464,179,451,148,446,119"/>
+<area shape="rect" id="Node000010" href="$chessbase_8h.html" title=" " alt="" coords="274,152,397,177"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="419,114,355,154,352,150,416,109"/>
+<area shape="rect" id="Node000012" href="$dbasepool_8cpp.html" title=" " alt="" coords="522,152,658,177"/>
+<area shape="poly" id="edge14_Node000008_Node000012" title=" " alt="" coords="484,108,568,149,565,154,481,112"/>
+<area shape="poly" id="edge11_Node000010_Node000002" title=" " alt="" coords="286,184,143,228,141,223,284,179"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="381,179,504,223,502,228,380,184"/>
+<area shape="rect" id="Node000011" href="$scidbasemodel_8cpp.html" title=" " alt="" coords="228,225,443,251"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="338,191,338,225,333,225,333,191"/>
+</map>

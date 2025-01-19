@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['c1_0',['C1',['../board__def_8h.html#a7c7f317a89a312dc646081e3dffee1ed',1,'board_def.h']]],
+  ['c2_1',['C2',['../board__def_8h.html#aaf6290ecfc1ecd2707f03c595f087516',1,'board_def.h']]],
+  ['c3_2',['C3',['../board__def_8h.html#a6f44d5b90dfd47131ac59c4568e25bf0',1,'board_def.h']]],
+  ['c4_3',['C4',['../board__def_8h.html#a44d299be3a611bb4157bda0dfe482045',1,'board_def.h']]],
+  ['c5_4',['C5',['../board__def_8h.html#a944a3d0a1378ebdd30bb4d64140e5247',1,'board_def.h']]],
+  ['c6_5',['C6',['../board__def_8h.html#ad6487513a6c89f4fc3e13bf76a6ef4ea',1,'board_def.h']]],
+  ['c7_6',['C7',['../board__def_8h.html#a2bf43c7c84c9f96ba9c1cf7ee1ef0b75',1,'board_def.h']]],
+  ['c8_7',['C8',['../board__def_8h.html#a60b7b0c98ffc5cd17f1d2f4bda3ace9f',1,'board_def.h']]],
+  ['c_5ffyle_8',['C_FYLE',['../board__def_8h.html#aebfa2a22dd76a13cd9d2cb65ccb3e2c0',1,'board_def.h']]],
+  ['capturednum_9',['capturedNum',['../structsimple_move_t.html#af197980660a4f31f32c3b573695586de',1,'simpleMoveT']]],
+  ['capturedpiece_10',['capturedPiece',['../structsimple_move_t.html#a047d72eef7bcaba315da9c450f445d18',1,'simpleMoveT']]],
+  ['capturedsquare_11',['capturedSquare',['../structsimple_move_t.html#a5bc471b43030a30806dd257a1df8b456',1,'simpleMoveT']]],
+  ['castleflags_12',['castleFlags',['../structsimple_move_t.html#ae7cb87b128508bc5f0a6dcb838a2afd8',1,'simpleMoveT']]],
+  ['castling_13',['castling',['../structsimple_move_t.html#af295c79229a6662766860d5c9a35efd0',1,'simpleMoveT']]],
+  ['cfilter_5f_14',['cfilter_',['../struct_cached_filter.html#aeb64ca406f11736eba505e29fbd0b6f2',1,'CachedFilter']]],
+  ['color_5fchar_15',['COLOR_CHAR',['../board__def_8h.html#a30fd5ac128483dbd24b5fe2647800e13',1,'board_def.h']]],
+  ['color_5fsquare_16',['COLOR_SQUARE',['../board__def_8h.html#a389aedf1d3a9e6701a9bad1fbf1295ec',1,'board_def.h']]],
+  ['comment_17',['comment',['../structmove_t.html#ae46a4cdc5219f98d0aaf148dd20d07e4',1,'moveT::comment'],['../structgamepos_1_1_game_pos.html#ae49c587a4bc93e4ff341da31ca08f234',1,'gamepos::GamePos::comment']]],
+  ['commontags_18',['commonTags',['../bytebuf_8h.html#aa89df61b230b6cba0acad28751dca198',1,'bytebuf.h']]],
+  ['count_19',['count',['../structscid_base_t_1_1_stats_1_1_eco.html#a795d61923ffd06a07c01095dbb0f582c',1,'scidBaseT::Stats::Eco']]],
+  ['custom_5fflag_5fmask_20',['CUSTOM_FLAG_MASK',['../indexentry_8h.html#aade9cdfdcb97ed45cf8d578619997d0f',1,'indexentry.h']]]
+];
