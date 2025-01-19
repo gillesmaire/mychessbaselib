@@ -19,14 +19,8 @@ A technical documentation  is available in Wiki o github
 
 ## Doxygen documentation 
 
-A Doxygen file is present lib directory to generate a documentation
+The Doxyfile file  to generate a documentation is present in root directory of project
 
-~~~
-cd lib
-doxywizard
-~~~
-
-The Doxygen documentation is also on Github
 
 
 
