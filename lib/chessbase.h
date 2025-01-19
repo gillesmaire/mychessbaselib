@@ -21,6 +21,8 @@
 /// 
 /// Dont forget to read the [Wiki documentation|https://github.com/gillesmaire/mychessbaselib/wiki]
 /// on Github, a dev guide for developpers
+///
+/// The github project for chessbaselib or scid5lib is  [https://github.com/gillesmaire/mychessbaselib]
 ///     
 
 class ChessBase  : public QWidget
