@@ -34,6 +34,21 @@ lib
 
 In example dir you will find a Qt little project showing some use in Qt with an MVC Model for ChessBaseLib
 
+## Git Projects
+
+The git project  for the library is  [here](https://github.com/gillesmaire/mychessbaselib)
+
+This project is not ended, but tested now 
+
+
+The project started with SQL base for a new chessbase project is git [here](https://github.com/gillesmaire/myChessBase)
+
+This second project was started but it was too slow with SQLite base and I started to learn SCID database 
+
+
+
+
+
 
 
 
