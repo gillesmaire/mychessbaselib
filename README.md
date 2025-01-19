@@ -19,7 +19,8 @@ A technical documentation  is available in Wiki o github
 
 ## Doxygen documentation 
 
-The Doxyfile file  to generate a documentation is present in root directory of project
+The Doxyfile file to generate a documentation is present in root directory of project.
+It is names Doxyfile
 
 
 
